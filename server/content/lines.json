@@ -1,6 +1,6 @@
 {
   "te-IN": {
-    "intro": "మాట ఆర్కేడ్‌కి స్వాగతం! ప్రశ్న విని, సమాధానం గట్టిగా చెప్పండి.",
+    "intro": "మైక్ డ్రాప్ ఆర్కేడ్‌కి స్వాగతం! ప్రశ్న విని, సమాధానం గట్టిగా చెప్పండి.",
     "correct": "సరైన సమాధానం!",
     "wrong": "అయ్యో, తప్పు సమాధానం.",
     "timeout": "సమయం అయిపోయింది.",
@@ -9,7 +9,7 @@
     "retry": "చిన్న సాంకేతిక సమస్య వచ్చింది. తర్వాతి ప్రశ్నకు వెళ్దాం."
   },
   "hi-IN": {
-    "intro": "माटा आर्केड में आपका स्वागत है! सवाल सुनिए और जवाब बोलकर दीजिए।",
+    "intro": "माइक ड्रॉप आर्केड में आपका स्वागत है! सवाल सुनिए और जवाब बोलकर दीजिए।",
     "correct": "बिल्कुल सही!",
     "wrong": "अरे, ये जवाब गलत है।",
     "timeout": "समय खत्म हो गया।",
@@ -18,7 +18,7 @@
     "retry": "थोड़ी तकनीकी दिक्कत आई। अगले सवाल पर चलते हैं।"
   },
   "hi-en": {
-    "intro": "Maata Arcade में welcome! Question सुनो और answer बोलकर दो।",
+    "intro": "Mic Drop Arcade में welcome! Question सुनो और answer बोलकर दो।",
     "correct": "एकदम correct!",
     "wrong": "Oops, ये answer wrong है।",
     "timeout": "Time up!",
@@ -27,7 +27,7 @@
     "retry": "छोटी सी technical problem आई। Next question पर चलते हैं।"
   },
   "te-en": {
-    "intro": "Maata Arcade కి welcome! Question విని, answer గట్టిగా చెప్పండి.",
+    "intro": "Mic Drop Arcade కి welcome! Question విని, answer గట్టిగా చెప్పండి.",
     "correct": "Super, correct answer!",
     "wrong": "అయ్యో, ఇది wrong answer.",
     "timeout": "Time అయిపోయింది.",
@@ -36,7 +36,7 @@
     "retry": "చిన్న technical problem వచ్చింది. Next question కి వెళ్దాం."
   },
   "en-IN": {
-    "intro": "Welcome to Maata Arcade! Listen to the question and say your answer out loud.",
+    "intro": "Welcome to Mic Drop Arcade! Listen to the question and say your answer out loud.",
     "correct": "That's right!",
     "wrong": "Oops, that's not it.",
     "timeout": "Time's up!",

@@ -99,7 +99,7 @@ def create_app(
 
     is_prod = settings.env == "production"
     app = FastAPI(
-        title="Maata Arcade",
+        title="Mic Drop Arcade",
         lifespan=lifespan,
         docs_url=None if is_prod else "/api/docs",
         redoc_url=None,
