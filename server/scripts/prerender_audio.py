@@ -19,7 +19,7 @@ import httpx
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.config import get_settings
-from app.game.languages import LANGUAGES, route, route_for_pack
+from app.game.languages import LANGUAGES, WIZARD_VOICES, WIZARDS, route, route_for_game
 from app.game.lines import Lines
 from app.game.packs import PackLibrary
 from app.gnani.errors import GnaniError
@@ -28,25 +28,25 @@ from app.voice.cache import AudioCache, cache_key
 
 
 def collect(lines: Lines, packs: PackLibrary) -> list[tuple[str, str, str]]:
-    """Return unique (language, voice, text) triples: every line any game can speak."""
+    """Return unique (language, voice, text) triples: every line any game can speak.
+
+    The player's wizard picks the voice, so every line is rendered once per wizard voice.
+    """
     items: dict[tuple[str, str, str], None] = {}
     for lang in LANGUAGES:
-        voice = route(lang).voice
-        for text in lines.all_static(lang):
-            items[(lang, voice, text)] = None
+        for voice in sorted(set(WIZARD_VOICES[lang].values())):
+            for text in lines.all_static(lang):
+                items[(lang, voice, text)] = None
     for pack in packs.list():
-        r = route_for_pack(pack)
-        if pack.story is not None and pack.story.voice:
-            # A story voice speaks every line of its games, the fixed ones included.
-            for text in lines.all_static(pack.language):
-                items[(pack.language, r.voice, text)] = None
-        for q in pack.questions:
-            items[(pack.language, r.voice, q.prompt)] = None
-            answer_line = lines.get(pack.language, "answer_was", answer=q.display_answer)
-            items[(pack.language, r.voice, answer_line)] = None
-        if pack.story is not None:
-            for line in pack.story.all_lines():
-                items[(pack.language, r.voice, line)] = None
+        for wizard in WIZARDS:
+            voice = route_for_game(pack, wizard).voice
+            for q in pack.questions:
+                items[(pack.language, voice, q.prompt)] = None
+                answer_line = lines.get(pack.language, "answer_was", answer=q.display_answer)
+                items[(pack.language, voice, answer_line)] = None
+            if pack.story is not None:
+                for line in pack.story.all_lines():
+                    items[(pack.language, voice, line)] = None
     return list(items)
 
 

@@ -648,3 +648,29 @@ def test_options_need_exactly_one_right_answer():
                 display_answer="New Delhi",
                 options=opts,
             )
+
+
+def test_wizard_picks_the_narrator_voice():
+    from app.game.languages import (
+        DEFAULT_WIZARD,
+        LANGUAGES,
+        VOICES,
+        WIZARD_VOICES,
+        WIZARDS,
+        route,
+        route_for_game,
+        valid_wizard,
+    )
+
+    pack = parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes())
+    assert DEFAULT_WIZARD == "sorceress"
+    assert route_for_game(pack, "sorceress").voice == "Nalini"
+    assert route_for_game(pack, "sage").voice == "Jalaj"
+    assert route_for_game(pack, "owl").voice == "Omkar"
+    # Every wizard has a real Timbre voice in every game language.
+    for code in LANGUAGES:
+        for wizard in WIZARDS:
+            assert WIZARD_VOICES[code][wizard] in VOICES[route(code).tts_lang], (code, wizard)
+    for bad in (None, "", "dragon", "SAGE", 3, ["owl"]):
+        assert valid_wizard(bad) is None
+    assert all(valid_wizard(w) == w for w in WIZARDS)

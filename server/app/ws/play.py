@@ -22,7 +22,7 @@ from starlette.websockets import WebSocket, WebSocketDisconnect, WebSocketState
 from app.deps import Deps
 from app.game import scoring
 from app.game.characters import valid_character
-from app.game.languages import LanguageRoute, route_for_pack
+from app.game.languages import DEFAULT_WIZARD, LanguageRoute, route_for_game, valid_wizard
 from app.game.matching import looks_like_echo, match_answer, normalize, pack_answer_index
 from app.game.packs import Pack, Question
 from app.gnani.errors import GnaniAuthError, GnaniError
@@ -201,6 +201,11 @@ class PlaySession:
             if character is None:
                 await self._send_error("unknown_character", "Pick one of the heroes on screen.")
                 continue
+            picked = cmd.get("wizard")
+            wizard = DEFAULT_WIZARD if picked is None else valid_wizard(picked)
+            if wizard is None:
+                await self._send_error("unknown_character", "Pick one of the wizards on screen.")
+                continue
             if not await self._check_open():
                 return
             games_key = f"maata:games:{self.claims.session_id}"
@@ -219,7 +224,7 @@ class PlaySession:
                 await self._send_error("busy", "Lots of players right now. Try again in a minute.")
                 continue
             try:
-                await self._play_game(game_id, pack, character)
+                await self._play_game(game_id, pack, character, wizard)
             finally:
                 await self.deps.slots.release_game(game_id)
 
@@ -235,8 +240,8 @@ class PlaySession:
         return False
 
     # ------------------------------------------------------------------ game -----------
-    async def _play_game(self, game_id: str, pack: Pack, character: str) -> None:
-        lang = route_for_pack(pack)
+    async def _play_game(self, game_id: str, pack: Pack, character: str, wizard: str) -> None:
+        lang = route_for_game(pack, wizard)
         rng = secrets.SystemRandom()
         n = min(self.s.questions_per_game, len(pack.questions))
         game = GameState(game_id, pack, lang, rng.sample(pack.questions, n))
@@ -261,6 +266,7 @@ class PlaySession:
                 "time_limit_s": self.s.answer_time_limit_s,
                 "max_score": scoring.max_score(n),
                 "character": character,
+                "wizard": wizard,
                 "story": (
                     {
                         "wizard": pack.story.wizard,
@@ -658,6 +664,7 @@ class PlaySession:
                         "type": "start",
                         "pack_id": msg.get("pack_id"),
                         "character": msg.get("character"),
+                        "wizard": msg.get("wizard"),
                     }
                 )
         elif kind == "quit":

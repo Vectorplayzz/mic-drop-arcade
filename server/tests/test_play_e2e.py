@@ -286,10 +286,13 @@ async def test_wizard_story_and_character_reach_leaderboard(live, clean_gnani):
     with live(questions_per_game=2) as server:
         c = await open_game(server, await get_session(server.http))
         await c.ws.send(
-            json.dumps({"type": "start", "pack_id": "hi-story-01", "character": "meera"})
+            json.dumps(
+                {"type": "start", "pack_id": "hi-story-01", "character": "meera", "wizard": "owl"}
+            )
         )
         start = await c.next("game_start")
         assert start["character"] == "meera"
+        assert start["wizard"] == "owl"
         assert start["story"] == {
             "wizard": "Taara",
             "wizard_sprite": "sage",
@@ -343,3 +346,14 @@ async def test_unknown_character_is_refused(live):
         )
         err = await c.next("error")
         assert err["code"] == "unknown_character" and err["fatal"] is False
+
+
+async def test_unknown_wizard_is_refused_without_ending_the_session(live, clean_gnani):
+    with live(questions_per_game=1) as server:
+        c = await open_game(server, await get_session(server.http))
+        await c.ws.send(json.dumps({"type": "start", "pack_id": "hi-test-01", "wizard": "dragon"}))
+        err = await c.next("error")
+        assert err["code"] == "unknown_character" and err["fatal"] is False
+        await c.ws.send(json.dumps({"type": "start", "pack_id": "hi-test-01"}))
+        start = await c.next("game_start")
+        assert start["wizard"] == "sorceress"

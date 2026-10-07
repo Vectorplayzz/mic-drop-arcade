@@ -4,7 +4,7 @@
   "title": "The Comet Clock",
   "language": "en-IN",
   "topic": "space and physics",
-  "version": 2,
+  "version": 3,
   "source": "hand",
   "questions": [
     {
@@ -169,7 +169,7 @@
     "wizard_sprite": "owl",
     "scene": "observatory",
     "voice": "Girish",
-    "intro": "I'm Professor Hoot, keeper of the night observatory. The comet clock crashed right before launch, and only an engineer can reboot it. Every right answer turns one golden gear.",
+    "intro": "Welcome to the night observatory, engineer! The comet clock crashed right before launch, and only you can reboot it. Every right answer turns one golden gear.",
     "chapters": [
       "Gear one is spinning. Nice start, engineer!",
       "The telescope just powered up. Keep going!",

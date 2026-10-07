@@ -60,11 +60,35 @@ VOICES: dict[str, frozenset[str]] = {
 }
 
 
+# The player picks the wizard who narrates (PROTOCOL §9); the wizard decides the voice. The green
+# sorceress is the default. Hinglish has a single Timbre voice, so every wizard shares it there.
+WIZARDS: tuple[str, ...] = ("sorceress", "sage", "owl")
+DEFAULT_WIZARD = "sorceress"
+WIZARD_VOICES: dict[str, dict[str, str]] = {
+    "te-IN": {"sorceress": "Suhana", "sage": "Lavanya", "owl": "Yukti"},
+    "hi-IN": {"sorceress": "Nalini", "sage": "Jalaj", "owl": "Omkar"},
+    "hi-en": {"sorceress": "Poorvi", "sage": "Poorvi", "owl": "Poorvi"},
+    "te-en": {"sorceress": "Varuni", "sage": "Lavanya", "owl": "Yukti"},
+    "en-IN": {"sorceress": "Kaveri", "sage": "Girish", "owl": "Shlok"},
+}
+
+
+def valid_wizard(value: object) -> str | None:
+    """The wizard id if it is one we ship; None for anything else."""
+    return value if isinstance(value, str) and value in WIZARDS else None
+
+
 def route(code: str) -> LanguageRoute:
     try:
         return LANGUAGES[code]
     except KeyError as exc:
         raise ValueError(f"unsupported language {code!r}") from exc
+
+
+def route_for_game(pack: Any, wizard: str) -> LanguageRoute:
+    """The route a game speaks with: the pack's language in the picked wizard's voice."""
+    base = route(pack.language)
+    return replace(base, voice=WIZARD_VOICES[base.code][wizard])
 
 
 def route_for_pack(pack: Any) -> LanguageRoute:

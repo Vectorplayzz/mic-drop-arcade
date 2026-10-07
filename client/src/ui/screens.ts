@@ -8,6 +8,8 @@ import {
   HEROES,
   type LanguageCode,
   type PackSummary,
+  type Wizard,
+  WIZARDS,
 } from '../protocol/messages';
 import { artImage, heroName, heroUrl, sceneUrl, wizardUrl } from './art';
 import { button, clear, h, setText } from './dom';
@@ -147,6 +149,39 @@ export interface LobbyScreen extends Screen {
   setBusy(busy: boolean): void;
 }
 
+/** Three wizards, shown big; the pick narrates every quest. */
+function wizardPicker(t: Strings, current: Wizard, onWizard: (wizard: Wizard) => void): HTMLElement {
+  const buttons = new Map<Wizard, HTMLButtonElement>();
+  const select = (wizard: Wizard): void => {
+    for (const [id, b] of buttons) b.setAttribute('aria-pressed', String(id === wizard));
+  };
+  const row = h(
+    'div',
+    { class: 'wizards', attrs: { role: 'group', 'aria-label': t.chooseWizard } },
+    ...WIZARDS.map((wizard) => {
+      const b = h(
+        'button',
+        {
+          class: 'wizard-pick',
+          attrs: { type: 'button', 'aria-pressed': 'false' },
+          on: {
+            click: () => {
+              select(wizard);
+              onWizard(wizard);
+            },
+          },
+        },
+        artImage(wizardUrl(wizard, 'ask'), 'wizard-pick-img'),
+        h('span', { class: 'wizard-pick-name', text: t.wizardNames[wizard] }),
+      );
+      buttons.set(wizard, b);
+      return b;
+    }),
+  );
+  select(current);
+  return h('div', { class: 'picker' }, h('h2', { class: 'label', text: t.chooseWizard }), row);
+}
+
 /** Twelve heroes, boys then girls; the pick is remembered and rides along with every game. */
 function heroPicker(t: Strings, current: Hero, onHero: (hero: Hero) => void): HTMLElement {
   const picked = h('p', { class: 'hero-picked', attrs: { 'aria-live': 'polite' } });
@@ -178,11 +213,16 @@ function heroPicker(t: Strings, current: Hero, onHero: (hero: Hero) => void): HT
     }),
   );
   select(current);
-  return h('div', { class: 'hero-pick' }, h('h2', { class: 'label', text: t.chooseHero }), grid, picked);
+  return h('div', { class: 'picker' }, h('h2', { class: 'label', text: t.chooseHero }), grid, picked);
 }
 
 /** A pack in the list. Quests show their painted scene and wizard, so the story starts here. */
-function packButton(t: Strings, pack: PackSummary, onClick: () => void): HTMLButtonElement {
+function packButton(
+  t: Strings,
+  pack: PackSummary,
+  wizard: Wizard,
+  onClick: () => void,
+): HTMLButtonElement {
   const story = pack.story;
   const title = h(
     'span',
@@ -198,12 +238,12 @@ function packButton(t: Strings, pack: PackSummary, onClick: () => void): HTMLBut
     'button',
     { class: 'pack quest-card', attrs: { type: 'button' }, on: { click: onClick } },
     artImage(sceneUrl(story.scene), 'quest-scene'),
-    artImage(wizardUrl(story.sprite, 'ask'), 'quest-wizard'),
+    artImage(wizardUrl(wizard, 'ask'), 'quest-wizard'),
     h(
       'span',
       { class: 'quest-info' },
       title,
-      h('span', { class: 'quest-host', text: story.wizard }),
+      h('span', { class: 'quest-host', text: story.sprite === wizard ? story.wizard : t.wizardNames[wizard] }),
       meta,
     ),
   );
@@ -214,15 +254,24 @@ export function lobbyScreen(
   gamesLeft: number,
   hero: Hero,
   onHero: (hero: Hero) => void,
+  wizard: Wizard,
+  onWizard: (wizard: Wizard) => void,
   onPick: (pack: PackSummary) => void,
   onBack: () => void,
 ): LobbyScreen {
+  let chosenWizard = wizard;
   const title = heading(t.choosePack);
   const list = h('ul', { class: 'packs' }, h('li', { class: 'muted', text: t.loading }));
   const notice = h('p', { class: 'notice', attrs: { role: 'alert' } });
   const el = h(
     'section',
     { class: 'screen lobby' },
+    wizardPicker(t, wizard, (next) => {
+      chosenWizard = next;
+      // Repaint the quest cards so they show the wizard who will tell the story.
+      if (lastPacks) render(lastPacks);
+      onWizard(next);
+    }),
     heroPicker(t, hero, onHero),
     title,
     notice,
@@ -230,11 +279,10 @@ export function lobbyScreen(
     h('p', { class: 'muted', text: t.gamesLeft(gamesLeft) }),
     button(t.back, onBack),
   );
-  return {
-    el,
-    focus: title,
-    setPacks(packs) {
-      clear(list);
+  let lastPacks: PackSummary[] | null = null;
+  const render = (packs: PackSummary[]): void => {
+    lastPacks = packs;
+    clear(list);
       if (packs.length === 0) {
         list.append(h('li', { class: 'muted', text: t.noPacks }));
         return;
@@ -244,10 +292,16 @@ export function lobbyScreen(
           h(
             'li',
             {},
-            packButton(t, pack, () => onPick(pack)),
+            packButton(t, pack, chosenWizard, () => onPick(pack)),
           ),
         );
       }
+  };
+  return {
+    el,
+    focus: title,
+    setPacks(packs) {
+      render(packs);
     },
     setNotice(text) {
       setText(notice, text);

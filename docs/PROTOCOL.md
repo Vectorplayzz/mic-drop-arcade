@@ -44,11 +44,15 @@ ws.onopen = () => ws.send(JSON.stringify({ type: "auth", token }));
 Server replies `{type:"ready", protocol:"maata.v1", max_games}`. Then:
 
 ```json
-{ "type": "start", "pack_id": "te-science-01", "character": "priya" }
+{ "type": "start", "pack_id": "te-science-01", "character": "priya", "wizard": "sorceress" }
 ```
 
 `character` is the hero the player picked (default `arjun`). It's cosmetic. Anything else gets
 a non-fatal `unknown_character` error. Sprites are in `art/sprites/heroes/<id>.png`.
+
+`wizard` is the narrator the player picked: `sorceress` (default), `sage` or `owl`. It decides the
+voice every line is spoken in (`server/app/game/languages.py`, `WIZARD_VOICES`) and is echoed in
+`game_start.wizard`. Anything else gets a non-fatal `unknown_character` error.
 
 | Boys | Girls |
 |---|---|

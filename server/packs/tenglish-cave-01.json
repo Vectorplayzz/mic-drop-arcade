@@ -4,7 +4,7 @@
   "title": "Crystal Cave Adventure",
   "language": "te-en",
   "topic": "engineering and tech",
-  "version": 2,
+  "version": 3,
   "source": "hand",
   "reviewed_by": "G Nagarjuna",
   "reviewed_at": "2026-10-07",
@@ -191,7 +191,7 @@
     "wizard_sprite": "owl",
     "scene": "crystal-cave",
     "voice": "Varuni",
-    "intro": "నేను Gudla Guru ని. Crystal cave లో power fail అయింది, magic crystals అన్నీ dim అయిపోయాయి! ప్రతి correct answer ఒక crystal ని మళ్ళీ glow చేస్తుంది.",
+    "intro": "Crystal cave కి welcome! ఇక్కడ power fail అయింది, magic crystals అన్నీ dim అయిపోయాయి. ప్రతి correct answer ఒక crystal ని మళ్ళీ glow చేస్తుంది.",
     "chapters": [
       "Super! మొదటి crystal glow అయింది.",
       "Nice! Cave లో light వస్తోంది.",

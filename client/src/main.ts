@@ -1,10 +1,9 @@
 import { App } from './app';
-import { startBackdrop } from './ui/backdrop';
+import { MENU_SCENE, setScene } from './ui/scene';
 
 const root = document.getElementById('app');
-const backdrop = document.getElementById('backdrop');
 if (!root) throw new Error('missing #app');
-if (backdrop instanceof HTMLCanvasElement) startBackdrop(backdrop);
+setScene(MENU_SCENE, 'menu');
 
 void new App(root).boot();
 

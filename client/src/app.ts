@@ -48,6 +48,7 @@ import {
   type Screen,
   titleScreen,
 } from './ui/screens';
+import { MENU_SCENE, setScene } from './ui/scene';
 import type { SpriteName } from './ui/sprites';
 
 /** Don't reuse a session token this close to its expiry. */
@@ -286,6 +287,20 @@ export class App {
     this.socket.connect(this.session!.token);
   }
 
+  private soundBlocked(): boolean {
+    return this.ctx !== null && this.ctx.state !== 'running';
+  }
+
+  /** Runs from a tap (or right before a line): the only moment browsers allow audio back. */
+  private unmute(): void {
+    const ctx = this.ctx;
+    if (!ctx) return;
+    ctx.resume().then(
+      () => this.gameView?.setSoundBlocked(this.soundBlocked()),
+      () => this.gameView?.setSoundBlocked(true),
+    );
+  }
+
   private sessionUsable(): boolean {
     return this.session !== null && this.session.expiresAt - Date.now() / 1000 > SESSION_MARGIN_S;
   }
@@ -294,6 +309,7 @@ export class App {
     if (!this.ctx || !this.mic || !this.sfx) {
       const ctx = new AudioContext({ latencyHint: 'interactive' });
       this.ctx = ctx;
+      ctx.addEventListener('statechange', () => this.gameView?.setSoundBlocked(this.soundBlocked()));
       this.player = new VoicePlayer(ctx, this.prefs.voiceVolume);
       this.sfx = new Sfx(ctx);
       this.sfx.configure(this.prefs);
@@ -323,8 +339,16 @@ export class App {
     if (event.type === 'message' && event.message.type === 'ready') {
       void this.showLobby();
     } else if (state.phase === 'speaking' && !inGame(before)) {
-      this.gameView = gameScreen(this.t, state.pack?.language ?? this.language, () => this.goHome());
+      this.gameView = gameScreen({
+        t: this.t,
+        language: state.pack?.language ?? this.language,
+        wizard: this.prefs.wizard,
+        onQuit: () => this.goHome(),
+        onUnmute: () => this.unmute(),
+      });
       this.show(this.gameView);
+      setScene(state.story?.scene ?? MENU_SCENE, 'game');
+      this.gameView.setSoundBlocked(this.soundBlocked());
     } else if (state.phase === 'over' && before.phase !== 'over') {
       this.showOver();
     } else if (state.phase === 'lobby' && before.phase === 'starting' && state.error) {
@@ -343,6 +367,9 @@ export class App {
   private run(effect: Effect): void {
     switch (effect.type) {
       case 'voice_start':
+        // Browsers can suspend or interrupt audio (tab in background, a headset switching
+        // to its call profile when the mic opens). Ask for it back before every line.
+        if (this.soundBlocked()) this.unmute();
         this.player?.speakStart(effect.utterance, effect.sampleRate);
         break;
       case 'voice_end':
@@ -408,6 +435,12 @@ export class App {
         savePrefs(this.prefs);
         this.sfx?.play('select');
       },
+      this.prefs.wizard,
+      (wizard) => {
+        this.prefs.wizard = wizard;
+        savePrefs(this.prefs);
+        this.sfx?.play('select');
+      },
       (pack) => this.startGame(pack),
       () => this.goHome(),
     );
@@ -431,7 +464,7 @@ export class App {
       () => {
         if (this.game.phase !== 'lobby' && this.game.phase !== 'over') return;
         this.dispatch({ type: 'start_requested' });
-        this.socket.startGame(pack.id, this.prefs.hero);
+        this.socket.startGame(pack.id, this.prefs.hero, this.prefs.wizard);
       },
       (err: unknown) => this.endSession(micProblem(err)),
     );
@@ -638,6 +671,7 @@ export class App {
 
   // ---------------------------------------------------------------- rendering --------
   private show(screen: Screen): void {
+    if (screen !== this.gameView) setScene(MENU_SCENE, 'menu');
     this.screen?.destroy?.();
     this.screen = screen;
     this.root.replaceChildren(screen.el);

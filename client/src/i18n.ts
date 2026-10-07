@@ -2,7 +2,7 @@
  * On-screen text in the five game languages. The interface follows the language the player
  * picks; spoken lines and their captions come from the server.
  */
-import type { EndingBand, LanguageCode } from './protocol/messages';
+import type { EndingBand, LanguageCode, Wizard } from './protocol/messages';
 
 export interface Strings {
   /** BCP 47 tag for the `lang` attribute. */
@@ -70,6 +70,11 @@ export interface Strings {
   chooseHero: string;
   yourHero: string;
   endings: Record<EndingBand, string>;
+  chooseWizard: string;
+  /** Titles for the three pickable wizards (a quest's own name is used when it matches). */
+  wizardNames: Record<Wizard, string>;
+  /** Shown when the browser is holding the game's sound back. */
+  soundOff: string;
 
   gameOver: string;
   finalScore: string;
@@ -200,6 +205,9 @@ const hinglish: Strings = {
   chooseHero: 'Apna hero chuno',
   yourHero: 'Aapka hero',
   endings: { great: 'Legend ban gaye!', good: 'Badhiya quest!', try_again: 'Agli baar pakka!' },
+  chooseWizard: 'Apna wizard chuno',
+  wizardNames: { sorceress: 'Jaadugarni', sage: 'Baba Sage', owl: 'Professor Ullu' },
+  soundOff: 'Awaaz band hai, tap karo',
 
   gameOver: 'GAME OVER',
   finalScore: 'Aapka score',
@@ -395,6 +403,9 @@ const hindi: Strings = {
   chooseHero: 'अपना हीरो चुनिए',
   yourHero: 'आपका हीरो',
   endings: { great: 'आप तो लेजेंड हैं!', good: 'बढ़िया क्वेस्ट!', try_again: 'अगली बार पक्का!' },
+  chooseWizard: 'अपना जादूगर चुनिए',
+  wizardNames: { sorceress: 'जादूगरनी', sage: 'ऋषि बाबा', owl: 'प्रोफ़ेसर उल्लू' },
+  soundOff: 'आवाज़ बंद है, टैप कीजिए',
 
   gameOver: 'खेल खत्म',
   finalScore: 'आपका स्कोर',
@@ -590,6 +601,9 @@ const telugu: Strings = {
   chooseHero: 'మీ హీరోని ఎంచుకోండి',
   yourHero: 'మీ హీరో',
   endings: { great: 'మీరు లెజెండ్!', good: 'చక్కని క్వెస్ట్!', try_again: 'ఈసారి తప్పకుండా!' },
+  chooseWizard: 'మీ మాంత్రికుడిని ఎంచుకోండి',
+  wizardNames: { sorceress: 'మాంత్రికురాలు', sage: 'ముని బాబా', owl: 'గుడ్లగూబ ప్రొఫెసర్' },
+  soundOff: 'సౌండ్ ఆఫ్‌లో ఉంది, ట్యాప్ చేయండి',
 
   gameOver: 'ఆట ముగిసింది',
   finalScore: 'మీ స్కోరు',
@@ -785,6 +799,9 @@ const english: Strings = {
   chooseHero: 'Choose your hero',
   yourHero: 'Your hero',
   endings: { great: 'Legendary run!', good: 'Nice quest!', try_again: 'So close. Again?' },
+  chooseWizard: 'Choose your wizard',
+  wizardNames: { sorceress: 'The Sorceress', sage: 'The Sage', owl: 'Professor Owl' },
+  soundOff: 'Sound is off. Tap to turn it on',
 
   gameOver: 'GAME OVER',
   finalScore: 'Your score',
@@ -935,6 +952,9 @@ const tenglish: Strings = {
   chooseHero: 'మీ hero ని select చేయండి',
   yourHero: 'మీ hero',
   endings: { great: 'మీరు legend!', good: 'Super quest!', try_again: 'Next time pakka!' },
+  chooseWizard: 'మీ wizard ని select చేయండి',
+  wizardNames: { sorceress: 'Sorceress', sage: 'Sage Baba', owl: 'Professor Owl' },
+  soundOff: 'Sound off లో ఉంది, tap చేయండి',
 
   gameOver: 'GAME OVER',
   finalScore: 'మీ score',
