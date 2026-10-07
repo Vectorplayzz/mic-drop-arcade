@@ -20,6 +20,7 @@
 # Settings (environment overrides):
 #   VPS=root@138.252.215.137   APP_USER=abyss   DOMAIN=maata.ourspaces.net
 #   SSH_KEY=deploy/.ssh/id_ed25519 (used if present; otherwise your ssh agent / default key)
+#   STRICT_HOST_KEYS=accept-new (CI uses yes)
 set -Eeuo pipefail
 
 VPS=${VPS:-root@138.252.215.137}
@@ -32,7 +33,9 @@ NODE_IMAGE=${NODE_IMAGE:-node:22-alpine}
 ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 cd "$ROOT"
 
-SSH_OPTS=(-o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=15 -o StrictHostKeyChecking=accept-new)
+# CI sets STRICT_HOST_KEYS=yes with a pinned known_hosts; a laptop trusts the key on first use.
+SSH_OPTS=(-o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=15
+          -o StrictHostKeyChecking="${STRICT_HOST_KEYS:-accept-new}")
 SSH_KEY=${SSH_KEY:-$ROOT/deploy/.ssh/id_ed25519}
 [[ -f "$SSH_KEY" ]] && SSH_OPTS+=(-i "$SSH_KEY" -o IdentitiesOnly=yes)
 
@@ -305,6 +308,6 @@ case "${1:-release}" in
   logs)     cmd_logs ;;
   rollback) cmd_rollback "${2:-}" ;;
   backup)   cmd_backup ;;
-  -h|--help|help) sed -n '2,22p' "$0" ;;
+  -h|--help|help) sed -n '2,23p' "$0" ;;
   *) die "unknown command: $1 (see ./deploy.sh help)" ;;
 esac

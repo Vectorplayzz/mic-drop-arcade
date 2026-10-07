@@ -49,13 +49,50 @@ ourspaces.net.
 
 ## Every release
 
+Releases ship from `main` automatically (**CD**):
+
+1. A merge to `main` runs `ci`.
+2. When `ci` passes on that commit, the `cd` workflow runs `./deploy.sh release <sha>`
+   against the VPS.
+3. `deploy.sh` ships exactly that commit as a git bundle and builds the client in a throwaway
+   Node container. It rebuilds the API image tagged with the commit and waits for
+   `/api/readyz`. If the new release is unhealthy, it **rolls back on its own**.
+
+Deploys never overlap. A newer commit waits for the running one to finish.
+
+**From a laptop** (Git Bash on Windows works), the same script does everything:
+
 ```bash
-git pull
-./deploy/deploy.sh          # builds image tagged with the commit, waits for /api/readyz,
-                            # rolls back automatically if the new build is unhealthy
+./deploy.sh check            # read-only report on the VPS
+./deploy.sh setup            # one-time: nginx site, TLS (certbot or CF origin cert), backup cron
+./deploy.sh release [ref]    # ship a commit by hand (default HEAD)
+./deploy.sh audio            # load the pre-rendered audio cache
+./deploy.sh status | logs | rollback [tag] | backup
 ```
 
-Manual rollback: `./deploy/rollback.sh` (previous release) or `./deploy/rollback.sh <tag>`.
+**Who runs what on the VPS:**
+- `deploy.sh` logs in as root.
+- Code, `deploy/.env` and the client build are owned by `abyss`, and git and file work runs as
+  `abyss`.
+- Docker commands run as root. `abyss` is deliberately kept out of the `docker` group, which is
+  root-equivalent, because `abyss` also runs other apps on this box.
+
+### CD secrets (one-time)
+
+Set these in GitHub under Settings → Environments → `production`:
+
+| Kind | Name | Value |
+|---|---|---|
+| secret | `VPS_SSH_KEY` | Private key of the CI deploy key (`deploy/.ssh/ci_ed25519`), authorized for root on the VPS |
+| secret | `VPS_KNOWN_HOSTS` | The VPS host key line. CI refuses to connect if it ever changes |
+| variable (optional) | `DEPLOY_TARGET` | Default `root@138.252.215.137` |
+| variable (optional) | `DEPLOY_DOMAIN` | Default `maata.ourspaces.net` |
+
+Recommended protection on the `production` environment:
+- **Deployment branches:** `main` only.
+- **Required reviewer:** add one if you want to approve each deploy.
+
+To redeploy without a new commit, go to Actions → `cd` → Run workflow.
 
 ## Content (after packs are reviewed)
 

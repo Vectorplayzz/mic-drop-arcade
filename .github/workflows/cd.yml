@@ -1,0 +1,68 @@
+name: cd
+
+# Deploys main to the VPS, but only after the ci workflow has passed on that exact commit.
+# Manual runs (Actions -> cd -> Run workflow) redeploy the current tip of main.
+on:
+  workflow_run:
+    workflows: [ci]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One deploy at a time; a newer commit waits instead of cancelling a rollout halfway.
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    # Secrets live on this environment. Add required reviewers / a main-only branch rule to it
+    # in Settings -> Environments -> production to gate deploys.
+    environment:
+      name: production
+      url: https://${{ vars.DEPLOY_DOMAIN || 'maata.ourspaces.net' }}
+    steps:
+      - name: Pick the commit to ship
+        id: pick
+        env:
+          RUN_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: echo "sha=${RUN_SHA:-$GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ steps.pick.outputs.sha }}
+          fetch-depth: 0          # deploy.sh ships a git bundle, which needs full history
+          persist-credentials: false
+
+      - name: Install the deploy key and pin the VPS host key
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+        run: |
+          [[ -n "$SSH_KEY" && -n "$KNOWN_HOSTS" ]] || { echo "::error::VPS_SSH_KEY / VPS_KNOWN_HOSTS secrets are not set"; exit 1; }
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts && chmod 644 ~/.ssh/known_hosts
+
+      - name: Release
+        env:
+          VPS: ${{ vars.DEPLOY_TARGET || 'root@138.252.215.137' }}
+          DOMAIN: ${{ vars.DEPLOY_DOMAIN || 'maata.ourspaces.net' }}
+          SSH_KEY: /home/runner/.ssh/deploy_key
+          STRICT_HOST_KEYS: "yes"   # fail closed if the VPS host key ever changes
+          SHA: ${{ steps.pick.outputs.sha }}
+        run: ./deploy.sh release "$SHA"
+
+      - name: Remove the key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
