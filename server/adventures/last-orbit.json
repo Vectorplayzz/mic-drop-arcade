@@ -1,0 +1,1045 @@
+{
+ "schema": 1,
+ "id": "last-orbit",
+ "genre": "scifi",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": "G Nagarjuna",
+ "reviewed_at": "2026-10-08",
+ "title": {
+  "en-IN": "Last Orbit",
+  "hi-IN": "लास्ट ऑर्बिट",
+  "hi-en": "Last Orbit",
+  "te-IN": "లాస్ట్ ఆర్బిట్",
+  "te-en": "Last Orbit"
+ },
+ "tagline": {
+  "en-IN": "A solar storm, a silent station AI, and four hundred kilometres to home.",
+  "hi-IN": "एक सोलर तूफ़ान, ख़ामोश स्टेशन एआई, और घर से चार सौ किलोमीटर की दूरी.",
+  "hi-en": "Solar storm, khaamosh station AI, aur ghar tak chaar sau kilometre.",
+  "te-IN": "సోలార్ స్టార్మ్, మౌనమైన స్టేషన్ ఏఐ, ఇంటికి నాలుగు వందల కిలోమీటర్లు.",
+  "te-en": "Solar storm, silent ayina station AI, intiki naalugu vandala kilometres."
+ },
+ "cover": "orbit-deck",
+ "meter": {
+  "label": {
+   "en-IN": "Power",
+   "hi-IN": "पावर",
+   "hi-en": "Power",
+   "te-IN": "పవర్",
+   "te-en": "Power"
+  },
+  "icon": "bolt",
+  "start": 2,
+  "max": 4,
+  "on_zero": null
+ },
+ "items": {
+  "dev": {
+   "label": {
+    "en-IN": "Dev is with you",
+    "hi-IN": "देव साथ है",
+    "hi-en": "Dev saath hai",
+    "te-IN": "దేవ్ మీతో ఉన్నాడు",
+    "te-en": "Dev meetho unnadu"
+   }
+  },
+  "maya": {
+   "label": {
+    "en-IN": "Maya awake",
+    "hi-IN": "माया जाग गई",
+    "hi-en": "Maya jaag gayi",
+    "te-IN": "మాయ మేల్కొంది",
+    "te-en": "Maya awake"
+   }
+  },
+  "hint": {
+   "label": {
+    "en-IN": "Chip tip",
+    "hi-IN": "चिप टिप",
+    "hi-en": "Chip tip",
+    "te-IN": "చిప్ హింట్",
+    "te-en": "Chip tip"
+   }
+  },
+  "jammed": {
+   "label": {
+    "en-IN": "Jammed dish",
+    "hi-IN": "फँसी हुई डिश",
+    "hi-en": "Jam hui dish",
+    "te-IN": "జామ్ అయిన డిష్",
+    "te-en": "Jam ayina dish"
+   }
+  }
+ },
+ "start": "o_start",
+ "nodes": {
+  "o_start": {
+   "scene": "orbit-deck",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Four hundred kilometres above India, on space station Vayu, you're on the night shift. Then every alarm goes off at once.",
+     "hi-IN": "भारत से चार सौ किलोमीटर ऊपर, स्पेस स्टेशन वायु पर आपकी नाइट शिफ़्ट चल रही है. तभी सारे अलार्म एक साथ बज उठते हैं.",
+     "hi-en": "Bharat se chaar sau kilometre upar, space station Vayu par aapki night shift chal rahi hai. Tabhi saare alarms ek saath baj uthte hain.",
+     "te-IN": "భారతదేశానికి నాలుగు వందల కిలోమీటర్ల పైన, వాయు స్పేస్ స్టేషన్‌లో మీకు నైట్ షిఫ్ట్. ఒక్కసారిగా అన్ని అలారాలూ మోగుతాయి.",
+     "te-en": "India ki naalugu vandala kilometres paina, space station Vayu lo meedi night shift. Anthalo anni alarms okesari mogutayi.",
+     "hi-en@tts": "भारत से चार सौ kilometre ऊपर, space station Vayu पर आपकी night shift चल रही है। तभी सारे alarms एक साथ बज उठते हैं।",
+     "te-en@tts": "India కి నాలుగు వందల kilometres పైన, space station Vayu లో మీది night shift. అంతలో అన్ని alarms ఒకేసారి మోగుతాయి."
+    },
+    {
+     "en-IN": "Commander Rhea's voice crackles: solar storm! The shields are failing, and Maya, the station's AI, has gone silent.",
+     "hi-IN": "कमांडर रिया की आवाज़ कड़कड़ाती है: सोलर तूफ़ान! शील्ड्स फ़ेल हो रही हैं, और स्टेशन की एआई माया एकदम चुप हो गई है.",
+     "hi-en": "Commander Rhea ki awaaz crackle karti hai: solar storm! Shields fail ho rahi hain, aur Maya, station ki AI, khaamosh ho gayi hai.",
+     "te-IN": "కమాండర్ రియా గొంతు కరకరలాడుతుంది: సోలార్ స్టార్మ్! షీల్డ్స్ ఫెయిల్ అవుతున్నాయి, స్టేషన్ ఏఐ మాయ మౌనంగా అయిపోయింది.",
+     "te-en": "Commander Rhea voice crackle avuthundi: solar storm! Shields fail avuthunnayi, station AI Maya silent ayipoyindi.",
+     "hi-en@tts": "Commander Rhea की आवाज़ crackle करती है: solar storm! Shields fail हो रही हैं, और Maya, station की AI, खामोश हो गई है।",
+     "te-en@tts": "Commander Rhea voice crackle అవుతుంది: solar storm! Shields fail అవుతున్నాయి, station AI Maya silent అయిపోయింది."
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करते हैं?",
+     "hi-en": "Aap kya karte hain?",
+     "te-IN": "మీరేం చేస్తారు?",
+     "te-en": "Meeru em chestharu?",
+     "hi-en@tts": "आप क्या करते हैं?",
+     "te-en@tts": "మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Wake up Maya",
+      "hi-IN": "माया को जगाओ",
+      "hi-en": "Maya ko jagaao",
+      "te-IN": "మాయని లేపు",
+      "te-en": "Maya ni leputha"
+     },
+     "keywords": {
+      "en-IN": [
+       "wake",
+       "maya"
+      ],
+      "hi-IN": [
+       "जगाओ",
+       "माया"
+      ],
+      "hi-en": [
+       "maya",
+       "jagao",
+       "wake"
+      ],
+      "te-IN": [
+       "మాయ",
+       "లేపు"
+      ],
+      "te-en": [
+       "మాయా",
+       "మాయ",
+       "లేపుతా",
+       "maya",
+       "వేక్"
+      ]
+     },
+     "go": "o_ai"
+    },
+    {
+     "label": {
+      "en-IN": "Fix the shields outside",
+      "hi-IN": "बाहर शील्ड्स ठीक करो",
+      "hi-en": "Bahar shields fix karo",
+      "te-IN": "బయట షీల్డ్స్ రిపేర్",
+      "te-en": "Bayata shields fix chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "shields",
+       "outside",
+       "fix"
+      ],
+      "hi-IN": [
+       "शील्ड",
+       "शील्ड्स",
+       "बाहर"
+      ],
+      "hi-en": [
+       "shields",
+       "shield",
+       "bahar",
+       "outside"
+      ],
+      "te-IN": [
+       "షీల్డ్స్",
+       "బయట",
+       "రిపేర్"
+      ],
+      "te-en": [
+       "షీల్డ్స్",
+       "షీల్డ్",
+       "బయట",
+       "shields",
+       "outside"
+      ]
+     },
+     "go": "o_suit"
+    },
+    {
+     "label": {
+      "en-IN": "Check on the crew",
+      "hi-IN": "क्रू का हाल देखो",
+      "hi-en": "Crew ko check karo",
+      "te-IN": "క్రూని చెక్ చేయి",
+      "te-en": "Crew ni check chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "crew",
+       "check",
+       "dev"
+      ],
+      "hi-IN": [
+       "क्रू",
+       "हाल",
+       "देव"
+      ],
+      "hi-en": [
+       "crew",
+       "dev",
+       "check"
+      ],
+      "te-IN": [
+       "క్రూ",
+       "దేవ్",
+       "చెక్"
+      ],
+      "te-en": [
+       "క్రూ",
+       "చెక్",
+       "దేవ్",
+       "crew",
+       "dev"
+      ]
+     },
+     "go": "o_garden"
+    }
+   ]
+  },
+  "o_garden": {
+   "scene": "orbit-garden",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "In the garden module, your friend Dev is tangled in a fallen rack of grow lights, with water bubbles drifting everywhere. You free him in seconds.",
+     "hi-IN": "गार्डन मॉड्यूल में आपका दोस्त देव ग्रो लाइट्स के गिरे रैक में उलझा है, चारों तरफ़ पानी के बुलबुले तैर रहे हैं. आप पल भर में उसे छुड़ा लेते हैं.",
+     "hi-en": "Garden module mein aapka dost Dev gire hue grow lights ke rack mein phansa hai, aur har taraf paani ke bubbles tair rahe hain. Seconds mein aap use chhuda lete hain.",
+     "te-IN": "గార్డెన్ మాడ్యూల్‌లో, మీ ఫ్రెండ్ దేవ్ కూలిన గ్రో లైట్ల ర్యాక్‌లో చిక్కుకున్నాడు, చుట్టూ నీటి బుడగలు తేలుతున్నాయి. క్షణాల్లో అతన్ని విడిపిస్తారు.",
+     "te-en": "Garden module lo mee friend Dev, padipoyina grow lights rack lo chikkukuni unnadu, chuttu water bubbles thelutunnayi. Seconds lo vidipistharu.",
+     "hi-en@tts": "Garden module में आपका दोस्त Dev गिरे हुए grow lights के rack में फँसा है, और हर तरफ़ पानी के bubbles तैर रहे हैं। Seconds में आप उसे छुड़ा लेते हैं।",
+     "te-en@tts": "Garden module లో మీ friend Dev, పడిపోయిన grow lights rack లో చిక్కుకుని ఉన్నాడు, చుట్టూ water bubbles తేలుతున్నాయి. Seconds లో విడిపిస్తారు."
+    },
+    {
+     "en-IN": "Thanks, he says. The storm fried Maya's main chip, but there's a backup. Where to now?",
+     "hi-IN": "शुक्रिया, वो कहता है. तूफ़ान ने माया की मेन चिप जला दी, पर एक बैकअप है. अब किधर?",
+     "hi-en": "Thanks, Dev kehta hai. Storm ne Maya ki main chip fry kar di, par ek backup hai. Ab kidhar?",
+     "te-IN": "థ్యాంక్స్, అంటాడు దేవ్. స్టార్మ్ వల్ల మాయ మెయిన్ చిప్ కాలిపోయింది, కానీ బ్యాకప్ ఉంది. ఇప్పుడు ఎటు?",
+     "te-en": "Thanks, antadu Dev. Storm valla Maya main chip fry ayindi, kaani backup undi. Ippudu ekkadiki?",
+     "hi-en@tts": "Thanks, Dev कहता है। Storm ने Maya की main chip fry कर दी, पर एक backup है। अब किधर?",
+     "te-en@tts": "Thanks, అంటాడు Dev. Storm వల్ల Maya main chip fry అయింది, కానీ backup ఉంది. ఇప్పుడు ఎక్కడికి?"
+    }
+   ],
+   "enter": {
+    "gain": [
+     "dev"
+    ]
+   },
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Wake up Maya",
+      "hi-IN": "माया को जगाओ",
+      "hi-en": "Maya ko jagaao",
+      "te-IN": "మాయని లేపు",
+      "te-en": "Maya ni leputha"
+     },
+     "keywords": {
+      "en-IN": [
+       "wake",
+       "maya"
+      ],
+      "hi-IN": [
+       "जगाओ",
+       "माया"
+      ],
+      "hi-en": [
+       "maya",
+       "jagao",
+       "wake"
+      ],
+      "te-IN": [
+       "మాయ",
+       "లేపు"
+      ],
+      "te-en": [
+       "మాయా",
+       "మాయ",
+       "లేపుతా",
+       "maya",
+       "వేక్"
+      ]
+     },
+     "go": "o_ai",
+     "effects": {
+      "gain": [
+       "hint"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Fix the shields outside",
+      "hi-IN": "बाहर शील्ड्स ठीक करो",
+      "hi-en": "Bahar shields fix karo",
+      "te-IN": "బయట షీల్డ్స్ రిపేర్",
+      "te-en": "Bayata shields fix chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "shields",
+       "outside",
+       "fix"
+      ],
+      "hi-IN": [
+       "शील्ड",
+       "शील्ड्स",
+       "बाहर"
+      ],
+      "hi-en": [
+       "shields",
+       "shield",
+       "bahar",
+       "outside"
+      ],
+      "te-IN": [
+       "షీల్డ్స్",
+       "బయట",
+       "రిపేర్"
+      ],
+      "te-en": [
+       "షీల్డ్స్",
+       "షీల్డ్",
+       "బయట",
+       "shields",
+       "outside"
+      ]
+     },
+     "go": "o_suit"
+    }
+   ]
+  },
+  "o_ai": {
+   "scene": "orbit-ai",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The AI core is dark. One ring of light flickers weakly. Maya is trying to talk.",
+     "hi-IN": "एआई कोर में अंधेरा है. रोशनी का बस एक घेरा कमज़ोर-सा टिमटिमा रहा है. माया कुछ कहने की कोशिश कर रही है.",
+     "hi-en": "AI core mein andhera hai. Roshni ka bas ek ring dheeme se timtima raha hai. Maya kuch bolne ki koshish kar rahi hai.",
+     "te-IN": "ఏఐ కోర్ చీకటిగా ఉంది. ఒక లైట్ రింగ్ బలహీనంగా మిణుకుమంటోంది. మాయ మాట్లాడటానికి ప్రయత్నిస్తోంది.",
+     "te-en": "AI core cheekatiga undi. Oka light ring maathram balaheenanga minukumantondi. Maya maatlaadataaniki try chesthondi.",
+     "hi-en@tts": "AI core में अँधेरा है। रोशनी का बस एक ring धीमे से टिमटिमा रहा है। Maya कुछ बोलने की कोशिश कर रही है।",
+     "te-en@tts": "AI core చీకటిగా ఉంది. ఒక light ring మాత్రం బలహీనంగా మిణుకుమంటోంది. Maya మాట్లాడటానికి try చేస్తోంది."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "Words crawl across the screen: to wake me, tell me the speed of light, roughly, in thousands of kilometres per second.",
+     "hi-IN": "स्क्रीन पर धीरे-धीरे शब्द उभरते हैं: मुझे जगाना है तो बताओ, रोशनी की स्पीड लगभग कितने हज़ार किलोमीटर प्रति सेकंड है?",
+     "hi-en": "Screen par words dheere-dheere aate hain: mujhe jagaane ke liye light ki speed batao, lagbhag, hazaar kilometre per second mein.",
+     "te-IN": "స్క్రీన్ మీద అక్షరాలు మెల్లగా కదులుతాయి: నన్ను లేపాలంటే, కాంతి వేగం సెకనుకు దాదాపు ఎన్ని వేల కిలోమీటర్లో చెప్పు.",
+     "te-en": "Screen meeda words paakuthayi: nannu lepaalante speed of light cheppandi, roughly, thousands of kilometres per second lo.",
+     "hi-en@tts": "Screen पर words धीरे-धीरे आते हैं: मुझे जगाने के लिए light की speed बताओ, लगभग, हज़ार kilometre per second में।",
+     "te-en@tts": "Screen మీద words పాకుతాయి: నన్ను లేపాలంటే speed of light చెప్పండి, roughly, thousands of kilometres per second లో."
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "300",
+      "150",
+      "3000"
+     ],
+     "hi-IN": [
+      "300",
+      "150",
+      "3000"
+     ],
+     "hi-en": [
+      "300",
+      "150",
+      "3000"
+     ],
+     "te-IN": [
+      "300",
+      "150",
+      "3000"
+     ],
+     "te-en": [
+      "300",
+      "150",
+      "3000"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "तीन सौ",
+      "three hundred"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "మూడు వందలు",
+      "మూడొందలు",
+      "three hundred"
+     ],
+     "te-en": [
+      "three hundred",
+      "త్రీ హండ్రెడ్",
+      "మూడు వందలు",
+      "మూడొందలు"
+     ]
+    },
+    "pass": {
+     "go": "o_suit",
+     "say": [
+      {
+       "en-IN": "Three hundred! Maya's ring glows a calm blue: hello, and thank you. I can push power to the shields, but someone has to align the dish outside.",
+       "hi-IN": "तीन सौ! माया का घेरा शांत नीली रोशनी से चमक उठता है: हेलो, और शुक्रिया. मैं शील्ड्स को पावर भेज सकती हूँ, पर बाहर जाकर डिश को किसी को सीधा करना होगा.",
+       "hi-en": "Three hundred! Maya ka ring shaant neela ho jaata hai: hello, aur thank you. Main shields tak power bhej sakti hoon, par bahar jaakar kisi ko dish align karni hogi.",
+       "te-IN": "మూడు వందలు! మాయ రింగ్ ప్రశాంతమైన నీలి రంగులో వెలుగుతుంది: హలో, థ్యాంక్యూ. షీల్డ్స్‌కి పవర్ పంపగలను, కానీ బయట డిష్‌ని ఎవరైనా అలైన్ చేయాలి.",
+       "te-en": "Three hundred! Maya ring calm blue ga veluguthundi: hello, thank you. Shields ki power pampagalanu, kaani bayata dish ni evaro align cheyyali.",
+       "hi-en@tts": "Three hundred! Maya का ring शांत नीला हो जाता है: hello, और thank you। मैं shields तक power भेज सकती हूँ, पर बाहर जाकर किसी को dish align करनी होगी।",
+       "te-en@tts": "Three hundred! Maya ring calm blue గా వెలుగుతుంది: hello, thank you. Shields కి power పంపగలను, కానీ బయట dish ని ఎవరో align చెయ్యాలి."
+      }
+     ],
+     "effects": {
+      "meter": 1,
+      "gain": [
+       "maya"
+      ]
+     }
+    },
+    "fail": {
+     "go": "o_suit",
+     "say": [
+      {
+       "en-IN": "The core sparks and goes darker. Maya's voice is a whisper: try... outside...",
+       "hi-IN": "कोर से चिंगारी निकलती है और अंधेरा और गहरा हो जाता है. माया की आवाज़ बस एक फुसफुसाहट है: कोशिश करो... बाहर...",
+       "hi-en": "Core mein spark hota hai aur andhera aur gehra ho jaata hai. Maya ki awaaz bas ek whisper: try... bahar...",
+       "te-IN": "కోర్ నుంచి నిప్పురవ్వలు, ఇంకా చీకటవుతుంది. మాయ గొంతు గుసగుసగా: ట్రై... బయట...",
+       "te-en": "Core spark ayyi inka cheekati avuthundi. Maya voice gusagusaga: try... outside...",
+       "hi-en@tts": "Core में spark होता है और अँधेरा और गहरा हो जाता है। Maya की आवाज़ बस एक whisper: try... बाहर...",
+       "te-en@tts": "Core spark అయ్యి ఇంకా చీకటి అవుతుంది. Maya voice గుసగుసగా: try... outside..."
+      }
+     ],
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  },
+  "o_suit": {
+   "scene": "orbit-alarm",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "In the red-lit airlock you pull on a spacesuit. Through the porthole, auroras swirl like green fire.",
+     "hi-IN": "लाल रोशनी वाले एयरलॉक में आप स्पेससूट पहनते हैं. खिड़की के बाहर ऑरोरा हरी आग की तरह लहरा रहे हैं.",
+     "hi-en": "Laal roshni waale airlock mein aap spacesuit pehente hain. Porthole ke bahar auroras hari aag ki tarah ghoom rahe hain.",
+     "te-IN": "ఎర్రటి వెలుగున్న ఎయిర్‌లాక్‌లో మీరు స్పేస్‌సూట్ వేసుకుంటారు. కిటికీలోంచి ఆరోరాలు పచ్చటి మంటల్లా సుడులు తిరుగుతున్నాయి.",
+     "te-en": "Red light unna airlock lo spacesuit vesukuntaru. Porthole lonchi auroras aakupachcha nippulaa thiruguthunnayi.",
+     "hi-en@tts": "लाल रोशनी वाले airlock में आप spacesuit पहनते हैं। Porthole के बाहर auroras हरी आग की तरह घूम रहे हैं।",
+     "te-en@tts": "Red light ఉన్న airlock లో spacesuit వేసుకుంటారు. Porthole లోంచి auroras ఆకుపచ్చ నిప్పులా తిరుగుతున్నాయి."
+    },
+    {
+     "en-IN": "How do you go out?",
+     "hi-IN": "बाहर कैसे जाना है?",
+     "hi-en": "Bahar kaise jaana hai?",
+     "te-IN": "బయటికి ఎలా వెళ్తారు?",
+     "te-en": "Bayataki ela veltaru?",
+     "hi-en@tts": "बाहर कैसे जाना है?",
+     "te-en@tts": "బయటకి ఎలా వెళ్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Go out alone",
+      "hi-IN": "अकेले बाहर जाओ",
+      "hi-en": "Akele bahar jao",
+      "te-IN": "ఒంటరిగా వెళ్తా",
+      "te-en": "Okkare veltha"
+     },
+     "keywords": {
+      "en-IN": [
+       "alone",
+       "myself",
+       "solo"
+      ],
+      "hi-IN": [
+       "अकेले",
+       "सोलो",
+       "अकेला"
+      ],
+      "hi-en": [
+       "akele",
+       "alone",
+       "solo",
+       "myself"
+      ],
+      "te-IN": [
+       "ఒంటరిగా",
+       "సోలో",
+       "ఒక్కడినే",
+       "ఒక్కదాన్నే"
+      ],
+      "te-en": [
+       "ఒక్కరే",
+       "ఒంటరిగా",
+       "సోలో",
+       "alone",
+       "solo"
+      ]
+     },
+     "go": "o_walk"
+    },
+    {
+     "label": {
+      "en-IN": "Take Dev with me",
+      "hi-IN": "देव को साथ ले लो",
+      "hi-en": "Dev ko saath lo",
+      "te-IN": "దేవ్‌ని తీసుకెళ్తా",
+      "te-en": "Dev ni theesukeltha"
+     },
+     "keywords": {
+      "en-IN": [
+       "dev",
+       "take"
+      ],
+      "hi-IN": [
+       "देव",
+       "साथ ले"
+      ],
+      "hi-en": [
+       "dev",
+       "saath",
+       "take"
+      ],
+      "te-IN": [
+       "దేవ్",
+       "తీసుకెళ్తా"
+      ],
+      "te-en": [
+       "దేవ్",
+       "తీసుకెళ్తా",
+       "dev"
+      ]
+     },
+     "go": "o_walk",
+     "effects": {
+      "meter": 1
+     },
+     "if": {
+      "has": [
+       "dev"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Send a repair drone",
+      "hi-IN": "रिपेयर ड्रोन भेजो",
+      "hi-en": "Repair drone bhejo",
+      "te-IN": "రిపేర్ డ్రోన్ పంపు",
+      "te-en": "Repair drone pamputha"
+     },
+     "keywords": {
+      "en-IN": [
+       "drone",
+       "send",
+       "repair"
+      ],
+      "hi-IN": [
+       "ड्रोन",
+       "भेजो",
+       "रिपेयर"
+      ],
+      "hi-en": [
+       "drone",
+       "repair",
+       "bhejo",
+       "send"
+      ],
+      "te-IN": [
+       "డ్రోన్",
+       "పంపు",
+       "రిపేర్"
+      ],
+      "te-en": [
+       "డ్రోన్",
+       "రిపేర్",
+       "పంపుతా",
+       "drone",
+       "repair"
+      ]
+     },
+     "go": "o_walk",
+     "say": [
+      {
+       "en-IN": "The drone launches, but the storm scrambles its signal and it tumbles away into the dark. You'll have to go yourself.",
+       "hi-IN": "ड्रोन लॉन्च होता है, पर तूफ़ान उसका सिग्नल बिगाड़ देता है और वो लुढ़कता हुआ अंधेरे में खो जाता है. अब खुद ही जाना होगा.",
+       "hi-en": "Drone launch hota hai, par storm uska signal scramble kar deta hai aur woh ludhakta hua andhere mein kho jaata hai. Ab khud hi jaana hoga.",
+       "te-IN": "డ్రోన్ లాంచ్ అవుతుంది, కానీ స్టార్మ్ దాని సిగ్నల్‌ని గందరగోళం చేస్తుంది, అది దొర్లుకుంటూ చీకట్లోకి వెళ్ళిపోతుంది. మీరే స్వయంగా వెళ్ళాలి.",
+       "te-en": "Drone launch avuthundi, kaani storm daani signal ni scramble chesthundi, adi dorlukuntu cheekatloki vellipothundi. Meere vellali.",
+       "hi-en@tts": "Drone launch होता है, पर storm उसका signal scramble कर देता है और वो लुढ़कता हुआ अँधेरे में खो जाता है। अब खुद ही जाना होगा।",
+       "te-en@tts": "Drone launch అవుతుంది, కానీ storm దాని signal ని scramble చేస్తుంది, అది దొర్లుకుంటూ చీకట్లోకి వెళ్ళిపోతుంది. మీరే వెళ్ళాలి."
+      }
+     ],
+     "effects": {
+      "meter": -1
+     }
+    }
+   ]
+  },
+  "o_walk": {
+   "scene": "orbit-spacewalk",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Outside, Earth glows blue below you and the sun flares white. The shield dish has been knocked out of line, and one bolt is loose.",
+     "hi-IN": "बाहर, नीचे धरती नीली चमक रही है और सूरज सफ़ेद लपटें फेंक रहा है. शील्ड डिश अपनी जगह से खिसक गई है, और एक बोल्ट ढीला है.",
+     "hi-en": "Bahar, neeche Earth neeli chamak rahi hai aur sun safed flare maar raha hai. Shield dish apni line se hat gayi hai, aur ek bolt dheela hai.",
+     "te-IN": "బయట, కింద భూమి నీలంగా మెరుస్తోంది, సూర్యుడు తెల్లగా మండుతున్నాడు. షీల్డ్ డిష్ లైన్ తప్పింది, ఒక బోల్ట్ లూజ్ అయింది.",
+     "te-en": "Bayata kinda Earth blue ga merusthondi, sun thellaga flare avuthondi. Shield dish line thappindi, oka bolt loose ga undi.",
+     "hi-en@tts": "बाहर, नीचे Earth नीली चमक रही है और sun सफ़ेद flare मार रहा है। Shield dish अपनी line से हट गई है, और एक bolt ढीला है।",
+     "te-en@tts": "బయట కింద Earth blue గా మెరుస్తోంది, sun తెల్లగా flare అవుతోంది. Shield dish line తప్పింది, ఒక bolt loose గా ఉంది."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "You fit the wrench on a normal bolt. Which way do you turn it to tighten it?",
+     "hi-IN": "आप एक नॉर्मल बोल्ट पर रिंच फ़िट करते हैं. उसे कसने के लिए किस तरफ़ घुमाना है?",
+     "hi-en": "Aap ek normal bolt par wrench lagaate hain. Tight karne ke liye use kis taraf ghumaana hai?",
+     "te-IN": "మామూలు బోల్ట్‌కి రెంచ్ పెట్టారు. టైట్ చేయాలంటే ఏ వైపు తిప్పాలి?",
+     "te-en": "Maamoolu bolt meeda wrench pedatharu. Tighten cheyyalante e vaipu thipputharu?",
+     "hi-en@tts": "आप एक normal bolt पर wrench लगाते हैं। Tight करने के लिए उसे किस तरफ़ घुमाना है?",
+     "te-en@tts": "మామూలు bolt మీద wrench పెడతారు. Tighten చెయ్యాలంటే ఏ వైపు తిప్పుతారు?"
+    },
+    "kind": "text",
+    "options": {
+     "en-IN": [
+      "clockwise",
+      "anticlockwise",
+      "neither"
+     ],
+     "hi-IN": [
+      "क्लॉकवाइज़",
+      "एंटीक्लॉकवाइज़",
+      "किसी तरफ़ नहीं"
+     ],
+     "hi-en": [
+      "clockwise",
+      "anticlockwise",
+      "koi nahi"
+     ],
+     "te-IN": [
+      "క్లాక్‌వైజ్",
+      "యాంటీ క్లాక్‌వైజ్",
+      "ఏదీ కాదు"
+     ],
+     "te-en": [
+      "clockwise",
+      "anticlockwise",
+      "neither"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [
+      "clock wise",
+      "right"
+     ],
+     "hi-IN": [
+      "घड़ी की दिशा",
+      "घड़ी की सुई की दिशा",
+      "क्लॉक वाइज़",
+      "क्लॉकवाइज",
+      "clockwise",
+      "clock wise",
+      "दाईं तरफ़",
+      "राइट"
+     ],
+     "hi-en": [
+      "clock wise",
+      "right",
+      "ghadi ki disha",
+      "ghadi ki taraf",
+      "daayi taraf"
+     ],
+     "te-IN": [
+      "గడియారం దిశ",
+      "క్లాక్ వైజ్",
+      "కుడి వైపు",
+      "clockwise",
+      "clock wise",
+      "right"
+     ],
+     "te-en": [
+      "clock wise",
+      "right",
+      "క్లాక్‌వైజ్",
+      "క్లాక్ వైజ్",
+      "క్లాక్వైజ్",
+      "రైట్"
+     ]
+    },
+    "pass": {
+     "go": "o_core",
+     "say": [
+      {
+       "en-IN": "Clockwise. Righty tighty! The dish locks into place and the shields hum back to life.",
+       "hi-IN": "क्लॉकवाइज़. राइटी टाइटी! डिश अपनी जगह लॉक हो जाती है और शील्ड्स गुनगुनाते हुए फिर ज़िंदा हो उठती हैं.",
+       "hi-en": "Clockwise. Righty tighty! Dish apni jagah lock ho jaati hai aur shields phir se hum karne lagti hain.",
+       "te-IN": "క్లాక్‌వైజ్. రైటీ టైటీ! డిష్ లాక్ అయిపోతుంది, షీల్డ్స్ మళ్ళీ హమ్ చేస్తూ ప్రాణం పోసుకుంటాయి.",
+       "te-en": "Clockwise. Righty tighty! Dish place lo lock avuthundi, shields malli hum chesthu life loki vasthayi.",
+       "hi-en@tts": "Clockwise. Righty tighty! Dish अपनी जगह lock हो जाती है और shields फिर से hum करने लगती हैं।",
+       "te-en@tts": "Clockwise. Righty tighty! Dish place లో lock అవుతుంది, shields మళ్ళీ hum చేస్తూ life లోకి వస్తాయి."
+      }
+     ],
+     "effects": {
+      "meter": 1
+     }
+    },
+    "fail": {
+     "go": "o_core",
+     "say": [
+      {
+       "en-IN": "The bolt spins loose and drifts off into space. You jam the dish with your tether instead. It holds, for now.",
+       "hi-IN": "बोल्ट घूमकर निकल जाता है और अंतरिक्ष में तैरता चला जाता है. आप डिश को अपनी टेथर से फँसा देते हैं. फ़िलहाल वो टिकी हुई है.",
+       "hi-en": "Bolt ghoomkar nikal jaata hai aur space mein tairta chala jaata hai. Aap apne tether se dish ko jam kar dete hain. Filhaal, woh tiki hui hai.",
+       "te-IN": "బోల్ట్ ఊడిపోయి అంతరిక్షంలోకి తేలిపోతుంది. బదులుగా మీ టెథర్‌తో డిష్‌ని జామ్ చేస్తారు. ప్రస్తుతానికి నిలబడుతుంది.",
+       "te-en": "Bolt loose ayyi space loki thelipothundi. Badulugaa mee tether tho dish ni jam chestharu. Ippatiki adi hold chesthondi.",
+       "hi-en@tts": "Bolt घूमकर निकल जाता है और space में तैरता चला जाता है। आप अपने tether से dish को jam कर देते हैं। फ़िलहाल, वो टिकी हुई है।",
+       "te-en@tts": "Bolt loose అయ్యి space లోకి తేలిపోతుంది. బదులుగా మీ tether తో dish ని jam చేస్తారు. ఇప్పటికి అది hold చేస్తోంది."
+      }
+     ],
+     "effects": {
+      "meter": -1,
+      "gain": [
+       "jammed"
+      ]
+     }
+    }
+   }
+  },
+  "o_core": {
+   "scene": "orbit-core",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Back inside, the power core is overheating. Commander Rhea: we can keep it running for the shields, or evacuate to the pods. Your call, engineer.",
+     "hi-IN": "अंदर लौटते ही पता चलता है कि पावर कोर ओवरहीट हो रहा है. कमांडर रिया: शील्ड्स के लिए इसे चालू रखें, या पॉड्स में निकल जाएँ? फ़ैसला आपका, इंजीनियर.",
+     "hi-en": "Andar power core overheat ho raha hai. Commander Rhea: shields ke liye ise chalaate rahein, ya pods mein evacuate karein? Faisla aapka, engineer.",
+     "te-IN": "లోపలికి వస్తే, పవర్ కోర్ ఓవర్‌హీట్ అవుతోంది. కమాండర్ రియా: షీల్డ్స్ కోసం దీన్ని నడిపించొచ్చు, లేదా పాడ్స్‌లోకి ఎవాక్యుయేట్ అవ్వొచ్చు. నిర్ణయం మీదే, ఇంజనీర్.",
+     "te-en": "Lopaliki vachesariki power core overheat avuthondi. Commander Rhea: shields kosam deenni run cheyyochu, leda pods ki evacuate avvochu. Your call, engineer.",
+     "hi-en@tts": "अंदर power core overheat हो रहा है। Commander Rhea: shields के लिए इसे चलाते रहें, या pods में evacuate करें? फ़ैसला आपका, engineer।",
+     "te-en@tts": "లోపలికి వచ్చేసరికి power core overheat అవుతోంది. Commander Rhea: shields కోసం దీన్ని run చెయ్యొచ్చు, లేదా pods కి evacuate అవ్వొచ్చు. Your call, engineer."
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Keep the station running",
+      "hi-IN": "स्टेशन चालू रखो",
+      "hi-en": "Station chaalu rakho",
+      "te-IN": "స్టేషన్ నడిపిద్దాం",
+      "te-en": "Station run cheddam"
+     },
+     "keywords": {
+      "en-IN": [
+       "keep",
+       "running",
+       "station"
+      ],
+      "hi-IN": [
+       "चालू",
+       "स्टेशन",
+       "चलने दो"
+      ],
+      "hi-en": [
+       "chalu",
+       "running",
+       "station",
+       "keep"
+      ],
+      "te-IN": [
+       "స్టేషన్",
+       "నడిపిద్దాం",
+       "రన్నింగ్"
+      ],
+      "te-en": [
+       "స్టేషన్",
+       "రన్నింగ్",
+       "రన్",
+       "station",
+       "running"
+      ]
+     },
+     "go": [
+      {
+       "if": {
+        "meter_at_least": 3
+       },
+       "go": "end:home"
+      },
+      {
+       "go": "o_pods"
+      }
+     ]
+    },
+    {
+     "label": {
+      "en-IN": "Evacuate to the pods",
+      "hi-IN": "पॉड्स में निकलो",
+      "hi-en": "Pods mein evacuate karo",
+      "te-IN": "పాడ్స్‌లోకి ఎవాక్యుయేట్",
+      "te-en": "Pods ki evacuate"
+     },
+     "keywords": {
+      "en-IN": [
+       "evacuate",
+       "pods",
+       "pod"
+      ],
+      "hi-IN": [
+       "पॉड",
+       "पॉड्स",
+       "निकलो",
+       "इवैक्युएट"
+      ],
+      "hi-en": [
+       "evacuate",
+       "pods",
+       "pod",
+       "escape"
+      ],
+      "te-IN": [
+       "ఎవాక్యుయేట్",
+       "పాడ్స్",
+       "పాడ్"
+      ],
+      "te-en": [
+       "ఎవాక్యుయేట్",
+       "పాడ్స్",
+       "పాడ్",
+       "evacuate",
+       "pods"
+      ]
+     },
+     "go": "o_pods"
+    },
+    {
+     "label": {
+      "en-IN": "Let Maya balance the power",
+      "hi-IN": "माया पावर संभाले",
+      "hi-en": "Maya power balance kare",
+      "te-IN": "మాయ బ్యాలెన్స్ చేయాలి",
+      "te-en": "Maya power balance cheyyali"
+     },
+     "keywords": {
+      "en-IN": [
+       "maya",
+       "balance",
+       "power"
+      ],
+      "hi-IN": [
+       "माया",
+       "बैलेंस",
+       "संभाले"
+      ],
+      "hi-en": [
+       "maya",
+       "balance",
+       "power"
+      ],
+      "te-IN": [
+       "మాయ",
+       "బ్యాలెన్స్"
+      ],
+      "te-en": [
+       "మాయా",
+       "బ్యాలెన్స్",
+       "పవర్",
+       "maya",
+       "balance"
+      ]
+     },
+     "go": "end:maya",
+     "if": {
+      "has": [
+       "maya"
+      ]
+     }
+    }
+   ]
+  },
+  "o_pods": {
+   "scene": "orbit-pods",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "The station shudders. Commander Rhea orders everyone into the escape pods. Hatches slam, and the launch rails glow.",
+     "hi-IN": "स्टेशन थरथराता है. कमांडर रिया सबको एस्केप पॉड्स में जाने का ऑर्डर देती हैं. हैच धड़ाम से बंद होते हैं, और लॉन्च रेल्स चमक उठती हैं.",
+     "hi-en": "Station kaanp uthta hai. Commander Rhea sabko escape pods mein jaane ka order deti hain. Hatches dhadaam se band, aur launch rails chamakne lagti hain.",
+     "te-IN": "స్టేషన్ వణుకుతుంది. అందరూ ఎస్కేప్ పాడ్స్‌లోకి ఎక్కాలని కమాండర్ రియా ఆర్డర్ ఇస్తారు. హాచ్‌లు ధడేల్‌మని మూసుకుంటాయి, లాంచ్ రెయిల్స్ వెలుగుతాయి.",
+     "te-en": "Station vanukuthundi. Andaru escape pods loki vellaalani Commander Rhea order istharu. Hatches dhad mani moosukuntayi, launch rails merusthayi.",
+     "hi-en@tts": "Station काँप उठता है। Commander Rhea सबको escape pods में जाने का order देती हैं। Hatches धड़ाम से बंद, और launch rails चमकने लगती हैं।",
+     "te-en@tts": "Station వణుకుతుంది. అందరూ escape pods లోకి వెళ్ళాలని Commander Rhea order ఇస్తారు. Hatches ధడ్ మని మూసుకుంటాయి, launch rails మెరుస్తాయి."
+    }
+   ],
+   "go": [
+    {
+     "if": {
+      "has": [
+       "dev"
+      ]
+     },
+     "go": "end:splashdown"
+    },
+    {
+     "go": "end:long_way"
+    }
+   ]
+  }
+ },
+ "endings": {
+  "home": {
+   "title": {
+    "en-IN": "Home, All of Us",
+    "hi-IN": "घर, हम सब",
+    "hi-en": "Home, hum sab saath",
+    "te-IN": "ఇంటికి, అందరం కలిసి",
+    "te-en": "Home, All of Us"
+   },
+   "rank": "gold",
+   "scene": "orbit-ocean",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "The storm passes. Vayu is saved, and a week later the whole crew rides the capsule home, parachutes blooming over the Bay of Bengal.",
+     "hi-IN": "तूफ़ान गुज़र जाता है. वायु बच जाता है, और एक हफ़्ते बाद पूरा क्रू कैप्सूल में घर लौटता है, बंगाल की खाड़ी के ऊपर पैराशूट खिलते हुए.",
+     "hi-en": "Storm guzar jaata hai. Vayu bach jaata hai, aur ek hafte baad poora crew capsule se ghar lautta hai, Bay of Bengal ke upar parachutes phoolon ki tarah khilte hain.",
+     "te-IN": "స్టార్మ్ వెళ్ళిపోతుంది. వాయు సేఫ్, వారం తర్వాత క్రూ మొత్తం క్యాప్సూల్‌లో ఇంటికి వస్తుంది, బంగాళాఖాతం మీద పారాచూట్లు పువ్వుల్లా విచ్చుకుంటాయి.",
+     "te-en": "Storm daatipothundi. Vayu save ayindi, oka week tharvatha crew motham capsule lo intiki vasthundi, Bay of Bengal meeda parachutes vichchukuntayi.",
+     "hi-en@tts": "Storm गुज़र जाता है। Vayu बच जाता है, और एक हफ़्ते बाद पूरा crew capsule से घर लौटता है, Bay of Bengal के ऊपर parachutes फूलों की तरह खिलते हैं।",
+     "te-en@tts": "Storm దాటిపోతుంది. Vayu save అయింది, ఒక week తర్వాత crew మొత్తం capsule లో ఇంటికి వస్తుంది, Bay of Bengal మీద parachutes విచ్చుకుంటాయి."
+    },
+    {
+     "en-IN": "Mission control is calling you the engineer who saved Vayu.",
+     "hi-IN": "मिशन कंट्रोल में सब यही कह रहे हैं: इसी इंजीनियर ने वायु को बचाया.",
+     "hi-en": "Mission control aapko woh engineer bula raha hai jisne Vayu ko bachaaya.",
+     "te-IN": "వాయుని కాపాడిన ఇంజనీర్ అని మిషన్ కంట్రోల్ మిమ్మల్ని పిలుస్తోంది.",
+     "te-en": "Vayu ni kaapaadina engineer ani mission control mimmalni pilusthondi.",
+     "hi-en@tts": "Mission control आपको वो engineer बुला रहा है जिसने Vayu को बचाया।",
+     "te-en@tts": "Vayu ని కాపాడిన engineer అని mission control మిమ్మల్ని పిలుస్తోంది."
+    }
+   ]
+  },
+  "maya": {
+   "title": {
+    "en-IN": "Maya Lives",
+    "hi-IN": "माया ज़िंदा है",
+    "hi-en": "Maya zinda hai",
+    "te-IN": "మాయ బతికింది",
+    "te-en": "Maya Lives"
+   },
+   "rank": "gold",
+   "scene": "orbit-storm",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "Maya balances every watt like a tightrope walker. The core cools, the shields hold, and the auroras dance outside the dome.",
+     "hi-IN": "माया हर वॉट को रस्सी पर चलते नट की तरह बैलेंस करती है. कोर ठंडा होता है, शील्ड्स टिकी रहती हैं, और डोम के बाहर ऑरोरा नाचते हैं.",
+     "hi-en": "Maya har watt ko kisi rassi par chalne waale kalaakaar ki tarah balance karti hai. Core thanda hota hai, shields tiki rehti hain, aur dome ke bahar auroras naachte hain.",
+     "te-IN": "తాడు మీద నడిచే కళాకారిణిలా మాయ ప్రతి వాట్‌నీ బ్యాలెన్స్ చేస్తుంది. కోర్ చల్లబడుతుంది, షీల్డ్స్ నిలబడతాయి, డోమ్ బయట ఆరోరాలు నాట్యం చేస్తాయి.",
+     "te-en": "Tightrope walker laaga Maya prathi watt ni balance chesthundi. Core challabaduthundi, shields hold avuthayi, dome bayata auroras dance chesthayi.",
+     "hi-en@tts": "Maya हर watt को किसी रस्सी पर चलने वाले कलाकार की तरह balance करती है। Core ठंडा होता है, shields टिकी रहती हैं, और dome के बाहर auroras नाचते हैं।",
+     "te-en@tts": "Tightrope walker లాగా Maya ప్రతి watt ని balance చేస్తుంది. Core చల్లబడుతుంది, shields hold అవుతాయి, dome బయట auroras dance చేస్తాయి."
+    },
+    {
+     "en-IN": "Thank you, crewmate, Maya says. I'll remember this.",
+     "hi-IN": "शुक्रिया, क्रूमेट, माया कहती है. मैं ये याद रखूँगी.",
+     "hi-en": "Thank you, crewmate, Maya kehti hai. Main yeh hamesha yaad rakhoongi.",
+     "te-IN": "థ్యాంక్యూ, క్రూమేట్, అంటుంది మాయ. ఇది నేను గుర్తుంచుకుంటాను.",
+     "te-en": "Thank you, crewmate, antundi Maya. Idi nenu eppatiki gurthupettukunta.",
+     "hi-en@tts": "Thank you, crewmate, Maya कहती है। मैं ये हमेशा याद रखूँगी।",
+     "te-en@tts": "Thank you, crewmate, అంటుంది Maya. ఇది నేను ఎప్పటికీ గుర్తుపెట్టుకుంటా."
+    }
+   ]
+  },
+  "splashdown": {
+   "title": {
+    "en-IN": "Splashdown",
+    "hi-IN": "स्प्लैशडाउन",
+    "hi-en": "Splashdown",
+    "te-IN": "స్ప్లాష్‌డౌన్",
+    "te-en": "Splashdown"
+   },
+   "rank": "silver",
+   "scene": "orbit-ocean",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "The pods burn through the sky and splash down in a calm blue sea. The station is lost, but every single crew member is safe, Dev included.",
+     "hi-IN": "पॉड्स आसमान को चीरते हुए नीचे आते हैं और शांत नीले समंदर में गिरते हैं. स्टेशन तो खो गया, पर क्रू का हर एक सदस्य सुरक्षित है, देव भी.",
+     "hi-en": "Pods aasmaan ko cheerte hue shaant neele samandar mein splash down karte hain. Station chala gaya, par crew ka har ek member safe hai, Dev bhi.",
+     "te-IN": "పాడ్స్ ఆకాశాన్ని చీల్చుకుంటూ వచ్చి ప్రశాంతమైన నీలి సముద్రంలో దిగుతాయి. స్టేషన్ పోయింది, కానీ దేవ్‌తో సహా క్రూలో ప్రతి ఒక్కరూ సేఫ్.",
+     "te-en": "Pods aakaashanni cheelchukuntu vachi calm blue sea lo splash down avuthayi. Station poyindi, kaani crew lo prathi okkaru safe, Dev tho saha.",
+     "hi-en@tts": "Pods आसमान को चीरते हुए शांत नीले समंदर में splash down करते हैं। Station चला गया, पर crew का हर एक member safe है, Dev भी।",
+     "te-en@tts": "Pods ఆకాశాన్ని చీల్చుకుంటూ వచ్చి calm blue sea లో splash down అవుతాయి. Station పోయింది, కానీ crew లో ప్రతి ఒక్కరూ safe, Dev తో సహా."
+    }
+   ]
+  },
+  "long_way": {
+   "title": {
+    "en-IN": "The Long Way Home",
+    "hi-IN": "घर का लंबा रास्ता",
+    "hi-en": "Ghar ka Lamba Raasta",
+    "te-IN": "చుట్టూ తిరిగి ఇంటికి",
+    "te-en": "The Long Way Home"
+   },
+   "rank": "bronze",
+   "scene": "orbit-reentry",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "You go back for Dev and miss the first launch window. The last pod lands far off course, and a fishing boat finds you two days later.",
+     "hi-IN": "आप देव के लिए वापस जाते हैं और पहली लॉन्च विंडो छूट जाती है. आख़िरी पॉड रास्ते से बहुत दूर गिरता है, और दो दिन बाद मछुआरों की एक नाव आपको ढूँढ निकालती है.",
+     "hi-en": "Aap Dev ke liye waapas jaate hain, aur pehli launch window chhoot jaati hai. Aakhri pod raaste se bahut door utarta hai, aur do din baad ek fishing boat aapko dhoondh leti hai.",
+     "te-IN": "దేవ్ కోసం వెనక్కి వెళ్ళి మొదటి లాంచ్ విండో మిస్ అవుతారు. చివరి పాడ్ దారి తప్పి చాలా దూరంలో దిగుతుంది, రెండు రోజుల తర్వాత ఒక చేపల పడవ మిమ్మల్ని కనిపెడుతుంది.",
+     "te-en": "Dev kosam venakki velli first launch window miss avutharu. Last pod course thappi chaala dooram lo land avuthundi, rendu rojula tharvatha oka fishing boat mimmalni kanukkuntundi.",
+     "hi-en@tts": "आप Dev के लिए वापस जाते हैं, और पहली launch window छूट जाती है। आखिरी pod रास्ते से बहुत दूर उतरता है, और दो दिन बाद एक fishing boat आपको ढूँढ लेती है।",
+     "te-en@tts": "Dev కోసం వెనక్కి వెళ్ళి first launch window miss అవుతారు. Last pod course తప్పి చాలా దూరంలో land అవుతుంది, రెండు రోజుల తర్వాత ఒక fishing boat మిమ్మల్ని కనుక్కుంటుంది."
+    },
+    {
+     "en-IN": "You're home. Just the long way round.",
+     "hi-IN": "आप घर पर हैं. बस रास्ता थोड़ा लंबा था.",
+     "hi-en": "Aap ghar par hain. Bas lambe raaste se.",
+     "te-IN": "ఇంటికి చేరారు. కాకపోతే చుట్టూ తిరిగి.",
+     "te-en": "Meeru intiki cheraru. Kaakapothe long route lo.",
+     "hi-en@tts": "आप घर पर हैं। बस लंबे रास्ते से।",
+     "te-en@tts": "మీరు ఇంటికి చేరారు. కాకపోతే long route లో."
+    }
+   ]
+  }
+ }
+}

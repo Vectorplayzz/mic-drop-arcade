@@ -1,0 +1,559 @@
+{
+ "schema": 1,
+ "id": "prologue",
+ "genre": "prologue",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": null,
+ "reviewed_at": null,
+ "title": {
+  "en-IN": "The Five Doors",
+  "hi-IN": "पाँच दरवाज़े",
+  "hi-en": "Jaadui Darwaze",
+  "te-IN": "ఐదు తలుపులు",
+  "te-en": "The Five Doors"
+ },
+ "tagline": {
+  "en-IN": "Answer two questions and the wizard picks your story.",
+  "hi-IN": "दो सवालों के जवाब दीजिए, और जादूगर आपकी कहानी चुनेगा.",
+  "hi-en": "Bas do sawaalon ke jawaab, aur wizard aapki story chunega.",
+  "te-IN": "రెండు ప్రశ్నలకు జవాబు చెప్పండి, మీ కథని మాంత్రికుడు ఎంచుకుంటాడు.",
+  "te-en": "Rendu questions ki answer cheppandi, mee story ni wizard choose chesthadu."
+ },
+ "cover": "portals",
+ "meter": null,
+ "items": {},
+ "start": "p_where",
+ "nodes": {
+  "p_where": {
+   "scene": "portals",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Welcome, traveller. Behind me are glowing doors, and every one of them opens onto a different story.",
+     "hi-IN": "स्वागत है, मुसाफ़िर. मेरे पीछे चमकते दरवाज़े हैं, और हर दरवाज़े के पीछे एक अलग कहानी है.",
+     "hi-en": "Welcome, traveller! Mere peeche chamakte darwaze hain, aur har darwaza ek alag story mein khulta hai.",
+     "te-IN": "స్వాగతం! నా వెనక మెరిసే తలుపులు ఉన్నాయి, ఒక్కో తలుపు వెనక ఒక్కో కథ ఉంది.",
+     "te-en": "Welcome, traveller! Naa venaka glowing doors unnayi, prathi door oka different story loki open avuthundi.",
+     "hi-en@tts": "Welcome, traveller! मेरे पीछे चमकते दरवाज़े हैं, और हर दरवाज़ा एक अलग story में खुलता है।",
+     "te-en@tts": "Welcome, traveller! నా వెనక glowing doors ఉన్నాయి, ప్రతి door ఒక different story లోకి open అవుతుంది."
+    },
+    {
+     "en-IN": "Let me read you first. It's the night before your final exam. Where are you?",
+     "hi-IN": "पहले ज़रा आपको परख लूँ. फ़ाइनल एग्ज़ाम से पहले की रात है. आप कहाँ हैं?",
+     "hi-en": "Pehle zara aapko padh loon. Final exam se pehle ki raat hai. Aap kahan hain?",
+     "te-IN": "ముందు మిమ్మల్ని కొంచెం చదువుతాను. రేపు ఫైనల్ ఎగ్జామ్. ఈ రాత్రి మీరు ఎక్కడ ఉన్నారు?",
+     "te-en": "Mundu mimmalni konchem read chesthanu. Repu mee final exam. Ee raathri meeru ekkada unnaru?",
+     "hi-en@tts": "पहले ज़रा आपको पढ़ लूँ। Final exam से पहले की रात है। आप कहाँ हैं?",
+     "te-en@tts": "ముందు మిమ్మల్ని కొంచెం read చేస్తాను. రేపు మీ final exam. ఈ రాత్రి మీరు ఎక్కడ ఉన్నారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "In the lab, fixing my project",
+      "hi-IN": "लैब में, प्रोजेक्ट पर",
+      "hi-en": "Lab mein project fix",
+      "te-IN": "ల్యాబ్‌లో ప్రాజెక్ట్ పని",
+      "te-en": "Lab lo project fix"
+     },
+     "keywords": {
+      "en-IN": [
+       "lab",
+       "project",
+       "fixing"
+      ],
+      "hi-IN": [
+       "लैब",
+       "प्रोजेक्ट",
+       "ठीक कर"
+      ],
+      "hi-en": [
+       "lab",
+       "project",
+       "fixing",
+       "fix"
+      ],
+      "te-IN": [
+       "ల్యాబ్",
+       "ప్రాజెక్ట్",
+       "రిపేర్"
+      ],
+      "te-en": [
+       "ల్యాబ్",
+       "ప్రాజెక్ట్",
+       "ఫిక్స్",
+       "lab",
+       "project"
+      ]
+     },
+     "go": "p_signal",
+     "effects": {
+      "gain": [
+       "a_lab"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "At the fest with friends",
+      "hi-IN": "दोस्तों के साथ फ़ेस्ट में",
+      "hi-en": "Friends ke saath fest mein",
+      "te-IN": "ఫ్రెండ్స్‌తో ఫెస్ట్‌లో",
+      "te-en": "Friends tho fest lo"
+     },
+     "keywords": {
+      "en-IN": [
+       "fest",
+       "friends",
+       "party"
+      ],
+      "hi-IN": [
+       "फ़ेस्ट",
+       "फेस्ट",
+       "दोस्तों",
+       "पार्टी"
+      ],
+      "hi-en": [
+       "fest",
+       "friends",
+       "party",
+       "dosto"
+      ],
+      "te-IN": [
+       "ఫెస్ట్",
+       "ఫ్రెండ్స్",
+       "పార్టీ"
+      ],
+      "te-en": [
+       "ఫెస్ట్",
+       "ఫ్రెండ్స్",
+       "పార్టీ",
+       "fest",
+       "friends"
+      ]
+     },
+     "go": "p_signal",
+     "effects": {
+      "gain": [
+       "a_fest"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Riding out in the rain",
+      "hi-IN": "बारिश में बाइक पर",
+      "hi-en": "Baarish mein bike ride",
+      "te-IN": "వర్షంలో బైక్ రైడ్",
+      "te-en": "Varsham lo bike ride"
+     },
+     "keywords": {
+      "en-IN": [
+       "riding",
+       "rain",
+       "ride",
+       "bike"
+      ],
+      "hi-IN": [
+       "बारिश",
+       "बाइक",
+       "राइड",
+       "सवारी"
+      ],
+      "hi-en": [
+       "riding",
+       "baarish",
+       "barish",
+       "rain",
+       "bike",
+       "ride"
+      ],
+      "te-IN": [
+       "వర్షం",
+       "వాన",
+       "బైక్",
+       "రైడ్"
+      ],
+      "te-en": [
+       "వర్షం",
+       "రైడ్",
+       "బైక్",
+       "రెయిన్",
+       "ride",
+       "bike"
+      ]
+     },
+     "go": "p_signal",
+     "effects": {
+      "gain": [
+       "a_road"
+      ]
+     }
+    }
+   ]
+  },
+  "p_signal": {
+   "scene": "portals",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Interesting. Now, at midnight your phone buzzes. A message from an unknown number says just one word: help.",
+     "hi-IN": "दिलचस्प. अब आधी रात को आपका फ़ोन बजता है. किसी अनजान नंबर से मैसेज आता है, बस एक शब्द: बचाओ.",
+     "hi-en": "Interesting. Ab, aadhi raat ko aapka phone buzz karta hai. Unknown number se message, bas ek word: help.",
+     "te-IN": "ఇంట్రెస్టింగ్. అర్ధరాత్రి మీ ఫోన్ మోగుతుంది. తెలియని నంబర్ నుంచి ఒకే ఒక్క పదం మెసేజ్: హెల్ప్.",
+     "te-en": "Interesting. Ippudu midnight ki mee phone buzz avuthundi. Unknown number nunchi oke okka word message: help.",
+     "hi-en@tts": "Interesting. अब, आधी रात को आपका phone buzz करता है। Unknown number से message, बस एक word: help.",
+     "te-en@tts": "Interesting. ఇప్పుడు midnight కి మీ phone buzz అవుతుంది. Unknown number నుంచి ఒకే ఒక్క word message: help."
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करते हैं?",
+     "hi-en": "Aap kya karte hain?",
+     "te-IN": "మీరేం చేస్తారు?",
+     "te-en": "Meeru em chestharu?",
+     "hi-en@tts": "आप क्या करते हैं?",
+     "te-en@tts": "మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Trace the signal",
+      "hi-IN": "सिग्नल ट्रेस करो",
+      "hi-en": "Signal trace karo",
+      "te-IN": "సిగ్నల్ ట్రేస్ చేస్తా",
+      "te-en": "Signal trace chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "trace",
+       "signal",
+       "track"
+      ],
+      "hi-IN": [
+       "ट्रेस",
+       "सिग्नल",
+       "ट्रैक"
+      ],
+      "hi-en": [
+       "trace",
+       "signal",
+       "track"
+      ],
+      "te-IN": [
+       "ట్రేస్",
+       "సిగ్నల్",
+       "ట్రాక్"
+      ],
+      "te-en": [
+       "ట్రేస్",
+       "సిగ్నల్",
+       "ట్రాక్",
+       "trace",
+       "signal"
+      ]
+     },
+     "go": "p_route",
+     "effects": {
+      "gain": [
+       "b_trace"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Call my best friend",
+      "hi-IN": "बेस्ट फ्रेंड को कॉल",
+      "hi-en": "Best friend ko call",
+      "te-IN": "బెస్ట్ ఫ్రెండ్‌కి కాల్",
+      "te-en": "Best friend ki call"
+     },
+     "keywords": {
+      "en-IN": [
+       "call",
+       "friend",
+       "best"
+      ],
+      "hi-IN": [
+       "कॉल",
+       "फ्रेंड",
+       "दोस्त को",
+       "फ़ोन करो"
+      ],
+      "hi-en": [
+       "call",
+       "best friend",
+       "friend",
+       "dost"
+      ],
+      "te-IN": [
+       "కాల్",
+       "ఫ్రెండ్",
+       "బెస్ట్"
+      ],
+      "te-en": [
+       "కాల్",
+       "బెస్ట్ ఫ్రెండ్",
+       "ఫ్రెండ్",
+       "call",
+       "friend"
+      ]
+     },
+     "go": "p_route",
+     "effects": {
+      "gain": [
+       "b_friend"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Go and find out",
+      "hi-IN": "खुद जाकर पता करो",
+      "hi-en": "Khud jaakar pata karo",
+      "te-IN": "స్వయంగా వెళ్ళి చూస్తా",
+      "te-en": "Velli kanukkunta"
+     },
+     "keywords": {
+      "en-IN": [
+       "find out",
+       "find",
+       "investigate"
+      ],
+      "hi-IN": [
+       "पता करो",
+       "पता लगाओ",
+       "जाकर देखो",
+       "जाँच"
+      ],
+      "hi-en": [
+       "pata",
+       "find out",
+       "investigate",
+       "khud"
+      ],
+      "te-IN": [
+       "స్వయంగా",
+       "కనిపెడతా",
+       "వెతుకుతా",
+       "వెళ్ళి చూస్తా"
+      ],
+      "te-en": [
+       "కనుక్కుంటా",
+       "కనుక్కో",
+       "ఫైండ్ అవుట్",
+       "ఇన్వెస్టిగేట్",
+       "find out"
+      ]
+     },
+     "go": "p_route",
+     "effects": {
+      "gain": [
+       "b_go"
+      ]
+     }
+    }
+   ]
+  },
+  "p_route": {
+   "scene": null,
+   "mood": "cheer",
+   "say": [],
+   "go": [
+    {
+     "if": {
+      "has": [
+       "a_lab",
+       "b_trace"
+      ]
+     },
+     "go": "p_orbit"
+    },
+    {
+     "if": {
+      "has": [
+       "a_lab",
+       "b_friend"
+      ]
+     },
+     "go": "p_lab"
+    },
+    {
+     "if": {
+      "has": [
+       "a_lab"
+      ]
+     },
+     "go": "p_hostel"
+    },
+    {
+     "if": {
+      "has": [
+       "a_fest",
+       "b_trace"
+      ]
+     },
+     "go": "p_hack"
+    },
+    {
+     "if": {
+      "has": [
+       "a_fest",
+       "b_friend"
+      ]
+     },
+     "go": "p_fest"
+    },
+    {
+     "if": {
+      "has": [
+       "a_fest"
+      ]
+     },
+     "go": "p_loop"
+    },
+    {
+     "if": {
+      "has": [
+       "b_go"
+      ]
+     },
+     "go": "p_hampi"
+    },
+    {
+     "go": "p_train"
+    }
+   ]
+  },
+  "p_train": {
+   "scene": "portals",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "Thunder in your heart, rain on your face. A door swings open onto a stormy night: the Monsoon Express!",
+     "hi-IN": "दिल में तूफ़ान, चेहरे पर बारिश. एक दरवाज़ा तूफ़ानी रात की ओर खुलता है: मॉनसून एक्सप्रेस!",
+     "hi-en": "Dil mein thunder, chehre par baarish. Ek darwaza toofani raat mein jhatke se khulta hai: Monsoon Express!",
+     "te-IN": "గుండెలో ఉరుములు, ముఖం మీద వర్షం. తుఫాను రాత్రిలోకి ఒక తలుపు తెరుచుకుంది: మాన్సూన్ ఎక్స్‌ప్రెస్!",
+     "te-en": "Manasulo thunder, mukham meeda varsham. Oka door thufaanu raathri loki theruchukuntundi: Monsoon Express!",
+     "hi-en@tts": "दिल में thunder, चेहरे पर बारिश। एक दरवाज़ा तूफ़ानी रात में झटके से खुलता है: Monsoon Express!",
+     "te-en@tts": "మనసులో thunder, ముఖం మీద వర్షం. ఒక door తుఫాను రాత్రిలోకి తెరుచుకుంటుంది: Monsoon Express!"
+    }
+   ],
+   "go": "adventure:monsoon-express"
+  },
+  "p_fest": {
+   "scene": "portals",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "A warm heart and a busy night. A door opens, full of fairy lights: Fest Night!",
+     "hi-IN": "गर्म दिल और भागदौड़ भरी रात. एक दरवाज़ा जगमगाती फ़ेयरी लाइट्स के साथ खुलता है: फ़ेस्ट नाइट!",
+     "hi-en": "Warm dil aur ek busy raat. Ek darwaza fairy lights se jagmagata hua khulta hai: Fest Night!",
+     "te-IN": "వెచ్చని మనసు, హడావుడి రాత్రి. ఫెయిరీ లైట్లతో నిండిన ఒక తలుపు తెరుచుకుంది: ఫెస్ట్ నైట్!",
+     "te-en": "Warm heart, busy night. Fairy lights tho nindina oka door open avuthundi: Fest Night!",
+     "hi-en@tts": "Warm दिल और एक busy रात। एक दरवाज़ा fairy lights से जगमगाता हुआ खुलता है: Fest Night!",
+     "te-en@tts": "Warm heart, busy night. Fairy lights తో నిండిన ఒక door open అవుతుంది: Fest Night!"
+    }
+   ],
+   "go": "adventure:fest-night"
+  },
+  "p_lab": {
+   "scene": "portals",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "A sharp mind that wants answers. A door creaks open onto a dark corridor: The Midnight Lab!",
+     "hi-IN": "तेज़ दिमाग़, जिसे जवाब चाहिए. एक दरवाज़ा चरमराकर एक अंधेरे कॉरिडोर की ओर खुलता है: द मिडनाइट लैब!",
+     "hi-en": "Ek sharp dimaag, jise jawaab chahiye. Ek darwaza charmaraakar andhere corridor mein khulta hai: The Midnight Lab!",
+     "te-IN": "జవాబులు కావాలనుకునే పదునైన మెదడు. చీకటి కారిడార్ వైపు ఒక తలుపు కిర్రుమంటూ తెరుచుకుంది: ద మిడ్‌నైట్ ల్యాబ్!",
+     "te-en": "Answers kaavalane sharp mind. Cheekati corridor vaipu oka door kirrumani theruchukuntundi: The Midnight Lab!",
+     "hi-en@tts": "एक sharp दिमाग, जिसे जवाब चाहिए। एक दरवाज़ा चरमराकर अँधेरे corridor में खुलता है: The Midnight Lab!",
+     "te-en@tts": "Answers కావాలనే sharp mind. చీకటి corridor వైపు ఒక door కిర్రుమని తెరుచుకుంటుంది: The Midnight Lab!"
+    }
+   ],
+   "go": "adventure:midnight-lab"
+  },
+  "p_orbit": {
+   "scene": "portals",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "Signals, stars and a builder's hands. A door opens onto the stars: Last Orbit!",
+     "hi-IN": "सिग्नल, सितारे और एक बिल्डर के हाथ. एक दरवाज़ा सितारों की ओर खुलता है: लास्ट ऑर्बिट!",
+     "hi-en": "Signals, sitaare aur ek builder ke haath. Ek darwaza seedhe sitaaron mein khulta hai: Last Orbit!",
+     "te-IN": "సిగ్నల్స్, నక్షత్రాలు, ఒక బిల్డర్ చేతులు. నక్షత్రాల వైపు ఒక తలుపు తెరుచుకుంది: లాస్ట్ ఆర్బిట్!",
+     "te-en": "Signals, stars, inka oka builder chethulu. Oka door stars vaipu open avuthundi: Last Orbit!",
+     "hi-en@tts": "Signals, सितारे और एक builder के हाथ। एक दरवाज़ा सीधे सितारों में खुलता है: Last Orbit!",
+     "te-en@tts": "Signals, stars, ఇంకా ఒక builder చేతులు. ఒక door stars వైపు open అవుతుంది: Last Orbit!"
+    }
+   ],
+   "go": "adventure:last-orbit"
+  },
+  "p_hostel": {
+   "scene": "portals",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "You walk towards the unknown. Brave, or foolish? A door opens with a cold breeze: Hostel Block C!",
+     "hi-IN": "आप अनजाने की ओर बढ़ते हैं. बहादुरी, या बेवकूफ़ी? एक दरवाज़ा ठंडी हवा के झोंके के साथ खुलता है: हॉस्टल ब्लॉक सी!",
+     "hi-en": "Aap anjaan ki taraf badhte hain. Brave, ya paagalpan? Ek darwaza thandi hawa ke jhonke ke saath khulta hai: Hostel Block C!",
+     "te-IN": "మీరు తెలియని దాని వైపు నడుస్తున్నారు. ధైర్యమా, లేక పిచ్చా? చల్లని గాలితో ఒక తలుపు తెరుచుకుంది: హాస్టల్ బ్లాక్ సి!",
+     "te-en": "Meeru unknown vaipu nadusthunnaru. Brave aa, leka foolish aa? Challati gaalitho oka door theruchukuntundi: Hostel Block C!",
+     "hi-en@tts": "आप अनजान की तरफ़ बढ़ते हैं। Brave, या पागलपन? एक दरवाज़ा ठंडी हवा के झोंके के साथ खुलता है: Hostel Block C!",
+     "te-en@tts": "మీరు unknown వైపు నడుస్తున్నారు. Brave ఆ, లేక foolish ఆ? చల్లటి గాలితో ఒక door తెరుచుకుంటుంది: Hostel Block C!"
+    }
+   ],
+   "go": "adventure:hostel-block-c"
+  },
+  "p_hack": {
+   "scene": "portals",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "Code, crowds and a mystery in the network. A door flickers open in neon: Hackathon Heist!",
+     "hi-IN": "कोड, भीड़ और नेटवर्क में छिपा एक रहस्य. एक दरवाज़ा नियॉन रोशनी में टिमटिमाकर खुलता है: हैकाथॉन हाइस्ट!",
+     "hi-en": "Code, bheed aur network mein chhupi ek mystery. Ek darwaza neon mein timtimaakar khulta hai: Hackathon Heist!",
+     "te-IN": "కోడ్, జనం, నెట్‌వర్క్‌లో ఒక మిస్టరీ. నియాన్ వెలుగులో ఒక తలుపు మిణుకుమంటూ తెరుచుకుంది: హ్యాకథాన్ హైస్ట్!",
+     "te-en": "Code, crowds, network lo oka mystery. Neon light lo oka door flicker avuthu open avuthundi: Hackathon Heist!",
+     "hi-en@tts": "Code, भीड़ और network में छुपी एक mystery। एक दरवाज़ा neon में टिमटिमाकर खुलता है: Hackathon Heist!",
+     "te-en@tts": "Code, crowds, network లో ఒక mystery. Neon light లో ఒక door flicker అవుతూ open అవుతుంది: Hackathon Heist!"
+    }
+   ],
+   "go": "adventure:hackathon-heist"
+  },
+  "p_loop": {
+   "scene": "portals",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "You love a good time, so let's see how you handle the same one twice. A door ticks open: Viva Loop!",
+     "hi-IN": "आपको मस्ती पसंद है, तो देखते हैं एक ही दिन दो बार कैसे झेलते हैं. एक दरवाज़ा टिक-टिक करता खुलता है: वाइवा लूप!",
+     "hi-en": "Aapko maze karna pasand hai, toh dekhte hain wahi din dobara kaise sambhaalte hain. Ek darwaza tick-tick karke khulta hai: Viva Loop!",
+     "te-IN": "మీకు ఎంజాయ్ చేయడం ఇష్టం, మరి అదే రోజు రెండోసారి వస్తే ఎలా ఉంటుందో చూద్దాం. టిక్ టిక్ అంటూ ఒక తలుపు తెరుచుకుంది: వైవా లూప్!",
+     "te-en": "Meeku good time ante ishtam, ade time rendusarlu vasthe ela handle chestharo chuddam. Tik tik antu oka door open: Viva Loop!",
+     "hi-en@tts": "आपको मज़े करना पसंद है, तो देखते हैं वही दिन दोबारा कैसे संभालते हैं। एक दरवाज़ा tick-tick करके खुलता है: Viva Loop!",
+     "te-en@tts": "మీకు good time అంటే ఇష్టం, అదే time రెండుసార్లు వస్తే ఎలా handle చేస్తారో చూద్దాం. టిక్ టిక్ అంటూ ఒక door open: Viva Loop!"
+    }
+   ],
+   "go": "adventure:viva-loop"
+  },
+  "p_hampi": {
+   "scene": "portals",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "Restless feet and a curious heart. A door opens onto ancient golden ruins: Hampi Treasure!",
+     "hi-IN": "बेचैन क़दम और जिज्ञासु दिल. एक दरवाज़ा पुराने सुनहरे खंडहरों की ओर खुलता है: हम्पी का ख़ज़ाना!",
+     "hi-en": "Bechain kadam aur curious dil. Ek darwaza puraane sunehre khandharon mein khulta hai: Hampi Treasure!",
+     "te-IN": "ఆగని కాళ్ళు, తెలుసుకోవాలనే మనసు. పురాతన బంగారు శిథిలాల వైపు ఒక తలుపు తెరుచుకుంది: హంపి ట్రెజర్!",
+     "te-en": "Nilavani kaallu, curious manasu. Puraathana golden ruins vaipu oka door theruchukuntundi: Hampi Treasure!",
+     "hi-en@tts": "बेचैन क़दम और curious दिल। एक दरवाज़ा पुराने सुनहरे खंडहरों में खुलता है: Hampi Treasure!",
+     "te-en@tts": "నిలవని కాళ్ళు, curious మనసు. పురాతన golden ruins వైపు ఒక door తెరుచుకుంటుంది: Hampi Treasure!"
+    }
+   ],
+   "go": "adventure:hampi-treasure"
+  }
+ },
+ "endings": {}
+}

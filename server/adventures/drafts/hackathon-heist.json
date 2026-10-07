@@ -1,0 +1,1167 @@
+{
+ "schema": 1,
+ "id": "hackathon-heist",
+ "genre": "thriller",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": null,
+ "reviewed_at": null,
+ "title": {
+  "en-IN": "Hackathon Heist",
+  "hi-IN": "हैकाथॉन हाइस्ट",
+  "hi-en": "Hackathon Heist",
+  "te-IN": "హ్యాకథాన్ హైస్ట్",
+  "te-en": "Hackathon Heist"
+ },
+ "tagline": {
+  "en-IN": "Every team's code just vanished. Your teammate is the suspect.",
+  "hi-IN": "हर टीम का कोड अभी-अभी ग़ायब हुआ है. और शक आपकी टीममेट पर है.",
+  "hi-en": "Har team ka code gaayab ho gaya hai. Aur suspect hai aapki teammate.",
+  "te-IN": "అన్ని టీమ్‌ల కోడ్ మాయం. అనుమానం మీ టీమ్‌మేట్ మీదే.",
+  "te-en": "Prathi team code maayam. Suspect mee teammate."
+ },
+ "cover": "hack-hall",
+ "meter": {
+  "label": {
+   "en-IN": "Battery",
+   "hi-IN": "बैटरी",
+   "hi-en": "Battery",
+   "te-IN": "బ్యాటరీ",
+   "te-en": "Battery"
+  },
+  "icon": "bolt",
+  "start": 3,
+  "max": 3,
+  "on_zero": "end:flat"
+ },
+ "items": {
+  "usb": {
+   "label": {
+    "en-IN": "USB stick",
+    "hi-IN": "यूएसबी स्टिक",
+    "hi-en": "USB stick",
+    "te-IN": "యూఎస్‌బీ స్టిక్",
+    "te-en": "USB stick"
+   }
+  },
+  "zoya": {
+   "label": {
+    "en-IN": "Zoya on your side",
+    "hi-IN": "ज़ोया आपके साथ",
+    "hi-en": "Zoya aapke saath",
+    "te-IN": "జోయా మీ వైపు",
+    "te-en": "Zoya mee vaipu"
+   }
+  },
+  "kapoor": {
+   "label": {
+    "en-IN": "Kapoor seems odd",
+    "hi-IN": "कपूर कुछ अजीब",
+    "hi-en": "Kapoor kuch ajeeb hai",
+    "te-IN": "కపూర్ మీద అనుమానం",
+    "te-en": "Kapoor thedaga unnadu"
+   }
+  },
+  "trail": {
+   "label": {
+    "en-IN": "Attack trail",
+    "hi-IN": "अटैक का सुराग",
+    "hi-en": "Attack ka trail",
+    "te-IN": "అటాక్ ట్రెయిల్",
+    "te-en": "Attack trail"
+   }
+  },
+  "badge": {
+   "label": {
+    "en-IN": "Staff badge",
+    "hi-IN": "स्टाफ़ बैज",
+    "hi-en": "Staff badge",
+    "te-IN": "స్టాఫ్ బ్యాడ్జ్",
+    "te-en": "Staff badge"
+   }
+  },
+  "script": {
+   "label": {
+    "en-IN": "Your script",
+    "hi-IN": "आपकी स्क्रिप्ट",
+    "hi-en": "Aapki script",
+    "te-IN": "మీ స్క్రిప్ట్",
+    "te-en": "Mee script"
+   }
+  },
+  "backup": {
+   "label": {
+    "en-IN": "Zoya on backups",
+    "hi-IN": "ज़ोया बैकअप पर",
+    "hi-en": "Zoya backups par",
+    "te-IN": "బ్యాకప్స్ మీద జోయా",
+    "te-en": "Backups pai Zoya"
+   }
+  },
+  "locked": {
+   "label": {
+    "en-IN": "Attacker locked out",
+    "hi-IN": "अटैकर लॉक आउट",
+    "hi-en": "Attacker locked out",
+    "te-IN": "అటాకర్ లాక్ అవుట్",
+    "te-en": "Attacker locked out"
+   }
+  }
+ },
+ "start": "x_start",
+ "nodes": {
+  "x_start": {
+   "scene": "hack-hall",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Two a.m. at India's biggest hackathon. Twenty two hours in, a ten lakh rupee prize, and every team's code just vanished.",
+     "hi-IN": "रात के दो बजे, भारत का सबसे बड़ा हैकाथॉन. बाईस घंटे बीत चुके हैं, दस लाख रुपये का इनाम दांव पर है, और हर टीम का कोड अभी-अभी ग़ायब हो गया.",
+     "hi-en": "Raat ke do baje, India ka sabse bada hackathon. Twenty two ghante ho chuke hain, das lakh rupees ka prize, aur har team ka code achaanak gaayab.",
+     "te-IN": "తెల్లవారుజామున రెండు గంటలు, ఇండియాలోనే అతి పెద్ద హ్యాకథాన్. ఇరవై రెండు గంటలు గడిచాయి, పది లక్షల రూపాయల ప్రైజ్, ఇప్పుడు అన్ని టీమ్‌ల కోడ్ మాయం.",
+     "te-en": "India lo athi pedda hackathon, raathri two. Iravai rendu gantalu ayyayi, ten lakh rupees prize, inthalo prathi team code maayam ayipoyindi.",
+     "hi-en@tts": "रात के दो बजे, India का सबसे बड़ा hackathon। Twenty two घंटे हो चुके हैं, दस लाख rupees का prize, और हर team का code अचानक गायब।",
+     "te-en@tts": "India లో అతి పెద్ద hackathon, రాత్రి two. ఇరవై రెండు గంటలు అయ్యాయి, ten lakh rupees prize, ఇంతలో ప్రతి team code మాయం అయిపోయింది."
+    },
+    {
+     "en-IN": "Every screen shows the same message: Ghost four oh four was here. The organisers suspect your teammate, Zoya.",
+     "hi-IN": "हर स्क्रीन पर एक ही मैसेज: घोस्ट फ़ोर ओ फ़ोर यहाँ था. ऑर्गनाइज़र्स को आपकी टीममेट ज़ोया पर शक है.",
+     "hi-en": "Har screen par ek hi message: Ghost four oh four was here. Organisers ko shak hai aapki teammate, Zoya par.",
+     "te-IN": "ప్రతి స్క్రీన్ మీద ఒకటే మెసేజ్: ఘోస్ట్ ఫోర్ ఓ ఫోర్ వాజ్ హియర్. ఆర్గనైజర్లు మీ టీమ్‌మేట్ జోయాని అనుమానిస్తున్నారు.",
+     "te-en": "Prathi screen meeda okate message: Ghost four oh four was here. Organisers mee teammate Zoya meeda doubt paduthunnaru.",
+     "hi-en@tts": "हर screen पर एक ही message: Ghost four oh four was here। Organisers को शक है आपकी teammate, Zoya पर।",
+     "te-en@tts": "ప్రతి screen మీద ఒకటే message: Ghost four oh four was here. Organisers మీ teammate Zoya మీద doubt పడుతున్నారు."
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करते हैं?",
+     "hi-en": "Aap kya karte hain?",
+     "te-IN": "మీరేం చేస్తారు?",
+     "te-en": "Meeru em chestharu?",
+     "hi-en@tts": "आप क्या करते हैं?",
+     "te-en@tts": "మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Talk to Zoya",
+      "hi-IN": "ज़ोया से बात करो",
+      "hi-en": "Zoya se baat karo",
+      "te-IN": "జోయాతో మాట్లాడు",
+      "te-en": "Zoya tho maatlaadatha"
+     },
+     "keywords": {
+      "en-IN": [
+       "zoya",
+       "talk",
+       "defend"
+      ],
+      "hi-IN": [
+       "ज़ोया",
+       "जोया",
+       "बात"
+      ],
+      "hi-en": [
+       "zoya",
+       "baat",
+       "talk",
+       "defend"
+      ],
+      "te-IN": [
+       "జోయా",
+       "మాట్లాడు"
+      ],
+      "te-en": [
+       "జోయా",
+       "మాట్లాడతా",
+       "డిఫెండ్",
+       "zoya",
+       "talk"
+      ]
+     },
+     "go": "x_zoya"
+    },
+    {
+     "label": {
+      "en-IN": "Trace the attack",
+      "hi-IN": "अटैक ट्रेस करो",
+      "hi-en": "Attack trace karo",
+      "te-IN": "అటాక్ ట్రేస్ చేయి",
+      "te-en": "Attack trace chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "trace",
+       "attack",
+       "network"
+      ],
+      "hi-IN": [
+       "ट्रेस",
+       "अटैक",
+       "नेटवर्क"
+      ],
+      "hi-en": [
+       "trace",
+       "attack",
+       "network"
+      ],
+      "te-IN": [
+       "ట్రేస్",
+       "అటాక్",
+       "నెట్‌వర్క్"
+      ],
+      "te-en": [
+       "ట్రేస్",
+       "అటాక్",
+       "నెట్‌వర్క్",
+       "నెట్ వర్క్",
+       "trace",
+       "attack"
+      ]
+     },
+     "go": "x_net"
+    },
+    {
+     "label": {
+      "en-IN": "Go to the organisers",
+      "hi-IN": "ऑर्गनाइज़र्स के पास चलो",
+      "hi-en": "Organisers ke paas chalo",
+      "te-IN": "ఆర్గనైజర్ల దగ్గరికి",
+      "te-en": "Organisers daggariki"
+     },
+     "keywords": {
+      "en-IN": [
+       "organisers",
+       "organizers",
+       "kapoor"
+      ],
+      "hi-IN": [
+       "ऑर्गनाइज़र",
+       "ऑर्गनाइजर",
+       "कपूर"
+      ],
+      "hi-en": [
+       "organisers",
+       "organizers",
+       "kapoor"
+      ],
+      "te-IN": [
+       "ఆర్గనైజర్",
+       "ఆర్గనైజర్లు",
+       "కపూర్"
+      ],
+      "te-en": [
+       "ఆర్గనైజర్స్",
+       "కపూర్",
+       "organisers",
+       "organizers",
+       "kapoor"
+      ]
+     },
+     "go": "x_stage"
+    }
+   ]
+  },
+  "x_zoya": {
+   "scene": "hack-cafe",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "You find Zoya in the all night cafe, shaking. I didn't do it, she says. But someone plugged a USB stick into my laptop when I went for coffee. Here, I pulled it out.",
+     "hi-IN": "रात भर खुले कैफ़े में ज़ोया काँपती हुई मिलती है. मैंने कुछ नहीं किया, वो कहती है. पर जब मैं कॉफ़ी लेने गई, किसी ने मेरे लैपटॉप में यू एस बी स्टिक लगा दी. ये लो, मैंने निकाल ली.",
+     "hi-en": "Zoya all night cafe mein kaanpti hui milti hai. Maine nahi kiya, woh kehti hai. Main coffee lene gayi thi, tab kisi ne mere laptop mein USB stick laga di. Yeh lo, maine nikaal li.",
+     "te-IN": "నైట్ కేఫ్‌లో జోయా వణుకుతూ కూర్చుంది. నేను చేయలేదు, అంటుంది. కాఫీకి వెళ్ళినప్పుడు ఎవరో నా ల్యాప్‌టాప్‌కి యూఎస్‌బీ స్టిక్ పెట్టారు. ఇదిగో, నేను తీసేశా.",
+     "te-en": "All night cafe lo Zoya vanukuthu kanipisthundi. Nenu cheyyaledu, antundi. Coffee ki vellinappudu evaro naa laptop lo USB stick pettaru. Idigo, theesesha.",
+     "hi-en@tts": "Zoya all night cafe में काँपती हुई मिलती है। मैंने नहीं किया, वो कहती है। मैं coffee लेने गई थी, तब किसी ने मेरे laptop में USB stick लगा दी। ये लो, मैंने निकाल ली।",
+     "te-en@tts": "All night cafe లో Zoya వణుకుతూ కనిపిస్తుంది. నేను చేయలేదు, అంటుంది. Coffee కి వెళ్ళినప్పుడు ఎవరో నా laptop లో USB stick పెట్టారు. ఇదిగో, తీసేశా."
+    }
+   ],
+   "enter": {
+    "gain": [
+     "usb",
+     "zoya"
+    ]
+   },
+   "go": "x_net"
+  },
+  "x_stage": {
+   "scene": "hack-stage",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "On stage, the head organiser, Mr. Kapoor, wants a culprit before sunrise. He seems strangely calm, and his laptop has a staff badge stuck to it.",
+     "hi-IN": "स्टेज पर हेड ऑर्गनाइज़र मिस्टर कपूर को सूरज उगने से पहले मुजरिम चाहिए. वो अजीब तरह से शांत हैं, और उनके लैपटॉप पर एक स्टाफ़ बैज चिपका है.",
+     "hi-en": "Stage par head organiser Mr. Kapoor ko sunrise se pehle culprit chahiye. Woh ajeeb tarah se calm hain, aur unke laptop par ek staff badge chipka hai.",
+     "te-IN": "స్టేజ్ మీద హెడ్ ఆర్గనైజర్ మిస్టర్ కపూర్‌కి సూర్యోదయం లోపే దోషి కావాలి. ఆయన వింతగా ప్రశాంతంగా ఉన్నారు, ఆయన ల్యాప్‌టాప్‌కి ఒక స్టాఫ్ బ్యాడ్జ్ అతికించి ఉంది.",
+     "te-en": "Stage meeda head organiser Mr. Kapoor ki sunrise lopu culprit kaavali. Aayana vinthaga calm ga unnadu, laptop ki oka staff badge athukkuni undi.",
+     "hi-en@tts": "Stage पर head organiser Mr. Kapoor को sunrise से पहले culprit चाहिए। वो अजीब तरह से calm हैं, और उनके laptop पर एक staff badge चिपका है।",
+     "te-en@tts": "Stage మీద head organiser Mr. Kapoor కి sunrise లోపు culprit కావాలి. ఆయన వింతగా calm గా ఉన్నాడు, laptop కి ఒక staff badge అతుక్కుని ఉంది."
+    }
+   ],
+   "enter": {
+    "gain": [
+     "kapoor"
+    ]
+   },
+   "go": "x_net"
+  },
+  "x_net": {
+   "scene": "hack-netroom",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "In the network room, a laptop runs a packet sniffer. The attack traffic hides inside encrypted web requests.",
+     "hi-IN": "नेटवर्क रूम में एक लैपटॉप पर पैकेट स्निफ़र चल रहा है. अटैक ट्रैफ़िक एन्क्रिप्टेड वेब रिक्वेस्ट्स के अंदर छिपा है.",
+     "hi-en": "Network room mein ek laptop par packet sniffer chal raha hai. Attack ka traffic encrypted web requests ke andar chhupa hai.",
+     "te-IN": "నెట్‌వర్క్ రూమ్‌లో ఒక ల్యాప్‌టాప్‌లో ప్యాకెట్ స్నిఫర్ రన్ అవుతోంది. అటాక్ ట్రాఫిక్ ఎన్‌క్రిప్టెడ్ వెబ్ రిక్వెస్ట్‌లలో దాక్కుంది.",
+     "te-en": "Network room lo oka laptop packet sniffer run chesthondi. Attack traffic encrypted web requests lopala daakkundi.",
+     "hi-en@tts": "Network room में एक laptop पर packet sniffer चल रहा है। Attack का traffic encrypted web requests के अंदर छुपा है।",
+     "te-en@tts": "Network room లో ఒక laptop packet sniffer run చేస్తోంది. Attack traffic encrypted web requests లోపల దాక్కుంది."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "To filter it, you need the default port for HTTPS. Which port is it?",
+     "hi-IN": "उसे फ़िल्टर करने के लिए एच टी टी पी एस का डिफ़ॉल्ट पोर्ट चाहिए. कौन-सा पोर्ट है?",
+     "hi-en": "Use filter karne ke liye HTTPS ka default port chahiye. Kaun sa port hai?",
+     "te-IN": "ఫిల్టర్ చేయాలంటే హెచ్‌టీటీపీఎస్ డిఫాల్ట్ పోర్ట్ తెలియాలి. ఏ పోర్ట్?",
+     "te-en": "Filter cheyyalante HTTPS default port kaavali. E port?",
+     "hi-en@tts": "उसे filter करने के लिए HTTPS का default port चाहिए। कौन सा port है?",
+     "te-en@tts": "Filter చెయ్యాలంటే HTTPS default port కావాలి. ఏ port?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "443",
+      "80",
+      "8080"
+     ],
+     "hi-IN": [
+      "443",
+      "80",
+      "8080"
+     ],
+     "hi-en": [
+      "443",
+      "80",
+      "8080"
+     ],
+     "te-IN": [
+      "443",
+      "80",
+      "8080"
+     ],
+     "te-en": [
+      "443",
+      "80",
+      "8080"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "चार सौ तैंतालीस",
+      "चार चार तीन",
+      "फ़ोर फ़ोर थ्री",
+      "four four three"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "నాలుగు వందల నలభై మూడు",
+      "ఫోర్ ఫోర్ త్రీ",
+      "four four three"
+     ],
+     "te-en": [
+      "four four three",
+      "four forty three",
+      "ఫోర్ ఫోర్ త్రీ",
+      "ఫోర్ ఫార్టీ త్రీ"
+     ]
+    },
+    "pass": {
+     "go": "x_metro",
+     "say": [
+      {
+       "en-IN": "Four four three. Filtered! The traffic leads to a data centre across the city. You'll have to go there.",
+       "hi-IN": "चार चार तीन. फ़िल्टर हो गया! ट्रैफ़िक शहर के दूसरे छोर पर एक डेटा सेंटर तक जाता है. वहाँ जाना होगा.",
+       "hi-en": "Four four three. Filtered! Traffic shehar ke doosre chhor par ek data centre tak jaata hai. Wahan jaana padega.",
+       "te-IN": "ఫోర్ ఫోర్ త్రీ. ఫిల్టర్ అయింది! ట్రాఫిక్ సిటీ అవతల ఒక డేటా సెంటర్‌కి దారి తీస్తోంది. మీరు అక్కడికి వెళ్ళాలి.",
+       "te-en": "Four four three. Filtered! Traffic city avathala oka data centre ki daari chupisthondi. Meeru akkadiki vellali.",
+       "hi-en@tts": "Four four three. Filtered! Traffic शहर के दूसरे छोर पर एक data centre तक जाता है। वहाँ जाना पड़ेगा।",
+       "te-en@tts": "Four four three. Filtered! Traffic city అవతల ఒక data centre కి దారి చూపిస్తోంది. మీరు అక్కడికి వెళ్ళాలి."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "trail"
+      ]
+     }
+    },
+    "fail": {
+     "go": "x_alley",
+     "say": [
+      {
+       "en-IN": "Wrong port. The trail goes cold, but outside the window, a hooded figure is running down the alley!",
+       "hi-IN": "ग़लत पोर्ट. सुराग ठंडा पड़ जाता है, पर खिड़की के बाहर हुडी पहने कोई गली में भाग रहा है!",
+       "hi-en": "Galat port. Trail thanda pad jaata hai, par khidki ke bahar, hoodie pehne ek figure gali mein bhaag raha hai!",
+       "te-IN": "తప్పు పోర్ట్. ట్రెయిల్ చల్లబడిపోయింది, కానీ కిటికీ బయట, హుడ్ వేసుకున్న ఒక ఆకారం సందులోకి పరిగెత్తుతోంది!",
+       "te-en": "Wrong port. Trail cold ayipothundi, kaani window bayata oka hooded figure gallilo parigeththuthondi!",
+       "hi-en@tts": "गलत port। Trail ठंडा पड़ जाता है, पर खिड़की के बाहर, hoodie पहने एक figure गली में भाग रहा है!",
+       "te-en@tts": "Wrong port. Trail cold అయిపోతుంది, కానీ window బయట ఒక hooded figure గల్లీలో పరిగెత్తుతోంది!"
+      }
+     ],
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  },
+  "x_alley": {
+   "scene": "hack-alley",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "In the rain-soaked alley, the hooded figure jumps onto a scooter. Something small falls into a puddle.",
+     "hi-IN": "बारिश से भीगी गली में हुडी वाला शख़्स एक स्कूटर पर कूदता है. कोई छोटी-सी चीज़ गड्ढे के पानी में गिरती है.",
+     "hi-en": "Baarish se bheegi gali mein hoodie waala figure ek scooter par koodta hai. Kuch chhoti si cheez ek gaddhe ke paani mein girti hai.",
+     "te-IN": "వర్షంలో తడిసిన సందులో, ఆ హుడ్ ఆకారం స్కూటర్ ఎక్కుతుంది. ఏదో చిన్న వస్తువు ఒక నీటి గుంటలో పడుతుంది.",
+     "te-en": "Varsham lo thadisina gallilo hooded figure oka scooter ekkesthundi. Edo chinna vasthuvu puddle lo paduthundi.",
+     "hi-en@tts": "बारिश से भीगी गली में hoodie वाला figure एक scooter पर कूदता है। कुछ छोटी सी चीज़ एक गड्ढे के पानी में गिरती है।",
+     "te-en@tts": "వర్షంలో తడిసిన గల్లీలో hooded figure ఒక scooter ఎక్కేస్తుంది. ఏదో చిన్న వస్తువు puddle లో పడుతుంది."
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करते हैं?",
+     "hi-en": "Aap kya karte hain?",
+     "te-IN": "మీరేం చేస్తారు?",
+     "te-en": "Meeru em chestharu?",
+     "hi-en@tts": "आप क्या करते हैं?",
+     "te-en@tts": "మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Pick it up",
+      "hi-IN": "उसे उठा लो",
+      "hi-en": "Use uthao",
+      "te-IN": "అది తీసుకో",
+      "te-en": "Adi theesukunta"
+     },
+     "keywords": {
+      "en-IN": [
+       "pick",
+       "puddle",
+       "grab"
+      ],
+      "hi-IN": [
+       "उठा",
+       "गड्ढे",
+       "पानी में"
+      ],
+      "hi-en": [
+       "uthao",
+       "pick",
+       "puddle",
+       "grab"
+      ],
+      "te-IN": [
+       "తీసుకో",
+       "గుంట",
+       "అందుకో"
+      ],
+      "te-en": [
+       "తీసుకుంటా",
+       "పిక్",
+       "పడ్డిల్",
+       "నీళ్ళలో",
+       "pick",
+       "grab"
+      ]
+     },
+     "go": "x_metro",
+     "say": [
+      {
+       "en-IN": "It's a staff badge from the organising team, with a router address scribbled on the back. That's where the attack came from.",
+       "hi-IN": "ये ऑर्गनाइज़िंग टीम का स्टाफ़ बैज है, पीछे एक राउटर एड्रेस घसीटकर लिखा है. अटैक वहीं से आया था.",
+       "hi-en": "Yeh organising team ka staff badge hai, peeche ek router address likha hua. Attack yahin se aaya tha.",
+       "te-IN": "అది ఆర్గనైజింగ్ టీమ్ స్టాఫ్ బ్యాడ్జ్, వెనక ఒక రౌటర్ అడ్రస్ గీకి రాసి ఉంది. అటాక్ వచ్చింది అక్కడి నుంచే.",
+       "te-en": "Adi organising team staff badge, venaka oka router address raasi undi. Attack akkadi nunche vachindi.",
+       "hi-en@tts": "ये organising team का staff badge है, पीछे एक router address लिखा हुआ। Attack यहीं से आया था।",
+       "te-en@tts": "అది organising team staff badge, వెనక ఒక router address రాసి ఉంది. Attack అక్కడి నుంచే వచ్చింది."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "badge",
+       "trail"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Chase the scooter",
+      "hi-IN": "स्कूटर का पीछा करो",
+      "hi-en": "Scooter ka peecha karo",
+      "te-IN": "స్కూటర్‌ని ఛేజ్ చేయి",
+      "te-en": "Scooter ni chase chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "chase",
+       "scooter",
+       "run"
+      ],
+      "hi-IN": [
+       "पीछा",
+       "स्कूटर",
+       "भागो"
+      ],
+      "hi-en": [
+       "chase",
+       "scooter",
+       "peecha"
+      ],
+      "te-IN": [
+       "ఛేజ్",
+       "స్కూటర్",
+       "వెంబడించు"
+      ],
+      "te-en": [
+       "చేజ్",
+       "స్కూటర్",
+       "వెంబడిస్తా",
+       "chase",
+       "scooter"
+      ]
+     },
+     "go": "x_metro",
+     "say": [
+      {
+       "en-IN": "You sprint after it, slip in a puddle, and lose it at the metro station. Your laptop took a splash too.",
+       "hi-IN": "आप पीछे दौड़ते हैं, गड्ढे में फिसलते हैं, और मेट्रो स्टेशन पर स्कूटर नज़रों से ओझल हो जाता है. लैपटॉप पर भी पानी के छींटे पड़ चुके हैं.",
+       "hi-en": "Aap peeche daudte hain, gaddhe mein phisalte hain, aur metro station par scooter nazron se gaayab. Laptop par bhi chheente pad gaye.",
+       "te-IN": "దాని వెనక పరిగెత్తుతారు, గుంటలో జారిపడతారు, మెట్రో స్టేషన్ దగ్గర అది మాయం. మీ ల్యాప్‌టాప్ కూడా తడిసిపోయింది.",
+       "te-en": "Venake sprint chestharu, puddle lo jaari, metro station daggara miss avutharu. Mee laptop kooda thadisindi.",
+       "hi-en@tts": "आप पीछे दौड़ते हैं, गड्ढे में फिसलते हैं, और metro station पर scooter नज़रों से गायब। Laptop पर भी छींटे पड़ गए।",
+       "te-en@tts": "వెనకే sprint చేస్తారు, puddle లో జారి, metro station దగ్గర మిస్ అవుతారు. మీ laptop కూడా తడిసింది."
+      }
+     ],
+     "effects": {
+      "meter": -1
+     }
+    }
+   ]
+  },
+  "x_metro": {
+   "scene": "hack-metro",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "You catch the last metro towards the data centre. Your laptop battery is draining fast.",
+     "hi-IN": "डेटा सेंटर की ओर आख़िरी मेट्रो मिल जाती है. लैपटॉप की बैटरी तेज़ी से गिर रही है.",
+     "hi-en": "Data centre ki taraf aakhri metro mil jaati hai. Laptop ki battery tezi se gir rahi hai.",
+     "te-IN": "డేటా సెంటర్ వైపు వెళ్ళే లాస్ట్ మెట్రో పట్టుకుంటారు. ల్యాప్‌టాప్ బ్యాటరీ వేగంగా అయిపోతోంది.",
+     "te-en": "Data centre vaipu last metro pattukuntaru. Laptop battery fast ga drain avuthondi.",
+     "hi-en@tts": "Data centre की तरफ़ आखिरी metro मिल जाती है। Laptop की battery तेज़ी से गिर रही है।",
+     "te-en@tts": "Data centre వైపు last metro పట్టుకుంటారు. Laptop battery fast గా drain అవుతోంది."
+    },
+    {
+     "en-IN": "How do you use the ride?",
+     "hi-IN": "इस सफ़र का क्या इस्तेमाल करें?",
+     "hi-en": "Is ride ka kya use karna hai?",
+     "te-IN": "ఈ ప్రయాణాన్ని ఎలా వాడుకుంటారు?",
+     "te-en": "Ee ride ni ela use chestharu?",
+     "hi-en@tts": "इस ride का क्या use करना है?",
+     "te-en@tts": "ఈ ride ని ఎలా use చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Charge my laptop",
+      "hi-IN": "लैपटॉप चार्ज करो",
+      "hi-en": "Laptop charge karo",
+      "te-IN": "ల్యాప్‌టాప్ ఛార్జ్ చేయి",
+      "te-en": "Laptop charge chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "charge",
+       "charging",
+       "battery"
+      ],
+      "hi-IN": [
+       "चार्ज",
+       "चार्जिंग",
+       "बैटरी"
+      ],
+      "hi-en": [
+       "charge",
+       "charging",
+       "battery"
+      ],
+      "te-IN": [
+       "ఛార్జ్",
+       "ఛార్జింగ్",
+       "బ్యాటరీ"
+      ],
+      "te-en": [
+       "ఛార్జ్",
+       "చార్జ్",
+       "బ్యాటరీ",
+       "charge",
+       "battery"
+      ]
+     },
+     "go": "x_dc",
+     "effects": {
+      "meter": 1
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Write a script on the way",
+      "hi-IN": "रास्ते में स्क्रिप्ट लिखो",
+      "hi-en": "Raaste mein script likho",
+      "te-IN": "దారిలో స్క్రిప్ట్ రాయి",
+      "te-en": "Daarilo script raastha"
+     },
+     "keywords": {
+      "en-IN": [
+       "script",
+       "write",
+       "code"
+      ],
+      "hi-IN": [
+       "स्क्रिप्ट",
+       "लिखो",
+       "कोड"
+      ],
+      "hi-en": [
+       "script",
+       "likho",
+       "write",
+       "code"
+      ],
+      "te-IN": [
+       "స్క్రిప్ట్",
+       "రాయి",
+       "కోడ్"
+      ],
+      "te-en": [
+       "స్క్రిప్ట్",
+       "రాస్తా",
+       "కోడ్",
+       "script",
+       "code"
+      ]
+     },
+     "go": "x_dc",
+     "effects": {
+      "gain": [
+       "script"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Call Zoya for help",
+      "hi-IN": "ज़ोया को कॉल करो",
+      "hi-en": "Zoya ko call karo",
+      "te-IN": "జోయాకి కాల్ చేయి",
+      "te-en": "Zoya ki call chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "call",
+       "zoya",
+       "help"
+      ],
+      "hi-IN": [
+       "ज़ोया",
+       "जोया",
+       "कॉल",
+       "मदद"
+      ],
+      "hi-en": [
+       "call",
+       "zoya",
+       "help",
+       "phone"
+      ],
+      "te-IN": [
+       "జోయా",
+       "కాల్",
+       "హెల్ప్"
+      ],
+      "te-en": [
+       "జోయా",
+       "కాల్",
+       "హెల్ప్",
+       "zoya",
+       "call"
+      ]
+     },
+     "go": "x_dc",
+     "say": [
+      {
+       "en-IN": "Zoya picks up on the first ring: I'm on it. Send me the logs, I'll restore the backups from here.",
+       "hi-IN": "ज़ोया पहली ही रिंग पर फ़ोन उठाती है: मैं देखती हूँ. लॉग्स भेजो, मैं यहीं से बैकअप रीस्टोर करती हूँ.",
+       "hi-en": "Zoya pehli ring par uthaati hai: main dekh leti hoon. Logs bhejo, main yahin se backups restore kar doongi.",
+       "te-IN": "మొదటి రింగ్‌కే జోయా ఫోన్ ఎత్తుతుంది: నేను చూసుకుంటా. లాగ్స్ పంపు, ఇక్కడి నుంచే బ్యాకప్స్ రీస్టోర్ చేస్తా.",
+       "te-en": "First ring ke Zoya lift chesthundi: I'm on it. Logs pampu, backups ikkadi nunche restore chestha.",
+       "hi-en@tts": "Zoya पहली ring पर उठाती है: मैं देख लेती हूँ। Logs भेजो, मैं यहीं से backups restore कर दूँगी।",
+       "te-en@tts": "First ring కే Zoya lift చేస్తుంది: I'm on it. Logs పంపు, backups ఇక్కడి నుంచే restore చేస్తా."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "backup"
+      ]
+     },
+     "if": {
+      "has": [
+       "zoya"
+      ]
+     }
+    }
+   ]
+  },
+  "x_dc": {
+   "scene": "hack-datacenter",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The data centre hums in cold blue light. Rack forty two blinks red. That's the attacker's machine, and its wipe script is still running.",
+     "hi-IN": "डेटा सेंटर ठंडी नीली रोशनी में गुनगुना रहा है. रैक बयालीस लाल चमक रहा है. यही अटैकर की मशीन है, और उसकी वाइप स्क्रिप्ट अब भी चल रही है.",
+     "hi-en": "Data centre thandi neeli roshni mein hum kar raha hai. Rack forty two laal blink kar raha hai. Yahi attacker ki machine hai, aur uski wipe script abhi bhi chal rahi hai.",
+     "te-IN": "డేటా సెంటర్ చల్లటి నీలి వెలుగులో గుయ్యిమంటోంది. ర్యాక్ నలభై రెండు ఎర్రగా మెరుస్తోంది. అదే అటాకర్ మెషీన్, దాని వైప్ స్క్రిప్ట్ ఇంకా రన్ అవుతోంది.",
+     "te-en": "Data centre challati blue light lo hum avuthondi. Rack forty two red ga blink avuthondi. Ade attacker machine, daani wipe script inka run avuthondi.",
+     "hi-en@tts": "Data centre ठंडी नीली रोशनी में hum कर रहा है। Rack forty two लाल blink कर रहा है। यही attacker की machine है, और उसकी wipe script अभी भी चल रही है।",
+     "te-en@tts": "Data centre చల్లటి blue light లో hum అవుతోంది. Rack forty two red గా blink అవుతోంది. అదే attacker machine, దాని wipe script ఇంకా run అవుతోంది."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "To block the attacker's address, you need to know: how many bits long is an IPv4 address?",
+     "hi-IN": "अटैकर का एड्रेस ब्लॉक करने के लिए ये जानना ज़रूरी है: एक आई पी वी फ़ोर एड्रेस कितने बिट का होता है?",
+     "hi-en": "Attacker ka address block karne ke liye yeh pata hona chahiye: ek IP version four address kitne bits ka hota hai?",
+     "te-IN": "అటాకర్ అడ్రస్ బ్లాక్ చేయాలంటే ఇది తెలియాలి: ఐపీవీ ఫోర్ అడ్రస్ ఎన్ని బిట్స్ పొడవు?",
+     "te-en": "Attacker address block cheyyalante theliyaali: oka IPv four address enni bits untundi?",
+     "hi-en@tts": "Attacker का address block करने के लिए ये पता होना चाहिए: एक IP version four address कितने bits का होता है?",
+     "te-en@tts": "Attacker address block చెయ్యాలంటే తెలియాలి: ఒక IPv four address ఎన్ని bits ఉంటుంది?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "32",
+      "64",
+      "128"
+     ],
+     "hi-IN": [
+      "32",
+      "64",
+      "128"
+     ],
+     "hi-en": [
+      "32",
+      "64",
+      "128"
+     ],
+     "te-IN": [
+      "32",
+      "64",
+      "128"
+     ],
+     "te-en": [
+      "32",
+      "64",
+      "128"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "बत्तीस",
+      "thirty two"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "ముప్పై రెండు",
+      "థర్టీ టూ",
+      "thirty two"
+     ],
+     "te-en": [
+      "thirty two",
+      "థర్టీ టూ",
+      "ముప్పై రెండు"
+     ]
+    },
+    "pass": {
+     "go": "x_van",
+     "say": [
+      {
+       "en-IN": "Thirty two bits. You block the address and kill the script. The logs show the attacker logging in from a van parked right outside.",
+       "hi-IN": "बत्तीस बिट. आप एड्रेस ब्लॉक करके स्क्रिप्ट बंद कर देते हैं. लॉग्स बताते हैं कि अटैकर ठीक बाहर खड़ी एक वैन से लॉग इन कर रहा है.",
+       "hi-en": "Thirty two bits. Aap address block karte hain aur script kill kar dete hain. Logs dikhaate hain ki attacker theek bahar khadi ek van se login kar raha hai.",
+       "te-IN": "ముప్పై రెండు బిట్స్. అడ్రస్ బ్లాక్ చేసి స్క్రిప్ట్ కిల్ చేస్తారు. బయటే పార్క్ చేసిన ఒక వ్యాన్ నుంచి అటాకర్ లాగిన్ అయినట్టు లాగ్స్ చూపిస్తున్నాయి.",
+       "te-en": "Thirty two bits. Address block chesi script ni kill chestharu. Bayate park chesina oka van nunchi attacker login ayinattu logs chupisthunnayi.",
+       "hi-en@tts": "Thirty two bits. आप address block करते हैं और script kill कर देते हैं। Logs दिखाते हैं कि attacker ठीक बाहर खड़ी एक van से login कर रहा है।",
+       "te-en@tts": "Thirty two bits. Address block చేసి script ని kill చేస్తారు. బయటే park చేసిన ఒక van నుంచి attacker login అయినట్టు logs చూపిస్తున్నాయి."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "locked"
+      ]
+     }
+    },
+    "fail": {
+     "go": "x_van",
+     "say": [
+      {
+       "en-IN": "The machine locks you out and drains your battery with a firmware update. But a tracking ping points to a van parked outside.",
+       "hi-IN": "मशीन आपको लॉक आउट कर देती है, और एक फ़र्मवेयर अपडेट से बैटरी चूस लेती है. पर एक ट्रैकिंग पिंग बाहर खड़ी एक वैन की तरफ़ इशारा करता है.",
+       "hi-en": "Machine aapko lock out kar deti hai aur ek firmware update se battery choos leti hai. Par ek tracking ping bahar khadi van ki taraf ishaara karta hai.",
+       "te-IN": "మెషీన్ మిమ్మల్ని లాక్ అవుట్ చేసి, ఫర్మ్‌వేర్ అప్‌డేట్‌తో మీ బ్యాటరీ పీల్చేస్తుంది. కానీ ఒక ట్రాకింగ్ పింగ్ బయట పార్క్ చేసిన వ్యాన్ వైపు చూపిస్తోంది.",
+       "te-en": "Machine mimmalni lock out chesi, firmware update tho battery drain chesthundi. Kaani oka tracking ping bayata park chesina van ni chupisthondi.",
+       "hi-en@tts": "Machine आपको lock out कर देती है और एक firmware update से battery चूस लेती है। पर एक tracking ping बाहर खड़ी van की तरफ़ इशारा करता है।",
+       "te-en@tts": "Machine మిమ్మల్ని lock out చేసి, firmware update తో battery drain చేస్తుంది. కానీ ఒక tracking ping బయట park చేసిన van ని చూపిస్తోంది."
+      }
+     ],
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  },
+  "x_van": {
+   "scene": "hack-van",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "You yank open the van door. Screens, cables, and Mr. Kapoor, the head organiser, typing frantically. He was wiping every team's code to sell their ideas!",
+     "hi-IN": "आप झटके से वैन का दरवाज़ा खोलते हैं. स्क्रीनें, केबल, और हेड ऑर्गनाइज़र मिस्टर कपूर, पागलों की तरह टाइप करते हुए. वो हर टीम का कोड मिटाकर उनके आइडिया बेच रहे थे!",
+     "hi-en": "Aap jhatke se van ka door kholte hain. Screens, cables, aur Mr. Kapoor, head organiser, paagalon ki tarah typing karte hue. Woh har team ka code wipe karke unke ideas bechne waale the!",
+     "te-IN": "వ్యాన్ డోర్ లాగి తెరుస్తారు. స్క్రీన్లు, కేబుల్స్, హడావుడిగా టైప్ చేస్తున్న హెడ్ ఆర్గనైజర్ మిస్టర్ కపూర్. ఐడియాలు అమ్ముకోడానికి అన్ని టీమ్‌ల కోడ్ డిలీట్ చేసింది ఆయనే!",
+     "te-en": "Van door gattiga laagutharu. Screens, cables, inka head organiser Mr. Kapoor, pichchiga type chesthu. Ideas ammukovadaaniki prathi team code ni wipe chesthunnadi aayane!",
+     "hi-en@tts": "आप झटके से van का door खोलते हैं। Screens, cables, और Mr. Kapoor, head organiser, पागलों की तरह typing करते हुए। वो हर team का code wipe करके उनके ideas बेचने वाले थे!",
+     "te-en@tts": "Van door గట్టిగా లాగుతారు. Screens, cables, ఇంకా head organiser Mr. Kapoor, పిచ్చిగా type చేస్తూ. Ideas అమ్ముకోవడానికి ప్రతి team code ని wipe చేస్తున్నది ఆయనే!"
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करते हैं?",
+     "hi-en": "Aap kya karte hain?",
+     "te-IN": "మీరేం చేస్తారు?",
+     "te-en": "Meeru em chestharu?",
+     "hi-en@tts": "आप क्या करते हैं?",
+     "te-en@tts": "మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Restore everyone's code",
+      "hi-IN": "सबका कोड रीस्टोर करो",
+      "hi-en": "Sabka code restore karo",
+      "te-IN": "అందరి కోడ్ రీస్టోర్",
+      "te-en": "Andari code restore"
+     },
+     "keywords": {
+      "en-IN": [
+       "restore",
+       "everyone",
+       "code"
+      ],
+      "hi-IN": [
+       "रीस्टोर",
+       "सबका",
+       "सबके"
+      ],
+      "hi-en": [
+       "restore",
+       "sabka",
+       "everyone"
+      ],
+      "te-IN": [
+       "రీస్టోర్",
+       "అందరి",
+       "కోడ్"
+      ],
+      "te-en": [
+       "రీస్టోర్",
+       "అందరి",
+       "restore",
+       "everyone"
+      ]
+     },
+     "go": [
+      {
+       "if": {
+        "has": [
+         "locked"
+        ]
+       },
+       "go": "end:saviour"
+      },
+      {
+       "if": {
+        "has": [
+         "backup"
+        ]
+       },
+       "go": "end:saviour"
+      },
+      {
+       "go": "end:partial"
+      }
+     ]
+    },
+    {
+     "label": {
+      "en-IN": "Record his confession",
+      "hi-IN": "उनका कबूलनामा रिकॉर्ड करो",
+      "hi-en": "Confession record karo",
+      "te-IN": "ఒప్పుకోలు రికార్డ్ చేయి",
+      "te-en": "Confession record chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "record",
+       "confession",
+       "video"
+      ],
+      "hi-IN": [
+       "रिकॉर्ड",
+       "कबूल",
+       "वीडियो"
+      ],
+      "hi-en": [
+       "record",
+       "confession",
+       "video"
+      ],
+      "te-IN": [
+       "రికార్డ్",
+       "ఒప్పుకోలు",
+       "వీడియో"
+      ],
+      "te-en": [
+       "రికార్డ్",
+       "కన్ఫెషన్",
+       "వీడియో",
+       "record",
+       "confession"
+      ]
+     },
+     "go": [
+      {
+       "if": {
+        "has": [
+         "badge"
+        ]
+       },
+       "go": "end:busted"
+      },
+      {
+       "if": {
+        "has": [
+         "trail",
+         "kapoor"
+        ]
+       },
+       "go": "end:busted"
+      },
+      {
+       "go": "end:slipped"
+      }
+     ]
+    },
+    {
+     "label": {
+      "en-IN": "Rush back and finish our project",
+      "hi-IN": "लौटकर अपना प्रोजेक्ट पूरा करो",
+      "hi-en": "Waapas jaakar project poora",
+      "te-IN": "వెనక్కి వెళ్ళి ప్రాజెక్ట్ ముగించు",
+      "te-en": "Venakki velli project finish"
+     },
+     "keywords": {
+      "en-IN": [
+       "rush",
+       "finish",
+       "project"
+      ],
+      "hi-IN": [
+       "लौटकर",
+       "प्रोजेक्ट",
+       "पूरा"
+      ],
+      "hi-en": [
+       "wapas",
+       "finish",
+       "project",
+       "rush"
+      ],
+      "te-IN": [
+       "ప్రాజెక్ట్",
+       "ముగించు",
+       "ఫినిష్"
+      ],
+      "te-en": [
+       "ఫినిష్",
+       "ప్రాజెక్ట్",
+       "రష్",
+       "finish",
+       "project"
+      ]
+     },
+     "go": "end:dawn"
+    }
+   ]
+  }
+ },
+ "endings": {
+  "saviour": {
+   "title": {
+    "en-IN": "Saviour of the Hackathon",
+    "hi-IN": "हैकाथॉन का मसीहा",
+    "hi-en": "Hackathon ka Saviour",
+    "te-IN": "హ్యాకథాన్ రక్షకులు",
+    "te-en": "Saviour of the Hackathon"
+   },
+   "rank": "gold",
+   "scene": "hack-dawn",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "By sunrise, every team's code is back. The judges add a special award just for you, and three startups ask for your number.",
+     "hi-IN": "सूरज उगने तक हर टीम का कोड वापस आ चुका है. जज सिर्फ़ आपके लिए एक स्पेशल अवॉर्ड जोड़ते हैं, और तीन स्टार्टअप आपका नंबर माँगते हैं.",
+     "hi-en": "Sunrise tak har team ka code waapas aa jaata hai. Judges sirf aapke liye ek special award jodte hain, aur teen startups aapka number maangte hain.",
+     "te-IN": "సూర్యోదయానికి అన్ని టీమ్‌ల కోడ్ తిరిగొచ్చేసింది. జడ్జిలు మీ కోసమే ఒక స్పెషల్ అవార్డ్ పెడతారు, మూడు స్టార్టప్‌లు మీ నంబర్ అడుగుతాయి.",
+     "te-en": "Sunrise kallaa prathi team code thirigi vachesthundi. Judges mee kosame oka special award pedatharu, moodu startups mee number aduguthayi.",
+     "hi-en@tts": "Sunrise तक हर team का code वापस आ जाता है। Judges सिर्फ़ आपके लिए एक special award जोड़ते हैं, और तीन startups आपका number माँगते हैं।",
+     "te-en@tts": "Sunrise కల్లా ప్రతి team code తిరిగి వచ్చేస్తుంది. Judges మీ కోసమే ఒక special award పెడతారు, మూడు startups మీ number అడుగుతాయి."
+    }
+   ]
+  },
+  "busted": {
+   "title": {
+    "en-IN": "Ghost Four Oh Four Busted",
+    "hi-IN": "घोस्ट फ़ोर ओ फ़ोर पकड़ा गया",
+    "hi-en": "Ghost Four Oh Four Busted",
+    "te-IN": "ఘోస్ట్ ఫోర్ ఓ ఫోర్ దొరికిపోయాడు",
+    "te-en": "Ghost Four Oh Four Busted"
+   },
+   "rank": "gold",
+   "scene": "hack-dawn",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "Your recording and the evidence are enough. Mr. Kapoor is arrested before breakfast, Zoya is cleared, and your team gets a standing ovation.",
+     "hi-IN": "आपकी रिकॉर्डिंग और सबूत काफ़ी हैं. नाश्ते से पहले मिस्टर कपूर गिरफ़्तार, ज़ोया बेक़सूर साबित, और आपकी टीम को स्टैंडिंग ओवेशन.",
+     "hi-en": "Aapki recording aur saboot kaafi hain. Breakfast se pehle Mr. Kapoor arrest, Zoya begunaah saabit, aur aapki team ko standing ovation.",
+     "te-IN": "మీ రికార్డింగ్, ఆధారాలు చాలు. బ్రేక్‌ఫాస్ట్ లోపే మిస్టర్ కపూర్ అరెస్ట్, జోయా నిర్దోషి, మీ టీమ్‌కి స్టాండింగ్ ఒవేషన్.",
+     "te-en": "Mee recording, evidence chaalu. Breakfast lope Mr. Kapoor arrest avuthadu, Zoya clear avuthundi, mee team ki standing ovation.",
+     "hi-en@tts": "आपकी recording और सबूत काफ़ी हैं। Breakfast से पहले Mr. Kapoor arrest, Zoya बेगुनाह साबित, और आपकी team को standing ovation।",
+     "te-en@tts": "మీ recording, evidence చాలు. Breakfast లోపే Mr. Kapoor arrest అవుతాడు, Zoya clear అవుతుంది, మీ team కి standing ovation."
+    }
+   ]
+  },
+  "partial": {
+   "title": {
+    "en-IN": "Half Restored",
+    "hi-IN": "आधा रीस्टोर",
+    "hi-en": "Aadha Restored",
+    "te-IN": "సగమే రీస్టోర్",
+    "te-en": "Half Restored"
+   },
+   "rank": "silver",
+   "scene": "hack-hall",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "You save about half the projects before the wipe script finishes. Not perfect, but forty teams owe you chai for life.",
+     "hi-IN": "वाइप स्क्रिप्ट ख़त्म होने से पहले आप लगभग आधे प्रोजेक्ट बचा लेते हैं. परफ़ेक्ट नहीं, पर अब चालीस टीमें ज़िंदगी भर आपको चाय पिलाएँगी.",
+     "hi-en": "Wipe script khatam hone se pehle aap kareeb aadhe projects bacha lete hain. Perfect nahi, par chaalees teams par aapki zindagi bhar ki chai udhaar hai.",
+     "te-IN": "వైప్ స్క్రిప్ట్ పూర్తయ్యేలోపు దాదాపు సగం ప్రాజెక్ట్‌లు కాపాడతారు. పర్ఫెక్ట్ కాదు, కానీ నలభై టీమ్‌లు జీవితాంతం మీకు చాయ్ బాకీ.",
+     "te-en": "Wipe script finish ayye lopu sagam projects save chestharu. Perfect kaadu, kaani nalabhai teams meeku jeevithaantham chai baaki.",
+     "hi-en@tts": "Wipe script खत्म होने से पहले आप करीब आधे projects बचा लेते हैं। Perfect नहीं, पर चालीस teams पर आपकी ज़िंदगी भर की chai उधार है।",
+     "te-en@tts": "Wipe script finish అయ్యే లోపు సగం projects save చేస్తారు. Perfect కాదు, కానీ నలభై teams మీకు జీవితాంతం chai బాకీ."
+    }
+   ]
+  },
+  "slipped": {
+   "title": {
+    "en-IN": "He Slipped Away",
+    "hi-IN": "वो बच निकला",
+    "hi-en": "Woh bhaag nikla",
+    "te-IN": "తప్పించుకుపోయాడు",
+    "te-en": "He Slipped Away"
+   },
+   "rank": "bronze",
+   "scene": "hack-alley",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Kapoor shoves past you and vanishes into the rain. Without proof, it's your word against his. Next time, gather evidence first.",
+     "hi-IN": "कपूर आपको धक्का देकर बारिश में ग़ायब हो जाता है. सबूत के बिना, ये आपकी बात बनाम उसकी बात है. अगली बार पहले सबूत जुटाइए.",
+     "hi-en": "Kapoor aapko dhakka dekar baarish mein gaayab ho jaate hain. Saboot ke bina, aapki baat banaam unki baat. Agli baar, pehle evidence ikattha karo.",
+     "te-IN": "కపూర్ మిమ్మల్ని తోసేసి వర్షంలో మాయమవుతాడు. ఆధారం లేకుండా, మీ మాట వర్సెస్ ఆయన మాట. నెక్స్ట్ టైమ్, ముందు ఎవిడెన్స్ సేకరించండి.",
+     "te-en": "Kapoor mimmalni thosi varsham lo maayam avuthadu. Proof lekunda, mee maata aayana maata. Next time, mundu evidence collect cheyyandi.",
+     "hi-en@tts": "Kapoor आपको धक्का देकर बारिश में गायब हो जाते हैं। सबूत के बिना, आपकी बात बनाम उनकी बात। अगली बार, पहले evidence इकट्ठा करो।",
+     "te-en@tts": "Kapoor మిమ్మల్ని తోసి వర్షంలో మాయం అవుతాడు. Proof లేకుండా, మీ మాట ఆయన మాట. Next time, ముందు evidence collect చేయండి."
+    }
+   ]
+  },
+  "dawn": {
+   "title": {
+    "en-IN": "Coded at Dawn",
+    "hi-IN": "भोर में कोडिंग",
+    "hi-en": "Subah tak Coding",
+    "te-IN": "తెల్లవారే దాకా కోడింగ్",
+    "te-en": "Coded at Dawn"
+   },
+   "rank": "silver",
+   "scene": "hack-stage",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "You and Zoya rebuild your project from memory in four frantic hours and win first prize. But Ghost four oh four is still out there.",
+     "hi-IN": "ज़ोया के साथ चार घंटे की धुआँधार कोडिंग में प्रोजेक्ट याद से दोबारा खड़ा होता है, और फ़र्स्ट प्राइज़ मिलता है. पर घोस्ट फ़ोर ओ फ़ोर अब भी कहीं बाहर है.",
+     "hi-en": "Aap aur Zoya chaar paagal ghanton mein memory se project dobara banaate hain aur first prize jeette hain. Par Ghost four oh four ab bhi kahin bahar hai.",
+     "te-IN": "మీరు, జోయా నాలుగు గంటల హడావుడిలో జ్ఞాపకం నుంచే ప్రాజెక్ట్ మళ్ళీ కట్టి ఫస్ట్ ప్రైజ్ కొడతారు. కానీ ఘోస్ట్ ఫోర్ ఓ ఫోర్ ఇంకా బయటే ఉన్నాడు.",
+     "te-en": "Meeru Zoya naalugu gantallo memory nunchi project malli build chesi first prize geluchukuntaru. Kaani Ghost four oh four inka bayate unnadu.",
+     "hi-en@tts": "आप और Zoya चार पागल घंटों में memory से project दोबारा बनाते हैं और first prize जीतते हैं। पर Ghost four oh four अब भी कहीं बाहर है।",
+     "te-en@tts": "మీరూ Zoya నాలుగు గంటల్లో memory నుంచి project మళ్ళీ build చేసి first prize గెలుస్తారు. కానీ Ghost four oh four ఇంకా బయటే ఉన్నాడు."
+    }
+   ]
+  },
+  "flat": {
+   "title": {
+    "en-IN": "Zero Percent",
+    "hi-IN": "ज़ीरो परसेंट",
+    "hi-en": "Zero Percent",
+    "te-IN": "జీరో పర్సెంట్",
+    "te-en": "Zero Percent"
+   },
+   "rank": "bronze",
+   "scene": "hack-metro",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Your laptop screen goes black. Battery dead. You watch the sunrise from a metro bench with nothing to show for it. Next time, charge up.",
+     "hi-IN": "लैपटॉप की स्क्रीन काली. बैटरी ख़त्म. मेट्रो की बेंच पर बैठे-बैठे सूरज उगता है, और दिखाने को कुछ नहीं. अगली बार चार्ज करके चलिए.",
+     "hi-en": "Laptop ki screen kaali. Battery dead. Metro ki bench par baithkar sunrise dekhte hain, haath mein kuch nahi. Agli baar, pehle charge karo.",
+     "te-IN": "ల్యాప్‌టాప్ స్క్రీన్ నల్లబడిపోతుంది. బ్యాటరీ డెడ్. చూపించడానికి ఏమీ లేకుండా, మెట్రో బెంచ్ మీద కూర్చుని సూర్యోదయం చూస్తారు. నెక్స్ట్ టైమ్, ఛార్జ్ చేసుకోండి.",
+     "te-en": "Laptop screen nallaga ayipothundi. Battery dead. Chethilo emi lekunda metro bench meeda nunchi sunrise chustharu. Next time, munde charge chesukondi.",
+     "hi-en@tts": "Laptop की screen काली। Battery dead। Metro की bench पर बैठकर sunrise देखते हैं, हाथ में कुछ नहीं। अगली बार, पहले charge करो।",
+     "te-en@tts": "Laptop screen నల్లగా అయిపోతుంది. Battery dead. చేతిలో ఏమీ లేకుండా metro bench మీద నుంచి sunrise చూస్తారు. Next time, ముందే charge చేసుకోండి."
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,1241 @@
+{
+ "schema": 1,
+ "id": "fest-night",
+ "genre": "romance",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": null,
+ "reviewed_at": null,
+ "title": {
+  "en-IN": "Fest Night",
+  "hi-IN": "फ़ेस्ट नाइट",
+  "hi-en": "Fest Night",
+  "te-IN": "ఫెస్ట్ నైట్",
+  "te-en": "Fest Night"
+ },
+ "tagline": {
+  "en-IN": "A broken robot, a big final, and Kiran.",
+  "hi-IN": "एक बिगड़ा रोबोट, एक बड़ा फ़ाइनल, और किरन.",
+  "hi-en": "Toota hua robot, bada final, aur Kiran.",
+  "te-IN": "పాడైన రోబో, పెద్ద ఫైనల్, ఇంకా కిరణ్.",
+  "te-en": "Paadaina robot, pedda final, inka Kiran."
+ },
+ "cover": "fest-gate",
+ "meter": {
+  "label": {
+   "en-IN": "Spark",
+   "hi-IN": "दिल की चिंगारी",
+   "hi-en": "Spark",
+   "te-IN": "స్పార్క్",
+   "te-en": "Spark"
+  },
+  "icon": "heart",
+  "start": 0,
+  "max": 4,
+  "on_zero": null
+ },
+ "items": {
+  "chai": {
+   "label": {
+    "en-IN": "Two chais",
+    "hi-IN": "दो चाय",
+    "hi-en": "Do chai",
+    "te-IN": "రెండు చాయ్‌లు",
+    "te-en": "Rendu chais"
+   }
+  },
+  "driver": {
+   "label": {
+    "en-IN": "Spare motor driver",
+    "hi-IN": "स्पेयर मोटर ड्राइवर",
+    "hi-en": "Spare motor driver",
+    "te-IN": "స్పేర్ మోటార్ డ్రైవర్",
+    "te-en": "Spare motor driver"
+   }
+  },
+  "shaky": {
+   "label": {
+    "en-IN": "Taped circuit",
+    "hi-IN": "टेप वाला सर्किट",
+    "hi-en": "Tape waala circuit",
+    "te-IN": "టేప్ వేసిన సర్క్యూట్",
+    "te-en": "Tape vesina circuit"
+   }
+  }
+ },
+ "start": "f_start",
+ "nodes": {
+  "f_start": {
+   "scene": "fest-gate",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "It's Techfest night. Fairy lights everywhere, music thumping, and the robotics final starts in one hour.",
+     "hi-IN": "टेकफ़ेस्ट की रात है. हर तरफ़ फ़ेयरी लाइट्स, धमाकेदार म्यूज़िक, और रोबोटिक्स फ़ाइनल एक घंटे में शुरू होने वाला है.",
+     "hi-en": "Techfest ki raat hai. Har taraf fairy lights, music ki dhamak, aur robotics final ek ghante mein shuru hai.",
+     "te-IN": "ఇది టెక్‌ఫెస్ట్ నైట్. ఎక్కడ చూసినా ఫెయిరీ లైట్లు, దద్దరిల్లే మ్యూజిక్, ఇంకో గంటలో రోబోటిక్స్ ఫైనల్ మొదలవుతుంది.",
+     "te-en": "Ee roju Techfest night. Ekkada chusinaa fairy lights, music daddarillutondi, robotics final inko gantalo start.",
+     "hi-en@tts": "Techfest की रात है। हर तरफ़ fairy lights, music की धमक, और robotics final एक घंटे में शुरू है।",
+     "te-en@tts": "ఈ రోజు Techfest night. ఎక్కడ చూసినా fairy lights, music దద్దరిల్లుతోంది, robotics final ఇంకో గంటలో start."
+    },
+    {
+     "en-IN": "Then your phone buzzes. It's Kiran, your project partner: Chotu, our robot, won't start! Can you come?",
+     "hi-IN": "तभी फ़ोन बजता है. किरन का मैसेज, आपका प्रोजेक्ट पार्टनर: हमारा रोबोट छोटू स्टार्ट ही नहीं हो रहा! अभी आना हो पाएगा?",
+     "hi-en": "Tabhi phone buzz karta hai. Kiran ka message, aapka project partner: Chotu, hamara robot, start hi nahi ho raha! Please lab aa jao!",
+     "te-IN": "అప్పుడే మీ ఫోన్ మోగుతుంది. మీ ప్రాజెక్ట్ పార్ట్‌నర్ కిరణ్: మన రోబో చోటు స్టార్ట్ అవ్వట్లేదు! ఒకసారి రాగలవా?",
+     "te-en": "Appude mee phone buzz avuthundi. Mee project partner Kiran: mana robot Chotu start avvatledu! Raagalavaa?",
+     "hi-en@tts": "तभी phone buzz करता है। Kiran का message, आपका project partner: Chotu, हमारा robot, start ही नहीं हो रहा! Please lab आ जाओ!",
+     "te-en@tts": "అప్పుడే మీ phone buzz అవుతుంది. మీ project partner Kiran: మన robot Chotu start అవ్వట్లేదు! రాగలవా?"
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करते हैं?",
+     "hi-en": "Aap kya karte hain?",
+     "te-IN": "మీరేం చేస్తారు?",
+     "te-en": "Meeru em chestharu?",
+     "hi-en@tts": "आप क्या करते हैं?",
+     "te-en@tts": "మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Go straight to the lab",
+      "hi-IN": "सीधे लैब चलो",
+      "hi-en": "Seedhe lab chalo",
+      "te-IN": "నేరుగా ల్యాబ్‌కి",
+      "te-en": "Direct ga lab ki"
+     },
+     "keywords": {
+      "en-IN": [
+       "straight",
+       "lab"
+      ],
+      "hi-IN": [
+       "सीधे",
+       "लैब"
+      ],
+      "hi-en": [
+       "seedha",
+       "sidha",
+       "straight",
+       "lab"
+      ],
+      "te-IN": [
+       "నేరుగా",
+       "ల్యాబ్"
+      ],
+      "te-en": [
+       "డైరెక్ట్",
+       "ల్యాబ్",
+       "స్ట్రెయిట్",
+       "lab",
+       "straight"
+      ]
+     },
+     "go": "f_lab",
+     "effects": {
+      "meter": 1
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Get chai for both of us",
+      "hi-IN": "दोनों के लिए चाय",
+      "hi-en": "Dono ke liye chai",
+      "te-IN": "ఇద్దరికీ చాయ్ తెస్తా",
+      "te-en": "Iddariki chai theesukeltha"
+     },
+     "keywords": {
+      "en-IN": [
+       "chai",
+       "tea",
+       "both"
+      ],
+      "hi-IN": [
+       "चाय",
+       "दोनों",
+       "कटिंग"
+      ],
+      "hi-en": [
+       "chai",
+       "tea",
+       "dono",
+       "both"
+      ],
+      "te-IN": [
+       "చాయ్",
+       "టీ",
+       "ఇద్దరికీ"
+      ],
+      "te-en": [
+       "చాయ్",
+       "టీ",
+       "ఇద్దరికీ",
+       "chai",
+       "tea"
+      ]
+     },
+     "go": "f_stalls"
+    },
+    {
+     "label": {
+      "en-IN": "Tell Kiran to fix it alone",
+      "hi-IN": "किरन खुद ठीक करे",
+      "hi-en": "Kiran khud fix kare",
+      "te-IN": "నువ్వే చూసుకో అని చెప్పు",
+      "te-en": "Kiran ne fix chesukomanu"
+     },
+     "keywords": {
+      "en-IN": [
+       "alone",
+       "yourself"
+      ],
+      "hi-IN": [
+       "अकेले",
+       "खुद",
+       "ख़ुद"
+      ],
+      "hi-en": [
+       "akele",
+       "khud",
+       "alone",
+       "yourself"
+      ],
+      "te-IN": [
+       "నువ్వే చూసుకో",
+       "ఒంటరిగా",
+       "ఒక్కరే"
+      ],
+      "te-en": [
+       "ఒక్కరే",
+       "ఒంటరిగా",
+       "నువ్వే చేసుకో",
+       "alone",
+       "యువర్ సెల్ఫ్"
+      ]
+     },
+     "go": "f_alone"
+    }
+   ]
+  },
+  "f_stalls": {
+   "scene": "fest-stalls",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "The chai stall is packed, but you squeeze out with two hot cutting chais.",
+     "hi-IN": "चाय की स्टॉल पर भारी भीड़ है, पर किसी तरह दो गरमागरम कटिंग चाय हाथ में आ ही जाती हैं.",
+     "hi-en": "Chai stall par bhaari bheed hai, par aap do garam cutting chai lekar nikal hi aate hain.",
+     "te-IN": "చాయ్ స్టాల్ దగ్గర ఫుల్ రష్, కానీ ఎలాగోలా రెండు వేడి కటింగ్ చాయ్‌లతో బయటపడతారు.",
+     "te-en": "Chai stall full rush ga undi, kaani rendu vedi cutting chais tho elaagola bayatapadatharu.",
+     "hi-en@tts": "Chai stall पर भारी भीड़ है, पर आप दो गरम cutting chai लेकर निकल ही आते हैं।",
+     "te-en@tts": "Chai stall full rush గా ఉంది, కానీ రెండు వేడి cutting chais తో ఎలాగోలా బయటపడతారు."
+    },
+    {
+     "en-IN": "On the way, a senior at the electronics stall tosses you a spare motor driver. For the final, he winks.",
+     "hi-IN": "रास्ते में इलेक्ट्रॉनिक्स स्टॉल वाला एक सीनियर आपकी तरफ़ स्पेयर मोटर ड्राइवर उछाल देता है, और आँख मारकर कहता है: फ़ाइनल के लिए.",
+     "hi-en": "Raaste mein electronics stall waala ek senior aapki taraf spare motor driver uchhaalta hai. Aankh maarkar kehta hai: final ke liye.",
+     "te-IN": "దారిలో, ఎలక్ట్రానిక్స్ స్టాల్ దగ్గర ఒక సీనియర్ మీ వైపు ఒక స్పేర్ మోటార్ డ్రైవర్ విసురుతాడు. ఫైనల్ కోసం, అని కన్ను కొడతాడు.",
+     "te-en": "Daarilo electronics stall daggara oka senior meeku spare motor driver visuruthadu. Final kosam, ani kannu koduthadu.",
+     "hi-en@tts": "रास्ते में electronics stall वाला एक senior आपकी तरफ़ spare motor driver उछालता है। आँख मारकर कहता है: final के लिए।",
+     "te-en@tts": "దారిలో electronics stall దగ్గర ఒక senior మీకు spare motor driver విసురుతాడు. Final కోసం, అని కన్ను కొడతాడు."
+    }
+   ],
+   "enter": {
+    "meter": 1,
+    "gain": [
+     "chai",
+     "driver"
+    ]
+   },
+   "go": "f_lab"
+  },
+  "f_alone": {
+   "scene": "fest-gate",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "You wander around the fest for a while. When you finally reach the lab, Kiran looks up, tired: I thought you weren't coming.",
+     "hi-IN": "कुछ देर आप फ़ेस्ट में यूँ ही घूमते रहते हैं. आख़िरकार लैब पहुँचने पर किरन की थकी-सी नज़र उठती है: मुझे लगा आज तुम्हें आना ही नहीं है.",
+     "hi-en": "Aap kuch der fest mein yun hi ghoomte rehte hain. Aakhir mein lab pahunchne par Kiran ki thaki hui awaaz aati hai: mujhe laga aaj tumhara aana nahi hoga.",
+     "te-IN": "మీరు కాసేపు ఫెస్ట్‌లో తిరుగుతారు. చివరికి ల్యాబ్‌కి చేరేసరికి, కిరణ్ అలసటగా తల ఎత్తి చూస్తారు: నువ్వు రావేమో అనుకున్నా.",
+     "te-en": "Kaasepu fest lo atu itu thiruguthaaru. Chivariki lab ki cheresariki Kiran alasataga thala etthi chusthu aduguthaaru: nuvvu raavemo anukunna.",
+     "hi-en@tts": "आप कुछ देर fest में यूँ ही घूमते रहते हैं। आखिर में lab पहुँचने पर Kiran की थकी हुई आवाज़ आती है: मुझे लगा आज तुम्हारा आना नहीं होगा।",
+     "te-en@tts": "కాసేపు fest లో అటూ ఇటూ తిరుగుతారు. చివరికి lab కి చేరేసరికి Kiran అలసటగా తల ఎత్తి చూస్తూ అడుగుతారు: నువ్వు రావేమో అనుకున్నా."
+    }
+   ],
+   "enter": {
+    "meter": -1
+   },
+   "go": "f_lab"
+  },
+  "f_lab": {
+   "scene": "fest-lab",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Kiran is bent over Chotu, wires everywhere. The motor driver is fried and the final starts soon.",
+     "hi-IN": "लैब में छोटू पर किरन का सिर झुका है, चारों तरफ़ तार ही तार. मोटर ड्राइवर जल चुका है और फ़ाइनल बस शुरू होने वाला है.",
+     "hi-en": "Lab mein chaaron taraf wires, aur Kiran ka poora dhyaan Chotu par. Motor driver fry ho chuka hai, aur final bas shuru hone waala hai.",
+     "te-IN": "కిరణ్ చోటు మీదికి వంగి ఉన్నారు, ఎటు చూసినా వైర్లు. మోటార్ డ్రైవర్ కాలిపోయింది, ఫైనల్ ఇంకాసేపట్లో.",
+     "te-en": "Kiran, Chotu meedaki vangi unnaru, wires antha chindaravandara. Motor driver fry ayipoyindi, final thvaralo start.",
+     "hi-en@tts": "Lab में चारों तरफ़ wires, और Kiran का पूरा ध्यान Chotu पर। Motor driver fry हो चुका है, और final बस शुरू होने वाला है।",
+     "te-en@tts": "Kiran, Chotu మీదకి వంగి ఉన్నారు, wires అంతా చిందరవందర. Motor driver fry అయిపోయింది, final త్వరలో start."
+    },
+    {
+     "en-IN": "How do you fix it?",
+     "hi-IN": "इसे ठीक कैसे करें?",
+     "hi-en": "Fix karne ka plan kya hai?",
+     "te-IN": "ఎలా ఫిక్స్ చేస్తారు?",
+     "te-en": "Ela fix chestharu?",
+     "hi-en@tts": "Fix करने का plan क्या है?",
+     "te-en@tts": "ఎలా fix చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Use the spare motor driver",
+      "hi-IN": "स्पेयर मोटर ड्राइवर लगाओ",
+      "hi-en": "Spare motor driver lagao",
+      "te-IN": "స్పేర్ మోటార్ డ్రైవర్",
+      "te-en": "Spare motor driver vaadatha"
+     },
+     "keywords": {
+      "en-IN": [
+       "spare",
+       "motor",
+       "driver"
+      ],
+      "hi-IN": [
+       "स्पेयर",
+       "मोटर",
+       "ड्राइवर"
+      ],
+      "hi-en": [
+       "spare",
+       "motor",
+       "driver"
+      ],
+      "te-IN": [
+       "స్పేర్",
+       "మోటార్",
+       "డ్రైవర్"
+      ],
+      "te-en": [
+       "స్పేర్",
+       "మోటార్",
+       "డ్రైవర్",
+       "spare",
+       "motor driver"
+      ]
+     },
+     "go": "f_arena",
+     "say": [
+      {
+       "en-IN": "It fits perfectly, and Chotu zooms around the bench. Kiran stares at you: chai AND a motor driver? Who even are you?",
+       "hi-IN": "एकदम फ़िट बैठता है, और छोटू बेंच के चारों ओर फ़र्राटे भरने लगता है. किरन की आँखें फटी रह जाती हैं: चाय भी और मोटर ड्राइवर भी? कौन हो यार तुम?",
+       "hi-en": "Ekdum perfect fit! Chotu bench par zoom karne lagta hai. Kiran ki nazrein aap par tik jaati hain: chai bhi AND motor driver bhi? Tum ho kaun?",
+       "te-IN": "పర్ఫెక్ట్‌గా సెట్ అయింది, చోటు బెంచ్ చుట్టూ రయ్యిమని తిరుగుతుంది. కిరణ్ మిమ్మల్నే చూస్తూ అంటారు: చాయ్ కూడా, మోటార్ డ్రైవర్ కూడా? అసలు నువ్వెవరు?",
+       "te-en": "Perfect ga fit avuthundi, Chotu bench chuttu zoom antu thiruguthundi. Kiran mimmalne chusthu: chai kooda, motor driver kooda? Asalu nuvvevaru?",
+       "hi-en@tts": "एकदम perfect fit! Chotu bench पर zoom करने लगता है। Kiran की नज़रें आप पर टिक जाती हैं: chai भी AND motor driver भी? तुम हो कौन?",
+       "te-en@tts": "Perfect గా fit అవుతుంది, Chotu bench చుట్టూ zoom అంటూ తిరుగుతుంది. Kiran మిమ్మల్నే చూస్తూ: chai కూడా, motor driver కూడా? అసలు నువ్వెవరు?"
+      }
+     ],
+     "effects": {
+      "meter": 1
+     },
+     "if": {
+      "has": [
+       "driver"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Debug the circuit together",
+      "hi-IN": "मिलकर सर्किट डिबग करो",
+      "hi-en": "Saath mein circuit debug",
+      "te-IN": "కలిసి సర్క్యూట్ డీబగ్",
+      "te-en": "Kalisi circuit debug"
+     },
+     "keywords": {
+      "en-IN": [
+       "debug",
+       "circuit",
+       "together"
+      ],
+      "hi-IN": [
+       "डिबग",
+       "सर्किट",
+       "मिलकर"
+      ],
+      "hi-en": [
+       "debug",
+       "circuit",
+       "saath",
+       "together"
+      ],
+      "te-IN": [
+       "డీబగ్",
+       "సర్క్యూట్",
+       "కలిసి"
+      ],
+      "te-en": [
+       "డీబగ్",
+       "సర్క్యూట్",
+       "కలిసి",
+       "debug",
+       "circuit"
+      ]
+     },
+     "go": "f_debug"
+    },
+    {
+     "label": {
+      "en-IN": "Borrow a part from the rivals",
+      "hi-IN": "राइवल्स से पार्ट माँगो",
+      "hi-en": "Rivals se part udhaar lo",
+      "te-IN": "రైవల్స్ దగ్గర పార్ట్ అడుగు",
+      "te-en": "Rivals daggara part borrow"
+     },
+     "keywords": {
+      "en-IN": [
+       "borrow",
+       "rivals",
+       "part"
+      ],
+      "hi-IN": [
+       "राइवल",
+       "उधार",
+       "माँगो",
+       "पार्ट"
+      ],
+      "hi-en": [
+       "udhaar",
+       "udhar",
+       "borrow",
+       "rivals",
+       "part"
+      ],
+      "te-IN": [
+       "రైవల్స్",
+       "అప్పు",
+       "పార్ట్",
+       "థండర్‌బోల్ట్"
+      ],
+      "te-en": [
+       "బారో",
+       "రైవల్స్",
+       "పార్ట్",
+       "borrow",
+       "rivals"
+      ]
+     },
+     "go": "f_arena",
+     "say": [
+      {
+       "en-IN": "Team Thunderbolt lends you a part, but wants your code in return. Kiran frowns, but says nothing.",
+       "hi-IN": "टीम थंडरबोल्ट पार्ट तो दे देती है, पर बदले में आपका कोड माँगती है. किरन के माथे पर शिकन आती है, पर ज़ुबान से एक शब्द नहीं निकलता.",
+       "hi-en": "Team Thunderbolt part de deti hai, par badle mein aapka code maangti hai. Kiran ke maathe par shikan hai, par zubaan par ek shabd nahi.",
+       "te-IN": "టీమ్ థండర్‌బోల్ట్ ఒక పార్ట్ ఇస్తుంది, కానీ బదులుగా మీ కోడ్ అడుగుతుంది. కిరణ్ ముఖం చిట్లిస్తారు, కానీ ఏమీ అనరు.",
+       "te-en": "Team Thunderbolt oka part isthundi, kaani badulugaa mee code aduguthundi. Kiran mukham chitlistharu, kaani emi anaru.",
+       "hi-en@tts": "Team Thunderbolt part दे देती है, पर बदले में आपका code माँगती है। Kiran के माथे पर शिकन है, पर ज़ुबान पर एक शब्द नहीं।",
+       "te-en@tts": "Team Thunderbolt ఒక part ఇస్తుంది, కానీ బదులుగా మీ code అడుగుతుంది. Kiran ముఖం చిట్లిస్తారు, కానీ ఏమీ అనరు."
+      }
+     ]
+    }
+   ]
+  },
+  "f_debug": {
+   "scene": "fest-lab",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "You and Kiran lean over the circuit together, shoulders touching.",
+     "hi-IN": "सर्किट पर दो सिर झुके हैं, आपका और किरन का, कंधे से कंधा मिला हुआ.",
+     "hi-en": "Circuit ke upar do sar, kandhe se kandha. Aap aur Kiran, saath mein debugging.",
+     "te-IN": "మీరు, కిరణ్ కలిసి సర్క్యూట్ మీదికి వంగుతారు, భుజాలు తాకుతూ.",
+     "te-en": "Meeru Kiran kalisi circuit meedaki vanguthaaru, bhujaalu thaguluthu.",
+     "hi-en@tts": "Circuit के ऊपर दो सिर, कंधे से कंधा। आप और Kiran, साथ में debugging।",
+     "te-en@tts": "మీరూ Kiran కలిసి circuit మీదకి వంగుతారు, భుజాలు తగులుతూ."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "Kiran reads the multimeter: twelve volts across the resistor, with two amps flowing. How many ohms is the resistor?",
+     "hi-IN": "मल्टीमीटर पर किरन की नज़र: रेज़िस्टर के आर-पार बारह वोल्ट, और दो एम्पियर करंट. रेज़िस्टर कितने ओम का है?",
+     "hi-en": "Multimeter par Kiran ki reading: resistor ke across baarah volts, aur do amps ka current. Resistor kitne ohms ka hai?",
+     "te-IN": "కిరణ్ మల్టీమీటర్ చదువుతారు: రెసిస్టర్ మీద పన్నెండు వోల్ట్లు, రెండు ఆంప్స్ కరెంట్. రెసిస్టర్ ఎన్ని ఓమ్స్?",
+     "te-en": "Kiran multimeter chadhuvutharu: resistor across twelve volts, two amps flow avuthondi. Resistor enni ohms?",
+     "hi-en@tts": "Multimeter पर Kiran की reading: resistor के across बारह volts, और दो amps का current। Resistor कितने ohms का है?",
+     "te-en@tts": "Kiran multimeter చదువుతారు: resistor across twelve volts, two amps flow అవుతోంది. Resistor ఎన్ని ohms?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "6",
+      "24",
+      "10"
+     ],
+     "hi-IN": [
+      "6",
+      "24",
+      "10"
+     ],
+     "hi-en": [
+      "6",
+      "24",
+      "10"
+     ],
+     "te-IN": [
+      "6",
+      "24",
+      "10"
+     ],
+     "te-en": [
+      "6",
+      "24",
+      "10"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "छह",
+      "छः",
+      "six"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "ఆరు",
+      "six"
+     ],
+     "te-en": [
+      "six",
+      "six ohms",
+      "సిక్స్",
+      "సిక్స్ ఓమ్స్",
+      "ఆరు"
+     ]
+    },
+    "pass": {
+     "go": "f_arena",
+     "say": [
+      {
+       "en-IN": "Six ohms! You swap in the right resistor and Chotu beeps back to life. Kiran high-fives you, and doesn't let go of your hand for a second.",
+       "hi-IN": "छह ओम! आप सही रेज़िस्टर लगाते हैं और छोटू बीप करके फिर ज़िंदा हो जाता है. किरन से हाई-फ़ाइव मिलता है, और हाथ एक पल ज़्यादा थमा रहता है.",
+       "hi-en": "Chhe ohms! Aap sahi resistor lagaate hain aur Chotu beep karke phir zinda ho jaata hai. Kiran ka high-five, aur haath ek second zyada thama rehta hai.",
+       "te-IN": "ఆరు ఓమ్స్! సరైన రెసిస్టర్ పెట్టగానే చోటు బీప్ అంటూ మళ్ళీ ప్రాణం పోసుకుంటుంది. కిరణ్ హై-ఫైవ్ ఇచ్చి, ఒక్క క్షణం మీ చేయి వదలరు.",
+       "te-en": "Six ohms! Correct resistor pedatharu, Chotu beep antu malli life loki vasthundi. Kiran meeku high-five istharu, oka second paatu mee cheyyi vadalaru.",
+       "hi-en@tts": "छह ohms! आप सही resistor लगाते हैं और Chotu beep करके फिर ज़िंदा हो जाता है। Kiran का high-five, और हाथ एक second ज़्यादा थमा रहता है।",
+       "te-en@tts": "Six ohms! Correct resistor పెడతారు, Chotu beep అంటూ మళ్ళీ life లోకి వస్తుంది. Kiran మీకు high-five ఇస్తారు, ఒక second పాటు మీ చెయ్యి వదలరు."
+      }
+     ],
+     "effects": {
+      "meter": 1
+     }
+    },
+    "fail": {
+     "go": "f_arena",
+     "say": [
+      {
+       "en-IN": "The resistor smokes. Kiran just laughs: okay, plan B, we tape it and pray.",
+       "hi-IN": "रेज़िस्टर से धुआँ उठने लगता है. किरन की हँसी छूट जाती है: ठीक है, प्लान बी, टेप लगाओ और दुआ करो.",
+       "hi-en": "Resistor se dhuaan nikalne lagta hai. Kiran ki hansi chhoot jaati hai: okay, plan B, tape lagao aur pray karo.",
+       "te-IN": "రెసిస్టర్ నుంచి పొగ వస్తుంది. కిరణ్ నవ్వేస్తారు: సరే, ప్లాన్ బి, టేప్ వేసి దేవుడి మీద భారం వేద్దాం.",
+       "te-en": "Resistor nunchi poga vasthundi. Kiran navvestharu: okay, plan B, tape vesi pray cheddam.",
+       "hi-en@tts": "Resistor से धुआँ निकलने लगता है। Kiran की हँसी छूट जाती है: okay, plan B, tape लगाओ और pray करो।",
+       "te-en@tts": "Resistor నుంచి పొగ వస్తుంది. Kiran నవ్వేస్తారు: okay, plan B, tape వేసి pray చేద్దాం."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "shaky"
+      ]
+     }
+    }
+   }
+  },
+  "f_arena": {
+   "scene": "fest-arena",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The final! Chotu has to cross the obstacle course in under a minute, and the whole college is screaming.",
+     "hi-IN": "फ़ाइनल! छोटू को एक मिनट से कम में ऑब्स्टेकल कोर्स पार करना है, और पूरा कॉलेज चीख़ रहा है.",
+     "hi-en": "Final! Chotu ko obstacle course ek minute se kam mein paar karna hai, aur poora college cheekh raha hai.",
+     "te-IN": "ఫైనల్! చోటు ఒక నిమిషంలోపు అబ్‌స్టకిల్ కోర్స్ దాటాలి, కాలేజ్ మొత్తం అరుస్తోంది.",
+     "te-en": "Final! Chotu obstacle course ni oka minute lopu cross cheyyali, college motham arusthondi.",
+     "hi-en@tts": "Final! Chotu को obstacle course एक minute से कम में पार करना है, और पूरा college चीख रहा है।",
+     "te-en@tts": "Final! Chotu obstacle course ని ఒక minute లోపు cross చెయ్యాలి, college మొత్తం అరుస్తోంది."
+    },
+    {
+     "en-IN": "Who drives Chotu?",
+     "hi-IN": "छोटू का रिमोट किसके हाथ में?",
+     "hi-en": "Chotu ko kaun chalaayega?",
+     "te-IN": "చోటుని ఎవరు నడుపుతారు?",
+     "te-en": "Chotu ni evaru drive chestharu?",
+     "hi-en@tts": "Chotu को कौन चलाएगा?",
+     "te-en@tts": "Chotu ని ఎవరు drive చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "I drive",
+      "hi-IN": "मैं चलाऊँ",
+      "hi-en": "Main drive karoon",
+      "te-IN": "నేనే నడుపుతా",
+      "te-en": "Nene drive chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "myself",
+       "i will drive"
+      ],
+      "hi-IN": [
+       "मैं चलाऊँ",
+       "मुझे दो",
+       "मेरे हाथ"
+      ],
+      "hi-en": [
+       "myself",
+       "i will drive",
+       "main drive karu",
+       "mujhe do"
+      ],
+      "te-IN": [
+       "నేనే",
+       "నేనే నడుపుతా",
+       "నాకివ్వు"
+      ],
+      "te-en": [
+       "నేనే",
+       "నేనే డ్రైవ్ చేస్తా",
+       "మైసెల్ఫ్",
+       "myself",
+       "ఐ విల్ డ్రైవ్"
+      ]
+     },
+     "go": "f_result"
+    },
+    {
+     "label": {
+      "en-IN": "Kiran drives",
+      "hi-IN": "किरन चलाए",
+      "hi-en": "Kiran drive kare",
+      "te-IN": "కిరణ్ నడపాలి",
+      "te-en": "Kiran drive cheyyali"
+     },
+     "keywords": {
+      "en-IN": [
+       "kiran"
+      ],
+      "hi-IN": [
+       "किरन",
+       "किरन चलाए",
+       "किरन को"
+      ],
+      "hi-en": [
+       "kiran",
+       "kiran chalaye"
+      ],
+      "te-IN": [
+       "కిరణ్",
+       "నువ్వే నడుపు"
+      ],
+      "te-en": [
+       "కిరణ్",
+       "కిరణ్ డ్రైవ్",
+       "kiran"
+      ]
+     },
+     "go": "f_result",
+     "effects": {
+      "meter": 1
+     }
+    },
+    {
+     "label": {
+      "en-IN": "We drive together",
+      "hi-IN": "दोनों मिलकर चलाएँ",
+      "hi-en": "Saath mein drive karein",
+      "te-IN": "ఇద్దరం కలిసి",
+      "te-en": "Iddaram kalisi drive"
+     },
+     "keywords": {
+      "en-IN": [
+       "together",
+       "both",
+       "we"
+      ],
+      "hi-IN": [
+       "मिलकर",
+       "दोनों",
+       "साथ में"
+      ],
+      "hi-en": [
+       "together",
+       "saath",
+       "hum dono",
+       "both"
+      ],
+      "te-IN": [
+       "కలిసి",
+       "ఇద్దరం",
+       "మనిద్దరం"
+      ],
+      "te-en": [
+       "ఇద్దరం",
+       "కలిసి",
+       "టుగెదర్",
+       "together"
+      ]
+     },
+     "go": "f_result",
+     "effects": {
+      "meter": 1
+     }
+    }
+   ]
+  },
+  "f_result": {
+   "scene": null,
+   "mood": "happy",
+   "say": [],
+   "go": [
+    {
+     "if": {
+      "has": [
+       "shaky"
+      ]
+     },
+     "go": "f_second"
+    },
+    {
+     "go": "f_first"
+    }
+   ]
+  },
+  "f_first": {
+   "scene": "fest-arena",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "Chotu flies over the last ramp. First place! Confetti rains down, and Kiran hugs you before either of you can think.",
+     "hi-IN": "आख़िरी रैंप पर छोटू हवा में उड़ता है. फ़र्स्ट प्लेस! कॉन्फ़ेटी बरसती है, और कुछ सोचने से पहले ही किरन का एक कसकर हग.",
+     "hi-en": "Chotu aakhri ramp ke upar se udta hai. First place! Confetti barasta hai, aur kuch sochne se pehle hi Kiran ki baahein aapke gale mein.",
+     "te-IN": "చోటు చివరి ర్యాంప్ మీద నుంచి ఎగురుతుంది. ఫస్ట్ ప్లేస్! కాన్ఫెట్టి వర్షం కురుస్తుంది, ఏమీ ఆలోచించేలోపే కిరణ్ మిమ్మల్ని హగ్ చేసుకుంటారు.",
+     "te-en": "Chotu last ramp meeda nunchi eguruthundi. First place! Confetti kurusthundi, iddaru aalochinche lope Kiran mimmalni hug chestharu.",
+     "hi-en@tts": "Chotu आखिरी ramp के ऊपर से उड़ता है। First place! Confetti बरसता है, और कुछ सोचने से पहले ही Kiran की बाँहें आपके गले में।",
+     "te-en@tts": "Chotu last ramp మీద నుంచి ఎగురుతుంది. First place! Confetti కురుస్తుంది, ఇద్దరూ ఆలోచించే లోపే Kiran మిమ్మల్ని hug చేస్తారు."
+    }
+   ],
+   "go": "f_after"
+  },
+  "f_second": {
+   "scene": "fest-arena",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "On the last ramp a wheel pops off, but Chotu still rolls over the line. Second place! Kiran is laughing so hard it's contagious.",
+     "hi-IN": "आख़िरी रैंप पर एक पहिया निकल जाता है, फिर भी छोटू लाइन पार कर लेता है. सेकंड प्लेस! किरन की हँसी रुकती ही नहीं, और वो हँसी सबको लग जाती है.",
+     "hi-en": "Aakhri ramp par ek wheel nikal jaata hai, par Chotu phir bhi line paar kar leta hai. Second place! Kiran ki hansi ruk hi nahi rahi, aur woh hansi contagious hai.",
+     "te-IN": "చివరి ర్యాంప్ మీద ఒక చక్రం ఊడిపోతుంది, అయినా చోటు లైన్ దాటుతుంది. సెకండ్ ప్లేస్! కిరణ్ ఎంతగా నవ్వుతున్నారంటే, మీకూ నవ్వు ఆగట్లేదు.",
+     "te-en": "Last ramp meeda oka wheel oodipothundi, ayina Chotu line daatuthundi. Second place! Kiran enthaga navvuthunnarante, aa navvu andariki antukuntundi.",
+     "hi-en@tts": "आखिरी ramp पर एक wheel निकल जाता है, पर Chotu फिर भी line पार कर लेता है। Second place! Kiran की हँसी रुक ही नहीं रही, और वो हँसी contagious है।",
+     "te-en@tts": "Last ramp మీద ఒక wheel ఊడిపోతుంది, అయినా Chotu line దాటుతుంది. Second place! Kiran ఎంతగా నవ్వుతున్నారంటే, ఆ నవ్వు అందరికీ అంటుకుంటుంది."
+    }
+   ],
+   "go": "f_after"
+  },
+  "f_after": {
+   "scene": "fest-stage",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Later, the drone show begins and hundreds of lights paint shapes in the sky.",
+     "hi-IN": "थोड़ी देर बाद ड्रोन शो शुरू होता है, और सैकड़ों लाइट्स आसमान में तस्वीरें बनाने लगती हैं.",
+     "hi-en": "Baad mein drone show shuru hota hai, aur saikdon lights aasmaan mein shapes banaane lagti hain.",
+     "te-IN": "తర్వాత డ్రోన్ షో మొదలవుతుంది, వందల లైట్లు ఆకాశంలో బొమ్మలు గీస్తాయి.",
+     "te-en": "Tharvatha drone show start avuthundi, vandala lights aakaasham lo shapes geesthayi.",
+     "hi-en@tts": "बाद में drone show शुरू होता है, और सैकड़ों lights आसमान में shapes बनाने लगती हैं।",
+     "te-en@tts": "తర్వాత drone show start అవుతుంది, వందల lights ఆకాశంలో shapes గీస్తాయి."
+    },
+    {
+     "en-IN": "Kiran asks: want to watch it from the rooftop? It's quieter up there.",
+     "hi-IN": "किरन का सवाल: रूफ़टॉप से देखें? ऊपर थोड़ी शांति है.",
+     "hi-en": "Kiran ka sawaal: rooftop se dekhein? Wahan zyada shaanti hai.",
+     "te-IN": "కిరణ్ అడుగుతారు: రూఫ్‌టాప్ నుంచి చూద్దామా? అక్కడ కాస్త ప్రశాంతంగా ఉంటుంది.",
+     "te-en": "Kiran aduguthaaru: rooftop nunchi chuddama? Akkada quiet ga untundi.",
+     "hi-en@tts": "Kiran का सवाल: rooftop से देखें? वहाँ ज़्यादा शांति है।",
+     "te-en@tts": "Kiran అడుగుతారు: rooftop నుంచి చూద్దామా? అక్కడ quiet గా ఉంటుంది."
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Yes, let's go up",
+      "hi-IN": "हाँ, ऊपर चलते हैं",
+      "hi-en": "Haan, upar chalo",
+      "te-IN": "సరే, రూఫ్‌టాప్‌కి",
+      "te-en": "Sare, rooftop ki"
+     },
+     "keywords": {
+      "en-IN": [
+       "yes",
+       "rooftop",
+       "up"
+      ],
+      "hi-IN": [
+       "ऊपर",
+       "रूफ़टॉप",
+       "रूफटॉप",
+       "छत"
+      ],
+      "hi-en": [
+       "rooftop",
+       "upar",
+       "chhat",
+       "terrace"
+      ],
+      "te-IN": [
+       "రూఫ్‌టాప్",
+       "పైకి",
+       "సరే"
+      ],
+      "te-en": [
+       "రూఫ్ టాప్",
+       "రూఫ్‌టాప్",
+       "పైకి",
+       "rooftop"
+      ]
+     },
+     "go": "f_rooftop",
+     "effects": {
+      "meter": 1
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Let's join the crowd",
+      "hi-IN": "भीड़ में नाचते हैं",
+      "hi-en": "Crowd mein chalo",
+      "te-IN": "జనంలో కలుద్దాం",
+      "te-en": "Crowd lo join avudam"
+     },
+     "keywords": {
+      "en-IN": [
+       "crowd",
+       "join",
+       "dance"
+      ],
+      "hi-IN": [
+       "भीड़",
+       "नाच",
+       "डांस"
+      ],
+      "hi-en": [
+       "crowd",
+       "bheed",
+       "join",
+       "dance",
+       "naach"
+      ],
+      "te-IN": [
+       "జనం",
+       "క్రౌడ్",
+       "డాన్స్"
+      ],
+      "te-en": [
+       "క్రౌడ్",
+       "జాయిన్",
+       "డాన్స్",
+       "crowd",
+       "dance"
+      ]
+     },
+     "go": "f_crowd"
+    },
+    {
+     "label": {
+      "en-IN": "I'm tired, maybe tomorrow",
+      "hi-IN": "थकान है, कल सही",
+      "hi-en": "Neend aa rahi hai, kal",
+      "te-IN": "అలసిపోయా, రేపు చూద్దాం",
+      "te-en": "Tired, repu chuddam"
+     },
+     "keywords": {
+      "en-IN": [
+       "tired",
+       "tomorrow",
+       "sleep"
+      ],
+      "hi-IN": [
+       "थकान",
+       "कल",
+       "नींद",
+       "सोना"
+      ],
+      "hi-en": [
+       "neend",
+       "tired",
+       "tomorrow",
+       "sleep",
+       "thakan"
+      ],
+      "te-IN": [
+       "అలసిపోయా",
+       "రేపు",
+       "నిద్ర"
+      ],
+      "te-en": [
+       "టైర్డ్",
+       "రేపు",
+       "నిద్ర",
+       "tired",
+       "tomorrow"
+      ]
+     },
+     "go": "end:solo"
+    }
+   ]
+  },
+  "f_crowd": {
+   "scene": "fest-rain",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "You dance in the crowd with the whole class. It's loud and wonderful, until the sky opens and everyone runs.",
+     "hi-IN": "आप पूरी क्लास के साथ भीड़ में नाचते हैं. शोर है, मस्ती है, कि तभी आसमान फट पड़ता है और सब भागते हैं.",
+     "hi-en": "Aap poori class ke saath crowd mein naachte hain. Loud aur mazedaar, jab tak baadal phat nahi padte aur sab bhaagne lagte hain.",
+     "te-IN": "క్లాస్ మొత్తంతో కలిసి జనంలో డాన్స్ చేస్తారు. గోలగా, అద్భుతంగా ఉంది, ఇంతలో ఆకాశం బద్దలై వర్షం, అందరూ పరుగో పరుగు.",
+     "te-en": "Class mothamtho kalisi crowd lo dance chestharu. Loud ga, adbhuthanga untundi, inthalo aakaasham virigi varsham paduthundi, andaru parigeththutharu.",
+     "hi-en@tts": "आप पूरी class के साथ crowd में नाचते हैं। Loud और मज़ेदार, जब तक बादल फट नहीं पड़ते और सब भागने लगते हैं।",
+     "te-en@tts": "Class మొత్తంతో కలిసి crowd లో dance చేస్తారు. Loud గా, అద్భుతంగా ఉంటుంది, ఇంతలో ఆకాశం విరిగి వర్షం పడుతుంది, అందరూ పరిగెత్తుతారు."
+    },
+    {
+     "en-IN": "You and Kiran end up under the canteen roof, soaked and laughing.",
+     "hi-IN": "आख़िर में कैंटीन की छत के नीचे पनाह मिलती है, आपको भी और किरन को भी. पानी से तरबतर, हँसी से लोटपोट.",
+     "hi-en": "Aakhir mein canteen ki chhat ke neeche bas aap aur Kiran, baarish mein tar-batar, aur hansi hai ki rukti hi nahi.",
+     "te-IN": "మీరు, కిరణ్ క్యాంటీన్ పైకప్పు కింద చేరతారు, పూర్తిగా తడిసి, నవ్వుకుంటూ.",
+     "te-en": "Meeru Kiran canteen roof kinda cheratharu, thadisi mudday, navvuthu.",
+     "hi-en@tts": "आखिर में canteen की छत के नीचे बस आप और Kiran, बारिश में तर-बतर, और हँसी है कि रुकती ही नहीं।",
+     "te-en@tts": "మీరూ Kiran canteen roof కింద చేరతారు, తడిసి ముద్దై, నవ్వుతూ."
+    }
+   ],
+   "go": "f_confess"
+  },
+  "f_rooftop": {
+   "scene": "fest-rooftop",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "On the rooftop the city glitters. The drones draw a giant heart in the sky, and Kiran goes very quiet.",
+     "hi-IN": "रूफ़टॉप से शहर जगमगा रहा है. ड्रोन आसमान में एक बड़ा-सा दिल बनाते हैं, और किरन की तरफ़ से एकदम ख़ामोशी छा जाती है.",
+     "hi-en": "Rooftop se poora shehar chamak raha hai. Drones aasmaan mein ek bada sa heart banaate hain, aur Kiran ke paas achaanak koi shabd nahi.",
+     "te-IN": "రూఫ్‌టాప్ మీద నుంచి సిటీ మెరిసిపోతోంది. డ్రోన్లు ఆకాశంలో పెద్ద హార్ట్ గీస్తాయి, కిరణ్ ఒక్కసారిగా మౌనంగా అయిపోతారు.",
+     "te-en": "Rooftop meeda nunchi city merisipothondi. Drones aakaasham lo pedda heart geesthayi, Kiran okkasariga chaala quiet ayipotharu.",
+     "hi-en@tts": "Rooftop से पूरा शहर चमक रहा है। Drones आसमान में एक बड़ा सा heart बनाते हैं, और Kiran के पास अचानक कोई शब्द नहीं।",
+     "te-en@tts": "Rooftop మీద నుంచి city మెరిసిపోతోంది. Drones ఆకాశంలో పెద్ద heart గీస్తాయి, Kiran ఒక్కసారిగా చాలా quiet అయిపోతారు."
+    }
+   ],
+   "go": "f_confess"
+  },
+  "f_confess": {
+   "scene": null,
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Kiran turns to you: can I tell you something? This whole year, building Chotu with you, was my favourite part of college.",
+     "hi-IN": "किरन की नज़र आप पर टिकती है: एक बात कहूँ? पूरे साल तुम्हारे साथ छोटू को बनाना, कॉलेज का सबसे प्यारा हिस्सा था.",
+     "hi-en": "Kiran ki nazrein aapki taraf mudti hain: ek baat kahoon? Yeh poora saal, tumhare saath Chotu banana, college ka mera favourite part tha.",
+     "te-IN": "కిరణ్ మీ వైపు తిరుగుతారు: ఒక విషయం చెప్పనా? ఈ ఏడాదంతా నీతో కలిసి చోటుని తయారు చేయడమే, నా కాలేజ్ లైఫ్‌లో నాకు బాగా నచ్చిన పార్ట్.",
+     "te-en": "Kiran mee vaipu thirigi aduguthaaru: oka vishayam cheppana? Ee year motham neetho kalisi Chotu ni build cheyyadame, college lo naa favourite part.",
+     "hi-en@tts": "Kiran की नज़रें आपकी तरफ़ मुड़ती हैं: एक बात कहूँ? ये पूरा साल, तुम्हारे साथ Chotu बनाना, college का मेरा favourite part था।",
+     "te-en@tts": "Kiran మీ వైపు తిరిగి అడుగుతారు: ఒక విషయం చెప్పనా? ఈ year మొత్తం నీతో కలిసి Chotu ని build చెయ్యడమే, college లో నా favourite part."
+    },
+    {
+     "en-IN": "What do you say?",
+     "hi-IN": "आप क्या कहते हैं?",
+     "hi-en": "Aap kya kehte hain?",
+     "te-IN": "మీరేం అంటారు?",
+     "te-en": "Meeru em cheptharu?",
+     "hi-en@tts": "आप क्या कहते हैं?",
+     "te-en@tts": "మీరు ఏం చెప్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "It was always you",
+      "hi-IN": "हमेशा से बस तुम",
+      "hi-en": "Hamesha se bas tum",
+      "te-IN": "ఎప్పుడూ నువ్వే",
+      "te-en": "Eppudu nuvve"
+     },
+     "keywords": {
+      "en-IN": [
+       "always",
+       "me too",
+       "same"
+      ],
+      "hi-IN": [
+       "हमेशा",
+       "बस तुम",
+       "मेरा भी"
+      ],
+      "hi-en": [
+       "hamesha",
+       "always",
+       "me too",
+       "same"
+      ],
+      "te-IN": [
+       "ఎప్పుడూ",
+       "నాకు కూడా",
+       "సేమ్"
+      ],
+      "te-en": [
+       "ఎప్పుడూ నువ్వే",
+       "నాకు కూడా",
+       "మీ టూ",
+       "సేమ్",
+       "always",
+       "me too"
+      ]
+     },
+     "go": [
+      {
+       "if": {
+        "meter_at_least": 3
+       },
+       "go": "end:together"
+      },
+      {
+       "go": "end:almost"
+      }
+     ]
+    },
+    {
+     "label": {
+      "en-IN": "Best team ever, partner",
+      "hi-IN": "बेस्ट टीम, पार्टनर",
+      "hi-en": "Best team ever, partner",
+      "te-IN": "బెస్ట్ టీమ్, పార్ట్‌నర్",
+      "te-en": "Best team ever, partner"
+     },
+     "keywords": {
+      "en-IN": [
+       "best",
+       "team",
+       "partner"
+      ],
+      "hi-IN": [
+       "बेस्ट",
+       "टीम",
+       "पार्टनर"
+      ],
+      "hi-en": [
+       "best",
+       "team",
+       "partner"
+      ],
+      "te-IN": [
+       "బెస్ట్",
+       "టీమ్",
+       "పార్ట్‌నర్"
+      ],
+      "te-en": [
+       "బెస్ట్ టీమ్",
+       "టీమ్",
+       "పార్ట్నర్",
+       "team",
+       "partner"
+      ]
+     },
+     "go": "end:best_team"
+    },
+    {
+     "label": {
+      "en-IN": "Let's build a bigger robot",
+      "hi-IN": "इससे बड़ा रोबोट बनाएँ",
+      "hi-en": "Isse bada robot banaayein",
+      "te-IN": "ఇంకా పెద్ద రోబో చేద్దాం",
+      "te-en": "Inka pedda robot cheddam"
+     },
+     "keywords": {
+      "en-IN": [
+       "bigger",
+       "robot",
+       "build"
+      ],
+      "hi-IN": [
+       "बड़ा रोबोट",
+       "बड़ा",
+       "रोबोट",
+       "बनाएँ"
+      ],
+      "hi-en": [
+       "bada",
+       "bigger",
+       "robot",
+       "build"
+      ],
+      "te-IN": [
+       "పెద్ద",
+       "రోబో",
+       "తయారు"
+      ],
+      "te-en": [
+       "పెద్ద రోబో",
+       "రోబో",
+       "బిగ్గర్",
+       "robot",
+       "bigger"
+      ]
+     },
+     "go": "end:season_two"
+    }
+   ]
+  }
+ },
+ "endings": {
+  "together": {
+   "title": {
+    "en-IN": "Fest Night Forever",
+    "hi-IN": "फ़ेस्ट नाइट फ़ॉरएवर",
+    "hi-en": "Fest Night Forever",
+    "te-IN": "ఫెస్ట్ నైట్ ఫరెవర్",
+    "te-en": "Fest Night Forever"
+   },
+   "rank": "gold",
+   "scene": "fest-dawn",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "Kiran smiles, the kind of smile that makes the drone show look dim. You talk until the sky turns pink, and walk to the bus stop holding hands.",
+     "hi-IN": "किरन के चेहरे पर ऐसी मुस्कान आती है कि ड्रोन शो भी फीका लगे. आसमान गुलाबी होने तक बातें चलती रहती हैं, और फिर हाथों में हाथ डाले बस स्टॉप तक की धीमी सैर.",
+     "hi-en": "Kiran ki muskaan aisi ki drone show bhi pheeka lage. Aasmaan gulaabi hone tak baatein chalti rehti hain, aur phir haath mein haath daale bus stop tak ki walk.",
+     "te-IN": "కిరణ్ నవ్వుతారు, ఆ నవ్వు ముందు డ్రోన్ షో కూడా వెలవెలబోతుంది. ఆకాశం గులాబీ రంగులోకి మారేదాకా మాట్లాడుకుంటారు, చేతులు పట్టుకుని బస్ స్టాప్ దాకా నడుస్తారు.",
+     "te-en": "Kiran navvutharu, drone show kooda dim anipinchelaanti navvu. Aakaasham pink ayye varaku maatlaadukuni, chethulu pattukuni bus stop ki nadusthaaru.",
+     "hi-en@tts": "Kiran की मुस्कान ऐसी कि drone show भी फीका लगे। आसमान गुलाबी होने तक बातें चलती रहती हैं, और फिर हाथ में हाथ डाले bus stop तक की walk।",
+     "te-en@tts": "Kiran నవ్వుతారు, drone show కూడా dim అనిపించేలాంటి నవ్వు. ఆకాశం pink అయ్యే వరకు మాట్లాడుకుని, చేతులు పట్టుకుని bus stop కి నడుస్తారు."
+    },
+    {
+     "en-IN": "Some robots break. Some nights fix everything.",
+     "hi-IN": "कुछ रोबोट टूट जाते हैं. कुछ रातें सब कुछ जोड़ देती हैं.",
+     "hi-en": "Kuch robots toot jaate hain. Kuch raatein sab kuch jod deti hain.",
+     "te-IN": "కొన్ని రోబోలు పాడవుతాయి. కొన్ని రాత్రులు అన్నీ సరిచేస్తాయి.",
+     "te-en": "Konni robots break avuthayi. Konni nights anni fix chesthayi.",
+     "hi-en@tts": "कुछ robots टूट जाते हैं। कुछ रातें सब कुछ जोड़ देती हैं।",
+     "te-en@tts": "కొన్ని robots break అవుతాయి. కొన్ని nights అన్నీ fix చేస్తాయి."
+    }
+   ]
+  },
+  "almost": {
+   "title": {
+    "en-IN": "Almost",
+    "hi-IN": "लगभग",
+    "hi-en": "Almost",
+    "te-IN": "దాదాపు",
+    "te-en": "Almost"
+   },
+   "rank": "bronze",
+   "scene": "fest-garden",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Kiran smiles, a little unsure: I think I need some time. It's okay. Some stories need a second fest.",
+     "hi-IN": "किरन की मुस्कान में थोड़ी झिझक है: शायद मुझे थोड़ा वक़्त चाहिए. कोई बात नहीं. कुछ कहानियों को दूसरा फ़ेस्ट चाहिए होता है.",
+     "hi-en": "Kiran ki muskaan thodi unsure hai: mujhe thoda time chahiye. Koi baat nahi. Kuch stories ko doosra fest chahiye hota hai.",
+     "te-IN": "కిరణ్ కొంచెం సందేహంగా నవ్వుతారు: నాకు కొంచెం టైమ్ కావాలి అనిపిస్తోంది. పర్లేదు. కొన్ని కథలకు రెండో ఫెస్ట్ కావాలి.",
+     "te-en": "Kiran konchem doubt ga navvutharu: naaku konchem time kaavali. Parledu. Konni stories ki second fest kaavali.",
+     "hi-en@tts": "Kiran की मुस्कान थोड़ी unsure है: मुझे थोड़ा time चाहिए। कोई बात नहीं। कुछ stories को दूसरा fest चाहिए होता है।",
+     "te-en@tts": "Kiran కొంచెం doubt గా నవ్వుతారు: నాకు కొంచెం time కావాలి. పర్లేదు. కొన్ని stories కి second fest కావాలి."
+    },
+    {
+     "en-IN": "Maybe show up a bit more next time?",
+     "hi-IN": "अगली बार शायद थोड़ा और साथ निभाइए?",
+     "hi-en": "Agli baar shayad thoda zyada show up karo?",
+     "te-IN": "నెక్స్ట్ టైమ్ ఇంకొంచెం తోడుగా ఉంటారేమో?",
+     "te-en": "Next time inkonchem ekkuva show up avvandi, sarena?",
+     "hi-en@tts": "अगली बार शायद थोड़ा ज़्यादा show up करो?",
+     "te-en@tts": "Next time ఇంకొంచెం ఎక్కువ show up అవ్వండి, సరేనా?"
+    }
+   ]
+  },
+  "best_team": {
+   "title": {
+    "en-IN": "Best Team Ever",
+    "hi-IN": "बेस्ट टीम एवर",
+    "hi-en": "Best Team Ever",
+    "te-IN": "బెస్ట్ టీమ్ ఎవర్",
+    "te-en": "Best Team Ever"
+   },
+   "rank": "silver",
+   "scene": "fest-dawn",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "Kiran grins and bumps your fist: best team ever. You stay friends, and build three more robots together before graduation.",
+     "hi-IN": "किरन की मुट्ठी आपकी मुट्ठी से टकराती है: बेस्ट टीम एवर. दोस्ती बनी रहती है, और ग्रेजुएशन से पहले मिलकर तीन और रोबोट बनते हैं.",
+     "hi-en": "Kiran ki badi si grin aur ek fist bump: best team ever. Aap dost bane rehte hain, aur graduation se pehle saath mein teen aur robots banaate hain.",
+     "te-IN": "కిరణ్ నవ్వి మీ పిడికిలికి పిడికిలి తాకిస్తారు: బెస్ట్ టీమ్ ఎవర్. మీరు ఫ్రెండ్స్‌గా ఉంటారు, గ్రాడ్యుయేషన్ లోపు కలిసి ఇంకో మూడు రోబోలు తయారు చేస్తారు.",
+     "te-en": "Kiran grin chesi mee fist bump chestharu: best team ever. Meeru friends gaane untaru, graduation lopu inko moodu robots kalisi build chestharu.",
+     "hi-en@tts": "Kiran की बड़ी सी grin और एक fist bump: best team ever। आप दोस्त बने रहते हैं, और graduation से पहले साथ में तीन और robots बनाते हैं।",
+     "te-en@tts": "Kiran grin చేసి మీ fist bump చేస్తారు: best team ever. మీరు friends గానే ఉంటారు, graduation లోపు ఇంకో మూడు robots కలిసి build చేస్తారు."
+    }
+   ]
+  },
+  "season_two": {
+   "title": {
+    "en-IN": "Season Two",
+    "hi-IN": "सीज़न टू",
+    "hi-en": "Season Two",
+    "te-IN": "సీజన్ టూ",
+    "te-en": "Season Two"
+   },
+   "rank": "silver",
+   "scene": "fest-library",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "Kiran laughs: only if we get chai first. The next week you're both in the library at midnight, sketching a robot twice as big. Something tells you this is just the beginning.",
+     "hi-IN": "किरन की हँसी: पहले चाय, फिर डील पक्की. अगले हफ़्ते आधी रात, लाइब्रेरी, और एक मेज़ पर दुगने बड़े रोबोट का स्केच. लगता है ये तो बस शुरुआत है.",
+     "hi-en": "Kiran hanskar: par pehle chai. Agle hafte aadhi raat ko library ki table par dogune bade robot ka sketch ban raha hai, aap dono ke haathon se. Lagta hai yeh toh bas shuruaat hai.",
+     "te-IN": "కిరణ్ నవ్వుతారు: ముందు చాయ్ తాగితేనే. మరుసటి వారం మీరిద్దరూ అర్ధరాత్రి లైబ్రరీలో, రెండింతలు పెద్ద రోబో స్కెచ్ వేస్తూ ఉంటారు. ఇది ఇప్పుడే మొదలైందని మీకు అనిపిస్తోంది.",
+     "te-en": "Kiran navvutharu: mundu chai thaagithene. Next week iddaru midnight library lo, rendinthala pedda robot sketch chesthuntaru. Idi just beginning ani edo chepthondi.",
+     "hi-en@tts": "Kiran हँसकर: पर पहले chai। अगले हफ़्ते आधी रात को library की table पर दोगुने बड़े robot का sketch बन रहा है, आप दोनों के हाथों से। लगता है ये तो बस शुरुआत है।",
+     "te-en@tts": "Kiran నవ్వుతారు: ముందు chai తాగితేనే. Next week ఇద్దరూ midnight library లో, రెండింతల పెద్ద robot sketch చేస్తుంటారు. ఇది just beginning అని ఏదో చెప్తోంది."
+    }
+   ]
+  },
+  "solo": {
+   "title": {
+    "en-IN": "Solo Champion",
+    "hi-IN": "सोलो चैंपियन",
+    "hi-en": "Solo Champion",
+    "te-IN": "సోలో ఛాంపియన్",
+    "te-en": "Solo Champion"
+   },
+   "rank": "bronze",
+   "scene": "fest-dawn",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "You head home early and sleep like a log. The trophy looks great on your shelf, but you keep wondering what Kiran wanted to say.",
+     "hi-IN": "आप जल्दी घर जाकर घोड़े बेचकर सोते हैं. ट्रॉफ़ी शेल्फ़ पर शानदार लगती है, पर मन में एक सवाल घूमता रहता है: किरन के दिल में क्या बात थी?",
+     "hi-en": "Aap jaldi ghar nikal jaate hain aur ghode bechkar sote hain. Trophy shelf par shaandaar lagti hai, par ek sawaal baar-baar lautta hai: Kiran ki woh baat kya thi?",
+     "te-IN": "మీరు త్వరగా ఇంటికి వెళ్ళి మొద్దునిద్ర పోతారు. ట్రోఫీ షెల్ఫ్ మీద బాగుంది, కానీ కిరణ్ ఏం చెప్పాలనుకున్నారో అని ఆలోచిస్తూనే ఉంటారు.",
+     "te-en": "Meeru early ga intiki velli moddu nidra pothaaru. Shelf meeda trophy super ga undi, kaani Kiran em cheppalanukunnaro ani aalochisthune untaru.",
+     "hi-en@tts": "आप जल्दी घर निकल जाते हैं और घोड़े बेचकर सोते हैं। Trophy shelf पर शानदार लगती है, पर एक सवाल बार-बार लौटता है: Kiran की वो बात क्या थी?",
+     "te-en@tts": "మీరు early గా ఇంటికి వెళ్ళి మొద్దు నిద్ర పోతారు. Shelf మీద trophy super గా ఉంది, కానీ Kiran ఏం చెప్పాలనుకున్నారో అని ఆలోచిస్తూనే ఉంటారు."
+    }
+   ]
+  }
+ }
+}

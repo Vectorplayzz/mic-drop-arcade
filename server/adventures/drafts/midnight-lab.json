@@ -1,0 +1,1167 @@
+{
+ "schema": 1,
+ "id": "midnight-lab",
+ "genre": "mystery",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": null,
+ "reviewed_at": null,
+ "title": {
+  "en-IN": "The Midnight Lab",
+  "hi-IN": "द मिडनाइट लैब",
+  "hi-en": "The Midnight Lab",
+  "te-IN": "ద మిడ్‌నైట్ ల్యాబ్",
+  "te-en": "The Midnight Lab"
+ },
+ "tagline": {
+  "en-IN": "Your final-year project is stolen. The expo is at nine.",
+  "hi-IN": "आपका फ़ाइनल ईयर प्रोजेक्ट चोरी हो चुका है. एक्सपो सुबह नौ बजे है.",
+  "hi-en": "Aapka final-year project chori ho gaya hai. Expo subah nau baje hai.",
+  "te-IN": "మీ ఫైనల్ ఇయర్ ప్రాజెక్ట్ దొంగతనం అయింది. ఎక్స్‌పో ఉదయం తొమ్మిదికి.",
+  "te-en": "Mee final-year project dongathanam ayindi. Expo poddhuna nine ki."
+ },
+ "cover": "lab-corridor",
+ "meter": {
+  "label": {
+   "en-IN": "Clues",
+   "hi-IN": "सुराग",
+   "hi-en": "Clues",
+   "te-IN": "క్లూస్",
+   "te-en": "Clues"
+  },
+  "icon": "search",
+  "start": 0,
+  "max": 3,
+  "on_zero": null
+ },
+ "items": {
+  "thread": {
+   "label": {
+    "en-IN": "Red wool thread",
+    "hi-IN": "लाल ऊन का धागा",
+    "hi-en": "Laal wool ka dhaaga",
+    "te-IN": "ఎర్ర ఉన్ని దారం",
+    "te-en": "Red wool daaram"
+   }
+  },
+  "log": {
+   "label": {
+    "en-IN": "Door log",
+    "hi-IN": "डोर लॉग",
+    "hi-en": "Door log",
+    "te-IN": "డోర్ లాగ్",
+    "te-en": "Door log"
+   }
+  },
+  "cctv": {
+   "label": {
+    "en-IN": "CCTV clip",
+    "hi-IN": "सीसीटीवी क्लिप",
+    "hi-en": "CCTV clip",
+    "te-IN": "సీసీటీవీ క్లిప్",
+    "te-en": "CCTV clip"
+   }
+  },
+  "found": {
+   "label": {
+    "en-IN": "Netra",
+    "hi-IN": "नेत्रा",
+    "hi-en": "Netra",
+    "te-IN": "నేత్ర",
+    "te-en": "Netra"
+   }
+  }
+ },
+ "start": "m_start",
+ "nodes": {
+  "m_start": {
+   "scene": "lab-corridor",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Midnight, the night before the project expo. You come back to the department for your charger, and the electronics lab door is wide open.",
+     "hi-IN": "आधी रात, प्रोजेक्ट एक्सपो से पहले की रात. आप चार्जर लेने डिपार्टमेंट लौटते हैं, और इलेक्ट्रॉनिक्स लैब का दरवाज़ा पूरा खुला पड़ा है.",
+     "hi-en": "Aadhi raat, project expo se pehle ki raat. Aap charger lene department waapas aate hain, aur electronics lab ka door poora khula hai.",
+     "te-IN": "అర్ధరాత్రి, ప్రాజెక్ట్ ఎక్స్‌పోకి ముందు రోజు రాత్రి. ఛార్జర్ కోసం డిపార్ట్‌మెంట్‌కి తిరిగి వస్తే, ఎలక్ట్రానిక్స్ ల్యాబ్ డోర్ బార్లా తెరిచి ఉంది.",
+     "te-en": "Midnight, project expo mundu raathri. Charger kosam department ki thirigi vastharu, electronics lab door baarlaa therichi undi.",
+     "hi-en@tts": "आधी रात, project expo से पहले की रात। आप charger लेने department वापस आते हैं, और electronics lab का door पूरा खुला है।",
+     "te-en@tts": "Midnight, project expo ముందు రాత్రి. Charger కోసం department కి తిరిగి వస్తారు, electronics lab door బార్లా తెరిచి ఉంది."
+    },
+    {
+     "en-IN": "Inside, the glass case is smashed. Netra, your smart glasses prototype, is gone!",
+     "hi-IN": "अंदर काँच का केस टूटा पड़ा है. नेत्रा, आपका स्मार्ट ग्लासेज़ प्रोटोटाइप, ग़ायब है!",
+     "hi-en": "Andar glass case toota pada hai. Netra, aapka smart glasses prototype, gaayab hai!",
+     "te-IN": "లోపల గ్లాస్ కేస్ పగిలిపోయి ఉంది. మీ స్మార్ట్ గ్లాసెస్ ప్రోటోటైప్ నేత్ర మాయం!",
+     "te-en": "Lopala glass case pagilipoyi undi. Mee smart glasses prototype, Netra, maayam!",
+     "hi-en@tts": "अंदर glass case टूटा पड़ा है। Netra, आपका smart glasses prototype, गायब है!",
+     "te-en@tts": "లోపల glass case పగిలిపోయి ఉంది. మీ smart glasses prototype, Netra, మాయం!"
+    }
+   ],
+   "go": "m_first"
+  },
+  "m_first": {
+   "scene": "lab-electronics",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Glass on the floor, papers everywhere. The security guards lock this block at two. You have time to check two places.",
+     "hi-IN": "फ़र्श पर काँच, हर तरफ़ काग़ज़. सिक्योरिटी गार्ड दो बजे ये ब्लॉक बंद कर देते हैं. आपके पास दो जगहें देखने का वक़्त है.",
+     "hi-en": "Farsh par kaanch, har taraf papers bikhre. Security guards do baje yeh block lock kar dete hain. Bas do jagah check karne ka time hai.",
+     "te-IN": "నేల మీద గాజు ముక్కలు, ఎటు చూసినా పేపర్లు. సెక్యూరిటీ గార్డులు రెండు గంటలకు ఈ బ్లాక్ లాక్ చేస్తారు. రెండు చోట్ల చెక్ చేసే టైమ్ ఉంది.",
+     "te-en": "Floor meeda glass, antha papers chindaravandara. Security guards ee block ni two ki lock chestharu. Rendu places check cheyyadaanike time undi.",
+     "hi-en@tts": "फ़र्श पर कांच, हर तरफ़ papers बिखरे। Security guards दो बजे ये block lock कर देते हैं। बस दो जगह check करने का time है।",
+     "te-en@tts": "Floor మీద glass, అంతా papers చిందరవందర. Security guards ఈ block ని two కి lock చేస్తారు. రెండు places check చెయ్యడానికే time ఉంది."
+    },
+    {
+     "en-IN": "Where do you start?",
+     "hi-IN": "शुरुआत कहाँ से?",
+     "hi-en": "Shuruaat kahan se?",
+     "te-IN": "ఎక్కడి నుంచి మొదలుపెడతారు?",
+     "te-en": "Ekkada start chestharu?",
+     "hi-en@tts": "शुरुआत कहाँ से?",
+     "te-en@tts": "ఎక్కడ start చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Search the broken case",
+      "hi-IN": "टूटा केस देखो",
+      "hi-en": "Toota case dekho",
+      "te-IN": "పగిలిన కేస్ వెతుకు",
+      "te-en": "Pagilina case vethukutha"
+     },
+     "keywords": {
+      "en-IN": [
+       "case",
+       "glass",
+       "search"
+      ],
+      "hi-IN": [
+       "केस",
+       "काँच",
+       "टूटा"
+      ],
+      "hi-en": [
+       "case",
+       "glass",
+       "kaanch",
+       "toota"
+      ],
+      "te-IN": [
+       "కేస్",
+       "గాజు",
+       "గ్లాస్"
+      ],
+      "te-en": [
+       "కేస్",
+       "గ్లాస్",
+       "గాజు",
+       "case",
+       "glass"
+      ]
+     },
+     "go": "m_case"
+    },
+    {
+     "label": {
+      "en-IN": "Check the server logs",
+      "hi-IN": "सर्वर लॉग्स चेक करो",
+      "hi-en": "Server logs check karo",
+      "te-IN": "సర్వర్ లాగ్స్ చూడు",
+      "te-en": "Server logs check"
+     },
+     "keywords": {
+      "en-IN": [
+       "server",
+       "logs",
+       "log"
+      ],
+      "hi-IN": [
+       "सर्वर",
+       "लॉग",
+       "लॉग्स"
+      ],
+      "hi-en": [
+       "server",
+       "logs",
+       "log"
+      ],
+      "te-IN": [
+       "సర్వర్",
+       "లాగ్స్",
+       "లాగ్"
+      ],
+      "te-en": [
+       "సర్వర్",
+       "లాగ్స్",
+       "లాగ్",
+       "server",
+       "logs"
+      ]
+     },
+     "go": "m_server"
+    },
+    {
+     "label": {
+      "en-IN": "Visit the security room",
+      "hi-IN": "सिक्योरिटी रूम चलो",
+      "hi-en": "Security room chalo",
+      "te-IN": "సెక్యూరిటీ రూమ్‌కి",
+      "te-en": "Security room ki"
+     },
+     "keywords": {
+      "en-IN": [
+       "security",
+       "cctv",
+       "camera"
+      ],
+      "hi-IN": [
+       "सिक्योरिटी",
+       "सीसीटीवी",
+       "कैमरा"
+      ],
+      "hi-en": [
+       "security",
+       "cctv",
+       "camera"
+      ],
+      "te-IN": [
+       "సెక్యూరిటీ",
+       "సీసీటీవీ",
+       "కెమెరా"
+      ],
+      "te-en": [
+       "సెక్యూరిటీ",
+       "సీసీటీవీ",
+       "కెమెరా",
+       "security",
+       "cctv"
+      ]
+     },
+     "go": "m_cctv"
+    }
+   ]
+  },
+  "m_next": {
+   "scene": "lab-corridor",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Back in the corridor, the tube light flickers. It's one thirty. One more place before the block is locked.",
+     "hi-IN": "वापस कॉरिडोर में ट्यूबलाइट टिमटिमा रही है. डेढ़ बज चुके हैं. ब्लॉक बंद होने से पहले बस एक और जगह.",
+     "hi-en": "Waapas corridor mein tube light timtima rahi hai. Dedh baj chuke hain. Block lock hone se pehle bas ek aur jagah.",
+     "te-IN": "కారిడార్‌లో ట్యూబ్ లైట్ మిణుకుమంటోంది. టైమ్ ఒకటిన్నర. బ్లాక్ లాక్ అయ్యేలోపు ఇంకొక్క చోట చూడొచ్చు.",
+     "te-en": "Thirigi corridor lo tube light minukuminukumantondi. Time one thirty. Block lock ayye lopu inko okka place.",
+     "hi-en@tts": "वापस corridor में tube light टिमटिमा रही है। डेढ़ बज चुके हैं। Block lock होने से पहले बस एक और जगह।",
+     "te-en@tts": "తిరిగి corridor లో tube light మిణుకుమిణుకుమంటోంది. టైమ్ one thirty. Block lock అయ్యే లోపు ఇంకో ఒక్క place."
+    }
+   ],
+   "enter": {
+    "gain": [
+     "second"
+    ]
+   },
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Search the broken case",
+      "hi-IN": "टूटा केस देखो",
+      "hi-en": "Toota case dekho",
+      "te-IN": "పగిలిన కేస్ వెతుకు",
+      "te-en": "Pagilina case vethukutha"
+     },
+     "keywords": {
+      "en-IN": [
+       "case",
+       "glass",
+       "search"
+      ],
+      "hi-IN": [
+       "केस",
+       "काँच",
+       "टूटा"
+      ],
+      "hi-en": [
+       "case",
+       "glass",
+       "kaanch",
+       "toota"
+      ],
+      "te-IN": [
+       "కేస్",
+       "గాజు",
+       "గ్లాస్"
+      ],
+      "te-en": [
+       "కేస్",
+       "గ్లాస్",
+       "గాజు",
+       "case",
+       "glass"
+      ]
+     },
+     "go": "m_case",
+     "if": {
+      "lacks": [
+       "thread",
+       "case_done"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Check the server logs",
+      "hi-IN": "सर्वर लॉग्स चेक करो",
+      "hi-en": "Server logs check karo",
+      "te-IN": "సర్వర్ లాగ్స్ చూడు",
+      "te-en": "Server logs check"
+     },
+     "keywords": {
+      "en-IN": [
+       "server",
+       "logs",
+       "log"
+      ],
+      "hi-IN": [
+       "सर्वर",
+       "लॉग",
+       "लॉग्स"
+      ],
+      "hi-en": [
+       "server",
+       "logs",
+       "log"
+      ],
+      "te-IN": [
+       "సర్వర్",
+       "లాగ్స్",
+       "లాగ్"
+      ],
+      "te-en": [
+       "సర్వర్",
+       "లాగ్స్",
+       "లాగ్",
+       "server",
+       "logs"
+      ]
+     },
+     "go": "m_server",
+     "if": {
+      "lacks": [
+       "log",
+       "server_done"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Visit the security room",
+      "hi-IN": "सिक्योरिटी रूम चलो",
+      "hi-en": "Security room chalo",
+      "te-IN": "సెక్యూరిటీ రూమ్‌కి",
+      "te-en": "Security room ki"
+     },
+     "keywords": {
+      "en-IN": [
+       "security",
+       "cctv",
+       "camera"
+      ],
+      "hi-IN": [
+       "सिक्योरिटी",
+       "सीसीटीवी",
+       "कैमरा"
+      ],
+      "hi-en": [
+       "security",
+       "cctv",
+       "camera"
+      ],
+      "te-IN": [
+       "సెక్యూరిటీ",
+       "సీసీటీవీ",
+       "కెమెరా"
+      ],
+      "te-en": [
+       "సెక్యూరిటీ",
+       "సీసీటీవీ",
+       "కెమెరా",
+       "security",
+       "cctv"
+      ]
+     },
+     "go": "m_cctv",
+     "if": {
+      "lacks": [
+       "cctv",
+       "cctv_done"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Search the workshop",
+      "hi-IN": "वर्कशॉप में ढूँढो",
+      "hi-en": "Workshop mein dhoondo",
+      "te-IN": "వర్క్‌షాప్ వెతుకు",
+      "te-en": "Workshop vethukutha"
+     },
+     "keywords": {
+      "en-IN": [
+       "workshop",
+       "tarpaulin"
+      ],
+      "hi-IN": [
+       "वर्कशॉप",
+       "तिरपाल"
+      ],
+      "hi-en": [
+       "workshop",
+       "tarpaulin"
+      ],
+      "te-IN": [
+       "వర్క్‌షాప్",
+       "టార్పాలిన్"
+      ],
+      "te-en": [
+       "వర్క్‌షాప్",
+       "వర్క్ షాప్",
+       "టార్పాలిన్",
+       "workshop",
+       "tarpaulin"
+      ]
+     },
+     "go": "m_workshop",
+     "if": {
+      "has": [
+       "cctv"
+      ]
+     }
+    }
+   ]
+  },
+  "m_case": {
+   "scene": "lab-electronics",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "You crouch by the smashed case with your phone torch. Caught on a sharp edge of glass is a thread of red wool, like from a hoodie.",
+     "hi-IN": "फ़ोन की टॉर्च लेकर आप टूटे केस के पास झुकते हैं. काँच के एक नुकीले किनारे में लाल ऊन का एक धागा फँसा है, जैसे किसी हुडी से निकला हो.",
+     "hi-en": "Aap phone ki torch lekar toote case ke paas baithte hain. Kaanch ke ek nukeele kinaare mein laal wool ka dhaaga phansa hai, jaise kisi hoodie ka ho.",
+     "te-IN": "ఫోన్ టార్చ్‌తో పగిలిన కేస్ దగ్గర కూర్చుంటారు. గాజు పదునైన అంచుకు ఒక ఎర్ర ఉన్ని దారం చిక్కుకుని ఉంది, హూడీ నుంచి ఊడినట్టు.",
+     "te-en": "Phone torch vesukuni pagilina case daggara kurchuntaru. Glass padunaina anchuki red wool daaram okati chikkukuni undi, hoodie nunchi vachinattu.",
+     "hi-en@tts": "आप phone की torch लेकर टूटे case के पास बैठते हैं। कांच के एक नुकीले किनारे में लाल wool का धागा फँसा है, जैसे किसी hoodie का हो।",
+     "te-en@tts": "Phone torch వేసుకుని పగిలిన case దగ్గర కూర్చుంటారు. Glass పదునైన అంచుకి red wool దారం ఒకటి చిక్కుకుని ఉంది, hoodie నుంచి వచ్చినట్టు."
+    }
+   ],
+   "enter": {
+    "meter": 1,
+    "gain": [
+     "thread",
+     "case_done"
+    ]
+   },
+   "go": [
+    {
+     "if": {
+      "has": [
+       "second"
+      ]
+     },
+     "go": "m_accuse"
+    },
+    {
+     "go": "m_next"
+    }
+   ]
+  },
+  "m_server": {
+   "scene": "lab-server",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The server room hums in blue light. The door log is behind a password, and the hint on the sticky note is a maths riddle.",
+     "hi-IN": "सर्वर रूम नीली रोशनी में गुनगुना रहा है. डोर लॉग पासवर्ड के पीछे बंद है, और स्टिकी नोट पर लिखा हिंट मैथ्स की एक पहेली है.",
+     "hi-en": "Server room neeli roshni mein hum kar raha hai. Door log ek password ke peeche hai, aur sticky note waala hint ek maths riddle hai.",
+     "te-IN": "సర్వర్ రూమ్ నీలి వెలుగులో గుయ్యిమంటోంది. డోర్ లాగ్‌కి పాస్‌వర్డ్ ఉంది, స్టిక్కీ నోట్ మీద హింట్ ఒక మ్యాథ్స్ పజిల్.",
+     "te-en": "Server room blue light lo hum avuthondi. Door log oka password venaka undi, sticky note meeda hint oka maths riddle.",
+     "hi-en@tts": "Server room नीली रोशनी में hum कर रहा है। Door log एक password के पीछे है, और sticky note वाला hint एक maths riddle है।",
+     "te-en@tts": "Server room blue light లో hum అవుతోంది. Door log ఒక password వెనక ఉంది, sticky note మీద hint ఒక maths riddle."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "The hint says: the password is twelve times twelve. What do you type?",
+     "hi-IN": "हिंट कहता है: पासवर्ड है बारह गुणा बारह. क्या टाइप करना है?",
+     "hi-en": "Hint kehta hai: password hai baarah guna baarah. Aap kya type karte hain?",
+     "te-IN": "హింట్: పాస్‌వర్డ్ అంటే పన్నెండు ఇంటూ పన్నెండు. మీరేం టైప్ చేస్తారు?",
+     "te-en": "Hint ila undi: password ante twelve into twelve. Meeru em type chestharu?",
+     "hi-en@tts": "Hint कहता है: password है बारह गुणा बारह। आप क्या type करते हैं?",
+     "te-en@tts": "Hint ఇలా ఉంది: password అంటే twelve into twelve. మీరు ఏం type చేస్తారు?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "144",
+      "124",
+      "122"
+     ],
+     "hi-IN": [
+      "144",
+      "124",
+      "122"
+     ],
+     "hi-en": [
+      "144",
+      "124",
+      "122"
+     ],
+     "te-IN": [
+      "144",
+      "124",
+      "122"
+     ],
+     "te-en": [
+      "144",
+      "124",
+      "122"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "एक सौ चवालीस",
+      "एक सौ चौवालीस",
+      "वन फोर्टी फोर",
+      "one forty four"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "నూట నలభై నాలుగు",
+      "వన్ ఫోర్టీ ఫోర్",
+      "one forty four"
+     ],
+     "te-en": [
+      "one forty four",
+      "one hundred forty four",
+      "వన్ ఫార్టీ ఫోర్",
+      "నూట నలభై నాలుగు"
+     ]
+    },
+    "pass": {
+     "go": [
+      {
+       "if": {
+        "has": [
+         "second"
+        ]
+       },
+       "go": "m_accuse"
+      },
+      {
+       "go": "m_next"
+      }
+     ],
+     "say": [
+      {
+       "en-IN": "One forty four. Access granted! The log shows the lab was opened at eleven fifty two with Vikram's ID card. Vikram, the rival team lead.",
+       "hi-IN": "एक सौ चवालीस. एक्सेस ग्रांटेड! लॉग बताता है कि लैब ग्यारह बजकर बावन मिनट पर विक्रम के आईडी कार्ड से खुली थी. विक्रम, राइवल टीम का लीड.",
+       "hi-en": "One forty four. Access granted! Log dikhata hai ki lab eleven fifty two par Vikram ke ID card se khuli thi. Vikram, rival team ka lead.",
+       "te-IN": "నూట నలభై నాలుగు. యాక్సెస్ గ్రాంటెడ్! పదకొండు యాభై రెండుకి విక్రమ్ ఐడీ కార్డ్‌తో ల్యాబ్ తెరిచినట్టు లాగ్ చూపిస్తోంది. విక్రమ్, రైవల్ టీమ్ లీడ్.",
+       "te-en": "One forty four. Access granted! Lab ni eleven fifty two ki Vikram ID card tho open chesinattu log chupisthondi. Vikram, rival team lead.",
+       "hi-en@tts": "One forty four. Access granted! Log दिखाता है कि lab eleven fifty two पर Vikram के ID card से खुली थी। Vikram, rival team का lead।",
+       "te-en@tts": "One forty four. Access granted! Lab ని eleven fifty two కి Vikram ID card తో open చేసినట్టు log చూపిస్తోంది. Vikram, rival team lead."
+      }
+     ],
+     "effects": {
+      "meter": 1,
+      "gain": [
+       "log",
+       "server_done"
+      ]
+     }
+    },
+    "fail": {
+     "go": [
+      {
+       "if": {
+        "has": [
+         "second"
+        ]
+       },
+       "go": "m_accuse"
+      },
+      {
+       "go": "m_next"
+      }
+     ],
+     "say": [
+      {
+       "en-IN": "Access denied. One more wrong try would alert the admin, so you back away.",
+       "hi-IN": "एक्सेस डिनाइड. एक और ग़लत कोशिश हुई तो एडमिन को अलर्ट चला जाएगा, इसलिए आप पीछे हट जाते हैं.",
+       "hi-en": "Access denied. Ek aur galat try se admin ko alert chala jaayega, toh aap chupchaap peeche hat jaate hain.",
+       "te-IN": "యాక్సెస్ డినైడ్. ఇంకోసారి తప్పు కొడితే అడ్మిన్‌కి అలర్ట్ వెళ్తుంది, అందుకే వెనక్కి తగ్గుతారు.",
+       "te-en": "Access denied. Inko wrong try chesthe admin ki alert veltundi, anduke venakki thaggutharu.",
+       "hi-en@tts": "Access denied. एक और गलत try से admin को alert चला जाएगा, तो आप चुपचाप पीछे हट जाते हैं।",
+       "te-en@tts": "Access denied. ఇంకో wrong try చేస్తే admin కి alert వెళ్తుంది, అందుకే వెనక్కి తగ్గుతారు."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "server_done"
+      ]
+     }
+    }
+   }
+  },
+  "m_cctv": {
+   "scene": "lab-cctv",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "In the security room, Raju anna, the night watchman, is snoring in his chair next to a glass of cold tea.",
+     "hi-IN": "सिक्योरिटी रूम में नाइट वॉचमैन राजू अन्ना कुर्सी पर खर्राटे ले रहे हैं, बगल में ठंडी चाय का गिलास.",
+     "hi-en": "Security room mein Raju anna, night watchman, thandi chai ke glass ke paas apni kursi par kharraate le rahe hain.",
+     "te-IN": "సెక్యూరిటీ రూమ్‌లో, నైట్ వాచ్‌మన్ రాజు అన్న కుర్చీలో గురక పెడుతున్నాడు, పక్కనే చల్లారిపోయిన టీ గ్లాస్.",
+     "te-en": "Security room lo night watchman Raju anna, challaarina tea glass pakkana chair lo guraka pedthunnaru.",
+     "hi-en@tts": "Security room में Raju anna, night watchman, ठंडी चाय के गिलास के पास अपनी कुर्सी पर खर्राटे ले रहे हैं।",
+     "te-en@tts": "Security room లో night watchman Raju anna, చల్లారిన tea glass పక్కన chair లో గురక పెడుతున్నారు."
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Wake him up politely",
+      "hi-IN": "उन्हें आराम से जगाओ",
+      "hi-en": "Pyaar se jagaao",
+      "te-IN": "మర్యాదగా లేపు",
+      "te-en": "Raju anna ni leputha"
+     },
+     "keywords": {
+      "en-IN": [
+       "wake",
+       "politely",
+       "raju"
+      ],
+      "hi-IN": [
+       "जगाओ",
+       "आराम से",
+       "राजू"
+      ],
+      "hi-en": [
+       "jagao",
+       "wake",
+       "politely",
+       "raju",
+       "pyaar"
+      ],
+      "te-IN": [
+       "లేపు",
+       "మర్యాదగా",
+       "రాజు"
+      ],
+      "te-en": [
+       "లేపుతా",
+       "లేపు",
+       "రాజు అన్న",
+       "రాజు",
+       "raju"
+      ]
+     },
+     "go": [
+      {
+       "if": {
+        "has": [
+         "second"
+        ]
+       },
+       "go": "m_accuse"
+      },
+      {
+       "go": "m_next"
+      }
+     ],
+     "say": [
+      {
+       "en-IN": "Raju anna rubs his eyes and rewinds the footage for you. At eleven fifty five, a figure in a red hoodie walks towards the workshop, carrying a box.",
+       "hi-IN": "राजू अन्ना आँखें मलते हुए फ़ुटेज रिवाइंड करते हैं. ग्यारह बजकर पचपन मिनट पर, लाल हुडी में कोई एक डिब्बा उठाए वर्कशॉप की तरफ़ जा रहा है.",
+       "hi-en": "Raju anna aankhein malte hue footage rewind karte hain. Eleven fifty five par laal hoodie mein ek figure, haath mein box liye, workshop ki taraf jaati dikhti hai.",
+       "te-IN": "రాజు అన్న కళ్ళు నలుపుకుని మీ కోసం ఫుటేజ్ రివైండ్ చేస్తాడు. పదకొండు యాభై ఐదుకి, ఎర్ర హూడీలో ఎవరో బాక్స్ పట్టుకుని వర్క్‌షాప్ వైపు నడుస్తున్నారు.",
+       "te-en": "Raju anna kallu nalupukuni mee kosam footage rewind chestharu. Eleven fifty five ki, red hoodie vesukunna oka figure box pattukuni workshop vaipu nadusthondi.",
+       "hi-en@tts": "Raju anna आँखें मलते हुए footage rewind करते हैं। Eleven fifty five पर लाल hoodie में एक figure, हाथ में box लिए, workshop की तरफ़ जाती दिखती है।",
+       "te-en@tts": "Raju anna కళ్ళు నలుపుకుని మీ కోసం footage rewind చేస్తారు. Eleven fifty five కి, red hoodie వేసుకున్న ఒక figure box పట్టుకుని workshop వైపు నడుస్తోంది."
+      }
+     ],
+     "effects": {
+      "meter": 1,
+      "gain": [
+       "cctv",
+       "cctv_done"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Rewind it yourself",
+      "hi-IN": "खुद रिवाइंड करो",
+      "hi-en": "Khud rewind karo",
+      "te-IN": "నేనే రివైండ్ చేస్తా",
+      "te-en": "Nene rewind chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "rewind",
+       "yourself",
+       "myself"
+      ],
+      "hi-IN": [
+       "रिवाइंड",
+       "खुद",
+       "ख़ुद"
+      ],
+      "hi-en": [
+       "rewind",
+       "khud",
+       "myself",
+       "yourself"
+      ],
+      "te-IN": [
+       "రివైండ్",
+       "నేనే"
+      ],
+      "te-en": [
+       "రివైండ్",
+       "నేనే",
+       "మైసెల్ఫ్",
+       "rewind",
+       "myself"
+      ]
+     },
+     "go": [
+      {
+       "if": {
+        "has": [
+         "second"
+        ]
+       },
+       "go": "m_accuse"
+      },
+      {
+       "go": "m_next"
+      }
+     ],
+     "say": [
+      {
+       "en-IN": "You fumble with the ancient recorder and accidentally erase an hour of footage. Raju anna snores on, blissfully unaware.",
+       "hi-IN": "पुराने रिकॉर्डर से जूझते-जूझते ग़लती से एक घंटे की फ़ुटेज मिट जाती है. राजू अन्ना बेख़बर खर्राटे लेते रहते हैं.",
+       "hi-en": "Puraane recorder se ulajhte-ulajhte galti se ek ghante ki footage delete ho jaati hai. Raju anna bekhabar, kharraate lete rehte hain.",
+       "te-IN": "పాత రికార్డర్‌తో తడబడుతూ, పొరపాటున ఒక గంట ఫుటేజ్ డిలీట్ చేసేస్తారు. రాజు అన్న ఏమీ తెలియకుండా గురక పెడుతూనే ఉన్నాడు.",
+       "te-en": "Paatha recorder tho thadabadi, porapaatuna oka ganta footage erase chesestharu. Raju anna emi theliyakunda haayiga guraka peduthune unnaru.",
+       "hi-en@tts": "पुराने recorder से उलझते-उलझते गलती से एक घंटे की footage delete हो जाती है। Raju anna बेखबर, खर्राटे लेते रहते हैं।",
+       "te-en@tts": "పాత recorder తో తడబడి, పొరపాటున ఒక గంట footage erase చేసేస్తారు. Raju anna ఏమీ తెలియకుండా హాయిగా గురక పెడుతూనే ఉన్నారు."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "cctv_done"
+      ]
+     }
+    }
+   ]
+  },
+  "m_workshop": {
+   "scene": "lab-workshop",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The workshop door is chained shut with a number padlock. Through the gap you can see something under a blue tarpaulin.",
+     "hi-IN": "वर्कशॉप के दरवाज़े पर ज़ंजीर और नंबर वाला ताला है. दरार से नीले तिरपाल के नीचे कुछ दिखता है.",
+     "hi-en": "Workshop ka door chain se band hai, aur us par number padlock laga hai. Gap se neeli tarpaulin ke neeche kuch dikh raha hai.",
+     "te-IN": "వర్క్‌షాప్ డోర్‌కి చైన్, నంబర్ ప్యాడ్‌లాక్ వేసి ఉన్నాయి. సందులోంచి నీలి టార్పాలిన్ కింద ఏదో కనిపిస్తోంది.",
+     "te-en": "Workshop door ki chain vesi number padlock pettaru. Gap lonchi blue tarpaulin kinda edo kanipisthondi.",
+     "hi-en@tts": "Workshop का door chain से बंद है, और उस पर number padlock लगा है। Gap से नीली tarpaulin के नीचे कुछ दिख रहा है।",
+     "te-en@tts": "Workshop door కి chain వేసి number padlock పెట్టారు. Gap లోంచి blue tarpaulin కింద ఏదో కనిపిస్తోంది."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "Scratched on the lock: the code is the boiling point of water, in degrees Celsius.",
+     "hi-IN": "ताले पर खुरचकर लिखा है: कोड है पानी का बॉइलिंग पॉइंट, डिग्री सेल्सियस में.",
+     "hi-en": "Lock par khurachkar likha hai: code hai paani ka boiling point, degree Celsius mein.",
+     "te-IN": "లాక్ మీద గీకి రాసి ఉంది: కోడ్ అంటే నీళ్ళు మరిగే ఉష్ణోగ్రత, డిగ్రీ సెల్సియస్‌లో.",
+     "te-en": "Lock meeda geeki raasi undi: code ante water boiling point, degrees Celsius lo.",
+     "hi-en@tts": "Lock पर खुरचकर लिखा है: code है पानी का boiling point, degree Celsius में।",
+     "te-en@tts": "Lock మీద గీకి రాసి ఉంది: code అంటే water boiling point, degrees Celsius లో."
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "100",
+      "90",
+      "212"
+     ],
+     "hi-IN": [
+      "100",
+      "90",
+      "212"
+     ],
+     "hi-en": [
+      "100",
+      "90",
+      "212"
+     ],
+     "te-IN": [
+      "100",
+      "90",
+      "212"
+     ],
+     "te-en": [
+      "100",
+      "90",
+      "212"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "सौ",
+      "एक सौ",
+      "hundred"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "వంద",
+      "నూరు",
+      "hundred"
+     ],
+     "te-en": [
+      "hundred",
+      "one hundred",
+      "హండ్రెడ్",
+      "వన్ హండ్రెడ్",
+      "వంద"
+     ]
+    },
+    "pass": {
+     "go": "m_accuse",
+     "say": [
+      {
+       "en-IN": "One hundred. Click! Under the tarpaulin is Netra, safe, next to a notebook full of copied circuit diagrams with Vikram's name on the cover.",
+       "hi-IN": "सौ. क्लिक! तिरपाल के नीचे नेत्रा है, सही-सलामत, और बगल में कॉपी किए सर्किट डायग्राम से भरी एक नोटबुक, कवर पर विक्रम का नाम.",
+       "hi-en": "Sau. Click! Tarpaulin ke neeche Netra, ekdum safe, aur paas mein copied circuit diagrams se bhari ek notebook, cover par Vikram ka naam.",
+       "te-IN": "వంద. క్లిక్! టార్పాలిన్ కింద నేత్ర సేఫ్‌గా ఉంది, పక్కనే కాపీ కొట్టిన సర్క్యూట్ డయాగ్రామ్స్ ఉన్న నోట్‌బుక్, కవర్ మీద విక్రమ్ పేరు.",
+       "te-en": "One hundred. Click! Tarpaulin kinda Netra safe ga undi, pakkane copy chesina circuit diagrams notebook, cover meeda Vikram peru.",
+       "hi-en@tts": "सौ। Click! Tarpaulin के नीचे Netra, एकदम safe, और पास में copied circuit diagrams से भरी एक notebook, cover पर Vikram का नाम।",
+       "te-en@tts": "One hundred. Click! Tarpaulin కింద Netra safe గా ఉంది, పక్కనే copy చేసిన circuit diagrams notebook, cover మీద Vikram పేరు."
+      }
+     ],
+     "effects": {
+      "meter": 1,
+      "gain": [
+       "found"
+      ]
+     }
+    },
+    "fail": {
+     "go": "m_accuse",
+     "say": [
+      {
+       "en-IN": "The lock won't open, and the guards' whistles are getting closer. You'll have to go with what you know.",
+       "hi-IN": "ताला नहीं खुलता, और गार्डों की सीटियाँ पास आ रही हैं. जो पता है, उसी के भरोसे आगे बढ़ना होगा.",
+       "hi-en": "Lock nahi khulta, aur guards ki seetiyan paas aa rahi hain. Ab jo pata hai, usi ke saath aage badhna hoga.",
+       "te-IN": "లాక్ తెరుచుకోదు, గార్డుల విజిల్స్ దగ్గరవుతున్నాయి. మీకు తెలిసిన దానితోనే ముందుకెళ్ళాలి.",
+       "te-en": "Lock open avvadu, guards whistles daggaravuthunnayi. Meeku thelisina daanithone munduku vellali.",
+       "hi-en@tts": "Lock नहीं खुलता, और guards की सीटियाँ पास आ रही हैं। अब जो पता है, उसी के साथ आगे बढ़ना होगा।",
+       "te-en@tts": "Lock open అవ్వదు, guards whistles దగ్గరవుతున్నాయి. మీకు తెలిసిన దానితోనే ముందుకు వెళ్ళాలి."
+      }
+     ]
+    }
+   }
+  },
+  "m_accuse": {
+   "scene": "lab-office",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "At seven in the morning you're in Doctor Sen's office, the head of department. She looks at you over her glasses: so, who took Netra?",
+     "hi-IN": "सुबह सात बजे आप डिपार्टमेंट की हेड, डॉक्टर सेन के ऑफ़िस में हैं. वो चश्मे के ऊपर से देखती हैं: तो, नेत्रा को किसने लिया?",
+     "hi-en": "Subah saat baje aap Doctor Sen ke office mein hain, department ki head. Woh chashme ke upar se dekhti hain: toh, Netra kisne liya?",
+     "te-IN": "ఉదయం ఏడింటికి మీరు హెచ్ఓడీ డాక్టర్ సేన్ ఆఫీస్‌లో ఉన్నారు. ఆమె కళ్ళజోడు పైనుంచి చూస్తూ అడుగుతారు: సరే, నేత్రని ఎవరు తీసుకెళ్ళారు?",
+     "te-en": "Poddhuna seven ki meeru head of department Doctor Sen office lo unnaru. Aavida glasses meeda nunchi chusthu aduguthaaru: so, Netra ni evaru theesukunnaru?",
+     "hi-en@tts": "सुबह सात बजे आप Doctor Sen के office में हैं, department की head। वो चश्मे के ऊपर से देखती हैं: तो, Netra किसने लिया?",
+     "te-en@tts": "పొద్దున seven కి మీరు head of department Doctor Sen office లో ఉన్నారు. ఆవిడ glasses మీద నుంచి చూస్తూ అడుగుతారు: so, Netra ని ఎవరు తీసుకున్నారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Vikram, the rival team lead",
+      "hi-IN": "विक्रम, राइवल टीम लीड",
+      "hi-en": "Vikram, rival team lead",
+      "te-IN": "విక్రమ్, రైవల్ టీమ్ లీడ్",
+      "te-en": "Vikram, rival team lead"
+     },
+     "keywords": {
+      "en-IN": [
+       "vikram",
+       "rival"
+      ],
+      "hi-IN": [
+       "विक्रम",
+       "राइवल"
+      ],
+      "hi-en": [
+       "vikram",
+       "rival"
+      ],
+      "te-IN": [
+       "విక్రమ్",
+       "రైవల్"
+      ],
+      "te-en": [
+       "విక్రమ్",
+       "రైవల్",
+       "vikram",
+       "rival"
+      ]
+     },
+     "go": [
+      {
+       "if": {
+        "has": [
+         "found"
+        ]
+       },
+       "go": "end:case_closed"
+      },
+      {
+       "if": {
+        "meter_at_least": 2
+       },
+       "go": "end:sharp"
+      },
+      {
+       "go": "end:hunch"
+      }
+     ]
+    },
+    {
+     "label": {
+      "en-IN": "Raju anna, the watchman",
+      "hi-IN": "राजू अन्ना, वॉचमैन",
+      "hi-en": "Raju anna, watchman",
+      "te-IN": "రాజు అన్న, వాచ్‌మన్",
+      "te-en": "Raju anna, watchman"
+     },
+     "keywords": {
+      "en-IN": [
+       "raju",
+       "watchman"
+      ],
+      "hi-IN": [
+       "राजू",
+       "वॉचमैन",
+       "अन्ना"
+      ],
+      "hi-en": [
+       "raju",
+       "watchman",
+       "anna"
+      ],
+      "te-IN": [
+       "రాజు",
+       "వాచ్‌మన్"
+      ],
+      "te-en": [
+       "రాజు",
+       "వాచ్‌మన్",
+       "వాచ్ మాన్",
+       "raju",
+       "watchman"
+      ]
+     },
+     "go": "end:wrong_suspect"
+    },
+    {
+     "label": {
+      "en-IN": "I need more time",
+      "hi-IN": "थोड़ा और वक़्त चाहिए",
+      "hi-en": "Thoda aur time chahiye",
+      "te-IN": "ఇంకా టైమ్ కావాలి",
+      "te-en": "Inka time kaavali"
+     },
+     "keywords": {
+      "en-IN": [
+       "time",
+       "more",
+       "wait"
+      ],
+      "hi-IN": [
+       "वक़्त",
+       "वक्त",
+       "समय",
+       "इंतज़ार"
+      ],
+      "hi-en": [
+       "time",
+       "wait",
+       "samay",
+       "aur time"
+      ],
+      "te-IN": [
+       "టైమ్",
+       "ఆగండి",
+       "ఇంకా"
+      ],
+      "te-en": [
+       "టైమ్",
+       "టైం",
+       "వెయిట్",
+       "time",
+       "wait"
+      ]
+     },
+     "go": "end:cold_case"
+    }
+   ]
+  }
+ },
+ "endings": {
+  "case_closed": {
+   "title": {
+    "en-IN": "Case Closed",
+    "hi-IN": "केस बंद",
+    "hi-en": "Case Closed",
+    "te-IN": "కేస్ క్లోజ్డ్",
+    "te-en": "Case Closed"
+   },
+   "rank": "gold",
+   "scene": "lab-dawn",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "You put Netra and the notebook on Doctor Sen's desk. Vikram confesses before lunch.",
+     "hi-IN": "आप नेत्रा और नोटबुक डॉक्टर सेन की मेज़ पर रखते हैं. लंच से पहले विक्रम सब क़बूल कर लेता है.",
+     "hi-en": "Aap Netra aur notebook Doctor Sen ki desk par rakhte hain. Lunch se pehle hi Vikram confess kar leta hai.",
+     "te-IN": "నేత్రని, ఆ నోట్‌బుక్‌ని డాక్టర్ సేన్ టేబుల్ మీద పెడతారు. లంచ్ లోపే విక్రమ్ ఒప్పేసుకుంటాడు.",
+     "te-en": "Netra ni, notebook ni Doctor Sen desk meeda pedatharu. Lunch lope Vikram nijam oppukuntadu.",
+     "hi-en@tts": "आप Netra और notebook Doctor Sen की desk पर रखते हैं। Lunch से पहले ही Vikram confess कर लेता है।",
+     "te-en@tts": "Netra నీ, notebook నీ Doctor Sen desk మీద పెడతారు. Lunch లోపే Vikram నిజం ఒప్పుకుంటాడు."
+    },
+    {
+     "en-IN": "At the expo, Netra wins best project, and the juniors start calling you Detective.",
+     "hi-IN": "एक्सपो में नेत्रा को बेस्ट प्रोजेक्ट मिलता है, और जूनियर्स आपको डिटेक्टिव बुलाने लगते हैं.",
+     "hi-en": "Expo mein Netra ko best project milta hai, aur juniors aapko Detective bulaane lagte hain.",
+     "te-IN": "ఎక్స్‌పోలో నేత్రకి బెస్ట్ ప్రాజెక్ట్ అవార్డ్, జూనియర్లు మిమ్మల్ని డిటెక్టివ్ అని పిలవడం మొదలుపెడతారు.",
+     "te-en": "Expo lo Netra best project geluchukuntundi, juniors mimmalni Detective ani pilavadam start chestharu.",
+     "hi-en@tts": "Expo में Netra को best project मिलता है, और juniors आपको Detective बुलाने लगते हैं।",
+     "te-en@tts": "Expo లో Netra best project గెలుస్తుంది, juniors మిమ్మల్ని Detective అని పిలవడం start చేస్తారు."
+    }
+   ]
+  },
+  "sharp": {
+   "title": {
+    "en-IN": "Sharp Detective",
+    "hi-IN": "शार्प डिटेक्टिव",
+    "hi-en": "Sharp Detective",
+    "te-IN": "షార్ప్ డిటెక్టివ్",
+    "te-en": "Sharp Detective"
+   },
+   "rank": "silver",
+   "scene": "lab-dawn",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "You lay out your clues one by one. Doctor Sen calls Vikram in, and ten minutes later Netra is back on your table. Just in time for the expo.",
+     "hi-IN": "आप एक-एक करके अपने सुराग सामने रखते हैं. डॉक्टर सेन विक्रम को बुलाती हैं, और दस मिनट बाद नेत्रा वापस आपकी टेबल पर. एक्सपो के लिए बिल्कुल सही वक़्त पर.",
+     "hi-en": "Aap ek-ek karke apne clues saamne rakhte hain. Doctor Sen Vikram ko bulaati hain, aur das minute baad Netra waapas aapki table par. Expo ke liye ekdum time par.",
+     "te-IN": "మీ క్లూస్ ఒక్కొక్కటిగా ముందు పెడతారు. డాక్టర్ సేన్ విక్రమ్‌ని పిలిపిస్తారు, పది నిమిషాల్లో నేత్ర మళ్ళీ మీ టేబుల్ మీద. ఎక్స్‌పోకి సరిగ్గా టైమ్‌కి.",
+     "te-en": "Mee clues okkokkatiga mundu pedatharu. Doctor Sen, Vikram ni pilustharu, padi minutes lo Netra malli mee table meeda. Expo ki sariggaa time ki.",
+     "hi-en@tts": "आप एक-एक करके अपने clues सामने रखते हैं। Doctor Sen Vikram को बुलाती हैं, और दस minute बाद Netra वापस आपकी table पर। Expo के लिए एकदम time पर।",
+     "te-en@tts": "మీ clues ఒక్కొక్కటిగా ముందు పెడతారు. Doctor Sen, Vikram ని పిలుస్తారు, పది minutes లో Netra మళ్ళీ మీ table మీద. Expo కి సరిగ్గా time కి."
+    }
+   ]
+  },
+  "hunch": {
+   "title": {
+    "en-IN": "A Hunch Without Proof",
+    "hi-IN": "बिना सबूत का शक",
+    "hi-en": "Bina Saboot ka Hunch",
+    "te-IN": "రుజువు లేని అనుమానం",
+    "te-en": "A Hunch Without Proof"
+   },
+   "rank": "bronze",
+   "scene": "lab-office",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Vikram just shrugs: prove it. You can't, not yet. Netra turns up a week later, after the expo is over.",
+     "hi-IN": "विक्रम बस कंधे उचकाता है: साबित करो. अभी तो ये मुमकिन नहीं. नेत्रा एक हफ़्ते बाद मिलती है, एक्सपो ख़त्म होने के बाद.",
+     "hi-en": "Vikram bas kandhe uchkaata hai: prove karo. Abhi aapke paas saboot nahi hai. Netra ek hafte baad milta hai, expo khatam hone ke baad.",
+     "te-IN": "విక్రమ్ భుజాలు ఎగరేస్తాడు: ప్రూవ్ చెయ్యి. ఇప్పుడైతే మీరు చేయలేరు. ఎక్స్‌పో అయిపోయాక, వారం తర్వాత నేత్ర దొరుకుతుంది.",
+     "te-en": "Vikram bhujaalu egarestadu: prove cheyyi. Meeru cheyyaleru, ippatikaithe. Netra oka week tharvatha dorukuthundi, expo ayipoyaaka.",
+     "hi-en@tts": "Vikram बस कंधे उचकाता है: prove करो। अभी आपके पास सबूत नहीं है। Netra एक हफ़्ते बाद मिलता है, expo खत्म होने के बाद।",
+     "te-en@tts": "Vikram భుజాలు ఎగరేస్తాడు: prove చెయ్యి. మీరు చెయ్యలేరు, ఇప్పటికైతే. Netra ఒక week తర్వాత దొరుకుతుంది, expo అయిపోయాక."
+    },
+    {
+     "en-IN": "Gather more clues next time.",
+     "hi-IN": "अगली बार और सुराग जुटाइए.",
+     "hi-en": "Agli baar zyada clues ikattha karo.",
+     "te-IN": "నెక్స్ట్ టైమ్ ఇంకా ఎక్కువ క్లూస్ సేకరించండి.",
+     "te-en": "Next time inka ekkuva clues collect cheyyandi.",
+     "hi-en@tts": "अगली बार ज़्यादा clues इकट्ठा करो।",
+     "te-en@tts": "Next time ఇంకా ఎక్కువ clues collect చెయ్యండి."
+    }
+   ]
+  },
+  "wrong_suspect": {
+   "title": {
+    "en-IN": "Wrong Suspect",
+    "hi-IN": "ग़लत शक",
+    "hi-en": "Galat Suspect",
+    "te-IN": "తప్పు అనుమానితుడు",
+    "te-en": "Wrong Suspect"
+   },
+   "rank": "bronze",
+   "scene": "lab-canteen",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Raju anna looks hurt. Later the footage shows the real thief in a red hoodie, and you spend the evening apologising over chai.",
+     "hi-IN": "राजू अन्ना को बहुत बुरा लगता है. बाद में फ़ुटेज में लाल हुडी वाला असली चोर दिखता है, और पूरी शाम चाय पर माफ़ी माँगने में निकल जाती है.",
+     "hi-en": "Raju anna ko bahut bura lagta hai. Baad mein footage mein asli chor laal hoodie mein dikhta hai, aur poori shaam chai par sorry bolte-bolte nikal jaati hai.",
+     "te-IN": "రాజు అన్న బాధపడతాడు. తర్వాత ఫుటేజ్‌లో ఎర్ర హూడీలో అసలు దొంగ కనిపిస్తాడు, మీరు సాయంత్రమంతా చాయ్ తాగుతూ సారీ చెప్తూనే ఉంటారు.",
+     "te-en": "Raju anna baadhapadatharu. Tharvatha footage lo asalu donga red hoodie lo kanipisthadu, meeru evening antha chai thaagisthu sorry chepthu gaduputharu.",
+     "hi-en@tts": "Raju anna को बहुत बुरा लगता है। बाद में footage में असली चोर लाल hoodie में दिखता है, और पूरी शाम chai पर sorry बोलते-बोलते निकल जाती है।",
+     "te-en@tts": "Raju anna బాధపడతారు. తర్వాత footage లో అసలు దొంగ red hoodie లో కనిపిస్తాడు, మీరు evening అంతా chai తాగిస్తూ sorry చెప్తూ గడుపుతారు."
+    }
+   ]
+  },
+  "cold_case": {
+   "title": {
+    "en-IN": "The Cold Case",
+    "hi-IN": "अनसुलझा केस",
+    "hi-en": "The Cold Case",
+    "te-IN": "ద కోల్డ్ కేస్",
+    "te-en": "The Cold Case"
+   },
+   "rank": "bronze",
+   "scene": "lab-rooftop",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "You ask for more time, but the expo won't wait. Netra stays missing, and the mystery keeps you up at night.",
+     "hi-IN": "आप और वक़्त माँगते हैं, पर एक्सपो किसी का इंतज़ार नहीं करता. नेत्रा का कुछ पता नहीं चलता, और ये रहस्य रातों की नींद उड़ा देता है.",
+     "hi-en": "Aap aur time maangte hain, par expo kisi ka intezaar nahi karta. Netra gaayab hi rehta hai, aur yeh mystery raaton ki neend uda deti hai.",
+     "te-IN": "మీరు ఇంకా టైమ్ అడుగుతారు, కానీ ఎక్స్‌పో ఆగదు. నేత్ర దొరకదు, ఆ మిస్టరీ రాత్రుళ్ళు మీకు నిద్ర పట్టనివ్వదు.",
+     "te-en": "Meeru inka time aduguthaaru, kaani expo wait cheyyadu. Netra dorakadu, aa mystery raathrullu mimmalni nidraponivvadu.",
+     "hi-en@tts": "आप और time माँगते हैं, पर expo किसी का इंतज़ार नहीं करता। Netra गायब ही रहता है, और ये mystery रातों की नींद उड़ा देती है।",
+     "te-en@tts": "మీరు ఇంకా time అడుగుతారు, కానీ expo wait చెయ్యదు. Netra దొరకదు, ఆ mystery రాత్రుళ్ళు మిమ్మల్ని నిద్రపోనివ్వదు."
+    }
+   ]
+  }
+ }
+}

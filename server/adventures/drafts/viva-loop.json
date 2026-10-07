@@ -1,0 +1,1193 @@
+{
+ "schema": 1,
+ "id": "viva-loop",
+ "genre": "comedy",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": null,
+ "reviewed_at": null,
+ "title": {
+  "en-IN": "Viva Loop",
+  "hi-IN": "वाइवा लूप",
+  "hi-en": "Viva Loop",
+  "te-IN": "వైవా లూప్",
+  "te-en": "Viva Loop"
+ },
+ "tagline": {
+  "en-IN": "Final viva day. Again. And again. And again.",
+  "hi-IN": "फ़ाइनल वाइवा का दिन. फिर से. और फिर से. और फिर से.",
+  "hi-en": "Final viva ka din. Phir se. Aur phir se. Aur phir se.",
+  "te-IN": "ఫైనల్ వైవా రోజు. మళ్ళీ. మళ్ళీ. మళ్ళీ మళ్ళీ.",
+  "te-en": "Final viva day. Malli. Malli. Malli."
+ },
+ "cover": "loop-bedroom",
+ "meter": {
+  "label": {
+   "en-IN": "Sanity",
+   "hi-IN": "दिमाग़ी सुकून",
+   "hi-en": "Dimaagi Sanity",
+   "te-IN": "మతిస్థిమితం",
+   "te-en": "Sanity"
+  },
+  "icon": "star",
+  "start": 3,
+  "max": 3,
+  "on_zero": "end:forever"
+ },
+ "items": {
+  "units": {
+   "label": {
+    "en-IN": "Units tip",
+    "hi-IN": "यूनिट्स टिप",
+    "hi-en": "Units waali tip",
+    "te-IN": "యూనిట్స్ టిప్",
+    "te-en": "Units tip"
+   }
+  },
+  "binary": {
+   "label": {
+    "en-IN": "Binary tip",
+    "hi-IN": "बाइनरी टिप",
+    "hi-en": "Binary waali tip",
+    "te-IN": "బైనరీ టిప్",
+    "te-en": "Binary tip"
+   }
+  },
+  "deja_vu": {
+   "label": {
+    "en-IN": "Deja vu",
+    "hi-IN": "देजा वू",
+    "hi-en": "Deja vu",
+    "te-IN": "డెజా వూ",
+    "te-en": "Deja vu"
+   }
+  },
+  "clock": {
+   "label": {
+    "en-IN": "Clock jammed",
+    "hi-IN": "घड़ी जाम",
+    "hi-en": "Ghadi jam",
+    "te-IN": "గడియారం జామ్",
+    "te-en": "Clock jam"
+   }
+  }
+ },
+ "start": "v_wake",
+ "nodes": {
+  "v_wake": {
+   "scene": "loop-bedroom",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Seven a.m., final viva day. Your alarm screams. You hit snooze, roll over, and the clock still says seven a.m. Weird.",
+     "hi-IN": "सुबह के सात बजे, फ़ाइनल वाइवा का दिन. अलार्म चीख़ता है. आप स्नूज़ दबाकर करवट बदलते हैं, और घड़ी में अब भी सात ही बजे हैं. अजीब.",
+     "hi-en": "Subah ke saat baje, final viva ka din. Alarm cheekh raha hai. Aap snooze dabaate hain, karwat badalte hain, aur ghadi mein ab bhi saat hi baje hain. Weird.",
+     "te-IN": "ఉదయం ఏడు గంటలు, ఫైనల్ వైవా రోజు. అలారం గోల పెడుతోంది. స్నూజ్ కొట్టి అటు తిరిగి పడుకుంటారు, అయినా గడియారం ఇంకా ఏడే చూపిస్తోంది. వింతగా ఉందే.",
+     "te-en": "Poddhuna seven, final viva day. Alarm arusthondi. Snooze kotti atu thirugutharu, clock inka seven a.m. ane chupisthondi. Weird.",
+     "hi-en@tts": "सुबह के सात बजे, final viva का दिन। Alarm चीख रहा है। आप snooze दबाते हैं, करवट बदलते हैं, और घड़ी में अब भी सात ही बजे हैं। Weird.",
+     "te-en@tts": "పొద్దున seven, final viva day. Alarm అరుస్తోంది. Snooze కొట్టి అటు తిరుగుతారు, clock ఇంకా seven a.m. అనే చూపిస్తోంది. Weird."
+    },
+    {
+     "en-IN": "How do you start the day?",
+     "hi-IN": "दिन की शुरुआत कैसे करें?",
+     "hi-en": "Din ki shuruaat kaise karni hai?",
+     "te-IN": "రోజుని ఎలా మొదలుపెడతారు?",
+     "te-en": "Roju ela start chestharu?",
+     "hi-en@tts": "दिन की शुरुआत कैसे करनी है?",
+     "te-en@tts": "రోజు ఎలా start చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Catch the college bus",
+      "hi-IN": "कॉलेज बस पकड़ो",
+      "hi-en": "College bus pakdo",
+      "te-IN": "కాలేజ్ బస్ పట్టు",
+      "te-en": "College bus pattukunta"
+     },
+     "keywords": {
+      "en-IN": [
+       "bus",
+       "catch"
+      ],
+      "hi-IN": [
+       "बस",
+       "पकड़ो"
+      ],
+      "hi-en": [
+       "bus",
+       "pakdo",
+       "catch"
+      ],
+      "te-IN": [
+       "బస్",
+       "బస్సు"
+      ],
+      "te-en": [
+       "బస్",
+       "కాలేజ్ బస్",
+       "bus"
+      ]
+     },
+     "go": "v_viva",
+     "say": [
+      {
+       "en-IN": "On the bus, your senior Pinky whispers: Doctor Bhalla always asks about units. Always.",
+       "hi-IN": "बस में आपकी सीनियर पिंकी फुसफुसाती है: डॉक्टर भल्ला हमेशा यूनिट्स पूछते हैं. हमेशा.",
+       "hi-en": "Bus mein senior Pinky kaan mein phusphusaati hai: Doctor Bhalla hamesha units ke baare mein poochte hain. Hamesha.",
+       "te-IN": "బస్‌లో మీ సీనియర్ పింకీ గుసగుసగా చెప్తుంది: డాక్టర్ భల్లా ఎప్పుడూ యూనిట్స్ గురించే అడుగుతారు. ఎప్పుడూ.",
+       "te-en": "Bus lo senior Pinky gusagusaga: Doctor Bhalla eppudu units gurinche adugutadu. Eppudu.",
+       "hi-en@tts": "Bus में senior Pinky कान में फुसफुसाती है: Doctor Bhalla हमेशा units के बारे में पूछते हैं। हमेशा।",
+       "te-en@tts": "Bus లో senior Pinky గుసగుసగా: Doctor Bhalla ఎప్పుడూ units గురించే అడుగుతాడు. ఎప్పుడూ."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "units"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Chai at the canteen",
+      "hi-IN": "कैंटीन में चाय",
+      "hi-en": "Canteen mein chai",
+      "te-IN": "క్యాంటీన్‌లో చాయ్",
+      "te-en": "Canteen lo chai"
+     },
+     "keywords": {
+      "en-IN": [
+       "chai",
+       "canteen",
+       "tea"
+      ],
+      "hi-IN": [
+       "चाय",
+       "कैंटीन",
+       "टी"
+      ],
+      "hi-en": [
+       "chai",
+       "canteen",
+       "tea"
+      ],
+      "te-IN": [
+       "చాయ్",
+       "క్యాంటీన్",
+       "టీ"
+      ],
+      "te-en": [
+       "చాయ్",
+       "క్యాంటీన్",
+       "టీ",
+       "chai",
+       "canteen"
+      ]
+     },
+     "go": "v_viva",
+     "say": [
+      {
+       "en-IN": "The canteen uncle hands you a samosa and squints: didn't you already eat this today? You laugh. He doesn't.",
+       "hi-IN": "कैंटीन वाले अंकल समोसा थमाते हुए आँखें सिकोड़ते हैं: ये आज पहले भी खाया था ना? आप हँस देते हैं. अंकल नहीं हँसते.",
+       "hi-en": "Canteen uncle samosa thamaate hue aankhein sikodte hain: yeh toh aaj already kha chuke ho na? Aap hanste hain. Uncle nahi hanste.",
+       "te-IN": "క్యాంటీన్ అంకుల్ సమోసా ఇచ్చి కళ్ళు చిట్లించి చూస్తాడు: ఇది ఈరోజు ఆల్రెడీ తిన్నావు కదా? మీరు నవ్వుతారు. ఆయన నవ్వడు.",
+       "te-en": "Canteen uncle samosa ichchi kallu chitlisthadu: idi ee roju already thinnavu kada? Meeru navvutharu. Aayana navvadu.",
+       "hi-en@tts": "Canteen uncle samosa थमाते हुए आँखें सिकोड़ते हैं: ये तो आज already खा चुके हो ना? आप हँसते हैं। Uncle नहीं हँसते।",
+       "te-en@tts": "Canteen uncle samosa ఇచ్చి కళ్ళు చిట్లిస్తాడు: ఇది ఈ రోజు already తిన్నావు కదా? మీరు నవ్వుతారు. ఆయన నవ్వడు."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "deja_vu"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Notes from the xerox shop",
+      "hi-IN": "ज़ेरॉक्स शॉप से नोट्स",
+      "hi-en": "Xerox shop se notes",
+      "te-IN": "జిరాక్స్ షాప్ నోట్స్",
+      "te-en": "Xerox shop lo notes"
+     },
+     "keywords": {
+      "en-IN": [
+       "xerox",
+       "notes",
+       "shop"
+      ],
+      "hi-IN": [
+       "ज़ेरॉक्स",
+       "जेरॉक्स",
+       "नोट्स",
+       "शॉप"
+      ],
+      "hi-en": [
+       "xerox",
+       "notes",
+       "shop",
+       "photocopy"
+      ],
+      "te-IN": [
+       "జిరాక్స్",
+       "నోట్స్",
+       "షాప్"
+      ],
+      "te-en": [
+       "జిరాక్స్",
+       "నోట్స్",
+       "షాప్",
+       "xerox",
+       "notes"
+      ]
+     },
+     "go": "v_viva",
+     "say": [
+      {
+       "en-IN": "The xerox anna slides a stapled stack across: Doctor Bhalla's favourite topic is binary. Trust me.",
+       "hi-IN": "ज़ेरॉक्स वाले अन्ना स्टेपल किया हुआ ढेर आगे सरकाते हैं: डॉक्टर भल्ला का फ़ेवरेट टॉपिक है बाइनरी. मेरी बात मानो.",
+       "hi-en": "Xerox anna stapled pages ka ek dher aage sarkaate hain: Doctor Bhalla ka favourite topic binary hai. Trust me.",
+       "te-IN": "జిరాక్స్ అన్న స్టేపుల్ చేసిన కట్ట మీ వైపు జరుపుతాడు: డాక్టర్ భల్లాకి ఇష్టమైన టాపిక్ బైనరీ. నన్ను నమ్ము.",
+       "te-en": "Xerox anna staple chesina stack okati jaruputhadu: Doctor Bhalla favourite topic binary. Nannu nammu.",
+       "hi-en@tts": "Xerox anna stapled pages का एक ढेर आगे सरकाते हैं: Doctor Bhalla का favourite topic binary है। Trust me।",
+       "te-en@tts": "Xerox anna staple చేసిన stack ఒకటి జరుపుతాడు: Doctor Bhalla favourite topic binary. నన్ను నమ్ము."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "binary"
+      ]
+     }
+    }
+   ]
+  },
+  "v_viva": {
+   "scene": "loop-viva",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The viva room. Doctor Bhalla peers at you over his glasses like you're a broken circuit.",
+     "hi-IN": "वाइवा रूम. डॉक्टर भल्ला चश्मे के ऊपर से आपको ऐसे घूरते हैं जैसे आप कोई ख़राब सर्किट हों.",
+     "hi-en": "Viva room. Doctor Bhalla chashme ke upar se aapko aise dekhte hain jaise aap koi toota hua circuit hon.",
+     "te-IN": "వైవా రూమ్. పాడైపోయిన సర్క్యూట్‌ని చూసినట్టు, డాక్టర్ భల్లా కళ్ళజోడు పైనుంచి మిమ్మల్ని చూస్తారు.",
+     "te-en": "Viva room. Doctor Bhalla glasses meeda nunchi mimmalni oka broken circuit ni chusinattu chusthadu.",
+     "hi-en@tts": "Viva room। Doctor Bhalla चश्मे के ऊपर से आपको ऐसे देखते हैं जैसे आप कोई टूटा हुआ circuit हों।",
+     "te-en@tts": "Viva room. Doctor Bhalla glasses మీద నుంచి మిమ్మల్ని ఒక broken circuit ని చూసినట్టు చూస్తాడు."
+    }
+   ],
+   "go": [
+    {
+     "if": {
+      "has": [
+       "binary"
+      ]
+     },
+     "go": "v_q_binary"
+    },
+    {
+     "if": {
+      "has": [
+       "units"
+      ]
+     },
+     "go": "v_q_units"
+    },
+    {
+     "go": "v_q_hard"
+    }
+   ]
+  },
+  "v_q_binary": {
+   "scene": "loop-viva",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Doctor Bhalla taps his pen. Binary, then.",
+     "hi-IN": "डॉक्टर भल्ला पेन ठकठकाते हैं. तो फिर, बाइनरी.",
+     "hi-en": "Doctor Bhalla pen thakthakaate hain. Chalo, binary.",
+     "te-IN": "డాక్టర్ భల్లా పెన్ టకటకలాడిస్తారు. సరే, బైనరీ.",
+     "te-en": "Doctor Bhalla pen tho tak tak kodathadu. Sare, binary.",
+     "hi-en@tts": "Doctor Bhalla pen ठकठकाते हैं। चलो, binary।",
+     "te-en@tts": "Doctor Bhalla pen తో టక్ టక్ కొడతాడు. సరే, binary."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "What is the decimal value of binary one zero one zero?",
+     "hi-IN": "बाइनरी वन ज़ीरो वन ज़ीरो की डेसिमल वैल्यू क्या है?",
+     "hi-en": "Binary one zero one zero ki decimal value kya hai?",
+     "te-IN": "బైనరీలో ఒకటి సున్నా ఒకటి సున్నా, డెసిమల్‌లో ఎంత?",
+     "te-en": "Binary one zero one zero ki decimal value entha?",
+     "hi-en@tts": "Binary one zero one zero की decimal value क्या है?",
+     "te-en@tts": "Binary one zero one zero కి decimal value ఎంత?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "10",
+      "12",
+      "5"
+     ],
+     "hi-IN": [
+      "10",
+      "12",
+      "5"
+     ],
+     "hi-en": [
+      "10",
+      "12",
+      "5"
+     ],
+     "te-IN": [
+      "10",
+      "12",
+      "5"
+     ],
+     "te-en": [
+      "10",
+      "12",
+      "5"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "दस",
+      "ten"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "పది",
+      "ten"
+     ],
+     "te-en": [
+      "ten",
+      "టెన్",
+      "పది"
+     ]
+    },
+    "pass": {
+     "go": "v_passed",
+     "say": [
+      {
+       "en-IN": "Ten. Doctor Bhalla raises one eyebrow, which for him is a standing ovation.",
+       "hi-IN": "दस. डॉक्टर भल्ला की एक भौंह ऊपर उठती है, जो उनके हिसाब से स्टैंडिंग ओवेशन है.",
+       "hi-en": "Das. Doctor Bhalla ek bhaunh upar uthaate hain, jo unke hisaab se standing ovation hai.",
+       "te-IN": "పది. డాక్టర్ భల్లా ఒక కనుబొమ్మ ఎత్తుతారు. ఆయన లెక్కలో అది స్టాండింగ్ ఒవేషన్‌తో సమానం.",
+       "te-en": "Ten. Doctor Bhalla oka kanubomma etthuthadu, aayanaki adi standing ovation tho samaanam.",
+       "hi-en@tts": "दस। Doctor Bhalla एक भौंह ऊपर उठाते हैं, जो उनके हिसाब से standing ovation है।",
+       "te-en@tts": "Ten. Doctor Bhalla ఒక కనుబొమ్మ ఎత్తుతాడు, ఆయనకి అది standing ovation తో సమానం."
+      }
+     ]
+    },
+    "fail": {
+     "go": "v_loop",
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  },
+  "v_q_units": {
+   "scene": "loop-viva",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Doctor Bhalla smiles thinly. Units, then.",
+     "hi-IN": "डॉक्टर भल्ला हल्का-सा मुस्कुराते हैं. तो फिर, यूनिट्स.",
+     "hi-en": "Doctor Bhalla halka sa muskuraate hain. Chalo, units.",
+     "te-IN": "డాక్టర్ భల్లా సన్నగా నవ్వుతారు. సరే, యూనిట్స్.",
+     "te-en": "Doctor Bhalla sannaga navvuthadu. Sare, units.",
+     "hi-en@tts": "Doctor Bhalla हल्का सा मुस्कुराते हैं। चलो, units।",
+     "te-en@tts": "Doctor Bhalla సన్నగా నవ్వుతాడు. సరే, units."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "What is the SI unit of frequency?",
+     "hi-IN": "फ़्रीक्वेंसी की एस आई यूनिट क्या है?",
+     "hi-en": "Frequency ki SI unit kya hai?",
+     "te-IN": "ఫ్రీక్వెన్సీకి ఎస్ఐ యూనిట్ ఏది?",
+     "te-en": "Frequency ki SI unit edi?",
+     "hi-en@tts": "Frequency की SI unit क्या है?",
+     "te-en@tts": "Frequency కి SI unit ఏది?"
+    },
+    "kind": "text",
+    "options": {
+     "en-IN": [
+      "hertz",
+      "watt",
+      "tesla"
+     ],
+     "hi-IN": [
+      "हर्ट्ज़",
+      "वॉट",
+      "टेस्ला"
+     ],
+     "hi-en": [
+      "hertz",
+      "watt",
+      "tesla"
+     ],
+     "te-IN": [
+      "హెర్ట్జ్",
+      "వాట్",
+      "టెస్లా"
+     ],
+     "te-en": [
+      "hertz",
+      "watt",
+      "tesla"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [
+      "hz",
+      "hurts"
+     ],
+     "hi-IN": [
+      "हर्ट्ज",
+      "हर्ट्स",
+      "हर्त्ज़",
+      "hertz",
+      "hz",
+      "hurts"
+     ],
+     "hi-en": [
+      "hz",
+      "hurts",
+      "hartz",
+      "herts"
+     ],
+     "te-IN": [
+      "హర్ట్జ్",
+      "హెర్జ్",
+      "హెచ్ జెడ్",
+      "hertz",
+      "hz",
+      "hurts"
+     ],
+     "te-en": [
+      "hz",
+      "hurts",
+      "హెర్ట్జ్",
+      "హెర్ట్స్",
+      "హర్ట్స్"
+     ]
+    },
+    "pass": {
+     "go": "v_passed",
+     "say": [
+      {
+       "en-IN": "Hertz. Doctor Bhalla nods slowly, as if you'd survived a duel.",
+       "hi-IN": "हर्ट्ज़. डॉक्टर भल्ला धीरे से सिर हिलाते हैं, जैसे आपने कोई जंग जीत ली हो.",
+       "hi-en": "Hertz. Doctor Bhalla dheere se sar hilaate hain, jaise aap koi duel jeetkar laute hon.",
+       "te-IN": "హెర్ట్జ్. మీరేదో ద్వంద్వ యుద్ధంలో బతికి బయటపడ్డట్టు, డాక్టర్ భల్లా మెల్లగా తల ఊపుతారు.",
+       "te-en": "Hertz. Doctor Bhalla nemmadiga thala ooputhadu, meeredo duel lo bathiki bayatapaddattu.",
+       "hi-en@tts": "Hertz. Doctor Bhalla धीरे से सिर हिलाते हैं, जैसे आप कोई duel जीतकर लौटे हों।",
+       "te-en@tts": "Hertz. Doctor Bhalla నెమ్మదిగా తల ఊపుతాడు, మీరేదో duel లో బతికి బయటపడ్డట్టు."
+      }
+     ]
+    },
+    "fail": {
+     "go": "v_loop",
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  },
+  "v_q_hard": {
+   "scene": "loop-viva",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Doctor Bhalla flips to the last page of his notebook. Uh oh.",
+     "hi-IN": "डॉक्टर भल्ला अपनी नोटबुक का आख़िरी पन्ना पलटते हैं. ओ हो.",
+     "hi-en": "Doctor Bhalla notebook ka aakhri page palatte hain. Uh oh.",
+     "te-IN": "డాక్టర్ భల్లా నోట్‌బుక్ చివరి పేజీకి తిప్పుతారు. అయిపోయాం.",
+     "te-en": "Doctor Bhalla notebook lo last page thipputhadu. Ayipoyam.",
+     "hi-en@tts": "Doctor Bhalla notebook का आखिरी page पलटते हैं। Uh oh.",
+     "te-en@tts": "Doctor Bhalla notebook లో last page తిప్పుతాడు. అయిపోయాం."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "By the binary definition, how many bytes are there in one kilobyte?",
+     "hi-IN": "बाइनरी डेफ़िनिशन के हिसाब से, एक किलोबाइट में कितने बाइट होते हैं?",
+     "hi-en": "Binary definition ke hisaab se, ek kilobyte mein kitne bytes hote hain?",
+     "te-IN": "బైనరీ డెఫినిషన్ ప్రకారం, ఒక కిలోబైట్‌లో ఎన్ని బైట్స్?",
+     "te-en": "Binary definition prakaaram, oka kilobyte lo enni bytes untayi?",
+     "hi-en@tts": "Binary definition के हिसाब से, एक kilobyte में कितने bytes होते हैं?",
+     "te-en@tts": "Binary definition ప్రకారం, ఒక kilobyte లో ఎన్ని bytes ఉంటాయి?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "1024",
+      "1000",
+      "512"
+     ],
+     "hi-IN": [
+      "1024",
+      "1000",
+      "512"
+     ],
+     "hi-en": [
+      "1024",
+      "1000",
+      "512"
+     ],
+     "te-IN": [
+      "1024",
+      "1000",
+      "512"
+     ],
+     "te-en": [
+      "1024",
+      "1000",
+      "512"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "एक हज़ार चौबीस",
+      "टेन ट्वेंटी फ़ोर",
+      "ten twenty four"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "వెయ్యి ఇరవై నాలుగు",
+      "టెన్ ట్వంటీ ఫోర్",
+      "ten twenty four"
+     ],
+     "te-en": [
+      "ten twenty four",
+      "one thousand twenty four",
+      "టెన్ ట్వంటీ ఫోర్",
+      "వెయ్యి ఇరవై నాలుగు"
+     ]
+    },
+    "pass": {
+     "go": "v_passed",
+     "say": [
+      {
+       "en-IN": "Ten twenty four! Doctor Bhalla actually drops his pen.",
+       "hi-IN": "एक हज़ार चौबीस! डॉक्टर भल्ला के हाथ से सच में पेन गिर जाता है.",
+       "hi-en": "Ten twenty four! Doctor Bhalla ke haath se sach mein pen gir jaata hai.",
+       "te-IN": "వెయ్యి ఇరవై నాలుగు! డాక్టర్ భల్లా చేతిలోంచి పెన్ నిజంగానే జారిపడుతుంది.",
+       "te-en": "Ten twenty four! Doctor Bhalla nijamgaane pen kinda padesthadu.",
+       "hi-en@tts": "Ten twenty four! Doctor Bhalla के हाथ से सच में pen गिर जाता है।",
+       "te-en@tts": "Ten twenty four! Doctor Bhalla నిజంగానే pen కింద పడేస్తాడు."
+      }
+     ]
+    },
+    "fail": {
+     "go": "v_loop",
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  },
+  "v_loop": {
+   "scene": "loop-rewind",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Wrong! The room freezes. The clock on the wall spins backwards, the world turns blue, and...",
+     "hi-IN": "ग़लत! कमरा जम जाता है. दीवार की घड़ी उल्टी घूमने लगती है, दुनिया नीली पड़ जाती है, और...",
+     "hi-en": "Galat! Room freeze ho jaata hai. Deewar ki ghadi ulti ghoomne lagti hai, duniya neeli pad jaati hai, aur...",
+     "te-IN": "తప్పు! రూమ్ మొత్తం ఫ్రీజ్. గోడ గడియారం వెనక్కి గిర్రున తిరుగుతుంది, ప్రపంచం నీలంగా మారుతుంది, ఇంకా...",
+     "te-en": "Wrong! Room freeze avuthundi. Goda meeda clock venakki thiruguthundi, prapancham motham blue avuthundi, inka...",
+     "hi-en@tts": "गलत! Room freeze हो जाता है। दीवार की घड़ी उल्टी घूमने लगती है, दुनिया नीली पड़ जाती है, और...",
+     "te-en@tts": "Wrong! Room freeze అవుతుంది. గోడ మీద clock వెనక్కి తిరుగుతుంది, ప్రపంచం మొత్తం blue అవుతుంది, ఇంకా..."
+    }
+   ],
+   "go": "v_again"
+  },
+  "v_again": {
+   "scene": "loop-bedroom",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Seven a.m. Again. Same alarm, same crow outside, same samosa smell. You're stuck in a time loop!",
+     "hi-IN": "सुबह के सात बजे. फिर से. वही अलार्म, बाहर वही कौआ, वही समोसे की ख़ुशबू. ये तो टाइम लूप है!",
+     "hi-en": "Subah ke saat baje. Phir se. Wahi alarm, bahar wahi kauwa, wahi samosa ki khushboo. Aap time loop mein phans chuke hain!",
+     "te-IN": "ఉదయం ఏడు. మళ్ళీ. అదే అలారం, బయట అదే కాకి, అదే సమోసా వాసన. మీరు టైమ్ లూప్‌లో ఇరుక్కుపోయారు!",
+     "te-en": "Poddhuna seven. Malli. Ade alarm, bayata ade kaaki, ade samosa vaasana. Meeru time loop lo irukkupoyaru!",
+     "hi-en@tts": "सुबह के सात बजे। फिर से। वही alarm, बाहर वही कौआ, वही samosa की खुशबू। आप time loop में फँस चुके हैं!",
+     "te-en@tts": "పొద్దున seven. మళ్ళీ. అదే alarm, బయట అదే కాకి, అదే samosa వాసన. మీరు time loop లో ఇరుక్కుపోయారు!"
+    },
+    {
+     "en-IN": "What do you do this time?",
+     "hi-IN": "इस बार क्या करना है?",
+     "hi-en": "Is baar kya karna hai?",
+     "te-IN": "ఈసారి ఏం చేస్తారు?",
+     "te-en": "Eesari em chestharu?",
+     "hi-en@tts": "इस बार क्या करना है?",
+     "te-en@tts": "ఈసారి ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Investigate the clock tower",
+      "hi-IN": "क्लॉक टावर की जाँच",
+      "hi-en": "Clock tower ki jaanch karo",
+      "te-IN": "క్లాక్ టవర్ సంగతి చూడు",
+      "te-en": "Clock tower investigate"
+     },
+     "keywords": {
+      "en-IN": [
+       "clock",
+       "tower",
+       "investigate"
+      ],
+      "hi-IN": [
+       "क्लॉक",
+       "टावर",
+       "घड़ी",
+       "जाँच"
+      ],
+      "hi-en": [
+       "clock",
+       "tower",
+       "investigate",
+       "ghanta ghar"
+      ],
+      "te-IN": [
+       "క్లాక్",
+       "టవర్",
+       "గడియారం"
+      ],
+      "te-en": [
+       "క్లాక్ టవర్",
+       "టవర్",
+       "గడియారం",
+       "clock",
+       "tower"
+      ]
+     },
+     "go": "v_tower"
+    },
+    {
+     "label": {
+      "en-IN": "Memorise every note",
+      "hi-IN": "सारे नोट्स रट लो",
+      "hi-en": "Saare notes rat lo",
+      "te-IN": "నోట్స్ అన్నీ బట్టీ పట్టు",
+      "te-en": "Notes motham batti padatha"
+     },
+     "keywords": {
+      "en-IN": [
+       "memorise",
+       "memorize",
+       "every",
+       "study"
+      ],
+      "hi-IN": [
+       "रट",
+       "रटो",
+       "नोट्स",
+       "पढ़ाई"
+      ],
+      "hi-en": [
+       "ratta",
+       "rat lo",
+       "memorise",
+       "memorize",
+       "study"
+      ],
+      "te-IN": [
+       "బట్టీ",
+       "నోట్స్",
+       "చదువు"
+      ],
+      "te-en": [
+       "బట్టీ",
+       "మెమొరైజ్",
+       "చదువుతా",
+       "స్టడీ",
+       "memorise",
+       "study"
+      ]
+     },
+     "go": "v_tell",
+     "say": [
+      {
+       "en-IN": "You spend the morning memorising everything at the xerox shop. Units, binary, all of it. Your brain hurts.",
+       "hi-IN": "पूरी सुबह ज़ेरॉक्स शॉप पर सब कुछ रटने में जाती है. यूनिट्स, बाइनरी, सब. दिमाग़ दुखने लगता है.",
+       "hi-en": "Poori subah xerox shop par sab kuch ratne mein jaati hai. Units, binary, sab kuch. Dimaag dard kar raha hai.",
+       "te-IN": "పొద్దునంతా జిరాక్స్ షాప్‌లో అన్నీ బట్టీ పడతారు. యూనిట్స్, బైనరీ, అన్నీ. మెదడు పొగలు కక్కుతోంది.",
+       "te-en": "Xerox shop daggara poddhunantha anni batti padatharu. Units, binary, motham. Brain noppi puduthondi.",
+       "hi-en@tts": "पूरी सुबह xerox shop पर सब कुछ रटने में जाती है। Units, binary, सब कुछ। दिमाग़ दर्द कर रहा है।",
+       "te-en@tts": "Xerox shop దగ్గర పొద్దునంతా అన్నీ బట్టీ పడతారు. Units, binary, మొత్తం. Brain నొప్పి పుడుతోంది."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "binary",
+       "units"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Forget it, play cricket",
+      "hi-IN": "छोड़ो, क्रिकेट खेलो",
+      "hi-en": "Chhodo, cricket khelo",
+      "te-IN": "వదిలేయ్, క్రికెట్ ఆడు",
+      "te-en": "Vadiley, cricket aadatha"
+     },
+     "keywords": {
+      "en-IN": [
+       "cricket",
+       "play",
+       "forget"
+      ],
+      "hi-IN": [
+       "क्रिकेट",
+       "खेलो",
+       "छोड़ो"
+      ],
+      "hi-en": [
+       "cricket",
+       "khelo",
+       "chhodo",
+       "forget"
+      ],
+      "te-IN": [
+       "క్రికెట్",
+       "ఆడు",
+       "వదిలేయ్"
+      ],
+      "te-en": [
+       "క్రికెట్",
+       "ఆడతా",
+       "వదిలెయ్",
+       "cricket",
+       "play"
+      ]
+     },
+     "go": "v_ground"
+    }
+   ]
+  },
+  "v_tower": {
+   "scene": "loop-clocktower",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Inside the old clock tower, giant brass gears hum with a strange blue glow. A plate on the mechanism reads: the loop breaks when the keeper answers truly.",
+     "hi-IN": "पुराने क्लॉक टावर के अंदर पीतल के विशाल गियर अजीब-सी नीली रोशनी में गुनगुना रहे हैं. मशीन पर लगी प्लेट कहती है: लूप तभी टूटेगा, जब रखवाला सच्चा जवाब देगा.",
+     "hi-en": "Puraane clock tower ke andar peetal ke bade gears ajeeb neeli roshni mein hum kar rahe hain. Mechanism par ek plate: loop tab tootega, jab keeper sachcha jawaab dega.",
+     "te-IN": "పాత క్లాక్ టవర్ లోపల, పెద్ద ఇత్తడి గేర్లు వింతైన నీలి వెలుగులో గుయ్యిమంటున్నాయి. మెకానిజం మీద ఒక ప్లేట్: కాపలాదారు నిజమైన జవాబు చెప్పినప్పుడే లూప్ తెగుతుంది.",
+     "te-en": "Paatha clock tower lopala pedda brass gears vinthaina blue glow tho hum avuthunnayi. Mechanism meeda plate: keeper nijamaina answer cheppinappude loop break avuthundi.",
+     "hi-en@tts": "पुराने clock tower के अंदर पीतल के बड़े gears अजीब नीली रोशनी में hum कर रहे हैं। Mechanism पर एक plate: loop तब टूटेगा, जब keeper सच्चा जवाब देगा।",
+     "te-en@tts": "పాత clock tower లోపల పెద్ద brass gears వింతైన blue glow తో hum అవుతున్నాయి. Mechanism మీద plate: keeper నిజమైన answer చెప్పినప్పుడే loop break అవుతుంది."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "Engraved below it: how many seconds are there in one hour?",
+     "hi-IN": "नीचे खुदा है: एक घंटे में कितने सेकंड होते हैं?",
+     "hi-en": "Uske neeche khuda hai: ek ghante mein kitne seconds hote hain?",
+     "te-IN": "దాని కింద చెక్కి ఉంది: ఒక గంటలో ఎన్ని సెకన్లు?",
+     "te-en": "Daani kinda chekki undi: oka gantalo enni seconds?",
+     "hi-en@tts": "उसके नीचे खुदा है: एक घंटे में कितने seconds होते हैं?",
+     "te-en@tts": "దాని కింద చెక్కి ఉంది: ఒక గంటలో ఎన్ని seconds?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "3600",
+      "6000",
+      "360"
+     ],
+     "hi-IN": [
+      "3600",
+      "6000",
+      "360"
+     ],
+     "hi-en": [
+      "3600",
+      "6000",
+      "360"
+     ],
+     "te-IN": [
+      "3600",
+      "6000",
+      "360"
+     ],
+     "te-en": [
+      "3600",
+      "6000",
+      "360"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "छत्तीस सौ",
+      "तीन हज़ार छह सौ",
+      "thirty six hundred"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "మూడు వేల ఆరు వందలు",
+      "థర్టీ సిక్స్ హండ్రెడ్",
+      "thirty six hundred"
+     ],
+     "te-en": [
+      "thirty six hundred",
+      "three thousand six hundred",
+      "థర్టీ సిక్స్ హండ్రెడ్",
+      "మూడు వేల ఆరు వందలు"
+     ]
+    },
+    "pass": {
+     "go": "v_viva",
+     "say": [
+      {
+       "en-IN": "Thirty six hundred. The gears groan, and the blue glow flickers. Something just changed. Back to the viva!",
+       "hi-IN": "छत्तीस सौ. गियर कराहते हैं, और नीली रोशनी टिमटिमाती है. कुछ तो बदला है. वापस वाइवा की ओर!",
+       "hi-en": "Thirty six hundred. Gears karaahte hain, aur neeli roshni timtimaati hai. Kuch toh badla hai. Waapas viva par!",
+       "te-IN": "మూడు వేల ఆరు వందలు. గేర్లు మూలుగుతాయి, నీలి వెలుగు మిణుకుమంటుంది. ఏదో మారింది. పదండి, మళ్ళీ వైవాకి!",
+       "te-en": "Thirty six hundred. Gears moolugutayi, blue glow flicker avuthundi. Edo maarindi. Viva ki back!",
+       "hi-en@tts": "Thirty six hundred. Gears कराहते हैं, और नीली रोशनी टिमटिमाती है। कुछ तो बदला है। वापस viva पर!",
+       "te-en@tts": "Thirty six hundred. Gears మూలుగుతాయి, blue glow flicker అవుతుంది. ఏదో మారింది. Viva కి back!"
+      }
+     ],
+     "effects": {
+      "gain": [
+       "clock"
+      ]
+     }
+    },
+    "fail": {
+     "go": "v_loop",
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  },
+  "v_ground": {
+   "scene": "loop-ground",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "You spend the day playing cricket. On the last ball you hit a massive six. It sails over the trees and smashes straight through the clock tower window.",
+     "hi-IN": "पूरा दिन क्रिकेट में जाता है. आख़िरी गेंद पर एक ज़बरदस्त छक्का. गेंद पेड़ों के ऊपर से उड़ती है और सीधे क्लॉक टावर की खिड़की तोड़ देती है.",
+     "hi-en": "Poora din cricket mein jaata hai. Aakhri ball par ek zabardast chhakka. Ball pedon ke upar se udti hai aur seedhe clock tower ki khidki tod deti hai.",
+     "te-IN": "రోజంతా క్రికెట్ ఆడతారు. చివరి బాల్‌కి భారీ సిక్సర్. అది చెట్ల మీదుగా ఎగిరి, సరాసరి క్లాక్ టవర్ కిటికీ పగలగొడుతుంది.",
+     "te-en": "Rojantha cricket aadatharu. Last ball ki bhaari six kodatharu. Adi chetla meeduga egiri, sariggaa clock tower window ni pagalagoduthundi.",
+     "hi-en@tts": "पूरा दिन cricket में जाता है। आखिरी ball पर एक ज़बरदस्त छक्का। Ball पेड़ों के ऊपर से उड़ती है और सीधे clock tower की खिड़की तोड़ देती है।",
+     "te-en@tts": "రోజంతా cricket ఆడతారు. Last ball కి భారీ six కొడతారు. అది చెట్ల మీదుగా ఎగిరి, సరిగ్గా clock tower window ని పగలగొడుతుంది."
+    },
+    {
+     "en-IN": "Somewhere, something goes clunk. The sky flickers. Huh.",
+     "hi-IN": "कहीं कुछ खटाक से होता है. आसमान टिमटिमाता है. हम्म.",
+     "hi-en": "Kahin kuch clunk karta hai. Aasmaan timtimaata hai. Hmm.",
+     "te-IN": "ఎక్కడో ఏదో టక్కుమంటుంది. ఆకాశం ఒక్కసారి మిణుకుమంటుంది. హమ్.",
+     "te-en": "Ekkado edo clunk antundi. Aakaasham flicker avuthundi. Hmm.",
+     "hi-en@tts": "कहीं कुछ clunk करता है। आसमान टिमटिमाता है। Hmm.",
+     "te-en@tts": "ఎక్కడో ఏదో క్లంక్ అంటుంది. ఆకాశం flicker అవుతుంది. హ్మ్."
+    }
+   ],
+   "enter": {
+    "gain": [
+     "clock"
+    ]
+   },
+   "go": "v_tell"
+  },
+  "v_tell": {
+   "scene": "loop-viva",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Viva, take two. Or twelve? Doctor Bhalla looks at you strangely: have we met before?",
+     "hi-IN": "वाइवा, टेक टू. या टेक ट्वेल्व? डॉक्टर भल्ला आपको अजीब नज़रों से देखते हैं: क्या हमारी पहले कभी मुलाक़ात हुई है?",
+     "hi-en": "Viva, take two. Ya take twelve? Doctor Bhalla aapko ajeeb nazron se dekhte hain: kya hum pehle mil chuke hain?",
+     "te-IN": "వైవా, టేక్ టూ. లేక టేక్ పన్నెండా? డాక్టర్ భల్లా విచిత్రంగా చూస్తారు: మనం ఇంతకుముందు కలిశామా?",
+     "te-en": "Viva, take two. Leka twelve aa? Doctor Bhalla vinthaga chusthadu: manam inthaku mundu kalisamaa?",
+     "hi-en@tts": "Viva, take two। या take twelve? Doctor Bhalla आपको अजीब नज़रों से देखते हैं: क्या हम पहले मिल चुके हैं?",
+     "te-en@tts": "Viva, take two. లేక twelve ఆ? Doctor Bhalla వింతగా చూస్తాడు: మనం ఇంతకు ముందు కలిశామా?"
+    },
+    {
+     "en-IN": "What do you say?",
+     "hi-IN": "आप क्या कहते हैं?",
+     "hi-en": "Aap kya kehte hain?",
+     "te-IN": "మీరేం అంటారు?",
+     "te-en": "Meeru em cheptharu?",
+     "hi-en@tts": "आप क्या कहते हैं?",
+     "te-en@tts": "మీరు ఏం చెప్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Tell him about the loop",
+      "hi-IN": "लूप का राज़ बताओ",
+      "hi-en": "Loop ke baare mein batao",
+      "te-IN": "లూప్ గురించి చెప్పేయ్",
+      "te-en": "Loop gurinchi cheppestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "loop",
+       "tell",
+       "time"
+      ],
+      "hi-IN": [
+       "लूप",
+       "बताओ",
+       "टाइम"
+      ],
+      "hi-en": [
+       "loop",
+       "batao",
+       "tell",
+       "time loop"
+      ],
+      "te-IN": [
+       "లూప్",
+       "చెప్పేయ్",
+       "టైమ్"
+      ],
+      "te-en": [
+       "లూప్",
+       "టైమ్ లూప్",
+       "చెప్పేస్తా",
+       "loop"
+      ]
+     },
+     "go": [
+      {
+       "if": {
+        "has": [
+         "clock"
+        ]
+       },
+       "go": "end:believer"
+      },
+      {
+       "go": "end:counsellor"
+      }
+     ]
+    },
+    {
+     "label": {
+      "en-IN": "Just answer the questions",
+      "hi-IN": "बस सवालों के जवाब दो",
+      "hi-en": "Bas sawaalon ke jawaab do",
+      "te-IN": "ప్రశ్నలకు జవాబు చెప్పు",
+      "te-en": "Questions ki answer chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "answer",
+       "questions",
+       "just"
+      ],
+      "hi-IN": [
+       "जवाब",
+       "सवाल",
+       "सवालों"
+      ],
+      "hi-en": [
+       "jawab",
+       "answer",
+       "questions",
+       "sawal"
+      ],
+      "te-IN": [
+       "ప్రశ్నలు",
+       "జవాబు",
+       "ఆన్సర్"
+      ],
+      "te-en": [
+       "ఆన్సర్",
+       "క్వశ్చన్స్",
+       "జవాబు",
+       "answer",
+       "questions"
+      ]
+     },
+     "go": "v_viva"
+    }
+   ]
+  },
+  "v_passed": {
+   "scene": "loop-corridor",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "You walk out of the viva room into the sunny corridor. You passed!",
+     "hi-IN": "आप वाइवा रूम से निकलकर धूप भरे कॉरिडोर में आते हैं. वाइवा पास!",
+     "hi-en": "Aap viva room se dhoop waale corridor mein nikalte hain. Result: pass!",
+     "te-IN": "వైవా రూమ్ నుంచి ఎండ పడుతున్న కారిడార్‌లోకి నడుస్తారు. మీరు పాస్ అయ్యారు!",
+     "te-en": "Viva room nunchi enda paduthunna corridor loki nadusthaaru. Meeru pass ayyaru!",
+     "hi-en@tts": "आप viva room से धूप वाले corridor में निकलते हैं। Result: pass!",
+     "te-en@tts": "Viva room నుంచి ఎండ పడుతున్న corridor లోకి నడుస్తారు. మీరు pass అయ్యారు!"
+    }
+   ],
+   "go": [
+    {
+     "if": {
+      "has": [
+       "clock"
+      ]
+     },
+     "go": "end:breaker"
+    },
+    {
+     "go": "end:again"
+    }
+   ]
+  }
+ },
+ "endings": {
+  "breaker": {
+   "title": {
+    "en-IN": "Loop Breaker",
+    "hi-IN": "लूप ब्रेकर",
+    "hi-en": "Loop Breaker",
+    "te-IN": "లూప్ బ్రేకర్",
+    "te-en": "Loop Breaker"
+   },
+   "rank": "gold",
+   "scene": "loop-sunset",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "The next morning your alarm rings at seven a.m. on a brand new day. The loop is broken, your viva is done, and the clock tower finally keeps the right time.",
+     "hi-IN": "अगली सुबह अलार्म सात बजे बजता है, एक बिल्कुल नए दिन में. लूप टूट चुका है, वाइवा ख़त्म, और क्लॉक टावर आख़िरकार सही टाइम बता रहा है.",
+     "hi-en": "Agli subah alarm saat baje bajta hai, ek bilkul naye din par. Loop toot chuka hai, viva khatam, aur clock tower aakhirkaar sahi time dikha raha hai.",
+     "te-IN": "మరుసటి రోజు ఉదయం ఏడింటికి అలారం మోగుతుంది, ఈసారి నిజంగా కొత్త రోజు. లూప్ తెగింది, వైవా అయిపోయింది, క్లాక్ టవర్ ఎట్టకేలకు కరెక్ట్ టైమ్ చూపిస్తోంది.",
+     "te-en": "Marusati roju poddhuna seven ki alarm moguthundi, eesari brand new day. Loop break ayindi, viva ayipoyindi, clock tower chivariki correct time chupisthondi.",
+     "hi-en@tts": "अगली सुबह alarm सात बजे बजता है, एक बिल्कुल नए दिन पर। Loop टूट चुका है, viva खत्म, और clock tower आखिरकार सही time दिखा रहा है।",
+     "te-en@tts": "మరుసటి రోజు పొద్దున seven కి alarm మోగుతుంది, ఈసారి brand new day. Loop break అయింది, viva అయిపోయింది, clock tower చివరికి correct time చూపిస్తోంది."
+    },
+    {
+     "en-IN": "Topper, and time traveller.",
+     "hi-IN": "टॉपर भी, और टाइम ट्रैवलर भी.",
+     "hi-en": "Topper bhi, time traveller bhi.",
+     "te-IN": "టాపర్ కూడా, టైమ్ ట్రావెలర్ కూడా.",
+     "te-en": "Topper, inka time traveller.",
+     "hi-en@tts": "Topper भी, time traveller भी।",
+     "te-en@tts": "Topper, ఇంకా time traveller."
+    }
+   ]
+  },
+  "again": {
+   "title": {
+    "en-IN": "Passed... Again?",
+    "hi-IN": "पास... फिर से?",
+    "hi-en": "Pass... phir se?",
+    "te-IN": "పాస్ అయ్యారు... మళ్ళీనా?",
+    "te-en": "Passed... Again?"
+   },
+   "rank": "silver",
+   "scene": "loop-bedroom",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "You celebrate all evening. Then the next morning your alarm screams. Seven a.m. Viva day. Oh no.",
+     "hi-IN": "पूरी शाम जश्न चलता है. फिर अगली सुबह अलार्म चीख़ता है. सुबह के सात बजे. वाइवा का दिन. अरे नहीं.",
+     "hi-en": "Poori shaam celebration chalta hai. Phir agli subah alarm cheekhta hai. Saat baje. Viva ka din. Oh no.",
+     "te-IN": "సాయంత్రమంతా సెలబ్రేట్ చేసుకుంటారు. మరుసటి ఉదయం అలారం గోల. ఏడు గంటలు. వైవా రోజు. అయ్యో దేవుడా.",
+     "te-en": "Evening antha celebrate chestharu. Marusati roju poddhuna alarm arusthundi. Seven a.m. Viva day. Ayyo.",
+     "hi-en@tts": "पूरी शाम celebration चलता है। फिर अगली सुबह alarm चीखता है। सात बजे। Viva का दिन। Oh no.",
+     "te-en@tts": "Evening అంతా celebrate చేస్తారు. మరుసటి రోజు పొద్దున alarm అరుస్తుంది. Seven a.m. Viva day. అయ్యో."
+    },
+    {
+     "en-IN": "Maybe the clock tower had something to do with it?",
+     "hi-IN": "शायद क्लॉक टावर का इसमें कुछ हाथ था?",
+     "hi-en": "Shayad clock tower ka ismein kuch haath tha?",
+     "te-IN": "ఈ గొడవకి క్లాక్ టవర్‌కి ఏమైనా సంబంధం ఉందేమో?",
+     "te-en": "Ee godava anthatiki clock tower ki edaina sambandham undemo?",
+     "hi-en@tts": "शायद clock tower का इसमें कुछ हाथ था?",
+     "te-en@tts": "ఈ గొడవ అంతటికీ clock tower కి ఏదైనా సంబంధం ఉందేమో?"
+    }
+   ]
+  },
+  "believer": {
+   "title": {
+    "en-IN": "Bhalla Believes",
+    "hi-IN": "भल्ला को यक़ीन है",
+    "hi-en": "Bhalla ko yakeen hai",
+    "te-IN": "భల్లా నమ్మేశారు",
+    "te-en": "Bhalla Believes"
+   },
+   "rank": "silver",
+   "scene": "loop-clocktower",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "Doctor Bhalla's eyes go wide: the tower clock! I knew it was a temporal resonator! Together you fix it, and he gives you full marks for practical physics.",
+     "hi-IN": "डॉक्टर भल्ला की आँखें फैल जाती हैं: टावर की घड़ी! मुझे पता था वो टेम्पोरल रेज़ोनेटर है! मिलकर उसे ठीक किया जाता है, और प्रैक्टिकल फ़िज़िक्स में आपको पूरे नंबर मिलते हैं.",
+     "hi-en": "Doctor Bhalla ki aankhein phail jaati hain: tower ki ghadi! Mujhe pata tha woh temporal resonator hai! Aap dono milkar use theek karte hain, aur practical physics mein full marks.",
+     "te-IN": "డాక్టర్ భల్లా కళ్ళు పెద్దవి చేస్తారు: టవర్ గడియారం! అది టెంపోరల్ రెసొనేటర్ అని నాకు ముందే తెలుసు! ఇద్దరూ కలిసి దాన్ని రిపేర్ చేస్తారు, ప్రాక్టికల్ ఫిజిక్స్‌లో మీకు ఫుల్ మార్క్స్.",
+     "te-en": "Doctor Bhalla kallu peddavi avuthayi: tower clock! Adi temporal resonator ani naaku munde thelusu! Iddaru kalisi fix chestharu, practical physics lo meeku full marks.",
+     "hi-en@tts": "Doctor Bhalla की आँखें फैल जाती हैं: tower की घड़ी! मुझे पता था वो temporal resonator है! आप दोनों मिलकर उसे ठीक करते हैं, और practical physics में full marks।",
+     "te-en@tts": "Doctor Bhalla కళ్ళు పెద్దవి అవుతాయి: tower clock! అది temporal resonator అని నాకు ముందే తెలుసు! ఇద్దరూ కలిసి fix చేస్తారు, practical physics లో మీకు full marks."
+    }
+   ]
+  },
+  "counsellor": {
+   "title": {
+    "en-IN": "Sent to the Counsellor",
+    "hi-IN": "सीधे काउंसलर के पास",
+    "hi-en": "Counsellor ke paas bheja",
+    "te-IN": "కౌన్సెలర్ దగ్గరికి",
+    "te-en": "Sent to the Counsellor"
+   },
+   "rank": "bronze",
+   "scene": "loop-corridor",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Doctor Bhalla gently suggests you get some sleep and see the student counsellor. You never do find out why the clock keeps ticking backwards.",
+     "hi-IN": "डॉक्टर भल्ला प्यार से सलाह देते हैं कि थोड़ा सो लीजिए और स्टूडेंट काउंसलर से मिल लीजिए. घड़ी उल्टी क्यों चलती रहती है, ये राज़ कभी नहीं खुलता.",
+     "hi-en": "Doctor Bhalla pyaar se salaah dete hain ki thoda so lo aur student counsellor se mil lo. Ghadi ulti kyun chalti rehti hai, yeh raaz kabhi nahi khulta.",
+     "te-IN": "కాస్త నిద్రపోయి, స్టూడెంట్ కౌన్సెలర్‌ని కలవమని డాక్టర్ భల్లా మెల్లగా సలహా ఇస్తారు. గడియారం ఎందుకు వెనక్కి తిరుగుతోందో మీకు ఎప్పటికీ తెలీదు.",
+     "te-en": "Konchem nidrapoyi student counsellor ni kalavamani Doctor Bhalla mellaga suggest chesthadu. Clock enduku venakki thirugutondo meeku eppatiki theliyadu.",
+     "hi-en@tts": "Doctor Bhalla प्यार से सलाह देते हैं कि थोड़ा सो लो और student counsellor से मिल लो। घड़ी उल्टी क्यों चलती रहती है, ये राज़ कभी नहीं खुलता।",
+     "te-en@tts": "కొంచెం నిద్రపోయి student counsellor ని కలవమని Doctor Bhalla మెల్లగా suggest చేస్తాడు. Clock ఎందుకు వెనక్కి తిరుగుతోందో మీకు ఎప్పటికీ తెలియదు."
+    }
+   ]
+  },
+  "forever": {
+   "title": {
+    "en-IN": "Groundhog Semester",
+    "hi-IN": "ग्राउंडहॉग सेमेस्टर",
+    "hi-en": "Groundhog Semester",
+    "te-IN": "అంతులేని సెమిస్టర్",
+    "te-en": "Groundhog Semester"
+   },
+   "rank": "bronze",
+   "scene": "loop-rewind",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Seven a.m. Again. And again. By loop fifty you know every samosa by name. Maybe try a different first move next time.",
+     "hi-IN": "सुबह के सात बजे. फिर से. और फिर से. पचासवें लूप तक आप हर समोसे को नाम से जानते हैं. अगली बार शायद पहला क़दम कुछ अलग उठाइए.",
+     "hi-en": "Subah ke saat baje. Phir se. Aur phir se. Loop fifty tak aap har samosa ko naam se jaante hain. Agli baar shayad pehla move kuch alag try karo.",
+     "te-IN": "ఉదయం ఏడు. మళ్ళీ. మళ్ళీ. యాభయ్యో లూప్ వచ్చేసరికి ప్రతి సమోసాకి పేరు పెట్టేశారు. నెక్స్ట్ టైమ్, మొదటి మూవ్ వేరేది ట్రై చేయండి.",
+     "te-en": "Poddhuna seven. Malli. Malli. Loop fifty ki vachesariki prathi samosa peru tho saha thelusu. Next time vere first move try cheyyandi.",
+     "hi-en@tts": "सुबह के सात बजे। फिर से। और फिर से। Loop fifty तक आप हर samosa को नाम से जानते हैं। अगली बार शायद पहला move कुछ अलग try करो।",
+     "te-en@tts": "పొద్దున seven. మళ్ళీ. మళ్ళీ. Loop fifty కి వచ్చేసరికి ప్రతి samosa పేరుతో సహా తెలుసు. Next time వేరే first move try చేయండి."
+    }
+   ]
+  }
+ }
+}
