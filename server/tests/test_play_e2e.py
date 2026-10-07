@@ -290,7 +290,12 @@ async def test_wizard_story_and_character_reach_leaderboard(live, clean_gnani):
         )
         start = await c.next("game_start")
         assert start["character"] == "meera"
-        assert start["story"] == {"wizard": "Taara", "chapters": 5}
+        assert start["story"] == {
+            "wizard": "Taara",
+            "wizard_sprite": "sage",
+            "scene": "library-a",
+            "chapters": 5,
+        }
         intro = await c.next("story")
         assert intro["kind"] == "intro" and intro["mood"] == "ask"
 

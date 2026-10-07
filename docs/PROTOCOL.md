@@ -1,5 +1,8 @@
 # Browser ↔ server protocol (v1)
 
+The game is now called **Mic Drop Arcade** (formerly Maata Arcade). Wire identifiers such as
+`maata.v1` stay the same, so nothing on the wire changes.
+
 This is the contract between the game client (Devesh, features 17–30) and the server
 (G Nagarjuna, features 1–15). Items #1 and #18 meet here. If either side needs a change,
 change this file in the same PR.
@@ -10,7 +13,7 @@ The browser never talks to Gnani and never sees the API key.
 
 ```
 GET  /api/status                       -> { open, reason, languages: [{code, label}] }
-GET  /api/packs?language=te-IN         -> { packs: [{id, title, language, topic, questions}] }
+GET  /api/packs?language=te-IN         -> { packs: [{id, title, language, topic, questions, story}] }
 POST /api/session  { turnstile_token } -> { token, expires_at }
 ```
 
@@ -41,19 +44,22 @@ ws.onopen = () => ws.send(JSON.stringify({ type: "auth", token }));
 Server replies `{type:"ready", protocol:"maata.v1", max_games}`. Then:
 
 ```json
-{ "type": "start", "pack_id": "te-science-01", "character": "robot" }
+{ "type": "start", "pack_id": "te-science-01", "character": "priya" }
 ```
 
-`character` is the hero the player picked: one of the anime boys `arjun`, `kabir`, `sai` or
-the girls `diya`, `meera`, `zara` (default `arjun`). It's cosmetic. Anything else gets a non-fatal
-`unknown_character` error.
+`character` is the hero the player picked (default `arjun`). It's cosmetic. Anything else gets
+a non-fatal `unknown_character` error. Sprites are in `art/sprites/heroes/<id>.png`.
+
+| Boys | Girls |
+|---|---|
+| `arjun`, `kabir`, `sai`, `rohan`, `aditya`, `imran` | `diya`, `meera`, `zara`, `ananya`, `priya`, `sana` |
 
 ## 3. Messages from the server
 
 | type | fields | client should |
 |---|---|---|
 | `ready` | `protocol`, `max_games` | show the pack picker / start button |
-| `game_start` | `game_id`, `pack`, `questions`, `time_limit_s`, `max_score`, `character`, `story` (`{wizard, chapters}` or `null`) | reset HUD; if `story` is set, show the wizard and a quest progress bar |
+| `game_start` | `game_id`, `pack`, `questions`, `time_limit_s`, `max_score`, `character`, `story` (`{wizard, wizard_sprite, scene, chapters}` or `null`) | reset HUD; if `story` is set, load `art/backgrounds/<scene>.png` and the `art/sprites/wizard/<wizard_sprite>/` set, and show a quest progress bar |
 | `question` | `index`, `total`, `prompt`, `kind` (`text`/`number`), `time_limit_s`, `options` (3 choices in display order, or `null`) | show the question; if `options` is set, show the three choices plus an "other" tile meaning "say your own answer". Answers are always spoken: saying a wrong option, or more than one option, is wrong |
 | `speak_start` | `utterance`, `caption`, `sample_rate` (24000) | **stop any older utterance**, show caption |
 | *binary* | 4-byte header + PCM | play (see §5) |
@@ -165,3 +171,12 @@ Story packs turn the quiz into a quest told by a wizard:
 
 Every story line is fixed text, reviewed with the pack and pre-rendered, so the story branches
 on answers with no live language model. Packs without a story behave exactly as before.
+
+Story fields the client uses:
+
+| field | values |
+|---|---|
+| `wizard_sprite` | `sage`, `sorceress`, `owl` (default `sage`) |
+| `scene` | `library-a`, `library-b`, `forest-temple`, `sky-islands`, `crystal-cave`, `night-bazaar`, `observatory` (default `library-a`) |
+
+In `/api/packs`, `story` is `true` for story packs; show a "quest" badge on those.

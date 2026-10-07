@@ -75,7 +75,9 @@ QUESTION_SCHEMA = {
 }
 
 SYSTEM = (
-    "You write quiz questions for a voice game played by Indian school and college students. "
+    "You write quiz questions for a voice game played by Indian engineering students aged 18 "
+    "to 25. Aim at what a second-year engineering student knows: computing, electronics, "
+    "physics, maths, Indian space missions and tech history, not school-level trivia. "
     "Questions are read aloud by a text-to-speech voice and answered by speaking. "
     "Only produce factual, uncontroversial, age-appropriate questions with one clear answer. "
     "Never include politics, religion, caste, violence, real private people, or medical advice. "

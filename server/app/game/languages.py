@@ -11,7 +11,8 @@ transliteration. It speaks with a Telugu voice reading mixed-script text.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
+from typing import Any
 
 
 @dataclass(frozen=True, slots=True)
@@ -33,8 +34,43 @@ LANGUAGES: dict[str, LanguageRoute] = {
 }
 
 
+# Timbre v2.5 voices per `language` value (docs.gnani.ai voice catalogue, Oct 2026). A story may
+# pick any voice listed for its language's TTS locale, e.g. a male storyteller for an old wizard.
+VOICES: dict[str, frozenset[str]] = {
+    "te-IN": frozenset({"Suhana", "Lehara", "Lavanya", "Yukti", "Varuni"}),
+    "hi-IN": frozenset(
+        {
+            "Nalini",
+            "Bhavna",
+            "Yashvi",
+            "Urmila",
+            "Jwala",
+            "Chitra",
+            "Ambuja",
+            "Deepak",
+            "Roopesh",
+            "Vikrant",
+            "Hemraj",
+            "Jalaj",
+            "Omkar",
+        }
+    ),
+    "hi-en": frozenset({"Poorvi"}),
+    "en-IN": frozenset({"Kaveri", "Trupti", "Devika", "Pranav", "Shlok", "Girish"}),
+}
+
+
 def route(code: str) -> LanguageRoute:
     try:
         return LANGUAGES[code]
     except KeyError as exc:
         raise ValueError(f"unsupported language {code!r}") from exc
+
+
+def route_for_pack(pack: Any) -> LanguageRoute:
+    """The pack's language route, with the story's own voice if it sets one."""
+    base = route(pack.language)
+    story = getattr(pack, "story", None)
+    if story is not None and story.voice:
+        return replace(base, voice=story.voice)
+    return base

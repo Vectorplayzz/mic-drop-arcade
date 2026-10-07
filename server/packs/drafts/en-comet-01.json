@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "id": "en-comet-01",
+  "title": "The Comet Clock",
+  "language": "en-IN",
+  "topic": "space and physics",
+  "version": 2,
+  "source": "hand",
+  "questions": [
+    {
+      "id": "q01",
+      "prompt": "Which Indian mission first found signs of water on the Moon?",
+      "answers": [
+        "chandrayaan",
+        "chandrayan",
+        "chandrayaan one",
+        "chandrayaan 1"
+      ],
+      "display_answer": "Chandrayaan",
+      "kind": "text",
+      "options": [
+        "Chandrayaan",
+        "Mangalyaan",
+        "Gaganyaan"
+      ]
+    },
+    {
+      "id": "q02",
+      "prompt": "What is the SI unit of force?",
+      "answers": [
+        "newton",
+        "newtons"
+      ],
+      "display_answer": "newton",
+      "kind": "text",
+      "options": [
+        "newton",
+        "joule",
+        "pascal"
+      ]
+    },
+    {
+      "id": "q03",
+      "prompt": "Which scientist gave the theory of relativity?",
+      "answers": [
+        "einstein",
+        "albert einstein"
+      ],
+      "display_answer": "Einstein",
+      "kind": "text",
+      "options": [
+        "Einstein",
+        "Bohr",
+        "Rutherford"
+      ]
+    },
+    {
+      "id": "q04",
+      "prompt": "Which particle carries a negative charge?",
+      "answers": [
+        "electron",
+        "electrons",
+        "the electron"
+      ],
+      "display_answer": "electron",
+      "kind": "text",
+      "options": [
+        "electron",
+        "proton",
+        "neutron"
+      ]
+    },
+    {
+      "id": "q05",
+      "prompt": "What is the name of India's first mission to study the Sun?",
+      "answers": [
+        "aditya",
+        "aditya l1",
+        "aditya l 1",
+        "aditya l one"
+      ],
+      "display_answer": "Aditya",
+      "kind": "text",
+      "options": [
+        "Aditya",
+        "Astrosat",
+        "Mangalyaan"
+      ]
+    },
+    {
+      "id": "q06",
+      "prompt": "Which force keeps the Moon in orbit around the Earth?",
+      "answers": [
+        "gravity",
+        "gravitation",
+        "gravitational force"
+      ],
+      "display_answer": "gravity",
+      "kind": "text",
+      "options": [
+        "gravity",
+        "magnetism",
+        "friction"
+      ]
+    },
+    {
+      "id": "q07",
+      "prompt": "Absolute zero is zero on which temperature scale?",
+      "answers": [
+        "kelvin",
+        "kelvin scale"
+      ],
+      "display_answer": "Kelvin",
+      "kind": "text",
+      "options": [
+        "Kelvin",
+        "Celsius",
+        "Fahrenheit"
+      ]
+    },
+    {
+      "id": "q08",
+      "prompt": "What do we call the huge explosion of a dying star?",
+      "answers": [
+        "supernova",
+        "a supernova",
+        "super nova"
+      ],
+      "display_answer": "supernova",
+      "kind": "text",
+      "options": [
+        "supernova",
+        "nebula",
+        "quasar"
+      ]
+    },
+    {
+      "id": "q09",
+      "prompt": "Which galaxy is our solar system a part of?",
+      "answers": [
+        "milky way",
+        "the milky way"
+      ],
+      "display_answer": "Milky Way",
+      "kind": "text",
+      "options": [
+        "Milky Way",
+        "Andromeda",
+        "Whirlpool"
+      ]
+    },
+    {
+      "id": "q10",
+      "prompt": "Which planet takes the shortest time to go around the Sun?",
+      "answers": [
+        "mercury"
+      ],
+      "display_answer": "Mercury",
+      "kind": "text",
+      "options": [
+        "Mercury",
+        "Venus",
+        "Mars"
+      ]
+    }
+  ],
+  "story": {
+    "wizard": "Professor Hoot",
+    "wizard_sprite": "owl",
+    "scene": "observatory",
+    "voice": "Girish",
+    "intro": "I'm Professor Hoot, keeper of the night observatory. The comet clock crashed right before launch, and only an engineer can reboot it. Every right answer turns one golden gear.",
+    "chapters": [
+      "Gear one is spinning. Nice start, engineer!",
+      "The telescope just powered up. Keep going!",
+      "The star charts are loading. Brilliant!",
+      "Half the gears are running. You're halfway through the build!",
+      "The comet's tail is glowing brighter. Superb!",
+      "The planets are back in line. You're on fire!",
+      "One last gear to go. Stay focused!",
+      "You did it! The comet clock is ticking again!"
+    ],
+    "setbacks": [
+      "Oops! A cloud drifted over the lens.",
+      "Hmm, a gear slipped. Debug and move on.",
+      "Never mind, listen to the next one."
+    ],
+    "endings": {
+      "great": "You're a true star engineer! The whole sky is back in sync.",
+      "good": "Solid run! Most of the stars have found their way.",
+      "try_again": "A few gears are still stuck. Revise a little and try again!"
+    }
+  }
+}

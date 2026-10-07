@@ -22,7 +22,7 @@ from starlette.websockets import WebSocket, WebSocketDisconnect, WebSocketState
 from app.deps import Deps
 from app.game import scoring
 from app.game.characters import valid_character
-from app.game.languages import LanguageRoute, route
+from app.game.languages import LanguageRoute, route_for_pack
 from app.game.matching import looks_like_echo, match_answer, normalize, pack_answer_index
 from app.game.packs import Pack, Question
 from app.gnani.errors import GnaniAuthError, GnaniError
@@ -229,14 +229,14 @@ class PlaySession:
             return True
         await self._fail(
             "closed_for_today",
-            "Maata Arcade has hit today's limit. Come back tomorrow!",
+            "Mic Drop Arcade has hit today's limit. Come back tomorrow!",
             CLOSE_UNAVAILABLE,
         )
         return False
 
     # ------------------------------------------------------------------ game -----------
     async def _play_game(self, game_id: str, pack: Pack, character: str) -> None:
-        lang = route(pack.language)
+        lang = route_for_pack(pack)
         rng = secrets.SystemRandom()
         n = min(self.s.questions_per_game, len(pack.questions))
         game = GameState(game_id, pack, lang, rng.sample(pack.questions, n))
@@ -262,7 +262,12 @@ class PlaySession:
                 "max_score": scoring.max_score(n),
                 "character": character,
                 "story": (
-                    {"wizard": pack.story.wizard, "chapters": len(pack.story.chapters)}
+                    {
+                        "wizard": pack.story.wizard,
+                        "wizard_sprite": pack.story.wizard_sprite,
+                        "scene": pack.story.scene,
+                        "chapters": len(pack.story.chapters),
+                    }
                     if pack.story
                     else None
                 ),

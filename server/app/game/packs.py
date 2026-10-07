@@ -128,6 +128,19 @@ class Story(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     wizard: Annotated[str, StringConstraints(min_length=2, max_length=30)]
+    # Which wizard sprite set and scene the client shows (files in art/), and optionally a
+    # different Timbre voice for this story, e.g. a male voice for an old wizard.
+    wizard_sprite: Literal["sage", "sorceress", "owl"] = "sage"
+    scene: Literal[
+        "library-a",
+        "library-b",
+        "forest-temple",
+        "sky-islands",
+        "crystal-cave",
+        "night-bazaar",
+        "observatory",
+    ] = "library-a"
+    voice: Annotated[str, StringConstraints(pattern=r"^[A-Z][a-z]{2,15}$")] | None = None
     intro: Line
     chapters: list[Line] = Field(min_length=3, max_length=12)
     setbacks: list[Line] = Field(min_length=1, max_length=6)
@@ -193,6 +206,17 @@ class Pack(BaseModel):
         if len(ids) != len(set(ids)):
             raise ValueError("question ids must be unique")
         return v
+
+    @model_validator(mode="after")
+    def _story_voice_fits_language(self) -> Pack:
+        if self.story is None or self.story.voice is None:
+            return self
+        from app.game.languages import VOICES, route
+
+        tts_lang = route(self.language).tts_lang
+        if self.story.voice not in VOICES.get(tts_lang, frozenset()):
+            raise ValueError(f"voice {self.story.voice!r} is not a Timbre {tts_lang} voice")
+        return self
 
     @property
     def reviewed(self) -> bool:
