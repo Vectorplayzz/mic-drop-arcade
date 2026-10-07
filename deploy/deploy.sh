@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# Build and roll out the current checkout on the VPS. Run from the repo root as the deploy
-# user (abyss):   ./deploy/deploy.sh
+# Build and roll out the current checkout on the VPS. Normally called by ../deploy.sh release.
+# Runs as root (docker); the checkout itself is owned by the app user (abyss).
 # Every release is tagged with its git commit; the previous tag is kept for rollback.sh.
 set -euo pipefail
 cd "$(dirname "$0")"
+repo=$(cd .. && pwd)
+git() { command git -c safe.directory="$repo" "$@"; }   # checkout is owned by the app user
 
 [[ -f .env ]] || { echo "deploy/.env missing (copy .env.example)"; exit 1; }
 [[ "$(stat -c %a .env)" == "600" ]] || { echo "deploy/.env must be chmod 600"; exit 1; }
