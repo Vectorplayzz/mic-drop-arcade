@@ -36,7 +36,7 @@ jobs:
       MAATA_TEST_DATABASE_URL: postgresql://maata:maata@127.0.0.1:5432/maata_test
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Install (hash-pinned)
