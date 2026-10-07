@@ -53,6 +53,31 @@ jobs:
       - name: Dependency audit
         run: pip install pip-audit==2.9.0 && pip-audit -r requirements.lock --require-hashes --disable-pip
 
+  client:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: client
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: client/package-lock.json
+      - name: Install (lockfile)
+        run: npm ci
+      - name: Type-check
+        run: npm run typecheck
+      - name: Tests
+        run: npm test
+      - name: Build
+        run: npm run build
+      - name: Build obeys the production CSP
+        run: npm run check:dist
+      - name: Dependency audit
+        run: npm audit --audit-level=high
+
   secrets:
     runs-on: ubuntu-24.04
     steps:
