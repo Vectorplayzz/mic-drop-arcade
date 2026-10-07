@@ -1,6 +1,6 @@
 # Maata Arcade
 
-A retro arcade quiz you play only by speaking: Telugu, Hindi or Hinglish. Built for Gnani AI's
+A retro arcade quiz you play only by speaking: Telugu, Hindi, English, Hinglish or Tenglish. Built for Gnani AI's
 Great Indian AI Internship Challenge on **Prisma v2.5** (realtime STT), **Timbre v2.5**
 (streaming TTS) and **Evon v3.3** (question-pack generation).
 

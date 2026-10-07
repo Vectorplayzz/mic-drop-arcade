@@ -14,6 +14,8 @@ GET  /api/packs?language=te-IN         -> { packs: [{id, title, language, topic,
 POST /api/session  { turnstile_token } -> { token, expires_at }
 ```
 
+* Game languages: `te-IN` Telugu, `hi-IN` Hindi, `hi-en` Hinglish, `te-en` Tenglish,
+  `en-IN` English. `GET /api/status` returns them with display labels; don't hard-code the list.
 * If `status.open` is false, show the "come back tomorrow" screen (`reason` is
   `closed_for_today` or `maintenance`) and skip the bot check.
 * Render the Turnstile widget with **`action: "start"`**; the server rejects other actions.

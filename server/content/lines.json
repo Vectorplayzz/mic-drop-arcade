@@ -25,5 +25,23 @@
     "answer_was": "सही answer है {answer}।",
     "game_over": "Game over! अपना score screen पर देखो।",
     "retry": "छोटी सी technical problem आई। Next question पर चलते हैं।"
+  },
+  "te-en": {
+    "intro": "Maata Arcade కి welcome! Question విని, answer గట్టిగా చెప్పండి.",
+    "correct": "Super, correct answer!",
+    "wrong": "అయ్యో, ఇది wrong answer.",
+    "timeout": "Time అయిపోయింది.",
+    "answer_was": "Correct answer {answer}.",
+    "game_over": "Game over! మీ score screen మీద చూడండి.",
+    "retry": "చిన్న technical problem వచ్చింది. Next question కి వెళ్దాం."
+  },
+  "en-IN": {
+    "intro": "Welcome to Maata Arcade! Listen to the question and say your answer out loud.",
+    "correct": "That's right!",
+    "wrong": "Oops, that's not it.",
+    "timeout": "Time's up!",
+    "answer_was": "The answer is {answer}.",
+    "game_over": "Game over! Check your score on screen.",
+    "retry": "We hit a small technical problem. Let's go to the next question."
   }
 }

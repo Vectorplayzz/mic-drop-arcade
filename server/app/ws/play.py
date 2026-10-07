@@ -402,7 +402,12 @@ class PlaySession:
         lines, lang = self.deps.lines, game.lang.code
         timed_out = transcript is None
         result = (
-            match_answer(transcript, q, game.distractors.get(q.id, frozenset()))
+            match_answer(
+                transcript,
+                q,
+                game.distractors.get(q.id, frozenset()),
+                language=game.lang.code,
+            )
             if transcript
             else None
         )

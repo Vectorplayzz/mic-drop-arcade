@@ -2,6 +2,11 @@
 
 Hinglish has no STT code of its own; Prisma handles Hindi-English mixing under ``en-IN``.
 Timbre has a dedicated Hinglish voice (Poorvi) under ``hi-en``.
+
+Tenglish (Telugu-English mix) has neither. Live tests (Oct 7) showed Prisma ``te-IN`` hears
+mixed speech well but writes English words in Telugu script ("ఆన్సర్ సెవెన్"), while ``en-IN``
+garbles the Telugu, so Tenglish listens in ``te-IN`` and relies on the matcher's
+transliteration. It speaks with a Telugu voice reading mixed-script text.
 """
 
 from __future__ import annotations
@@ -23,6 +28,8 @@ LANGUAGES: dict[str, LanguageRoute] = {
     "te-IN": LanguageRoute("te-IN", "తెలుగు", stt_lang="te-IN", tts_lang="te-IN", voice="Suhana"),
     "hi-IN": LanguageRoute("hi-IN", "हिन्दी", stt_lang="hi-IN", tts_lang="hi-IN", voice="Nalini"),
     "hi-en": LanguageRoute("hi-en", "Hinglish", stt_lang="en-IN", tts_lang="hi-en", voice="Poorvi"),
+    "te-en": LanguageRoute("te-en", "Tenglish", stt_lang="te-IN", tts_lang="te-IN", voice="Varuni"),
+    "en-IN": LanguageRoute("en-IN", "English", stt_lang="en-IN", tts_lang="en-IN", voice="Girish"),
 }
 
 

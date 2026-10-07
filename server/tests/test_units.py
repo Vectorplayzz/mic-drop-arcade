@@ -499,3 +499,26 @@ def test_numbers_repeated_from_the_question_are_not_guesses():
     assert match_answer("एक हफ़्ते में सात दिन", q).correct
     assert not match_answer("एक", q).correct
     assert not match_answer("सात या आठ", q).correct
+
+
+def test_all_five_languages_route_and_have_lines():
+    from app.game.languages import LANGUAGES, route
+
+    assert set(LANGUAGES) == {"te-IN", "hi-IN", "hi-en", "te-en", "en-IN"}
+    # Tenglish listens in Telugu mode (live-tested): English words come back in Telugu script.
+    assert route("te-en").stt_lang == "te-IN" and route("te-en").tts_lang == "te-IN"
+    assert route("en-IN").stt_lang == "en-IN" and route("en-IN").voice == "Girish"
+    lines = Lines.load(SERVER_DIR / "content" / "lines.json")
+    for code in LANGUAGES:
+        assert "{answer}" not in lines.get(code, "answer_was", answer="x")
+
+
+def test_tenglish_transcripts_match_across_scripts():
+    q = Question(
+        id="n", prompt="Week lo enni rojulu?", answers=["7"], display_answer="7", kind="number"
+    )
+    assert match_answer("ఆన్సర్ సెవెన్ అనుకుంటా", q, language="te-en").correct
+    q2 = Question(
+        id="c", prompt="Telangana capital edi?", answers=["hyderabad"], display_answer="Hyderabad"
+    )
+    assert match_answer("నా ఆన్సర్ హైదరాబాద్", q2, language="te-en").correct
