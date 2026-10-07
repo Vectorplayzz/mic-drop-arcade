@@ -15,6 +15,12 @@ CHARACTERS: tuple[str, ...] = (
     "diya",  # long braid, yellow kurta
     "meera",  # pink bob, headphones
     "zara",  # high ponytail, green sporty outfit, book
+    "rohan",  # curly hair, green kurta, denim jacket
+    "aditya",  # buzz cut, basketball jersey
+    "imran",  # wavy hair, denim jacket, guitar
+    "ananya",  # two buns, red school uniform
+    "priya",  # Kuchipudi dancer
+    "sana",  # lavender hijab, sketchbook
 )
 DEFAULT_CHARACTER = "arjun"
 

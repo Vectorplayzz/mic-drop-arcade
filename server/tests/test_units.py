@@ -551,10 +551,63 @@ def test_story_schema_limits():
         parse_pack(_json.dumps(raw))
 
 
+def test_story_voice_scene_and_sprite():
+    import json as _json
+
+    from app.game.languages import route_for_pack
+
+    base = _json.loads((FIXTURES / "packs" / "hi-story-01.json").read_text(encoding="utf-8"))
+    pack = parse_pack(_json.dumps(base))
+    assert pack.story is not None
+    assert (pack.story.wizard_sprite, pack.story.scene, pack.story.voice) == (
+        "sage",
+        "library-a",
+        None,
+    )
+    assert route_for_pack(pack).voice == "Nalini"  # language default
+
+    raw = _json.loads(_json.dumps(base))
+    raw["story"].update(voice="Jalaj", wizard_sprite="owl", scene="crystal-cave")
+    pack = parse_pack(_json.dumps(raw))
+    route = route_for_pack(pack)
+    assert route.voice == "Jalaj" and route.tts_lang == "hi-IN" and route.stt_lang == "hi-IN"
+
+    for field, bad in (
+        ("voice", "Girish"),  # an en-IN voice in a Hindi pack
+        ("voice", "../etc"),
+        ("wizard_sprite", "dragon"),
+        ("scene", "../../secrets"),
+    ):
+        raw = _json.loads(_json.dumps(base))
+        raw["story"][field] = bad
+        with pytest.raises(ValueError):
+            parse_pack(_json.dumps(raw))
+
+
+def test_builtin_story_packs_are_valid():
+    """The hand-written starter packs parse, use their own language's voices and hit every
+    branch of the story (each pack has enough chapters for a perfect run)."""
+    from app.game.languages import VOICES, route_for_pack
+
+    drafts = sorted((SERVER_DIR / "packs" / "drafts").glob("*.json"))
+    langs = set()
+    for path in drafts:
+        pack = parse_pack(path.read_bytes())
+        if pack.story is None:
+            continue
+        langs.add(pack.language)
+        route = route_for_pack(pack)
+        assert route.voice in VOICES[route.tts_lang]
+        assert len(pack.story.chapters) >= min(len(pack.questions), 8)
+        assert all(q.options is not None for q in pack.questions), pack.id
+    assert langs == {"te-IN", "hi-IN", "hi-en", "te-en", "en-IN"}
+
+
 def test_characters_allowlist():
     from app.game.characters import CHARACTERS, valid_character
 
-    assert valid_character(None) == "arjun" and len(CHARACTERS) == 6
+    assert valid_character(None) == "arjun" and len(CHARACTERS) == 12
+    assert len(set(CHARACTERS)) == 12
     assert all(valid_character(c) == c for c in CHARACTERS)
     for bad in ("<script>", "", "ARJUN", "robot", 7, ["arjun"]):
         assert valid_character(bad) is None

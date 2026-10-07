@@ -19,7 +19,7 @@ import httpx
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.config import get_settings
-from app.game.languages import LANGUAGES, route
+from app.game.languages import LANGUAGES, route, route_for_pack
 from app.game.lines import Lines
 from app.game.packs import PackLibrary
 from app.gnani.errors import GnaniError
@@ -27,33 +27,39 @@ from app.gnani.tts import synthesize_rest
 from app.voice.cache import AudioCache, cache_key
 
 
-def collect(lines: Lines, packs: PackLibrary) -> list[tuple[str, str]]:
-    """Return unique (language, text) pairs."""
-    items: dict[tuple[str, str], None] = {}
+def collect(lines: Lines, packs: PackLibrary) -> list[tuple[str, str, str]]:
+    """Return unique (language, voice, text) triples: every line any game can speak."""
+    items: dict[tuple[str, str, str], None] = {}
     for lang in LANGUAGES:
+        voice = route(lang).voice
         for text in lines.all_static(lang):
-            items[(lang, text)] = None
+            items[(lang, voice, text)] = None
     for pack in packs.list():
+        r = route_for_pack(pack)
+        if pack.story is not None and pack.story.voice:
+            # A story voice speaks every line of its games, the fixed ones included.
+            for text in lines.all_static(pack.language):
+                items[(pack.language, r.voice, text)] = None
         for q in pack.questions:
-            items[(pack.language, q.prompt)] = None
+            items[(pack.language, r.voice, q.prompt)] = None
             answer_line = lines.get(pack.language, "answer_was", answer=q.display_answer)
-            items[(pack.language, answer_line)] = None
+            items[(pack.language, r.voice, answer_line)] = None
         if pack.story is not None:
             for line in pack.story.all_lines():
-                items[(pack.language, line)] = None
+                items[(pack.language, r.voice, line)] = None
     return list(items)
 
 
-async def render(todo: list[tuple[str, str, str]], cache: AudioCache, concurrency: int) -> int:
+async def render(todo: list[tuple[str, str, str, str]], cache: AudioCache, concurrency: int) -> int:
     s = get_settings()
     sem = asyncio.Semaphore(concurrency)
     failures = 0
 
-    async def one(client: httpx.AsyncClient, lang: str, text: str, key: str) -> None:
+    async def one(client: httpx.AsyncClient, lang: str, voice: str, text: str, key: str) -> None:
         nonlocal failures
         r = route(lang)
         async with sem:
-            for attempt in range(4):
+            for attempt in range(6):
                 try:
                     pcm = await synthesize_rest(
                         client,
@@ -61,22 +67,25 @@ async def render(todo: list[tuple[str, str, str]], cache: AudioCache, concurrenc
                         api_key=s.gnani_api_key.get_secret_value(),
                         model=s.gnani_tts_model,
                         text=text,
-                        voice=r.voice,
+                        voice=voice,
                         language=r.tts_lang,
                         speed=r.speed,
                     )
                     await cache.put(key, pcm)
-                    print(f"  ok   {lang}  {text[:50]}")
+                    print(f"  ok   {lang} {voice:8} {text[:50]}")
                     return
                 except GnaniError as exc:
-                    if not exc.retryable or attempt == 3:
+                    if not exc.retryable or attempt == 5:
                         failures += 1
                         print(f"  FAIL {lang}  {text[:50]}  ({exc})", file=sys.stderr)
                         return
-                    await asyncio.sleep(2**attempt)
+                    # Gnani rate-limits bursts (HTTP 429); back off well beyond a second.
+                    await asyncio.sleep(min(2 ** (attempt + 1), 30))
 
     async with httpx.AsyncClient() as client:
-        await asyncio.gather(*(one(client, lang, text, key) for lang, text, key in todo))
+        await asyncio.gather(
+            *(one(client, lang, voice, text, key) for lang, voice, text, key in todo)
+        )
     return failures
 
 
@@ -92,14 +101,14 @@ def main() -> int:
     packs = PackLibrary.load(s.packs_dir, require_review=True)
     cache = AudioCache(s.audio_cache_dir)
     todo = []
-    for lang, text in collect(lines, packs):
+    for lang, voice, text in collect(lines, packs):
         r = route(lang)
         key = cache_key(
-            model=s.gnani_tts_model, voice=r.voice, language=r.tts_lang, speed=r.speed, text=text
+            model=s.gnani_tts_model, voice=voice, language=r.tts_lang, speed=r.speed, text=text
         )
         if not cache.has(key):
-            todo.append((lang, text, key))
-    chars = sum(len(t) for _, t, _ in todo)
+            todo.append((lang, voice, text, key))
+    chars = sum(len(t) for _, _, t, _ in todo)
     print(f"{len(todo)} lines to render ({chars} characters).")
     if args.dry_run or not todo:
         return 0
