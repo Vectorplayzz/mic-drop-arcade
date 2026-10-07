@@ -372,3 +372,130 @@ def test_ipv6_rate_identity_is_the_64():
     assert a == b != c
     assert rate_identity("::ffff:1.2.3.4") == "1.2.3.4"
     assert rate_identity("1.2.3.4") == "1.2.3.4"
+
+
+# ---------------------------------------------------------------- matching: extended -
+Q_HI = Question(
+    id="h", prompt="भारत की राजधानी क्या है?", answers=["दिल्ली", "नई दिल्ली"], display_answer="दिल्ली"
+)
+Q_LATIN = Question(
+    id="l", prompt="Cricket World Cup 2011 kisne jeeta?", answers=["india"], display_answer="India"
+)
+Q_CITY = Question(id="c", prompt="తెలంగాణ రాజధాని ఏది?", answers=["హైదరాబాద్"], display_answer="హైదరాబాద్")
+
+
+@pytest.mark.parametrize(
+    "heard,question,ok",
+    [
+        ("दिल्ली", Q_TEXT, True),  # Devanagari for a Telugu answer
+        ("దిల్లీ", Q_TEXT, True),  # the other common Telugu spelling
+        ("dilli", Q_HI, True),
+        ("Delhi", Q_HI, True),
+        ("newdelhi", Q_TEXT, True),  # word breaks vary
+        ("नयी दिल्ली", Q_HI, True),
+        ("इंडिया", Q_LATIN, True),
+        ("ఇండియా", Q_LATIN, True),
+        ("hyderabad", Q_CITY, True),  # English spelling, one vowel off the transliteration
+        ("हैदराबाद", Q_CITY, True),
+        ("मुंबई", Q_HI, False),
+        ("dal", Q_HI, False),
+        ("secunderabad", Q_CITY, False),
+    ],
+)
+def test_transliterated_answers(heard, question, ok):
+    assert match_answer(heard, question).correct is ok
+
+
+@pytest.mark.parametrize(
+    "heard,language,ok",
+    [
+        ("I think the answer is New Delhi", "hi-en", True),
+        ("जवाब है दिल्ली", "hi-IN", True),
+        ("मुझे लगता है जवाब दिल्ली है", "hi-IN", True),
+        ("సమాధానం ఢిల్లీ అనుకుంటా", "te-IN", True),
+        ("mera jawab hai dilli", "hi-en", True),
+        ("um i think mumbai chennai kolkata delhi", "hi-en", False),  # fillers can't hide a list
+        ("जवाब है", "hi-IN", False),
+    ],
+)
+def test_filler_words(heard, language, ok):
+    assert match_answer(heard, Q_TEXT, language=language).correct is ok
+    assert match_answer(heard, Q_TEXT).correct is ok  # no language: every list applies
+
+
+def test_filler_that_is_the_answer_still_counts():
+    q = Question(id="y", prompt="Is the sky blue?", answers=["yes", "हाँ"], display_answer="Yes")
+    assert match_answer("yeah yes", q, language="hi-en").correct
+    q = Question(id="i", prompt="Which pronoun?", answers=["it"], display_answer="it")
+    assert match_answer("it", q, language="hi-en").correct
+
+
+@pytest.mark.parametrize(
+    "heard,ok",
+    [
+        ("ఏడు", True),
+        ("ఏడు రోజులు", True),
+        ("सात", True),
+        ("सात दिन होते हैं", True),
+        ("saat", True),
+        ("seven", True),
+        ("सेवन", True),
+        ("the answer is seven days", True),
+        ("ఒక వారంలో ఏడు రోజులు", True),
+        ("साठ", False),  # 60, one aspirate away from सात
+        ("ఆరు", False),
+        ("six or seven", False),
+        ("ఆరు ఏడు", False),
+        ("seventeen", False),
+        ("I sat down", False),  # "sat" is 7 only when it stands alone
+    ],
+)
+def test_spoken_numbers(heard, ok):
+    assert match_answer(heard, Q_NUM).correct is ok
+
+
+@pytest.mark.parametrize(
+    "heard,answer",
+    [
+        ("उन्नीस सौ सैंतालीस", "1947"),
+        ("nineteen forty seven", None),  # two numbers, not a year: reject rather than guess
+        ("one thousand nine hundred and forty seven", "1947"),
+        ("వెయ్యి తొమ్మిది వందల నలభై ఏడు", "1947"),
+        ("పందొమ్మిది వందల నలభై ఏడు", "1947"),
+        ("ఇరవై ఒకటి", "21"),
+        ("ఇరవయ్యొకటి", "21"),
+        ("इक्कीस", "21"),
+        ("twenty one", "21"),
+        ("डेढ़ सौ", None),
+        ("నూట యాభై", "150"),
+        ("एक सौ पचास", "150"),
+        ("दो लाख", "200000"),
+        ("three point one four", "3.14"),
+        ("do", "2"),
+        ("zero", "0"),
+        ("శూన్యం", None),
+    ],
+)
+def test_number_words_parse_to_values(heard, answer):
+    for value in ("1947", "21", "150", "200000", "3.14", "2", "0"):
+        q = Question(id="v", prompt="?!?", answers=[value], display_answer=value, kind="number")
+        assert match_answer(heard, q).correct is (value == answer), (heard, value)
+
+
+def test_other_answer_in_another_script_is_a_second_guess():
+    others = frozenset({"mumbai", "पेरिस"})
+    assert match_answer("దిల్లీ", Q_TEXT, others).correct
+    assert not match_answer("ముంబై దిల్లీ", Q_TEXT, others).correct
+
+
+def test_numbers_repeated_from_the_question_are_not_guesses():
+    q = Question(
+        id="w",
+        prompt="एक हफ़्ते में कितने दिन होते हैं?",
+        answers=["7"],
+        display_answer="सात",
+        kind="number",
+    )
+    assert match_answer("एक हफ़्ते में सात दिन", q).correct
+    assert not match_answer("एक", q).correct
+    assert not match_answer("सात या आठ", q).correct
