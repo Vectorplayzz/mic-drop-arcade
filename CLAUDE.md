@@ -29,7 +29,7 @@ Rules:
 - **The browser never talks to Gnani** and never holds the Gnani API key. All Gnani calls go
   through `server/`.
 - **Never commit secrets:** no `.env`, keys or tokens. CI runs gitleaks and fails the build.
-- **No code, prompts or data from Optficial Labs or DhimantAI.** This is a personal project.
+- **No code, prompts or data from any employer or other project.** This is a personal project.
 - **Production quality from the start.** No throwaway scaffolds or placeholder screens. Research
   current versions and docs before choosing a library; don't rely on memory for versions.
 - **`main` is protected by CI.** Work on a branch, open a PR, and merge only when CI is green.
