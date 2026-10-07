@@ -1,0 +1,302 @@
+{
+ "schema": 1,
+ "id": "test-quest",
+ "genre": "mystery",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": "Test Reviewer",
+ "reviewed_at": "2026-10-08",
+ "title": {
+  "en-IN": "Test Quest",
+  "hi-IN": "Test Quest",
+  "hi-en": "Test Quest",
+  "te-IN": "Test Quest",
+  "te-en": "Test Quest"
+ },
+ "tagline": {
+  "en-IN": "Three doors and a riddle.",
+  "hi-IN": "Three doors and a riddle.",
+  "hi-en": "Three doors and a riddle.",
+  "te-IN": "Three doors and a riddle.",
+  "te-en": "Three doors and a riddle."
+ },
+ "cover": "lab-corridor",
+ "meter": {
+  "label": {
+   "en-IN": "Luck",
+   "hi-IN": "Luck",
+   "hi-en": "Luck",
+   "te-IN": "Luck",
+   "te-en": "Luck"
+  },
+  "icon": "star",
+  "start": 1,
+  "max": 3,
+  "on_zero": null
+ },
+ "items": {
+  "key": {
+   "label": {
+    "en-IN": "Brass key",
+    "hi-IN": "Brass key",
+    "hi-en": "Brass key",
+    "te-IN": "Brass key",
+    "te-en": "Brass key"
+   }
+  }
+ },
+ "start": "a",
+ "nodes": {
+  "a": {
+   "scene": "lab-corridor",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Three doors stand before you.",
+     "hi-IN": "Three doors stand before you.",
+     "hi-en": "Three doors stand before you.",
+     "te-IN": "Three doors stand before you.",
+     "te-en": "Three doors stand before you."
+    },
+    {
+     "en-IN": "Which door do you open?",
+     "hi-IN": "Which door do you open?",
+     "hi-en": "Which door do you open?",
+     "te-IN": "Which door do you open?",
+     "te-en": "Which door do you open?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Red door",
+      "hi-IN": "Red door",
+      "hi-en": "Red door",
+      "te-IN": "Red door",
+      "te-en": "Red door"
+     },
+     "keywords": {
+      "en-IN": [
+       "red"
+      ],
+      "hi-IN": [
+       "red"
+      ],
+      "hi-en": [
+       "red"
+      ],
+      "te-IN": [
+       "red"
+      ],
+      "te-en": [
+       "red"
+      ]
+     },
+     "go": "b",
+     "effects": {
+      "gain": [
+       "key"
+      ],
+      "meter": 1
+     },
+     "say": [
+      {
+       "en-IN": "The red door creaks open.",
+       "hi-IN": "The red door creaks open.",
+       "hi-en": "The red door creaks open.",
+       "te-IN": "The red door creaks open.",
+       "te-en": "The red door creaks open."
+      }
+     ]
+    },
+    {
+     "label": {
+      "en-IN": "Blue door",
+      "hi-IN": "Blue door",
+      "hi-en": "Blue door",
+      "te-IN": "Blue door",
+      "te-en": "Blue door"
+     },
+     "keywords": {
+      "en-IN": [
+       "blue"
+      ],
+      "hi-IN": [
+       "blue"
+      ],
+      "hi-en": [
+       "blue"
+      ],
+      "te-IN": [
+       "blue"
+      ],
+      "te-en": [
+       "blue"
+      ]
+     },
+     "go": "end:plain"
+    },
+    {
+     "label": {
+      "en-IN": "Green door",
+      "hi-IN": "Green door",
+      "hi-en": "Green door",
+      "te-IN": "Green door",
+      "te-en": "Green door"
+     },
+     "keywords": {
+      "en-IN": [
+       "green"
+      ],
+      "hi-IN": [
+       "green"
+      ],
+      "hi-en": [
+       "green"
+      ],
+      "te-IN": [
+       "green"
+      ],
+      "te-en": [
+       "green"
+      ]
+     },
+     "go": "end:mid"
+    }
+   ]
+  },
+  "b": {
+   "scene": "lab-server",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "A locked box glows in the dark.",
+     "hi-IN": "A locked box glows in the dark.",
+     "hi-en": "A locked box glows in the dark.",
+     "te-IN": "A locked box glows in the dark.",
+     "te-en": "A locked box glows in the dark."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "How many bits make one byte?",
+     "hi-IN": "How many bits make one byte?",
+     "hi-en": "How many bits make one byte?",
+     "te-IN": "How many bits make one byte?",
+     "te-en": "How many bits make one byte?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "8",
+      "4",
+      "16"
+     ],
+     "hi-IN": [
+      "8",
+      "4",
+      "16"
+     ],
+     "hi-en": [
+      "8",
+      "4",
+      "16"
+     ],
+     "te-IN": [
+      "8",
+      "4",
+      "16"
+     ],
+     "te-en": [
+      "8",
+      "4",
+      "16"
+     ]
+    },
+    "answer": 0,
+    "pass": {
+     "go": "end:gold",
+     "say": [
+      {
+       "en-IN": "The box opens.",
+       "hi-IN": "The box opens.",
+       "hi-en": "The box opens.",
+       "te-IN": "The box opens.",
+       "te-en": "The box opens."
+      }
+     ]
+    },
+    "fail": {
+     "go": "end:plain",
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  }
+ },
+ "endings": {
+  "gold": {
+   "title": {
+    "en-IN": "Treasure Found",
+    "hi-IN": "Treasure Found",
+    "hi-en": "Treasure Found",
+    "te-IN": "Treasure Found",
+    "te-en": "Treasure Found"
+   },
+   "rank": "gold",
+   "scene": "lab-dawn",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "You found the treasure.",
+     "hi-IN": "You found the treasure.",
+     "hi-en": "You found the treasure.",
+     "te-IN": "You found the treasure.",
+     "te-en": "You found the treasure."
+    }
+   ]
+  },
+  "mid": {
+   "title": {
+    "en-IN": "Garden Walk",
+    "hi-IN": "Garden Walk",
+    "hi-en": "Garden Walk",
+    "te-IN": "Garden Walk",
+    "te-en": "Garden Walk"
+   },
+   "rank": "silver",
+   "scene": "fest-garden",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "A quiet garden.",
+     "hi-IN": "A quiet garden.",
+     "hi-en": "A quiet garden.",
+     "te-IN": "A quiet garden.",
+     "te-en": "A quiet garden."
+    }
+   ]
+  },
+  "plain": {
+   "title": {
+    "en-IN": "Back to Bed",
+    "hi-IN": "Back to Bed",
+    "hi-en": "Back to Bed",
+    "te-IN": "Back to Bed",
+    "te-en": "Back to Bed"
+   },
+   "rank": "bronze",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Nothing happens. Back to bed.",
+     "hi-IN": "Nothing happens. Back to bed.",
+     "hi-en": "Nothing happens. Back to bed.",
+     "te-IN": "Nothing happens. Back to bed.",
+     "te-en": "Nothing happens. Back to bed."
+    }
+   ]
+  }
+ }
+}

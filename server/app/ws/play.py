@@ -14,6 +14,7 @@ import json
 import secrets
 import struct
 import time
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -22,7 +23,14 @@ from starlette.websockets import WebSocket, WebSocketDisconnect, WebSocketState
 from app.deps import Deps
 from app.game import scoring
 from app.game.characters import valid_character
-from app.game.languages import DEFAULT_WIZARD, LanguageRoute, route_for_game, valid_wizard
+from app.game.languages import (
+    DEFAULT_WIZARD,
+    LANGUAGES,
+    LanguageRoute,
+    route_for_game,
+    route_for_wizard,
+    valid_wizard,
+)
 from app.game.matching import looks_like_echo, match_answer, normalize, pack_answer_index
 from app.game.packs import Pack, Question
 from app.gnani.errors import GnaniAuthError, GnaniError
@@ -35,6 +43,7 @@ from app.security.ratelimit import day_key, seconds_until_ist_midnight
 from app.security.tokens import ScoreClaims, SessionClaims, TokenError
 from app.voice.cache import cache_key
 from app.voice.vad import BargeInDetector
+from app.ws.adventure import AdventureRunner
 
 log = get_logger(__name__)
 
@@ -122,6 +131,8 @@ class PlaySession:
         self._utterance = 0
         self._vad = BargeInDetector(sample_rate=MIC_SAMPLE_RATE)
         self._game: GameState | None = None
+        self._lang: LanguageRoute | None = None  # voice of the game in progress
+        self._adventure_game = False
 
         self._audio_pending = 0.0
         self._limit_reason: str | None = None
@@ -191,6 +202,9 @@ class PlaySession:
             if cmd is None:
                 await self._fail("idle", "Closed after being idle.", CLOSE_IDLE)
                 return
+            if cmd["type"] == "start_adventure":
+                await self._start_adventure(cmd)
+                continue
             if cmd["type"] != "start":
                 continue
             pack = self.deps.packs.get(str(cmd.get("pack_id", "")))
@@ -206,27 +220,81 @@ class PlaySession:
             if wizard is None:
                 await self._send_error("unknown_character", "Pick one of the wizards on screen.")
                 continue
-            if not await self._check_open():
-                return
-            games_key = f"maata:games:{self.claims.session_id}"
-            played = await self.deps.redis.incr(games_key)
-            if played == 1:
-                await self.deps.redis.expire(games_key, self.s.session_ttl_s + 60)
-            if played > self.s.max_games_per_session:
-                await self._fail(
-                    "session_limit",
-                    "That's the most games for one session. Reload to play again.",
-                    CLOSE_LIMIT,
-                )
-                return
-            game_id = secrets.token_urlsafe(12)
-            if not await self.deps.slots.acquire_game(game_id):
-                await self._send_error("busy", "Lots of players right now. Try again in a minute.")
+            game_id = await self._claim_game()
+            if game_id is None:
                 continue
             try:
                 await self._play_game(game_id, pack, character, wizard)
             finally:
                 await self.deps.slots.release_game(game_id)
+
+    async def _claim_game(self) -> str | None:
+        """Budget, per-session game cap and a global game slot; None if the game can't start.
+        Raises SessionEnded when the session itself is over."""
+        assert self.claims is not None
+        if not await self._check_open():
+            raise SessionEnded
+        games_key = f"maata:games:{self.claims.session_id}"
+        played = await self.deps.redis.incr(games_key)
+        if played == 1:
+            await self.deps.redis.expire(games_key, self.s.session_ttl_s + 60)
+        if played > self.s.max_games_per_session:
+            await self._fail(
+                "session_limit",
+                "That's the most games for one session. Reload to play again.",
+                CLOSE_LIMIT,
+            )
+            raise SessionEnded
+        game_id = secrets.token_urlsafe(12)
+        if not await self.deps.slots.acquire_game(game_id):
+            await self._send_error("busy", "Lots of players right now. Try again in a minute.")
+            return None
+        return game_id
+
+    async def _start_adventure(self, cmd: dict[str, Any]) -> None:
+        library = self.deps.adventures
+        language = cmd.get("language")
+        if not isinstance(language, str) or language not in LANGUAGES:
+            await self._send_error("unknown_language", "Pick one of the languages on screen.")
+            return
+        wanted = cmd.get("adventure")
+        adventure = (
+            library.prologue
+            if wanted == "auto"
+            else library.get(wanted)
+            if isinstance(wanted, str)
+            else None
+        )
+        if adventure is None:
+            await self._send_error("unknown_adventure", "That adventure is not available.")
+            return
+        character = valid_character(cmd.get("character"))
+        if character is None:
+            await self._send_error("unknown_character", "Pick one of the heroes on screen.")
+            return
+        picked = cmd.get("wizard")
+        wizard = DEFAULT_WIZARD if picked is None else valid_wizard(picked)
+        if wizard is None:
+            await self._send_error("unknown_character", "Pick one of the wizards on screen.")
+            return
+        game_id = await self._claim_game()
+        if game_id is None:
+            return
+        lang = route_for_wizard(language, wizard)
+        self._lang = lang
+        self._tts = self.deps.new_tts()
+        log.info("adventure_started", game_id=game_id, adventure=adventure.id, language=language)
+        try:
+            await AdventureRunner(self, lang).run(game_id, adventure, wizard, character)
+            if self._limit_reason:
+                await self._fail("audio_limit", "You've reached today's play limit.", CLOSE_LIMIT)
+                raise SessionEnded
+        finally:
+            await self.deps.slots.release_game(game_id)
+            if self._tts is not None:
+                await self._tts.close()
+            self._tts = None
+            self._lang = None
 
     async def _check_open(self) -> bool:
         status = await self.deps.budget.status()
@@ -255,6 +323,7 @@ class PlaySession:
                 game.options[q.id] = rng.sample(list(q.options), len(q.options))
         game.character = character
         self._game = game
+        self._lang = lang
         self._tts = self.deps.new_tts()
         log.info("game_started", game_id=game_id, pack=pack.id, language=lang.code)
         await self._send(
@@ -344,14 +413,12 @@ class PlaySession:
         await self._tts.close()
         self._tts = None
         self._game = None
+        self._lang = None
 
     async def _play_question(self, game: GameState, index: int, q: Question) -> None:
         limit = self.s.answer_time_limit_s
-        stt = self.deps.new_stt(language=game.lang.stt_lang, sample_rate=MIC_SAMPLE_RATE)
-        open_task = asyncio.create_task(stt.open(), name="stt-open")
-        # Everything after the STT open starts sits inside try/finally, so a disconnect at any
-        # point can't leave a Prisma connection running.
-        try:
+
+        async def announce() -> _Speech | None:
             await self._send(
                 {
                     "type": "question",
@@ -363,7 +430,39 @@ class PlaySession:
                     "options": game.options.get(q.id),
                 }
             )
-            speech = await self._say(q.prompt, wait=False)
+            return await self._say(q.prompt, wait=False)
+
+        transcript, answered_at, deadline = await self._listen_round(
+            stt_lang=game.lang.stt_lang,
+            index=index,
+            announce=announce,
+            echo_of=q.prompt,
+            limit=limit,
+        )
+        await self._judge(game, index, q, transcript, answered_at, deadline, limit)
+
+    async def _listen_round(
+        self,
+        *,
+        stt_lang: str,
+        index: int,
+        announce: Callable[[], Awaitable[_Speech | None]],
+        echo_of: str,
+        limit: float,
+        bias_words: list[str] | None = None,
+    ) -> tuple[str | None, float, float]:
+        """Open Prisma while ``announce`` speaks the prompt, then listen for one answer.
+
+        Returns (transcript or None on timeout, answered_at, deadline). Raises RoundSkipped when
+        the provider fails, so the caller can void the round instead of judging it."""
+        stt = self.deps.new_stt(
+            language=stt_lang, sample_rate=MIC_SAMPLE_RATE, bias_words=bias_words
+        )
+        open_task = asyncio.create_task(stt.open(), name="stt-open")
+        # Everything after the STT open starts sits inside try/finally, so a disconnect at any
+        # point can't leave a Prisma connection running.
+        try:
+            speech = await announce()
             try:
                 await open_task
             except GnaniAuthError:
@@ -379,7 +478,7 @@ class PlaySession:
             await self._send(
                 {"type": "listen", "index": index, "barge_in": self.s.barge_in_enabled}
             )
-            verdict = await self._await_answer(stt, q, speech, limit)
+            return await self._await_answer(stt, echo_of, speech, limit)
         finally:
             self._listening = False
             self._stt = None
@@ -390,11 +489,8 @@ class PlaySession:
             await stt.close()
             await self._charge_stt(stt)
 
-        transcript, answered_at, deadline = verdict
-        await self._judge(game, index, q, transcript, answered_at, deadline, limit)
-
     async def _await_answer(
-        self, stt: SttStream, q: Question, speech: _Speech | None, limit: float
+        self, stt: SttStream, echo_of: str, speech: _Speech | None, limit: float
     ) -> tuple[str | None, float, float]:
         """Wait for a usable transcript or the deadline. Returns (text|None, at, deadline)."""
         grace = self.s.answer_grace_s
@@ -424,7 +520,7 @@ class PlaySession:
                 await self._send({"type": "eos"})
             elif event.kind == "transcript":
                 text = event.text.strip()
-                if not text or looks_like_echo(text, q.prompt):
+                if not text or looks_like_echo(text, echo_of):
                     eos_sent = False
                     await self._send({"type": "heard_nothing"})
                     continue
@@ -509,9 +605,10 @@ class PlaySession:
         await self._say(text, wait=wait)
 
     # ------------------------------------------------------------------ speech ---------
-    async def _say(self, text: str, *, wait: bool) -> _Speech | None:
-        game = self._game
-        if game is None or self._gone.is_set():
+    async def _say(self, text: str, *, wait: bool, caption: str | None = None) -> _Speech | None:
+        """Speak ``text``; the client shows ``caption`` (default: the text itself)."""
+        lang = self._lang
+        if lang is None or self._gone.is_set():
             return None
         # A new line supersedes any line still streaming (the client does the same on
         # speak_start), so two utterances never interleave.
@@ -521,7 +618,9 @@ class PlaySession:
             await asyncio.wait({previous.task})
         self._utterance = (self._utterance + 1) & 0xFFFF
         utt = self._utterance
-        task = asyncio.create_task(self._stream_speech(utt, text, game.lang), name="speech")
+        task = asyncio.create_task(
+            self._stream_speech(utt, text, lang, caption or text), name="speech"
+        )
         task.add_done_callback(_consume_exception)
         speech = _Speech(utt, time.monotonic(), task)
         self._speech = speech
@@ -537,7 +636,7 @@ class PlaySession:
                 await self._sleep_or_gone(remaining)
         return speech
 
-    async def _stream_speech(self, utt: int, text: str, lang: LanguageRoute) -> float:
+    async def _stream_speech(self, utt: int, text: str, lang: LanguageRoute, caption: str) -> float:
         """Send one line to the client; returns its audio duration in seconds."""
         s = self.s
         key = cache_key(
@@ -551,7 +650,7 @@ class PlaySession:
             {
                 "type": "speak_start",
                 "utterance": utt,
-                "caption": text,
+                "caption": caption,
                 "sample_rate": TTS_SAMPLE_RATE,
             }
         )
@@ -658,11 +757,22 @@ class PlaySession:
         if kind == "ping":
             await self._send({"type": "pong", "t": msg.get("t")})
         elif kind == "start":
-            if self._game is None and self._commands.empty():
+            if self._lang is None and self._commands.empty():
                 self._commands.put_nowait(
                     {
                         "type": "start",
                         "pack_id": msg.get("pack_id"),
+                        "character": msg.get("character"),
+                        "wizard": msg.get("wizard"),
+                    }
+                )
+        elif kind == "start_adventure":
+            if self._lang is None and self._commands.empty():
+                self._commands.put_nowait(
+                    {
+                        "type": "start_adventure",
+                        "adventure": msg.get("adventure"),
+                        "language": msg.get("language"),
                         "character": msg.get("character"),
                         "wizard": msg.get("wizard"),
                     }

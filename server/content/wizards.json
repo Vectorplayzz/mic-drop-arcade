@@ -1,0 +1,657 @@
+{
+ "en-IN": {
+  "sorceress": {
+   "greet": {
+    "text": "Come, let me tell you a story. And remember, you choose what happens next."
+   },
+   "choose_again": {
+    "text": "I didn't quite catch that. Say one, two or three, or the words on a card."
+   },
+   "chose_for_you": {
+    "text": "Hmm, let me choose for you this time."
+   },
+   "puzzle_right": {
+    "text": "Wonderful! I knew you could do it."
+   },
+   "puzzle_wrong": {
+    "text": "Not quite, but every path leads somewhere."
+   },
+   "ending_good": {
+    "text": "What a story you wrote tonight. I'm proud of you."
+   },
+   "ending_bad": {
+    "text": "Every great hero has a rough night. Shall we try again?"
+   }
+  },
+  "sage": {
+   "greet": {
+    "text": "Sit, young one. Every choice is a door, and every door is a lesson."
+   },
+   "choose_again": {
+    "text": "My old ears missed that. Speak again: one, two or three."
+   },
+   "chose_for_you": {
+    "text": "Silence is also a choice. I shall choose for you."
+   },
+   "puzzle_right": {
+    "text": "Ah. Wisdom, at last."
+   },
+   "puzzle_wrong": {
+    "text": "Wrong. But a wrong turn is still a road."
+   },
+   "ending_good": {
+    "text": "A fine tale. They will tell it for years."
+   },
+   "ending_bad": {
+    "text": "Defeat is only a teacher in a dark robe. Again?"
+   }
+  },
+  "owl": {
+   "greet": {
+    "text": "Hoo! Fascinating. Let's run the experiment and observe the results."
+   },
+   "choose_again": {
+    "text": "Inconclusive data. Please repeat: option one, two or three."
+   },
+   "chose_for_you": {
+    "text": "No input detected. Selecting an option, for science."
+   },
+   "puzzle_right": {
+    "text": "Correct! Statistically impressive."
+   },
+   "puzzle_wrong": {
+    "text": "Incorrect. But failure is just more data."
+   },
+   "ending_good": {
+    "text": "Excellent results. I would publish this."
+   },
+   "ending_bad": {
+    "text": "The hypothesis failed. Let's iterate."
+   }
+  },
+  "enchantress": {
+   "greet": {
+    "text": "Well, hello there. Come closer, darling. Let's have an adventure, just the two of us."
+   },
+   "choose_again": {
+    "text": "Mm, say that again, darling? I do love hearing your voice."
+   },
+   "chose_for_you": {
+    "text": "Lost for words? How sweet. I'll choose for you."
+   },
+   "puzzle_right": {
+    "text": "Clever and charming? Careful, I might fall for you."
+   },
+   "puzzle_wrong": {
+    "text": "Oh, wrong. But you look adorable when you're confused."
+   },
+   "ending_good": {
+    "text": "Stunning. I knew you were special the moment you walked in."
+   },
+   "ending_bad": {
+    "text": "Don't pout, darling. Come back and try again. I'll be waiting."
+   }
+  },
+  "trickster": {
+   "greet": {
+    "text": "Ooh, a new player. Let's see how long before you fall for one of my tricks."
+   },
+   "choose_again": {
+    "text": "Was that a word or a sneeze? One, two or three, genius."
+   },
+   "chose_for_you": {
+    "text": "Too slow! I'm picking for you. Hope you like surprises."
+   },
+   "puzzle_right": {
+    "text": "Huh. Right answer. Lucky guess, surely."
+   },
+   "puzzle_wrong": {
+    "text": "Wrong! Oh, this is going to be fun."
+   },
+   "ending_good": {
+    "text": "Fine, fine, you won. Don't let it go to your head."
+   },
+   "ending_bad": {
+    "text": "Ha! Didn't see that coming, did you? Again?"
+   }
+  }
+ },
+ "hi-IN": {
+  "sorceress": {
+   "greet": {
+    "text": "आओ, मैं तुम्हें एक कहानी सुनाती हूँ। और याद रखना, आगे क्या होगा, ये फ़ैसला तुम्हारा है।"
+   },
+   "choose_again": {
+    "text": "मैं ठीक से सुन नहीं पाई। एक, दो या तीन बोलो, या कार्ड पर लिखे शब्द।"
+   },
+   "chose_for_you": {
+    "text": "हम्म, इस बार मैं तुम्हारे लिए चुन लेती हूँ।"
+   },
+   "puzzle_right": {
+    "text": "वाह, कमाल! मुझे पता था, ये तुमसे हो जाएगा।"
+   },
+   "puzzle_wrong": {
+    "text": "बस थोड़ी सी कसर रह गई, पर हर रास्ता कहीं न कहीं ले जाता है।"
+   },
+   "ending_good": {
+    "text": "आज रात तुमने क्या कहानी लिखी! मुझे तुम पर गर्व है।"
+   },
+   "ending_bad": {
+    "text": "हर बड़े हीरो की कोई न कोई रात बुरी जाती है। फिर से कोशिश करें?"
+   }
+  },
+  "sage": {
+   "greet": {
+    "text": "बैठो, बच्चे। हर चुनाव एक द्वार है... और हर द्वार, एक सबक।"
+   },
+   "choose_again": {
+    "text": "इन बूढ़े कानों से वो छूट गया। फिर से कहो: एक, दो या तीन।"
+   },
+   "chose_for_you": {
+    "text": "मौन भी एक चुनाव है। तो मैं ही तुम्हारे लिए चुनूँगा।"
+   },
+   "puzzle_right": {
+    "text": "आह। आख़िरकार, ज्ञान।"
+   },
+   "puzzle_wrong": {
+    "text": "ग़लत। पर ग़लत मोड़ भी तो एक राह ही है।"
+   },
+   "ending_good": {
+    "text": "सुंदर कथा। बरसों तक लोग इसे सुनाएँगे।"
+   },
+   "ending_bad": {
+    "text": "हार तो बस काले चोगे में छिपा एक गुरु है। फिर से?"
+   }
+  },
+  "owl": {
+   "greet": {
+    "text": "हू! दिलचस्प। चलो, प्रयोग शुरू करते हैं और नतीजे देखते हैं।"
+   },
+   "choose_again": {
+    "text": "डेटा अधूरा है। कृपया दोहराइए: विकल्प एक, दो या तीन।"
+   },
+   "chose_for_you": {
+    "text": "कोई इनपुट नहीं मिला। विज्ञान के नाम पर, मैं एक विकल्प चुन रहा हूँ।"
+   },
+   "puzzle_right": {
+    "text": "सही! आँकड़ों के हिसाब से, बेहद प्रभावशाली।"
+   },
+   "puzzle_wrong": {
+    "text": "ग़लत। पर असफलता भी तो बस और डेटा है।"
+   },
+   "ending_good": {
+    "text": "शानदार नतीजे। मैं तो इस पर पेपर छपवा दूँ।"
+   },
+   "ending_bad": {
+    "text": "परिकल्पना फेल हो गई। चलो, फिर से सुधारकर आज़माते हैं।"
+   }
+  },
+  "enchantress": {
+   "greet": {
+    "text": "अरे, हैलो। ज़रा पास आओ, डार्लिंग। चलो, एक एडवेंचर पर चलें, बस हम दोनों।"
+   },
+   "choose_again": {
+    "text": "म्म, फिर से कहो ना, डार्लिंग? एक, दो या तीन। तुम्हारी आवाज़ सुनना मुझे बहुत अच्छा लगता है।"
+   },
+   "chose_for_you": {
+    "text": "शब्द नहीं मिल रहे? कितना प्यारा। चलो, मैं ही तुम्हारे लिए चुन लेती हूँ।"
+   },
+   "puzzle_right": {
+    "text": "होशियार भी और चार्मिंग भी? संभल के, कहीं मुझे तुमसे प्यार न हो जाए।"
+   },
+   "puzzle_wrong": {
+    "text": "ओह, ग़लत। पर उलझन में भी तुम्हारा चेहरा कितना क्यूट लगता है।"
+   },
+   "ending_good": {
+    "text": "लाजवाब। पहली नज़र में ही मुझे पता था कि तुममें कुछ ख़ास है।"
+   },
+   "ending_bad": {
+    "text": "मुँह मत फुलाओ, डार्लिंग। वापस आओ और फिर से कोशिश करो। मैं इंतज़ार करूँगी।"
+   }
+  },
+  "trickster": {
+   "greet": {
+    "text": "ओहो, नया प्लेयर। देखते हैं, मेरी पहली चाल तुम पर कितनी जल्दी चलती है।"
+   },
+   "choose_again": {
+    "text": "वो कोई शब्द था या छींक? एक, दो या तीन बोलो, जीनियस।"
+   },
+   "chose_for_you": {
+    "text": "बहुत देर हो गई! मैं ही चुन रहा हूँ। उम्मीद है, सरप्राइज़ पसंद हैं।"
+   },
+   "puzzle_right": {
+    "text": "हम्म। सही जवाब। तुक्का लगा होगा, पक्का।"
+   },
+   "puzzle_wrong": {
+    "text": "ग़लत! ओह, अब तो मज़ा आएगा।"
+   },
+   "ending_good": {
+    "text": "ठीक है, ठीक है, जीत तुम्हारी हुई। पर ज़्यादा हवा में मत उड़ना।"
+   },
+   "ending_bad": {
+    "text": "हा! ये आते हुए नहीं देखा, है ना? फिर से?"
+   }
+  }
+ },
+ "hi-en": {
+  "sorceress": {
+   "greet": {
+    "text": "Aao, main tumhe ek story sunati hoon. Aur yaad rakhna, aage kya hoga, ye decision tumhara hai.",
+    "tts": "आओ, मैं तुम्हें एक story सुनाती हूँ। और याद रखना, आगे क्या होगा, ये decision तुम्हारा है।"
+   },
+   "choose_again": {
+    "text": "Main theek se sun nahi paayi. Ek, do ya teen bolo, ya card pe likhe words.",
+    "tts": "मैं ठीक से सुन नहीं पाई। एक, दो या तीन बोलो, या card पे लिखे words।"
+   },
+   "chose_for_you": {
+    "text": "Hmm, is baar main tumhare liye choose kar leti hoon.",
+    "tts": "हम्म, इस बार मैं तुम्हारे लिए choose कर लेती हूँ।"
+   },
+   "puzzle_right": {
+    "text": "Kya baat hai! Mujhe pata tha, ye tumse ho jayega.",
+    "tts": "क्या बात है! मुझे पता था, ये तुमसे हो जाएगा।"
+   },
+   "puzzle_wrong": {
+    "text": "Bas thodi si kasar reh gayi, par har raasta kahin na kahin le jaata hai.",
+    "tts": "बस थोड़ी सी कसर रह गई, पर हर रास्ता कहीं न कहीं ले जाता है।"
+   },
+   "ending_good": {
+    "text": "Aaj raat tumne kya story likhi! Mujhe tum pe proud hai.",
+    "tts": "आज रात तुमने क्या story लिखी! मुझे तुम पे proud है।"
+   },
+   "ending_bad": {
+    "text": "Har bade hero ki ek bad night hoti hai. Phir se try karein?",
+    "tts": "हर बड़े hero की एक bad night होती है। फिर से try करें?"
+   }
+  },
+  "sage": {
+   "greet": {
+    "text": "Baitho, bachche. Har choice ek darwaaza hai, aur har darwaaza ek sabak.",
+    "tts": "बैठो, बच्चे। हर choice एक दरवाज़ा है, और हर दरवाज़ा एक सबक।"
+   },
+   "choose_again": {
+    "text": "In boodhe kaanon se wo chhoot gaya. Phir se kaho: ek, do ya teen.",
+    "tts": "इन बूढ़े कानों से वो छूट गया। फिर से कहो: एक, दो या तीन।"
+   },
+   "chose_for_you": {
+    "text": "Khamoshi bhi ek choice hai. Toh main hi tumhare liye chunoonga.",
+    "tts": "ख़ामोशी भी एक choice है। तो मैं ही तुम्हारे लिए चुनूँगा।"
+   },
+   "puzzle_right": {
+    "text": "Aah. Aakhirkaar, gyaan.",
+    "tts": "आह। आख़िरकार, ज्ञान।"
+   },
+   "puzzle_wrong": {
+    "text": "Galat. Par galat mod bhi toh ek raah hi hai.",
+    "tts": "ग़लत। पर ग़लत मोड़ भी तो एक राह ही है।"
+   },
+   "ending_good": {
+    "text": "Badhiya kahaani. Log saalon tak ise sunayenge.",
+    "tts": "बढ़िया कहानी। लोग सालों तक इसे सुनाएँगे।"
+   },
+   "ending_bad": {
+    "text": "Haar toh bas kaale chogey mein chhupa ek teacher hai. Phir se?",
+    "tts": "हार तो बस काले चोगे में छुपा एक teacher है। फिर से?"
+   }
+  },
+  "owl": {
+   "greet": {
+    "text": "Hoo! Fascinating. Chalo, experiment run karte hain aur results observe karte hain.",
+    "tts": "हू! Fascinating। चलो, experiment run करते हैं और results observe करते हैं।"
+   },
+   "choose_again": {
+    "text": "Data inconclusive hai. Please repeat karo: option ek, do ya teen.",
+    "tts": "Data inconclusive है। Please repeat करो: option एक, दो या तीन।"
+   },
+   "chose_for_you": {
+    "text": "Koi input detect nahi hua. Science ke liye, main ek option select kar raha hoon.",
+    "tts": "कोई input detect नहीं हुआ। Science के लिए, मैं एक option select कर रहा हूँ।"
+   },
+   "puzzle_right": {
+    "text": "Correct! Statistically kaafi impressive.",
+    "tts": "Correct! Statistically काफ़ी impressive।"
+   },
+   "puzzle_wrong": {
+    "text": "Incorrect. Par failure bhi bas aur data hai.",
+    "tts": "Incorrect। पर failure भी बस और data है।"
+   },
+   "ending_good": {
+    "text": "Excellent results. Main toh ise publish kar deta.",
+    "tts": "Excellent results। मैं तो इसे publish कर देता।"
+   },
+   "ending_bad": {
+    "text": "Hypothesis fail ho gayi. Chalo, iterate karte hain.",
+    "tts": "Hypothesis fail हो गई। चलो, iterate करते हैं।"
+   }
+  },
+  "enchantress": {
+   "greet": {
+    "text": "Well, hello there. Thoda paas aao, darling. Chalo ek adventure pe chalein, bas hum dono.",
+    "tts": "Well, hello there। थोड़ा पास आओ, darling। चलो एक adventure पे चलें, बस हम दोनों।"
+   },
+   "choose_again": {
+    "text": "Mm, phir se bolo na, darling? Ek, do ya teen. Tumhari awaaz sunna mujhe bahut pasand hai.",
+    "tts": "म्म, फिर से बोलो ना, darling? एक, दो या तीन। तुम्हारी आवाज़ सुनना मुझे बहुत पसंद है।"
+   },
+   "chose_for_you": {
+    "text": "Words nahi mil rahe? Kitna sweet. Main hi tumhare liye choose kar leti hoon.",
+    "tts": "Words नहीं मिल रहे? कितना sweet। मैं ही तुम्हारे लिए choose कर लेती हूँ।"
+   },
+   "puzzle_right": {
+    "text": "Smart bhi aur charming bhi? Sambhal ke, kahin mujhe tumse pyaar na ho jaaye.",
+    "tts": "Smart भी और charming भी? संभल के, कहीं मुझे तुमसे प्यार न हो जाए।"
+   },
+   "puzzle_wrong": {
+    "text": "Oh, galat. Par confusion mein bhi tumhara face kitna cute lagta hai.",
+    "tts": "Oh, ग़लत। पर confusion में भी तुम्हारा face कितना cute लगता है।"
+   },
+   "ending_good": {
+    "text": "Stunning. Pehli nazar mein hi pata tha ki tum mein kuch special hai.",
+    "tts": "Stunning। पहली नज़र में ही पता था कि तुम में कुछ special है।"
+   },
+   "ending_bad": {
+    "text": "Muh mat phulao, darling. Wapas aao aur phir se try karo. Main wait karungi.",
+    "tts": "मुँह मत फुलाओ, darling। वापस आओ और फिर से try करो। मैं wait करूँगी।"
+   }
+  },
+  "trickster": {
+   "greet": {
+    "text": "Ooh, naya player. Dekhte hain meri pehli trick tum pe kitni jaldi chalti hai.",
+    "tts": "Ooh, नया player। देखते हैं मेरी पहली trick तुम पे कितनी जल्दी चलती है।"
+   },
+   "choose_again": {
+    "text": "Wo word tha ya chheenk? Ek, do ya teen bolo, genius.",
+    "tts": "वो word था या छींक? एक, दो या तीन बोलो, genius।"
+   },
+   "chose_for_you": {
+    "text": "Bahut late! Main hi pick kar raha hoon. Umeed hai surprises pasand hain.",
+    "tts": "बहुत late! मैं ही pick कर रहा हूँ। उम्मीद है surprises पसंद हैं।"
+   },
+   "puzzle_right": {
+    "text": "Huh. Sahi jawaab. Pakka tukka laga hoga.",
+    "tts": "Huh। सही जवाब। पक्का तुक्का लगा होगा।"
+   },
+   "puzzle_wrong": {
+    "text": "Galat! Oh, ab toh mazaa aayega.",
+    "tts": "ग़लत! Oh, अब तो मज़ा आएगा।"
+   },
+   "ending_good": {
+    "text": "Theek hai, theek hai, jeet tumhari hui. Par zyada hawa mein mat udna.",
+    "tts": "ठीक है, ठीक है, जीत तुम्हारी हुई। पर ज़्यादा हवा में मत उड़ना।"
+   },
+   "ending_bad": {
+    "text": "Ha! Ye aate hue nahi dekha, hai na? Phir se?",
+    "tts": "Ha! ये आते हुए नहीं देखा, है ना? फिर से?"
+   }
+  }
+ },
+ "te-IN": {
+  "sorceress": {
+   "greet": {
+    "text": "రండి, మీకో కథ చెప్తాను. గుర్తుంచుకోండి, తర్వాత ఏం జరగాలో మీరే నిర్ణయిస్తారు."
+   },
+   "choose_again": {
+    "text": "నాకు సరిగ్గా వినపడలేదు. ఒకటి, రెండు లేదా మూడు చెప్పండి, లేదా కార్డు మీద ఉన్న మాటలు చెప్పండి."
+   },
+   "chose_for_you": {
+    "text": "హ్మ్, ఈసారి మీ కోసం నేనే ఎంచుకుంటాను."
+   },
+   "puzzle_right": {
+    "text": "అద్భుతం! మీరు చేయగలరని నాకు తెలుసు."
+   },
+   "puzzle_wrong": {
+    "text": "కొంచెంలో తప్పింది, కానీ ప్రతి దారీ ఎక్కడికో ఒకచోటికి తీసుకెళ్తుంది."
+   },
+   "ending_good": {
+    "text": "ఈ రాత్రి మీరు ఎంత మంచి కథ రాశారు! మిమ్మల్ని చూసి నాకు గర్వంగా ఉంది."
+   },
+   "ending_bad": {
+    "text": "ప్రతి గొప్ప హీరోకీ ఒక చెడ్డ రాత్రి ఉంటుంది. మళ్ళీ ప్రయత్నిద్దామా?"
+   }
+  },
+  "sage": {
+   "greet": {
+    "text": "కూర్చో, బిడ్డా. ప్రతి ఎంపికా ఒక ద్వారం... ప్రతి ద్వారమూ ఒక పాఠం."
+   },
+   "choose_again": {
+    "text": "ఈ ముసలి చెవులకు అది వినపడలేదు. మళ్ళీ చెప్పు: ఒకటి, రెండు లేదా మూడు."
+   },
+   "chose_for_you": {
+    "text": "మౌనం కూడా ఒక ఎంపికే. నీ కోసం నేనే ఎంచుకుంటాను."
+   },
+   "puzzle_right": {
+    "text": "ఆహ్. ఎట్టకేలకు, జ్ఞానం."
+   },
+   "puzzle_wrong": {
+    "text": "తప్పు. కానీ తప్పు మలుపు కూడా ఒక దారే."
+   },
+   "ending_good": {
+    "text": "చక్కని కథ. ఏళ్ల తరబడి దీన్ని చెప్పుకుంటారు."
+   },
+   "ending_bad": {
+    "text": "ఓటమి అంటే నల్లని వస్త్రం కప్పుకున్న ఒక గురువు మాత్రమే. మళ్ళీ?"
+   }
+  },
+  "owl": {
+   "greet": {
+    "text": "హూ! ఆసక్తికరం. ప్రయోగం మొదలుపెట్టి ఫలితాలు గమనిద్దాం."
+   },
+   "choose_again": {
+    "text": "డేటా అస్పష్టంగా ఉంది. దయచేసి మళ్ళీ చెప్పండి: ఎంపిక ఒకటి, రెండు లేదా మూడు."
+   },
+   "chose_for_you": {
+    "text": "ఏ ఇన్‌పుట్ రాలేదు. సైన్స్ కోసం, నేనే ఒక ఎంపిక చేస్తున్నాను."
+   },
+   "puzzle_right": {
+    "text": "సరైనది! గణాంకాల ప్రకారం చాలా ఆకట్టుకునే ఫలితం."
+   },
+   "puzzle_wrong": {
+    "text": "తప్పు. కానీ వైఫల్యం కూడా ఇంకొంచెం డేటానే."
+   },
+   "ending_good": {
+    "text": "అద్భుతమైన ఫలితాలు. నేనైతే దీన్ని ప్రచురిస్తాను."
+   },
+   "ending_bad": {
+    "text": "పరికల్పన విఫలమైంది. మార్చి మళ్ళీ ప్రయత్నిద్దాం."
+   }
+  },
+  "enchantress": {
+   "greet": {
+    "text": "హలో, హలో. కొంచెం దగ్గరికి రా, డార్లింగ్. మనిద్దరమే, ఒక సాహసానికి వెళ్దాం."
+   },
+   "choose_again": {
+    "text": "మ్మ్, మళ్ళీ చెప్పవా, డార్లింగ్? ఒకటి, రెండు లేదా మూడు. నీ గొంతు వినడం నాకు చాలా ఇష్టం."
+   },
+   "chose_for_you": {
+    "text": "మాటలు రావట్లేదా? ఎంత ముద్దుగా ఉంది. నీ కోసం నేనే ఎంచుకుంటా."
+   },
+   "puzzle_right": {
+    "text": "తెలివి, ఆకర్షణ రెండూనా? జాగ్రత్త, నీ మీద మనసు పడిపోతానేమో."
+   },
+   "puzzle_wrong": {
+    "text": "అయ్యో, తప్పు. కానీ కన్‌ఫ్యూజ్ అయినప్పుడు నువ్వు భలే ముద్దుగా ఉంటావు."
+   },
+   "ending_good": {
+    "text": "అదిరింది. నిన్ను మొదటిసారి చూసినప్పుడే నువ్వు ప్రత్యేకమని నాకు తెలుసు."
+   },
+   "ending_bad": {
+    "text": "అలా మూతి ముడవకు, డార్లింగ్. మళ్ళీ వచ్చి ప్రయత్నించు. నీ కోసం ఎదురుచూస్తుంటాను."
+   }
+  },
+  "trickster": {
+   "greet": {
+    "text": "ఓహో, కొత్త ప్లేయర్. నా ట్రిక్స్‌లో ఒకదానికి ఎంత త్వరగా పడతావో చూద్దాం."
+   },
+   "choose_again": {
+    "text": "నువ్వు మాట్లాడావా, తుమ్మావా? ఒకటి, రెండు లేదా మూడు చెప్పు, జీనియస్."
+   },
+   "chose_for_you": {
+    "text": "మరీ ఆలస్యం! నేనే ఎంచుకుంటున్నా. సర్‌ప్రైజ్‌లు నచ్చుతాయనుకుంటా."
+   },
+   "puzzle_right": {
+    "text": "హుహ్. సరైన జవాబే. గాలివాటం అయ్యుంటుంది, ఖచ్చితంగా."
+   },
+   "puzzle_wrong": {
+    "text": "తప్పు! ఓహ్, ఇక భలే సరదాగా ఉండబోతోంది."
+   },
+   "ending_good": {
+    "text": "సరే, సరే, నువ్వే గెలిచావు. మరీ తలకెక్కించుకోకు."
+   },
+   "ending_bad": {
+    "text": "హా! ఇది ఊహించలేదు కదా? మళ్ళీ?"
+   }
+  }
+ },
+ "te-en": {
+  "sorceress": {
+   "greet": {
+    "text": "Randi, meeku oka story cheptanu. Gurtupettukondi, next em jaragalo meere decide chestaru.",
+    "tts": "రండి, మీకు ఒక story చెప్తాను. గుర్తుపెట్టుకోండి, next ఏం జరగాలో మీరే decide చేస్తారు."
+   },
+   "choose_again": {
+    "text": "Naaku sariga vinapadaledu. Okati, rendu leda moodu cheppandi, leda card meeda unna words cheppandi.",
+    "tts": "నాకు సరిగా వినపడలేదు. ఒకటి, రెండు లేదా మూడు చెప్పండి, లేదా card మీద ఉన్న words చెప్పండి."
+   },
+   "chose_for_you": {
+    "text": "Hmm, ee saari mee kosam nene choose chestanu.",
+    "tts": "హ్మ్, ఈ సారి మీ కోసం నేనే choose చేస్తాను."
+   },
+   "puzzle_right": {
+    "text": "Wah! Meeru cheyagalaru ani naaku telusu.",
+    "tts": "వాహ్! మీరు చేయగలరు అని నాకు తెలుసు."
+   },
+   "puzzle_wrong": {
+    "text": "Konchemlo miss ayyindi, kaani prati daari ekkadiko teesukeltundi.",
+    "tts": "కొంచెంలో miss అయ్యింది, కానీ ప్రతి దారి ఎక్కడికో తీసుకెళ్తుంది."
+   },
+   "ending_good": {
+    "text": "Ee raatri meeru entha manchi story raasaru! Mimmalni chusi naaku chaala proud ga undi.",
+    "tts": "ఈ రాత్రి మీరు ఎంత మంచి story రాశారు! మిమ్మల్ని చూసి నాకు చాలా proud గా ఉంది."
+   },
+   "ending_bad": {
+    "text": "Prati great hero ki oka bad night untundi. Malli try cheddama?",
+    "tts": "ప్రతి great hero కి ఒక bad night ఉంటుంది. మళ్ళీ try చేద్దామా?"
+   }
+  },
+  "sage": {
+   "greet": {
+    "text": "Koorcho, bidda. Prati choice oka dwaaram, prati dwaaram oka paatham.",
+    "tts": "కూర్చో, బిడ్డా. ప్రతి choice ఒక ద్వారం, ప్రతి ద్వారం ఒక పాఠం."
+   },
+   "choose_again": {
+    "text": "Ee musali chevulaki adi vinapadaledu. Malli cheppu: okati, rendu leda moodu.",
+    "tts": "ఈ ముసలి చెవులకి అది వినపడలేదు. మళ్ళీ చెప్పు: ఒకటి, రెండు లేదా మూడు."
+   },
+   "chose_for_you": {
+    "text": "Mounam kooda oka choice. Nee kosam nene enchukuntanu.",
+    "tts": "మౌనం కూడా ఒక choice. నీ కోసం నేనే ఎంచుకుంటాను."
+   },
+   "puzzle_right": {
+    "text": "Aah. Ettakelaku, gnaanam.",
+    "tts": "ఆహ్. ఎట్టకేలకు, జ్ఞానం."
+   },
+   "puzzle_wrong": {
+    "text": "Tappu. Kaani wrong turn kooda oka daare.",
+    "tts": "తప్పు. కానీ wrong turn కూడా ఒక దారే."
+   },
+   "ending_good": {
+    "text": "Chakkani katha. Yella tarabadi deenni cheppukuntaru.",
+    "tts": "చక్కని కథ. ఏళ్ల తరబడి దీన్ని చెప్పుకుంటారు."
+   },
+   "ending_bad": {
+    "text": "Otami ante nalla vastram kappukunna oka teacher matrame. Malli?",
+    "tts": "ఓటమి అంటే నల్ల వస్త్రం కప్పుకున్న ఒక teacher మాత్రమే. మళ్ళీ?"
+   }
+  },
+  "owl": {
+   "greet": {
+    "text": "Hoo! Fascinating. Experiment run chesi results observe cheddam.",
+    "tts": "హూ! Fascinating. Experiment run చేసి results observe చేద్దాం."
+   },
+   "choose_again": {
+    "text": "Data inconclusive ga undi. Please repeat cheyandi: option okati, rendu leda moodu.",
+    "tts": "Data inconclusive గా ఉంది. Please repeat చేయండి: option ఒకటి, రెండు లేదా మూడు."
+   },
+   "chose_for_you": {
+    "text": "Input emi detect avvaledu. Science kosam, nene oka option select chestunna.",
+    "tts": "Input ఏమీ detect అవ్వలేదు. Science కోసం, నేనే ఒక option select చేస్తున్నా."
+   },
+   "puzzle_right": {
+    "text": "Correct! Statistically chaala impressive.",
+    "tts": "Correct! Statistically చాలా impressive."
+   },
+   "puzzle_wrong": {
+    "text": "Incorrect. Kaani failure kooda inkonchem data ne.",
+    "tts": "Incorrect. కానీ failure కూడా ఇంకొంచెం data నే."
+   },
+   "ending_good": {
+    "text": "Excellent results. Nenaite deenni publish chestanu.",
+    "tts": "Excellent results. నేనైతే దీన్ని publish చేస్తాను."
+   },
+   "ending_bad": {
+    "text": "Hypothesis fail ayyindi. Iterate cheddam.",
+    "tts": "Hypothesis fail అయ్యింది. Iterate చేద్దాం."
+   }
+  },
+  "enchantress": {
+   "greet": {
+    "text": "Well, hello there. Konchem daggaraki raa, darling. Manamiddarame, oka adventure ki veldam.",
+    "tts": "Well, hello there. కొంచెం దగ్గరికి రా, darling. మనమిద్దరమే, ఒక adventure కి వెళ్దాం."
+   },
+   "choose_again": {
+    "text": "Mm, malli cheppava, darling? Okati, rendu leda moodu. Nee voice vinadam naaku chaala ishtam.",
+    "tts": "మ్మ్, మళ్ళీ చెప్పవా, darling? ఒకటి, రెండు లేదా మూడు. నీ voice వినడం నాకు చాలా ఇష్టం."
+   },
+   "chose_for_you": {
+    "text": "Maatalu raavatleda? Entha sweet. Nee kosam nene choose chestanu.",
+    "tts": "మాటలు రావట్లేదా? ఎంత sweet. నీ కోసం నేనే choose చేస్తాను."
+   },
+   "puzzle_right": {
+    "text": "Smart and charming kooda? Jagratta, nee meeda manasu padipotanemo.",
+    "tts": "Smart and charming కూడా? జాగ్రత్త, నీ మీద మనసు పడిపోతానేమో."
+   },
+   "puzzle_wrong": {
+    "text": "Ayyo, wrong. Kaani confuse ayinappudu nuvvu bhale cute ga untavu.",
+    "tts": "అయ్యో, wrong. కానీ confuse అయినప్పుడు నువ్వు భలే cute గా ఉంటావు."
+   },
+   "ending_good": {
+    "text": "Stunning. Ninnu first time chusinappude nuvvu special ani naaku telusu.",
+    "tts": "Stunning. నిన్ను first time చూసినప్పుడే నువ్వు special అని నాకు తెలుసు."
+   },
+   "ending_bad": {
+    "text": "Alaa mooti mudavaku, darling. Malli vachi try cheyyi. Nee kosam wait chestuntanu.",
+    "tts": "అలా మూతి ముడవకు, darling. మళ్ళీ వచ్చి try చెయ్యి. నీ కోసం wait చేస్తుంటాను."
+   }
+  },
+  "trickster": {
+   "greet": {
+    "text": "Ooh, kotha player. Naa tricks lo okadaaniki entha fast ga padataavo chuddam.",
+    "tts": "Ooh, కొత్త player. నా tricks లో ఒకదానికి ఎంత fast గా పడతావో చూద్దాం."
+   },
+   "choose_again": {
+    "text": "Nuvvu matladava, thummava? Okati, rendu leda moodu cheppu, genius.",
+    "tts": "నువ్వు మాట్లాడావా, తుమ్మావా? ఒకటి, రెండు లేదా మూడు చెప్పు, genius."
+   },
+   "chose_for_you": {
+    "text": "Too slow! Nene pick chestunna. Surprises ishtam anukunta.",
+    "tts": "Too slow! నేనే pick చేస్తున్నా. Surprises ఇష్టం అనుకుంటా."
+   },
+   "puzzle_right": {
+    "text": "Huh. Right answer. Lucky guess ayyuntundi, pakka.",
+    "tts": "Huh. Right answer. Lucky guess అయ్యుంటుంది, పక్కా."
+   },
+   "puzzle_wrong": {
+    "text": "Wrong! Oh, ika full fun.",
+    "tts": "Wrong! Oh, ఇక full fun."
+   },
+   "ending_good": {
+    "text": "Sare, sare, nuvve gelichav. Mari head ki ekkinchukoku.",
+    "tts": "సరే, సరే, నువ్వే గెలిచావ్. మరీ head కి ఎక్కించుకోకు."
+   },
+   "ending_bad": {
+    "text": "Ha! Idi expect cheyyaledu kada? Malli?",
+    "tts": "Ha! ఇది expect చేయలేదు కదా? మళ్ళీ?"
+   }
+  }
+ }
+}

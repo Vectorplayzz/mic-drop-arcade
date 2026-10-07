@@ -7,7 +7,7 @@ actually picked. Purely cosmetic: it never affects scoring.
 
 from __future__ import annotations
 
-# Three anime-style boys and three girls, drawn as pixel art in AICade Studio.
+# Ten boys and ten girls in mixed styles, drawn as pixel art in AICade Studio.
 CHARACTERS: tuple[str, ...] = (
     "arjun",  # spiky black hair, red hoodie
     "kabir",  # round glasses, school blazer, backpack
@@ -21,6 +21,14 @@ CHARACTERS: tuple[str, ...] = (
     "ananya",  # two buns, red school uniform
     "priya",  # Kuchipudi dancer
     "sana",  # lavender hijab, sketchbook
+    "vikas",  # round glasses, grey hoodie, laptop
+    "arnav",  # curly hair, denim jacket, guitar
+    "harpreet",  # blue patka, tracksuit, cricket bat
+    "dhruv",  # spiky hair, lab coat, robot arm
+    "aisha",  # lilac hijab, bomber jacket, drone remote
+    "kavya",  # black bob, glasses, teal hoodie
+    "nila",  # braid with jasmine, kurta and sneakers, camera
+    "tara",  # blue pixie cut, leather jacket, skateboard
 )
 DEFAULT_CHARACTER = "arjun"
 

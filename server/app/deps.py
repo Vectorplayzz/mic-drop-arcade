@@ -11,8 +11,10 @@ from redis.asyncio import Redis
 from app.budget import CreditBudget
 from app.config import Settings
 from app.db import Leaderboard
+from app.game.adventures import AdventureLibrary
 from app.game.lines import Lines
 from app.game.packs import PackLibrary
+from app.game.wizards import WizardLines
 from app.gnani.stt import SttStream
 from app.gnani.tts import TtsStreamer
 from app.security.ratelimit import RateLimiter
@@ -102,6 +104,8 @@ class Deps:
     packs: PackLibrary
     lines: Lines
     leaderboard: Leaderboard | None
+    adventures: AdventureLibrary = field(default_factory=lambda: AdventureLibrary({}))
+    wizards: WizardLines | None = None  # type: ignore[assignment]
     started_at: float = field(default_factory=time.time)
 
     def new_stt(

@@ -612,8 +612,8 @@ def test_builtin_story_packs_are_valid():
 def test_characters_allowlist():
     from app.game.characters import CHARACTERS, valid_character
 
-    assert valid_character(None) == "arjun" and len(CHARACTERS) == 12
-    assert len(set(CHARACTERS)) == 12
+    assert valid_character(None) == "arjun" and len(CHARACTERS) == 20
+    assert len(set(CHARACTERS)) == 20
     assert all(valid_character(c) == c for c in CHARACTERS)
     for bad in ("<script>", "", "ARJUN", "robot", 7, ["arjun"]):
         assert valid_character(bad) is None

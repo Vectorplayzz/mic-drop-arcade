@@ -54,6 +54,8 @@ class Settings(BaseSettings):
     audio_cache_dir: str = "/data/audio"
     packs_dir: str = "packs"
     lines_file: str = "content/lines.json"
+    adventures_dir: str = "adventures"
+    wizard_lines_file: str = "content/wizards.json"
 
     # --- HTTP surface --------------------------------------------------------------------
     public_origin: str = "http://localhost:5173"
@@ -84,6 +86,7 @@ class Settings(BaseSettings):
     # --- Game ----------------------------------------------------------------------------
     questions_per_game: int = 10
     answer_time_limit_s: float = 12.0
+    choice_time_limit_s: float = 15.0
     answer_grace_s: float = 1.0
     stt_min_silence_ms: int = 450
     stt_vad_threshold: float = 0.7

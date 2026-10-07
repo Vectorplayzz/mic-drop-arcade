@@ -19,9 +19,11 @@ from app.budget import CreditBudget
 from app.config import Settings, get_settings
 from app.db import Leaderboard, NicknameError, create_pool, migrate, validate_nickname
 from app.deps import Deps, Slots
+from app.game.adventures import AdventureLibrary
 from app.game.languages import LANGUAGES
 from app.game.lines import Lines
 from app.game.packs import PackLibrary
+from app.game.wizards import WizardLines
 from app.logging import configure_logging, get_logger
 from app.security.client_ip import hash_ip, resolve_client_ip
 from app.security.http import SecurityHeadersMiddleware, origin_allowed
@@ -77,6 +79,10 @@ async def build_deps(
         packs=PackLibrary.load(settings.packs_dir, require_review=settings.env == "production"),
         lines=Lines.load(settings.lines_file),
         leaderboard=Leaderboard(pool),
+        adventures=AdventureLibrary.load(
+            settings.adventures_dir, require_review=settings.env == "production"
+        ),
+        wizards=WizardLines.load(settings.wizard_lines_file),
     )
     return deps, [redis.aclose, http.aclose, pool.close]
 
@@ -90,7 +96,12 @@ def create_app(
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         app.state.deps, closers = await build_deps(settings, http_client)
-        log.info("startup", env=settings.env, packs=len(app.state.deps.packs.list()))
+        log.info(
+            "startup",
+            env=settings.env,
+            packs=len(app.state.deps.packs.list()),
+            adventures=len(app.state.deps.adventures.list()),
+        )
         try:
             yield
         finally:
@@ -222,21 +233,38 @@ def _register_routes(app: FastAPI) -> None:
         await _limit(deps, "read", iph, deps.settings.rate_read_per_min)
         return {"packs": [p.summary() for p in deps.packs.list(language)]}
 
+    @app.get("/api/adventures")
+    async def adventures(
+        request: Request, deps: DepsDep, language: Annotated[Language, Query()]
+    ) -> dict:
+        _, iph = _ip_hash(request, deps)
+        await _limit(deps, "read", iph, deps.settings.rate_read_per_min)
+        library = deps.adventures
+        return {
+            "language": language,
+            "auto": library.prologue is not None,
+            "adventures": [a.summary(language) for a in library.list()],
+        }
+
     @app.get("/api/leaderboard")
     async def leaderboard(
         request: Request,
         deps: DepsDep,
         language: Annotated[Language, Query()],
         period: Annotated[Literal["today", "all"], Query()] = "today",
+        mode: Annotated[Literal["adventure", "quiz"], Query()] = "adventure",
+        adventure: Annotated[str | None, Query(pattern=r"^[a-z][a-z0-9-]{2,47}$")] = None,
     ) -> dict:
         _, iph = _ip_hash(request, deps)
         await _limit(deps, "read", iph, deps.settings.rate_read_per_min)
         if deps.leaderboard is None:
             raise HTTPException(503, "unavailable")
-        rows = await deps.leaderboard.top(language, period=period)
+        rows = await deps.leaderboard.top(language, period=period, mode=mode, adventure=adventure)
         return {
             "language": language,
             "period": period,
+            "mode": mode,
+            "adventure": adventure,
             "entries": [
                 {
                     "rank": r.rank,
@@ -245,6 +273,10 @@ def _register_routes(app: FastAPI) -> None:
                     "correct": r.correct,
                     "questions": r.questions,
                     "character": r.character,
+                    "wizard": r.wizard,
+                    "adventure": r.pack_id if r.mode == "adventure" else None,
+                    "duration_ms": r.duration_ms,
+                    "ending": ({"id": r.ending_id, "rank": r.ending_rank} if r.ending_id else None),
                 }
                 for r in rows
             ],
@@ -275,7 +307,8 @@ def _register_routes(app: FastAPI) -> None:
         if not inserted:
             raise HTTPException(409, "already_submitted")
         log.info("score_submitted", game_id=claims.game_id, score=claims.score)
-        return {"ok": True}
+        rank = await deps.leaderboard.rank_of(claims)
+        return {"ok": True, "rank": rank}
 
     @app.websocket("/ws/play")
     async def play(ws: WebSocket) -> None:
