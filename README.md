@@ -17,7 +17,7 @@ Evon v3.3 (llama.cpp, offline) ──> packs/drafts ──human review──> pa
 |---|---|---|
 | `server/` | G Nagarjuna | Voice pipeline, sessions, security, budget, game engine, Evon tooling |
 | `server/app/game/matching.py` | Devesh | Answer matching (reference implementation + tests to extend) |
-| `client/` | Devesh | Retro PWA client (to be added) |
+| `client/` | Devesh | Retro PWA client — brief in `client/CLAUDE.md` |
 | `docs/PROTOCOL.md` | both | Wire contract between client and server |
 | `docs/SECURITY.md` | G Nagarjuna | Threat model and launch gate |
 | `docs/DEPLOY.md` | G Nagarjuna | VPS, Cloudflare, nginx, release and rollback |
@@ -59,3 +59,8 @@ python scripts/prerender_audio.py --dry-run && python scripts/prerender_audio.py
 
 Lower `--n-cpu-moe` until VRAM is nearly full, for speed. If Q4_K_M doesn't fit alongside
 Windows, use IQ4_XS (17 GB).
+
+## Working with Claude
+
+`CLAUDE.md` (repo-wide rules) and `client/CLAUDE.md` (client brief) are read automatically by
+Claude Code. Keep them current when ownership or the protocol changes.
