@@ -35,7 +35,7 @@ jobs:
       MAATA_TEST_REDIS_URL: redis://127.0.0.1:6379/1
       MAATA_TEST_DATABASE_URL: postgresql://maata:maata@127.0.0.1:5432/maata_test
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -56,7 +56,7 @@ jobs:
   secrets:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Gitleaks
@@ -69,7 +69,7 @@ jobs:
     runs-on: ubuntu-24.04
     needs: [server]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build image
         run: docker build -t maata-arcade-api:ci server
       - name: Image runs as non-root
