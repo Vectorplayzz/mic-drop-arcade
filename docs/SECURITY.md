@@ -62,6 +62,6 @@ item under "Launch gate" is ticked.
 - [x] Health/readiness endpoints; structured logs without audio or keys
 - [x] CI: tests, secret scan, dependency scan, image scan; one-command rollback
 - [ ] Real credit rates configured
-- [ ] Uptime monitor on `https://maata.ourspaces.net/api/readyz`
+- [ ] Uptime monitor on `https://micdrop.ourspaces.net/api/readyz`
 - [ ] 50-session load test (#15)
 - [ ] Prompt-injection tests for live Evon (#14, only if Story Quest ships)
