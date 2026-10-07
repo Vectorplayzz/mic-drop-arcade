@@ -244,6 +244,7 @@ def _register_routes(app: FastAPI) -> None:
                     "score": r.score,
                     "correct": r.correct,
                     "questions": r.questions,
+                    "character": r.character,
                 }
                 for r in rows
             ],

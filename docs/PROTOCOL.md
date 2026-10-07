@@ -41,16 +41,20 @@ ws.onopen = () => ws.send(JSON.stringify({ type: "auth", token }));
 Server replies `{type:"ready", protocol:"maata.v1", max_games}`. Then:
 
 ```json
-{ "type": "start", "pack_id": "te-science-01" }
+{ "type": "start", "pack_id": "te-science-01", "character": "robot" }
 ```
+
+`character` is the hero the player picked: one of the anime boys `arjun`, `kabir`, `sai` or
+the girls `diya`, `meera`, `zara` (default `arjun`). It's cosmetic. Anything else gets a non-fatal
+`unknown_character` error.
 
 ## 3. Messages from the server
 
 | type | fields | client should |
 |---|---|---|
 | `ready` | `protocol`, `max_games` | show the pack picker / start button |
-| `game_start` | `game_id`, `pack`, `questions`, `time_limit_s`, `max_score` | reset HUD |
-| `question` | `index`, `total`, `prompt`, `kind` (`text`/`number`), `time_limit_s` | show the question text |
+| `game_start` | `game_id`, `pack`, `questions`, `time_limit_s`, `max_score`, `character`, `story` (`{wizard, chapters}` or `null`) | reset HUD; if `story` is set, show the wizard and a quest progress bar |
+| `question` | `index`, `total`, `prompt`, `kind` (`text`/`number`), `time_limit_s`, `options` (3 choices in display order, or `null`) | show the question; if `options` is set, show the three choices plus an "other" tile meaning "say your own answer". Answers are always spoken: saying a wrong option, or more than one option, is wrong |
 | `speak_start` | `utterance`, `caption`, `sample_rate` (24000) | **stop any older utterance**, show caption |
 | *binary* | 4-byte header + PCM | play (see §5) |
 | `speak_end` | `utterance`, `duration_ms`, `interrupted` | — |
@@ -59,11 +63,12 @@ Server replies `{type:"ready", protocol:"maata.v1", max_games}`. Then:
 | `eos` | — | player stopped talking: show a "checking…" state |
 | `heard_nothing` | — | transcript was empty or was the question's own echo; keep listening |
 | `result` | `index`, `correct`, `timed_out`, `heard`, `answer`, `explanation`, `points`, `score`, `streak` | show the verdict. `skipped: true` means a provider error voided the round: no penalty |
-| `game_over` | `game_id`, `score`, `correct`, `questions`, `max_score`, `score_token` | score card + nickname form |
+| `story` | `kind` (`intro`, `chapter`, `setback`, `ending`), `text`, `mood` (`ask`, `happy`, `sad`, `cheer`), `chapter` (on `chapter`), `band` (on `ending`: `great`, `good`, `try_again`) | swap the wizard sprite to `mood`, advance the quest bar on `chapter`. The line is also spoken, with its own `speak_start` caption |
+| `game_over` | `game_id`, `score`, `correct`, `questions`, `max_score`, `score_token`, `character` | score card with the player's hero, plus the nickname form |
 | `error` | `code`, `message`, `fatal` | show `message`. If `fatal`, the socket closes next |
 | `pong` | `t` | latency display (optional) |
 
-Error codes: `unauthorized`, `already_connected`, `unknown_pack`, `busy`, `closed_for_today`,
+Error codes: `unauthorized`, `already_connected`, `unknown_pack`, `unknown_character`, `busy`, `closed_for_today`,
 `session_limit`, `audio_limit`, `idle`, `protocol`, `internal`.
 
 Close codes:
@@ -136,10 +141,27 @@ POST /api/scores { score_token, nickname } -> { ok: true }
 * A score token can only be used once.
 
 ```
-GET /api/leaderboard?language=te-IN&period=today|all -> { entries: [{rank, nickname, score, correct, questions}] }
+GET /api/leaderboard?language=te-IN&period=today|all -> { entries: [{rank, nickname, score, correct, questions, character}] }
 ```
 
 ## 8. Keep-alive
 
 The server pings at the WebSocket level every 20 s. Optionally send `{type:"ping", t}` for an
 RTT readout. More than 20 control messages per second counts as abuse.
+
+## 9. Wizard story (packs with a `story`)
+
+Story packs turn the quiz into a quest told by a wizard:
+- **Right answers:** each one plays the next chapter, `story.kind = "chapter"` with mood `happy`.
+- **Wrong answers and timeouts:** these play a setback (mood `sad`) followed by the usual "the
+  answer was" line.
+- **The ending** depends on the share of right answers:
+
+  | Band | Share of right answers | Mood |
+  |---|---|---|
+  | `great` | ≥ 80% | `cheer` |
+  | `good` | ≥ 50% | `happy` |
+  | `try_again` | below 50% | `sad` |
+
+Every story line is fixed text, reviewed with the pack and pre-rendered, so the story branches
+on answers with no live language model. Packs without a story behave exactly as before.

@@ -86,6 +86,7 @@ class LeaderboardRow:
     score: int
     correct: int
     questions: int
+    character: str
     created_at: datetime
 
 
@@ -97,7 +98,7 @@ class Leaderboard:
         """Insert once per game; returns False if this game was already submitted."""
         row = await self._pool.fetchrow(
             "INSERT INTO scores (game_id, nickname, language, pack_id, score, max_score,"
-            " correct, questions) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)"
+            " correct, questions, character) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)"
             " ON CONFLICT (game_id) DO NOTHING RETURNING id",
             claims.game_id,
             nickname,
@@ -107,6 +108,7 @@ class Leaderboard:
             claims.max_score,
             claims.correct,
             claims.questions,
+            claims.character,
         )
         return row is not None
 
@@ -119,7 +121,7 @@ class Leaderboard:
                 hours=5, minutes=30
             )
         rows = await self._pool.fetch(
-            "SELECT nickname, score, correct, questions, created_at FROM scores"
+            "SELECT nickname, score, correct, questions, character, created_at FROM scores"
             " WHERE language = $1 AND created_at >= $2"
             " ORDER BY score DESC, created_at ASC LIMIT $3",
             language,
@@ -128,7 +130,13 @@ class Leaderboard:
         )
         return [
             LeaderboardRow(
-                i + 1, r["nickname"], r["score"], r["correct"], r["questions"], r["created_at"]
+                i + 1,
+                r["nickname"],
+                r["score"],
+                r["correct"],
+                r["questions"],
+                r["character"],
+                r["created_at"],
             )
             for i, r in enumerate(rows)
         ]

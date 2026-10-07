@@ -41,6 +41,7 @@ class ScoreClaims:
     questions: int
     language: str
     pack_id: str
+    character: str = "arjun"
 
 
 class TokenService:
@@ -84,6 +85,7 @@ class TokenService:
                 "qn": claims.questions,
                 "lang": claims.language,
                 "pk": claims.pack_id,
+                "ch": claims.character,
             },
         )
         return token
@@ -125,6 +127,7 @@ class TokenService:
                 questions=int(data["qn"]),
                 language=str(data["lang"]),
                 pack_id=str(data["pk"]),
+                character=str(data.get("ch", "arjun")),
             )
         except (KeyError, TypeError, ValueError) as exc:
             raise TokenError("malformed score token") from exc

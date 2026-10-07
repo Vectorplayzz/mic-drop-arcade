@@ -36,9 +36,11 @@ def collect(lines: Lines, packs: PackLibrary) -> list[tuple[str, str]]:
     for pack in packs.list():
         for q in pack.questions:
             items[(pack.language, q.prompt)] = None
-            items[
-                (pack.language, lines.get(pack.language, "answer_was", answer=q.display_answer))
-            ] = None
+            answer_line = lines.get(pack.language, "answer_was", answer=q.display_answer)
+            items[(pack.language, answer_line)] = None
+        if pack.story is not None:
+            for line in pack.story.all_lines():
+                items[(pack.language, line)] = None
     return list(items)
 
 
