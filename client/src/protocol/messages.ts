@@ -2,13 +2,14 @@
 
 export const PROTOCOL = 'maata.v1';
 
-export const LANGUAGE_CODES = ['te-IN', 'hi-IN', 'hi-en'] as const;
+export const LANGUAGE_CODES = ['te-IN', 'hi-IN', 'hi-en', 'te-en', 'en-IN'] as const;
 export type LanguageCode = (typeof LANGUAGE_CODES)[number];
 
 export const ERROR_CODES = [
   'unauthorized',
   'already_connected',
   'unknown_pack',
+  'unknown_character',
   'busy',
   'closed_for_today',
   'session_limit',
@@ -35,6 +36,51 @@ export interface PackSummary {
   language: LanguageCode;
   topic: string;
   questions: number;
+  /** A wizard quest pack (PROTOCOL §9). */
+  story: boolean;
+}
+
+/** Pickable heroes (server/app/game/characters.py). Sprites: src/assets/art/sprites/heroes. */
+export const HEROES = [
+  'arjun',
+  'kabir',
+  'sai',
+  'rohan',
+  'aditya',
+  'imran',
+  'diya',
+  'meera',
+  'zara',
+  'ananya',
+  'priya',
+  'sana',
+] as const;
+export type Hero = (typeof HEROES)[number];
+export const DEFAULT_HERO: Hero = 'arjun';
+
+export const WIZARDS = ['sage', 'sorceress', 'owl'] as const;
+export type Wizard = (typeof WIZARDS)[number];
+
+export const SCENES = [
+  'library-a',
+  'library-b',
+  'forest-temple',
+  'sky-islands',
+  'crystal-cave',
+  'night-bazaar',
+  'observatory',
+] as const;
+export type Scene = (typeof SCENES)[number];
+
+export const MOODS = ['ask', 'happy', 'sad', 'cheer'] as const;
+export type Mood = (typeof MOODS)[number];
+
+export interface StoryInfo {
+  /** The wizard's display name, e.g. "Professor Hoot". */
+  wizard: string;
+  sprite: Wizard;
+  scene: Scene;
+  chapters: number;
 }
 
 export interface ReadyMsg {
@@ -49,6 +95,8 @@ export interface GameStartMsg {
   questions: number;
   time_limit_s: number;
   max_score: number;
+  hero: Hero;
+  story: StoryInfo | null;
 }
 export interface QuestionMsg {
   type: 'question';
@@ -57,6 +105,20 @@ export interface QuestionMsg {
   prompt: string;
   kind: 'text' | 'number';
   time_limit_s: number;
+  /** Three on-screen choices in display order, or null for open-answer packs. */
+  options: string[] | null;
+}
+export type StoryKind = 'intro' | 'chapter' | 'setback' | 'ending';
+export type EndingBand = 'great' | 'good' | 'try_again';
+export interface StoryMsg {
+  type: 'story';
+  kind: StoryKind;
+  text: string;
+  mood: Mood;
+  /** On `chapter`: how many chapters are done (1-based). */
+  chapter: number | null;
+  /** On `ending`. */
+  band: EndingBand | null;
 }
 export interface SpeakStartMsg {
   type: 'speak_start';
@@ -107,6 +169,7 @@ export interface GameOverMsg {
   questions: number;
   max_score: number;
   score_token: string;
+  hero: Hero;
 }
 export interface ErrorMsg {
   type: 'error';
@@ -123,6 +186,7 @@ export type ServerMessage =
   | ReadyMsg
   | GameStartMsg
   | QuestionMsg
+  | StoryMsg
   | SpeakStartMsg
   | SpeakEndMsg
   | ListenMsg
@@ -147,13 +211,38 @@ export function isLanguageCode(v: unknown): v is LanguageCode {
   return str(v) && (LANGUAGE_CODES as readonly string[]).includes(v);
 }
 
+const oneOf = <T extends string>(list: readonly T[], v: unknown): v is T =>
+  str(v) && (list as readonly string[]).includes(v);
+
+export const isHero = (v: unknown): v is Hero => oneOf(HEROES, v);
+
+/** Unknown or missing hero ids fall back to the default rather than breaking the screen. */
+export function heroOr(v: unknown, fallback: Hero = DEFAULT_HERO): Hero {
+  return isHero(v) ? v : fallback;
+}
+
 export function parsePackSummary(v: unknown): PackSummary | null {
   if (!obj(v)) return null;
   const { id, title, language, topic, questions } = v;
   if (!str(id) || !str(title) || !isLanguageCode(language) || !str(topic) || !count(questions)) {
     return null;
   }
-  return { id, title, language, topic, questions };
+  return { id, title, language, topic, questions, story: v.story === true };
+}
+
+function parseStoryInfo(v: unknown): StoryInfo | null {
+  if (!obj(v) || !str(v.wizard) || !count(v.chapters)) return null;
+  return {
+    wizard: v.wizard.slice(0, 40),
+    sprite: oneOf(WIZARDS, v.wizard_sprite) ? v.wizard_sprite : 'sage',
+    scene: oneOf(SCENES, v.scene) ? v.scene : 'library-a',
+    chapters: Math.min(v.chapters, 50),
+  };
+}
+
+function parseOptions(v: unknown): string[] | null {
+  if (!Array.isArray(v) || v.length !== 3 || !v.every(str)) return null;
+  return v.map((o) => o.slice(0, 80));
 }
 
 /** Returns the typed message, or null for anything malformed or unknown (which is ignored). */
@@ -180,6 +269,8 @@ export function parseServerMessage(raw: string): ServerMessage | null {
         questions: m.questions,
         time_limit_s: m.time_limit_s,
         max_score: m.max_score,
+        hero: heroOr(m.character),
+        story: parseStoryInfo(m.story),
       };
     }
     case 'question':
@@ -192,7 +283,21 @@ export function parseServerMessage(raw: string): ServerMessage | null {
         prompt: m.prompt,
         kind: m.kind,
         time_limit_s: m.time_limit_s,
+        options: parseOptions(m.options),
       };
+    case 'story': {
+      const kinds = ['intro', 'chapter', 'setback', 'ending'] as const;
+      const bands = ['great', 'good', 'try_again'] as const;
+      if (!oneOf(kinds, m.kind) || !str(m.text)) return null;
+      return {
+        type: 'story',
+        kind: m.kind,
+        text: m.text,
+        mood: oneOf(MOODS, m.mood) ? m.mood : 'ask',
+        chapter: count(m.chapter) ? m.chapter : null,
+        band: oneOf(bands, m.band) ? m.band : null,
+      };
+    }
     case 'speak_start':
       if (!utteranceId(m.utterance) || !str(m.caption) || !num(m.sample_rate)) return null;
       if (m.sample_rate < 8000 || m.sample_rate > 48000) return null;
@@ -251,6 +356,7 @@ export function parseServerMessage(raw: string): ServerMessage | null {
         questions: m.questions,
         max_score: m.max_score,
         score_token: m.score_token,
+        hero: heroOr(m.character),
       };
     case 'error': {
       const code = (ERROR_CODES as readonly string[]).includes(m.code as string)

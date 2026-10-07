@@ -1,8 +1,17 @@
 /** The menu screens. Each builder returns its root element plus a few targeted updaters. */
 import type { Strings } from '../i18n';
 import type { Language, LeaderboardEntry, Period } from '../net/api';
-import type { GameOverMsg, LanguageCode, PackSummary } from '../protocol/messages';
+import {
+  type EndingBand,
+  type GameOverMsg,
+  type Hero,
+  HEROES,
+  type LanguageCode,
+  type PackSummary,
+} from '../protocol/messages';
+import { artImage, heroName, heroUrl, wizardUrl } from './art';
 import { button, clear, h, setText } from './dom';
+import { contentLang } from './game-screen';
 import { sprite, type SpriteName } from './sprites';
 
 export interface Screen {
@@ -24,14 +33,14 @@ function languagePicker(
 ): HTMLElement {
   return h(
     'div',
-    { class: 'segmented', attrs: { role: 'group', 'aria-label': t.chooseLanguage } },
+    { class: 'segmented langs', attrs: { role: 'group', 'aria-label': t.chooseLanguage } },
     ...languages.map((language) =>
       h('button', {
         class: 'segment',
         text: language.label,
         attrs: {
           type: 'button',
-          lang: language.code === 'hi-en' ? 'en' : language.code,
+          lang: language.code === 'hi-en' || language.code === 'te-en' ? 'en' : contentLang(language.code),
           'aria-pressed': String(language.code === current),
         },
         on: { click: () => onPick(language.code) },
@@ -57,14 +66,21 @@ export function titleScreen(o: TitleOptions): Screen {
   const { t } = o;
   const logo = h(
     'h1',
-    { class: 'logo', attrs: { 'aria-label': 'Maata Arcade', tabindex: -1, lang: 'en' } },
-    h('span', { class: 'logo-top', text: 'MAATA', attrs: { 'aria-hidden': 'true' } }),
+    { class: 'logo', attrs: { 'aria-label': 'Mic Drop Arcade', tabindex: -1, lang: 'en' } },
+    h('span', { class: 'logo-top', text: 'MIC DROP', attrs: { 'aria-hidden': 'true' } }),
     h('span', { class: 'logo-bottom', text: 'ARCADE', attrs: { 'aria-hidden': 'true' } }),
   );
   const el = h(
     'section',
     { class: 'screen title' },
     logo,
+    h(
+      'div',
+      { class: 'title-art', attrs: { 'aria-hidden': 'true' } },
+      artImage(wizardUrl('sorceress', 'happy'), 'title-wizard'),
+      artImage(wizardUrl('sage', 'ask'), 'title-wizard title-wizard-main'),
+      artImage(wizardUrl('owl', 'cheer'), 'title-wizard'),
+    ),
     h('p', { class: 'tagline', text: t.tagline }),
     h('h2', { class: 'label', text: t.chooseLanguage }),
     languagePicker(t, o.languages, o.language, o.onLanguage),
@@ -131,9 +147,45 @@ export interface LobbyScreen extends Screen {
   setBusy(busy: boolean): void;
 }
 
+/** Twelve heroes, boys then girls; the pick is remembered and rides along with every game. */
+function heroPicker(t: Strings, current: Hero, onHero: (hero: Hero) => void): HTMLElement {
+  const picked = h('p', { class: 'hero-picked', attrs: { 'aria-live': 'polite' } });
+  const buttons = new Map<Hero, HTMLButtonElement>();
+  const select = (hero: Hero): void => {
+    for (const [id, b] of buttons) b.setAttribute('aria-pressed', String(id === hero));
+    setText(picked, `${t.yourHero}: ${heroName(hero)}`);
+  };
+  const grid = h(
+    'div',
+    { class: 'heroes', attrs: { role: 'group', 'aria-label': t.chooseHero } },
+    ...HEROES.map((hero) => {
+      const b = h(
+        'button',
+        {
+          class: 'hero',
+          attrs: { type: 'button', 'aria-label': heroName(hero), 'aria-pressed': 'false' },
+          on: {
+            click: () => {
+              select(hero);
+              onHero(hero);
+            },
+          },
+        },
+        artImage(heroUrl(hero), 'hero-img'),
+      );
+      buttons.set(hero, b);
+      return b;
+    }),
+  );
+  select(current);
+  return h('div', { class: 'hero-pick' }, h('h2', { class: 'label', text: t.chooseHero }), grid, picked);
+}
+
 export function lobbyScreen(
   t: Strings,
   gamesLeft: number,
+  hero: Hero,
+  onHero: (hero: Hero) => void,
   onPick: (pack: PackSummary) => void,
   onBack: () => void,
 ): LobbyScreen {
@@ -143,6 +195,7 @@ export function lobbyScreen(
   const el = h(
     'section',
     { class: 'screen lobby' },
+    heroPicker(t, hero, onHero),
     title,
     notice,
     list,
@@ -166,7 +219,12 @@ export function lobbyScreen(
             h(
               'button',
               { class: 'pack', attrs: { type: 'button' }, on: { click: () => onPick(pack) } },
-              h('span', { class: 'pack-title', text: pack.title }),
+              h(
+                'span',
+                { class: 'pack-title' },
+                h('span', { text: pack.title }),
+                pack.story && h('span', { class: 'badge pixel', text: t.questBadge }),
+              ),
               h('span', { class: 'pack-meta', text: `${pack.topic} · ${t.questions(pack.questions)}` }),
             ),
           ),
@@ -193,6 +251,8 @@ export interface OverScreen extends Screen {
 export interface OverOptions {
   t: Strings;
   final: GameOverMsg;
+  /** How the wizard quest ended, for story packs. */
+  ending: EndingBand | null;
   canPlayAgain: boolean;
   onSubmit(nickname: string): void;
   onShare(): void;
@@ -255,8 +315,14 @@ export function overScreen(o: OverOptions): OverScreen {
   const el = h(
     'section',
     { class: 'screen over' },
-    sprite('trophy', 'sprite-big'),
+    h(
+      'figure',
+      { class: 'over-hero' },
+      artImage(heroUrl(final.hero), 'over-hero-img'),
+      h('figcaption', { class: 'pixel', text: heroName(final.hero) }),
+    ),
     title,
+    o.ending && h('p', { class: `ending ending-${o.ending}`, text: t.endings[o.ending] }),
     h('p', { class: 'label', text: t.finalScore }),
     h('p', { class: 'final-score pixel', text: String(final.score) }),
     h('p', { class: 'lead', text: t.correctOf(final.correct, final.questions) }),
@@ -365,7 +431,8 @@ export function boardScreen(o: BoardOptions): BoardScreen {
                 h('td', { class: 'pixel', text: String(entry.rank) }),
                 h(
                   'td',
-                  {},
+                  { class: 'board-player' },
+                  artImage(heroUrl(entry.hero), 'board-hero', ''),
                   h('span', { class: 'nick', text: entry.nickname }),
                   h('span', { class: 'muted', text: ` ${entry.correct}/${entry.questions}` }),
                 ),

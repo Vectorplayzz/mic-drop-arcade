@@ -8,7 +8,7 @@ import {
 } from '../src/game/machine';
 import type { ServerMessage } from '../src/protocol/messages';
 
-const PACK = { id: 'te-01', title: 'T', language: 'te-IN', topic: 'x', questions: 10 } as const;
+const PACK = { id: 'te-01', title: 'T', language: 'te-IN', topic: 'x', questions: 10, story: false } as const;
 
 const READY: ServerMessage = { type: 'ready', protocol: 'maata.v1', max_games: 5 };
 const GAME_START: ServerMessage = {
@@ -18,6 +18,8 @@ const GAME_START: ServerMessage = {
   questions: 2,
   time_limit_s: 12,
   max_score: 310,
+  hero: 'arjun',
+  story: null,
 };
 const question = (index: number): ServerMessage => ({
   type: 'question',
@@ -26,6 +28,7 @@ const question = (index: number): ServerMessage => ({
   prompt: `Q${index}?`,
   kind: 'text',
   time_limit_s: 12,
+  options: null,
 });
 const speak = (utterance: number, caption = 'line'): ServerMessage => ({
   type: 'speak_start',
@@ -55,6 +58,7 @@ const GAME_OVER: ServerMessage = {
   questions: 2,
   max_score: 310,
   score_token: 'tok',
+  hero: 'arjun',
 };
 
 /** Feeds messages through the machine, collecting every effect. */
@@ -238,5 +242,64 @@ describe('quiz state machine', () => {
     ({ state } = play([GAME_START], state));
     expect(state).toMatchObject({ phase: 'speaking', score: 0, streak: 0, index: -1, final: null });
     expect(gamesLeft(state)).toBe(3);
+  });
+});
+
+describe('wizard quest', () => {
+  const STORY_START: ServerMessage = {
+    type: 'game_start',
+    game_id: 'g2',
+    pack: { ...PACK, id: 'en-comet-01', language: 'en-IN', story: true },
+    questions: 2,
+    time_limit_s: 12,
+    max_score: 310,
+    hero: 'priya',
+    story: { wizard: 'Professor Hoot', sprite: 'owl', scene: 'observatory', chapters: 8 },
+  };
+  const story = (
+    kind: 'intro' | 'chapter' | 'setback' | 'ending',
+    mood: 'ask' | 'happy' | 'sad' | 'cheer',
+    extra: { chapter?: number; band?: 'great' | 'good' | 'try_again' } = {},
+  ): ServerMessage => ({
+    type: 'story',
+    kind,
+    text: `${kind} line`,
+    mood,
+    chapter: extra.chapter ?? null,
+    band: extra.band ?? null,
+  });
+
+  it('keeps the hero, wizard and scene the server confirmed', () => {
+    const { state } = play([READY, STORY_START]);
+    expect(state).toMatchObject({ hero: 'priya', mood: 'ask', chaptersDone: 0, ending: null });
+    expect(state.story).toEqual({ wizard: 'Professor Hoot', sprite: 'owl', scene: 'observatory', chapters: 8 });
+  });
+
+  it('follows the wizard mood and counts chapters, without touching the phase', () => {
+    let { state } = play([READY, STORY_START, story('intro', 'ask')]);
+    expect(state.phase).toBe('speaking');
+    ({ state } = play([question(0), { type: 'listen', index: 0, barge_in: true }, result()], state));
+    ({ state } = play([story('chapter', 'happy', { chapter: 1 })], state));
+    expect(state).toMatchObject({ phase: 'result', mood: 'happy', chaptersDone: 1 });
+    ({ state } = play([question(1)], state));
+    expect(state.mood).toBe('ask'); // every new question resets the pose
+    ({ state } = play([story('setback', 'sad')], state));
+    expect(state).toMatchObject({ mood: 'sad', chaptersDone: 1 });
+    ({ state } = play([story('ending', 'cheer', { band: 'great' })], state));
+    expect(state).toMatchObject({ mood: 'cheer', ending: 'great' });
+  });
+
+  it('shows the three choices for the current question only', () => {
+    const withOptions: ServerMessage = { ...(question(0) as object), options: ['Mars', 'Venus', 'Saturn'] } as ServerMessage;
+    let { state } = play([READY, STORY_START, withOptions]);
+    expect(state.options).toEqual(['Mars', 'Venus', 'Saturn']);
+    ({ state } = play([question(1)], state));
+    expect(state.options).toBeNull();
+  });
+
+  it('starts every new game from a clean quest', () => {
+    let { state } = play([READY, STORY_START, story('chapter', 'happy', { chapter: 3 }), story('ending', 'sad', { band: 'try_again' }), GAME_OVER]);
+    ({ state } = play([STORY_START], state));
+    expect(state).toMatchObject({ chaptersDone: 0, ending: null, mood: 'ask', options: null });
   });
 });

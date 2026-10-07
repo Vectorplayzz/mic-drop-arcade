@@ -23,6 +23,7 @@ bundled.
 | Score card | `src/share/card.ts` | Drawn procedurally at runtime. |
 | Sound effects | `src/audio/sfx.ts` | Synthesised at runtime from oscillators; no samples. |
 | Title music | `src/audio/sfx.ts` | An original eight-bar tune written for this game, stored as note numbers and synthesised at runtime. |
+| Wizards (sage, sorceress, owl; four moods each), 12 heroes, 7 scenes | `src/assets/art/` (copied from the repo's `art/`) | Generated for this game in AICade Studio with Z-Image Turbo (Apache-2.0) and cut out with BiRefNet (MIT); every prompt, seed and post-processing step is in [`../art/credits.json`](../art/credits.json). Recompressed losslessly with oxipng (pixel-identical). Original characters only. |
 
 ## Not client assets
 

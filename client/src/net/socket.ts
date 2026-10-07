@@ -45,8 +45,8 @@ export class GameSocket {
     };
   }
 
-  startGame(packId: string): void {
-    this.send({ type: 'start', pack_id: packId });
+  startGame(packId: string, hero: string): void {
+    this.send({ type: 'start', pack_id: packId, character: hero });
   }
 
   sendAudio(frame: ArrayBuffer): void {

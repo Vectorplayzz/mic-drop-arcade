@@ -1,4 +1,4 @@
-/* Maata Arcade: mobile-first, dark, chunky. No inline styles anywhere: the CSP forbids them. */
+/* Mic Drop Arcade: mobile-first, dark, chunky. No inline styles anywhere: the CSP forbids them. */
 
 @font-face {
   font-family: 'Press Start 2P';
@@ -291,6 +291,35 @@ ul {
   color: #00222a;
 }
 
+/* Five languages don't fit one row on a phone: wrap, and let the last row stretch. Each
+   segment draws half of every 3px divider so the lines stay even wherever it wraps. */
+.segmented.langs {
+  flex-wrap: wrap;
+  border-width: 1.5px;
+}
+
+.segmented.langs .segment,
+.segmented.langs .segment + .segment {
+  flex: 1 1 6rem;
+  border: 1.5px solid var(--text);
+}
+
+.segmented.langs .segment[aria-pressed='true'] {
+  background: var(--cyan);
+}
+
+/* Painted pixel art is upscaled by the browser: keep the pixels square. */
+.title-wizard,
+.stage-scene,
+.stage-wizard,
+.hud-hero,
+.hero-img,
+.over-hero-img,
+.board-hero {
+  image-rendering: pixelated;
+  user-select: none;
+}
+
 /* ------------------------------------------------------------------ title --------- */
 .title {
   justify-content: center;
@@ -315,6 +344,24 @@ ul {
 
 .logo-bottom {
   color: var(--cyan);
+}
+
+.title-art {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+  margin-block: -0.5rem -0.75rem;
+}
+
+.title-wizard {
+  width: 6rem;
+  height: 6rem;
+}
+
+.title-wizard-main {
+  width: 8rem;
+  height: 8rem;
 }
 
 .tagline {
@@ -385,8 +432,63 @@ ul {
 }
 
 .pack-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 1.1875rem;
   font-weight: 700;
+}
+
+.badge {
+  padding: 0.25rem 0.4rem;
+  background: var(--yellow);
+  color: #1d1400;
+  font-size: 0.625rem;
+  line-height: 1;
+}
+
+/* ------------------------------------------------------------------ hero picker --- */
+.hero-pick {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 3px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+}
+
+.heroes {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.375rem;
+}
+
+.hero {
+  aspect-ratio: 1;
+  padding: 0;
+  border: 3px solid transparent;
+  background: var(--panel-2);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.hero[aria-pressed='true'] {
+  border-color: var(--cyan);
+  background: #2b2a6b;
+  box-shadow: 0 0 0 2px #000 inset;
+}
+
+.hero-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-picked {
+  min-height: 1.5em;
+  font-weight: 700;
+  color: var(--yellow);
 }
 
 .pack-meta {
@@ -396,12 +498,14 @@ ul {
 
 /* ------------------------------------------------------------------ game ---------- */
 .game {
-  gap: 0.875rem;
+  max-width: 60rem;
+  gap: 0.75rem;
 }
 
 .hud {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: auto 1fr 1fr auto;
+  align-items: end;
   gap: 0.5rem;
   padding: 0.625rem 0.75rem;
   border: 3px solid var(--text);
@@ -429,6 +533,230 @@ ul {
   color: var(--yellow);
 }
 
+.hud-portrait {
+  justify-content: center;
+}
+
+.hud-hero {
+  width: 3rem;
+  height: 3rem;
+  margin: -0.5rem 0 -0.375rem -0.375rem;
+}
+
+/* Quest progress: one notch per chapter the wizard has told. */
+.quest {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  text-align: left;
+}
+
+.quest-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-weight: 700;
+}
+
+.quest-name {
+  color: var(--pink);
+}
+
+.quest-count {
+  font-size: 0.75rem;
+  color: var(--yellow);
+  align-self: center;
+}
+
+.quest-bar {
+  height: 0.75rem;
+  border: 3px solid var(--text);
+  background: var(--ink);
+}
+
+.quest-fill {
+  height: 100%;
+  background: var(--yellow);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 400ms steps(6);
+}
+
+/* The stage: scene behind, wizard on the left, choices on the right, dialogue along the
+   bottom. The dialogue's dark panel covers the wizard's lower half, as in a visual novel. */
+.stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44% 1fr;
+  grid-template-rows: 1fr auto;
+  min-height: clamp(23rem, 64vw, 34rem);
+  overflow: hidden;
+  border: 3px solid var(--text);
+  background: #000;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.stage-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% 50%;
+}
+
+.stage-wizard {
+  position: absolute;
+  left: -4%;
+  bottom: 0;
+  height: 86%;
+  max-height: 34rem;
+  aspect-ratio: 1;
+  width: auto;
+  filter: drop-shadow(4px 4px 0 rgb(0 0 0 / 55%));
+}
+
+.game[data-mood='happy'] .stage-wizard,
+.game[data-mood='cheer'] .stage-wizard {
+  animation: hop 480ms steps(3);
+}
+
+.game[data-mood='sad'] .stage-wizard {
+  animation: droop 600ms steps(3);
+}
+
+@keyframes hop {
+  40% {
+    transform: translateY(-6%);
+  }
+}
+
+@keyframes droop {
+  50% {
+    transform: translateY(2%);
+  }
+}
+
+.choices {
+  position: relative;
+  z-index: 1;
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0.75rem 0.75rem 0;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 3rem;
+  padding: 0.5rem 0.625rem;
+  border: 3px solid var(--cyan);
+  background: rgb(23 21 59 / 90%);
+  box-shadow: 3px 3px 0 #000;
+  font-size: clamp(0.9375rem, 2.6vw, 1.125rem);
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.choice-key {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--cyan);
+  color: #00222a;
+  font-size: 0.75rem;
+}
+
+.choice-other {
+  border-style: dashed;
+  border-color: var(--muted);
+  background: rgb(11 10 31 / 82%);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.choice-other .choice-key {
+  background: var(--muted);
+}
+
+.choice.right {
+  border-color: var(--green);
+  background: rgb(18 60 38 / 94%);
+}
+
+.choice.right .choice-key {
+  background: var(--green);
+}
+
+.choice.dim {
+  opacity: 0.45;
+}
+
+.game[data-phase='listening'] .choice:not(.choice-other) {
+  animation: glow 900ms steps(2) infinite;
+}
+
+@keyframes glow {
+  50% {
+    border-color: var(--yellow);
+  }
+}
+
+.dialogue {
+  position: relative;
+  z-index: 2;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-height: 8.5rem;
+  margin: 0 0.5rem 0.5rem;
+  padding: 1.25rem 0.875rem 0.75rem;
+  border: 3px solid var(--text);
+  background: rgb(8 7 26 / 94%);
+  box-shadow: 0 -0.75rem 1.5rem rgb(0 0 0 / 55%);
+}
+
+.dialogue-name {
+  position: absolute;
+  top: -0.875rem;
+  left: 0.75rem;
+  padding: 0.375rem 0.5rem;
+  border: 3px solid var(--text);
+  background: var(--pink);
+  color: #14001f;
+  font-size: 0.6875rem;
+}
+
+.dialogue-text {
+  font-size: clamp(1.0625rem, 3.6vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.dialogue-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.25rem;
+}
+
+.dialogue-status .meter {
+  flex: 1;
+  width: auto;
+}
+
 .hud-value.hot {
   color: var(--pink);
 }
@@ -449,17 +777,9 @@ ul {
   background: var(--red);
 }
 
-.status {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  min-height: 9.5rem;
-}
-
 .sprite-status {
-  width: 5rem;
-  height: 5rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .game[data-phase='listening'] .sprite-status {
@@ -478,7 +798,7 @@ ul {
 
 .status-text {
   min-height: 1.5em;
-  font-size: 1.25rem;
+  font-size: 1.0625rem;
   font-weight: 800;
   color: var(--cyan);
 }
@@ -565,6 +885,42 @@ ul {
 }
 
 /* ------------------------------------------------------------------ game over ----- */
+.over-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+.over-hero-img {
+  width: 10rem;
+  height: 10rem;
+  margin-block: -0.75rem -0.5rem;
+}
+
+.over-hero figcaption {
+  font-size: 0.75rem;
+  color: var(--cyan);
+}
+
+.ending {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.ending-great {
+  color: var(--yellow);
+}
+
+.ending-good {
+  color: var(--green);
+}
+
+.ending-try_again {
+  color: var(--muted);
+}
+
 .final-score {
   font-size: clamp(2.5rem, 14vw, 4rem);
   line-height: 1.1;
@@ -668,6 +1024,19 @@ input[type='range'] {
   overflow-wrap: anywhere;
 }
 
+.board-player {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+}
+
+.board-hero {
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-block: -0.5rem;
+}
+
 /* ------------------------------------------------------------------ dialogs ------- */
 .dialog {
   width: min(28rem, calc(100vw - 2rem));
@@ -738,6 +1107,19 @@ input[type='range'] {
   display: none;
 }
 
+/* On a phone the choices need the right half: slide the wizard left so the tiles sit beside
+   its face, not on it. Its far side is cropped by the stage edge, visual-novel style. */
+@media (max-width: 47.99rem) {
+  .stage.has-choices .stage-wizard {
+    left: -24%;
+    height: 82%;
+  }
+
+  .stage.has-choices .choices {
+    padding-left: 0.25rem;
+  }
+}
+
 /* ------------------------------------------------------------------ wider screens - */
 @media (min-width: 48rem) {
   #app {
@@ -747,6 +1129,22 @@ input[type='range'] {
 
   .hud-value {
     font-size: 1.25rem;
+  }
+
+  .stage {
+    grid-template-columns: 42% 1fr;
+    min-height: 0;
+    aspect-ratio: 7 / 4;
+  }
+
+  .stage-wizard {
+    left: -2%;
+    height: 100%;
+  }
+
+  .choices {
+    padding: 1.5rem 1.5rem 1rem 0;
+    gap: 0.75rem;
   }
 }
 

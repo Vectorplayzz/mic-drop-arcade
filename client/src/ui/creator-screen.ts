@@ -303,7 +303,7 @@ export function creatorScreen(o: CreatorOptions): Screen {
           })
           .catch(() => {
             summary.classList.remove('good');
-            setText(summary, 'That file is not a Maata Arcade pack.');
+            setText(summary, 'That file is not a Mic Drop Arcade pack.');
           });
       },
     },
@@ -319,7 +319,7 @@ export function creatorScreen(o: CreatorOptions): Screen {
     }),
     h('p', {
       class: 'muted',
-      text: 'Your draft is saved on this device only. A person reviews every pack before it can be played, so save the pack file and send it to the Maata Arcade team. Use made-up examples only: no real phone numbers, IDs or personal details.',
+      text: 'Your draft is saved on this device only. A person reviews every pack before it can be played, so save the pack file and send it to the Mic Drop Arcade team. Use made-up examples only: no real phone numbers, IDs or personal details.',
     }),
     packFields,
     questionList,

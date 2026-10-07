@@ -24,13 +24,24 @@ interface MockQuestion {
   answer: string;
   kind: 'text' | 'number';
   explanation?: string;
+  options?: [string, string, string];
+}
+interface MockStory {
+  wizard: string;
+  wizard_sprite: 'sage' | 'sorceress' | 'owl';
+  scene: string;
+  intro: string;
+  chapters: string[];
+  setbacks: string[];
+  endings: { great: string; good: string; try_again: string };
 }
 interface MockPack {
   id: string;
   title: string;
-  language: 'te-IN' | 'hi-IN' | 'hi-en';
+  language: 'te-IN' | 'hi-IN' | 'hi-en' | 'te-en' | 'en-IN';
   topic: string;
   questions: MockQuestion[];
+  story?: MockStory;
 }
 
 const PACKS: MockPack[] = [
@@ -75,8 +86,31 @@ const PACKS: MockPack[] = [
   },
 ];
 
+PACKS.push({
+  id: 'en-comet-mock',
+  title: 'The Comet Clock',
+  language: 'en-IN',
+  topic: 'space and physics',
+  story: {
+    wizard: 'Professor Hoot',
+    wizard_sprite: 'owl',
+    scene: 'observatory',
+    intro: "I'm Professor Hoot. The comet clock crashed right before launch. Every right answer turns one golden gear.",
+    chapters: ['Gear one is spinning. Nice start, engineer!', 'The telescope just powered up!', 'The star charts are loading.', 'Half the gears are running!', 'One last gear to go!'],
+    setbacks: ['Oops! A cloud drifted over the lens.', 'Hmm, a gear slipped. Debug and move on.'],
+    endings: { great: "You're a true star engineer!", good: 'Solid run!', try_again: 'A few gears are still stuck. Try again!' },
+  },
+  questions: [
+    { prompt: 'Which planet takes the shortest time to go around the Sun?', answer: 'Mercury', kind: 'text', options: ['Mercury', 'Venus', 'Mars'] },
+    { prompt: 'What is the SI unit of force?', answer: 'newton', kind: 'text', options: ['joule', 'newton', 'pascal'] },
+    { prompt: 'Which particle carries a negative charge?', answer: 'electron', kind: 'text', options: ['proton', 'neutron', 'electron'] },
+    { prompt: 'Which galaxy is our solar system a part of?', answer: 'Milky Way', kind: 'text', options: ['Andromeda', 'Milky Way', 'Whirlpool'] },
+    { prompt: 'Absolute zero is zero on which temperature scale?', answer: 'Kelvin', kind: 'text', options: ['Kelvin', 'Celsius', 'Fahrenheit'] },
+  ],
+});
+
 const LINES = {
-  intro: 'Mock server: welcome to Maata Arcade!',
+  intro: 'Mock server: welcome to Mic Drop Arcade!',
   correct: 'Correct!',
   wrong: 'Wrong answer.',
   timeout: 'Time up!',
@@ -85,6 +119,7 @@ const LINES = {
 };
 
 interface Score {
+  character?: string;
   nickname: string;
   score: number;
   correct: number;
@@ -96,6 +131,8 @@ const scores: Score[] = [
   { nickname: 'చిలక_07', score: 480, correct: 3, questions: 5, language: 'te-IN' },
   { nickname: 'तोता-राजा', score: 520, correct: 4, questions: 5, language: 'hi-IN' },
   { nickname: 'QuizWizard', score: 700, correct: 5, questions: 5, language: 'hi-en' },
+  { nickname: 'StarEngineer', score: 690, correct: 5, questions: 5, language: 'en-IN', character: 'priya' },
+  { nickname: 'GearGrinder', score: 455, correct: 3, questions: 5, language: 'en-IN', character: 'imran' },
 ];
 const scoreTokens = new Map<string, Omit<Score, 'nickname'>>();
 
@@ -105,6 +142,7 @@ const summary = (p: MockPack) => ({
   language: p.language,
   topic: p.topic,
   questions: p.questions.length,
+  story: p.story !== undefined,
 });
 
 function maxScore(n: number): number {
@@ -146,6 +184,8 @@ const api: Connect.NextHandleFunction = (req, res, next) => {
             { code: 'te-IN', label: 'తెలుగు' },
             { code: 'hi-IN', label: 'हिन्दी' },
             { code: 'hi-en', label: 'Hinglish' },
+            { code: 'te-en', label: 'Tenglish' },
+            { code: 'en-IN', label: 'English' },
           ],
         });
       case 'GET /api/packs': {
@@ -191,6 +231,7 @@ const api: Connect.NextHandleFunction = (req, res, next) => {
             score: s.score,
             correct: s.correct,
             questions: s.questions,
+            character: s.character ?? 'arjun',
           }));
         return json(res, 200, { language, period: url.searchParams.get('period'), entries });
       }
@@ -277,7 +318,7 @@ class MockSession {
       this.onAudio(data);
       return;
     }
-    let msg: { type?: string; pack_id?: string; t?: number };
+    let msg: { type?: string; pack_id?: string; t?: number; character?: string };
     try {
       msg = JSON.parse(data.toString());
     } catch {
@@ -298,7 +339,7 @@ class MockSession {
         this.fail('session_limit', "That's the most games for one session.", 4429);
       } else {
         this.playing = true;
-        void this.play(pack).finally(() => (this.playing = false));
+        void this.play(pack, msg.character ?? 'arjun').finally(() => (this.playing = false));
       }
     }
   }
@@ -356,7 +397,12 @@ class MockSession {
     if (left > 0) await sleep(left);
   }
 
-  private async play(pack: MockPack): Promise<void> {
+  private async tell(kind: string, text: string, mood: string, extra: Record<string, unknown> = {}): Promise<void> {
+    this.send({ type: 'story', kind, text, mood, ...extra });
+    await this.say(text, true);
+  }
+
+  private async play(pack: MockPack, character: string): Promise<void> {
     const questions = pack.questions.slice(0, QUESTIONS_PER_GAME);
     const total = questions.length;
     const gameId = `mock-${Date.now()}`;
@@ -370,8 +416,19 @@ class MockSession {
       questions: total,
       time_limit_s: TIME_LIMIT_S,
       max_score: maxScore(total),
+      character,
+      story: pack.story
+        ? {
+            wizard: pack.story.wizard,
+            wizard_sprite: pack.story.wizard_sprite,
+            scene: pack.story.scene,
+            chapters: pack.story.chapters.length,
+          }
+        : null,
     });
-    await this.say(LINES.intro, true);
+    if (pack.story) await this.tell('intro', pack.story.intro, 'ask');
+    else await this.say(LINES.intro, true);
+    let misses = 0;
 
     for (const [index, q] of questions.entries()) {
       if (!this.alive) return;
@@ -382,6 +439,7 @@ class MockSession {
         prompt: q.prompt,
         kind: q.kind,
         time_limit_s: TIME_LIMIT_S,
+        options: q.options ?? null,
       });
       await this.say(q.prompt, false);
       const question = this.speaking;
@@ -431,7 +489,23 @@ class MockSession {
         streak,
       });
       await this.say(correct ? LINES.correct : spoke ? LINES.wrong : LINES.timeout, true);
-      if (!correct) await this.say(LINES.answerWas(q.answer), true);
+      const story = pack.story;
+      if (correct && story) {
+        const chapter = story.chapters[correctCount - 1];
+        if (chapter) await this.tell('chapter', chapter, 'happy', { chapter: correctCount });
+      }
+      if (!correct) {
+        misses += 1;
+        if (story) await this.tell('setback', story.setbacks[(misses - 1) % story.setbacks.length]!, 'sad');
+        await this.say(LINES.answerWas(q.answer), true);
+      }
+    }
+    if (pack.story) {
+      const ratio = correctCount / total;
+      const band = ratio >= 0.8 ? 'great' : ratio >= 0.5 ? 'good' : 'try_again';
+      const mood = band === 'great' ? 'cheer' : band === 'good' ? 'happy' : 'sad';
+      this.send({ type: 'story', kind: 'ending', text: pack.story.endings[band], mood, band });
+      await this.say(pack.story.endings[band], true);
     }
 
     void this.say(LINES.gameOver, false);
@@ -450,6 +524,7 @@ class MockSession {
       questions: total,
       max_score: maxScore(total),
       score_token: scoreToken,
+      character,
     });
   }
 }

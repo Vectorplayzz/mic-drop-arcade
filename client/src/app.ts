@@ -402,6 +402,12 @@ export class App {
     const view = lobbyScreen(
       this.t,
       gamesLeft(this.game),
+      this.prefs.hero,
+      (hero) => {
+        this.prefs.hero = hero;
+        savePrefs(this.prefs);
+        this.sfx?.play('select');
+      },
       (pack) => this.startGame(pack),
       () => this.goHome(),
     );
@@ -425,7 +431,7 @@ export class App {
       () => {
         if (this.game.phase !== 'lobby' && this.game.phase !== 'over') return;
         this.dispatch({ type: 'start_requested' });
-        this.socket.startGame(pack.id);
+        this.socket.startGame(pack.id, this.prefs.hero);
       },
       (err: unknown) => this.endSession(micProblem(err)),
     );
@@ -440,6 +446,7 @@ export class App {
     const view = overScreen({
       t: this.t,
       final,
+      ending: this.game.ending,
       canPlayAgain: this.socket.isOpen && gamesLeft(this.game) > 0 && pack !== null,
       onSubmit: (nickname) => void this.submitScore(view, final.score_token, nickname),
       onShare: () => {
@@ -453,6 +460,7 @@ export class App {
           maxScore: final.max_score,
           line: this.t.shareLine(final.correct, final.questions, language),
           packTitle: pack?.title ?? '',
+          hero: final.hero,
           url: location.origin,
         }).then(
           (how) => view.setShareStatus(how === 'downloaded' ? this.t.shareSaved : ''),

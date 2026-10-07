@@ -3,12 +3,17 @@
  * of side effects (open the mic, stop an utterance, play a sound) come out. Scores, streaks and
  * verdicts are copied from the server and never computed here.
  */
-import type {
-  ErrorMsg,
-  GameOverMsg,
-  PackSummary,
-  ResultMsg,
-  ServerMessage,
+import {
+  DEFAULT_HERO,
+  type EndingBand,
+  type ErrorMsg,
+  type GameOverMsg,
+  type Hero,
+  type Mood,
+  type PackSummary,
+  type ResultMsg,
+  type ServerMessage,
+  type StoryInfo,
 } from '../protocol/messages';
 
 export type Phase =
@@ -49,6 +54,18 @@ export interface GameState {
   awaitingQuestionAudio: boolean;
   /** Goes up on every `heard_nothing`, so the UI can nudge the player each time. */
   heardNothing: number;
+  /** The current question's three on-screen choices, or null for open answers. */
+  options: string[] | null;
+  /** The hero the server confirmed for this game. */
+  hero: Hero;
+  /** Wizard quest details for story packs; null for a plain quiz. */
+  story: StoryInfo | null;
+  /** Which wizard pose to show. */
+  mood: Mood;
+  /** Quest chapters completed so far. */
+  chaptersDone: number;
+  /** Set once the story's ending plays. */
+  ending: EndingBand | null;
   result: ResultMsg | null;
   final: GameOverMsg | null;
   error: ErrorMsg | null;
@@ -95,6 +112,12 @@ export function initialState(): GameState {
     questionUtterance: null,
     awaitingQuestionAudio: false,
     heardNothing: 0,
+    options: null,
+    hero: DEFAULT_HERO,
+    story: null,
+    mood: 'ask',
+    chaptersDone: 0,
+    ending: null,
     result: null,
     final: null,
     error: null,
@@ -151,6 +174,12 @@ function onMessage(state: GameState, m: ServerMessage): Step {
           questionUtterance: null,
           awaitingQuestionAudio: false,
           heardNothing: 0,
+          options: null,
+          hero: m.hero,
+          story: m.story,
+          mood: 'ask',
+          chaptersDone: 0,
+          ending: null,
           result: null,
           final: null,
           error: null,
@@ -171,9 +200,22 @@ function onMessage(state: GameState, m: ServerMessage): Step {
           questionUtterance: null,
           awaitingQuestionAudio: true,
           heardNothing: 0,
+          options: m.options,
+          mood: 'ask',
           result: null,
         },
         effects: [{ type: 'timer_stop' }],
+      };
+
+    case 'story':
+      return {
+        state: {
+          ...state,
+          mood: m.mood,
+          chaptersDone: m.kind === 'chapter' && m.chapter !== null ? m.chapter : state.chaptersDone,
+          ending: m.kind === 'ending' ? (m.band ?? state.ending) : state.ending,
+        },
+        effects: [],
       };
 
     case 'speak_start':

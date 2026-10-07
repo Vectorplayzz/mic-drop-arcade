@@ -2,7 +2,7 @@
  * Player preferences kept across visits. Only harmless settings live in localStorage; the
  * session token never does (it stays in memory, PROTOCOL §1).
  */
-import { isLanguageCode, type LanguageCode } from './protocol/messages';
+import { DEFAULT_HERO, type Hero, heroOr, isLanguageCode, type LanguageCode } from './protocol/messages';
 
 export interface Prefs {
   language: LanguageCode | null;
@@ -10,10 +10,12 @@ export interface Prefs {
   voiceVolume: number;
   sfx: boolean;
   music: boolean;
+  /** The hero picked in the lobby; it rides along with every game and shows on the score card. */
+  hero: Hero;
 }
 
 const KEY = 'maata.prefs.v1';
-const DEFAULTS: Prefs = { language: null, voiceVolume: 1, sfx: true, music: true };
+const DEFAULTS: Prefs = { language: null, voiceVolume: 1, sfx: true, music: true, hero: DEFAULT_HERO };
 
 export function loadPrefs(): Prefs {
   try {
@@ -26,6 +28,7 @@ export function loadPrefs(): Prefs {
         typeof volume === 'number' && volume >= 0 && volume <= 1 ? volume : DEFAULTS.voiceVolume,
       sfx: typeof saved.sfx === 'boolean' ? saved.sfx : DEFAULTS.sfx,
       music: typeof saved.music === 'boolean' ? saved.music : DEFAULTS.music,
+      hero: heroOr(saved.hero),
     };
   } catch {
     return { ...DEFAULTS };

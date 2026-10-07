@@ -1,5 +1,7 @@
 /** Same-origin HTTP API (PROTOCOL §1 and §7). Nothing here ever talks to another host. */
 import {
+  type Hero,
+  heroOr,
   isLanguageCode,
   type LanguageCode,
   type PackSummary,
@@ -29,6 +31,7 @@ export interface LeaderboardEntry {
   score: number;
   correct: number;
   questions: number;
+  hero: Hero;
 }
 
 export type Period = 'today' | 'all';
@@ -150,6 +153,7 @@ export async function getLeaderboard(
         score: e.score,
         correct: e.correct,
         questions: e.questions,
+        hero: heroOr(e.character),
       });
     }
   }

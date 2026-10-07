@@ -1,7 +1,7 @@
 {
-  "name": "Maata Arcade",
-  "short_name": "Maata Arcade",
-  "description": "A retro arcade quiz you play only by speaking: Telugu, Hindi or Hinglish.",
+  "name": "Mic Drop Arcade",
+  "short_name": "Mic Drop",
+  "description": "A retro arcade quiz you play only by speaking: Telugu, Hindi, English, Hinglish or Tenglish.",
   "id": "/",
   "start_url": "/",
   "scope": "/",
