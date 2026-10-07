@@ -69,6 +69,24 @@ docker compose -f deploy/docker-compose.yml --env-file deploy/.env run --rm api 
 Packs are baked into the image, so reviewed packs must be committed and redeployed. Audio lives
 in the `audio` volume and survives deploys.
 
+### Reusing audio that's already rendered
+
+The cache is content-addressed: each clip's file name is a hash of model, voice, language, speed
+and text. Clips rendered anywhere else can be copied in as they are. Only lines whose text
+changed during review are billed again on the next `prerender_audio.py --yes`.
+
+The five built-in story packs and all system lines are already rendered (211 clips, about 23 MB
+compressed) in `server/data/audio-cache.tar.gz` on G Nagarjuna's machine. That folder is
+git-ignored. To load it into the VPS volume:
+
+```bash
+scp server/data/audio-cache.tar.gz vps:/tmp/
+docker compose -f deploy/docker-compose.yml --env-file deploy/.env run --rm -T api \
+    tar -xzf - -C /data/audio < /tmp/audio-cache.tar.gz
+docker compose -f deploy/docker-compose.yml --env-file deploy/.env run --rm api \
+    python scripts/prerender_audio.py --dry-run     # should report 0 lines to render
+```
+
 ## Operations
 
 ```bash
