@@ -1,15 +1,15 @@
 # Art
 
-Pixel art for the wizard-quest layout. It was generated in AICade Studio on the RTX 3060 and
+Pixel art for Mic Drop Arcade's wizard-quest layout. It was generated in AICade Studio on the RTX 3060 and
 picked by G Nagarjuna. Every asset is original: no existing characters, logos or game art.
 `credits.json` records the exact prompt, seed, model license chain and post-processing for each
 file.
 
 | Folder | What | Size |
 |---|---|---|
-| `sprites/wizard/` | The quiz wizard in four moods: `ask`, `happy`, `sad`, `cheer`. These match `story.mood` in `docs/PROTOCOL.md`. | 128×128, transparent |
-| `sprites/heroes/` | Pickable heroes. Anime boys `arjun`, `kabir`, `sai`; girls `diya`, `meera`, `zara`. These match the server's character ids. | 128×128, transparent |
-| `backgrounds/` | Wizard's library tower at night. `library-a` has the magic circle on the left, where the wizard stands. | 448×256, 48 colours |
+| `sprites/wizard/<set>/` | Three quiz wizards, each in four moods (`ask`, `happy`, `sad`, `cheer`, matching `story.mood`): `sage` (old wizard), `sorceress` (young sorceress), `owl` (owl professor). A story pack picks one with `story.wizard_sprite`. | 128×128, transparent |
+| `sprites/heroes/` | Twelve pickable heroes, matching the server's character ids. Boys: `arjun`, `kabir`, `sai`, `rohan`, `aditya`, `imran`. Girls: `diya`, `meera`, `zara`, `ananya`, `priya`, `sana`. | 128×128, transparent |
+| `backgrounds/` | Seven scenes, picked with `story.scene`: `library-a`, `library-b`, `forest-temple`, `sky-islands`, `crystal-cave`, `night-bazaar`, `observatory`. Each keeps the left side open for the wizard. | 448×256, 48 colours |
 | `layout-preview.jpg` | Mock-up of the target screen (not shipped) | — |
 
 **Licenses:**
