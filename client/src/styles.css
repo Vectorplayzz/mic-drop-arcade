@@ -1,0 +1,760 @@
+/* Maata Arcade: mobile-first, dark, chunky. No inline styles anywhere: the CSP forbids them. */
+
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('@fontsource/press-start-2p/files/press-start-2p-latin-400-normal.woff2') format('woff2');
+}
+
+:root {
+  --ink: #0b0a1f;
+  --panel: #17153b;
+  --panel-2: #221f52;
+  --line: #3a2a7a;
+  --cyan: #3cf2ff;
+  --pink: #ff4fa3;
+  --yellow: #ffd23f;
+  --green: #4cff8f;
+  --red: #ff5a5a;
+  --text: #f4f1ff;
+  --muted: #a9a6d6;
+  --pixel: 'Press Start 2P', ui-monospace, monospace;
+  --body: system-ui, 'Noto Sans', 'Noto Sans Telugu', 'Noto Sans Devanagari', sans-serif;
+  --shadow: 4px 4px 0 #000;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+#app {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1.25rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+}
+
+noscript {
+  display: block;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1,
+h2,
+p,
+ol,
+ul {
+  margin: 0;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+/* Headings take focus on a screen change so it is announced; they don't need a ring. */
+[tabindex='-1']:focus-visible {
+  outline: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.pixel {
+  font-family: var(--pixel);
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.lead {
+  font-size: 1.125rem;
+}
+
+.label {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: 0.02em;
+}
+
+.notice {
+  min-height: 1.5em;
+  color: var(--yellow);
+  font-weight: 600;
+}
+
+.notice.good {
+  color: var(--green);
+}
+
+/* ------------------------------------------------------------------ screens ------- */
+.screen {
+  width: 100%;
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  text-align: center;
+  animation: screen-in 160ms steps(4);
+}
+
+/* Movement only: the content must never depend on an animation finishing to be visible. */
+@keyframes screen-in {
+  from {
+    transform: translateY(8px);
+  }
+}
+
+.screen-title {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  text-shadow: 3px 3px 0 #000;
+}
+
+.screen-title.pixel {
+  font-size: 1.375rem;
+  color: var(--pink);
+}
+
+.sprite {
+  image-rendering: pixelated;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+}
+
+.sprite-big {
+  width: 6rem;
+  height: 6rem;
+  align-self: center;
+}
+
+.blink {
+  animation: blink 900ms steps(2) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ------------------------------------------------------------------ buttons ------- */
+.btn {
+  appearance: none;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  border: 3px solid var(--text);
+  border-radius: 0;
+  background: var(--panel-2);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.btn:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 #000;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--pink);
+  border-color: #000;
+  color: #14001f;
+}
+
+.btn-big {
+  min-height: 4.25rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+}
+
+.btn-small {
+  align-self: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.9375rem;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.btn-link {
+  min-height: 2.75rem;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--cyan);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.menu .btn {
+  flex: 1 1 8rem;
+}
+
+.segmented {
+  display: flex;
+  border: 3px solid var(--text);
+  box-shadow: var(--shadow);
+  background: var(--panel);
+}
+
+.segment {
+  flex: 1;
+  min-height: 3rem;
+  padding: 0.5rem 0.25rem;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.segment + .segment {
+  border-left: 3px solid var(--text);
+}
+
+.segment[aria-pressed='true'] {
+  background: var(--cyan);
+  color: #00222a;
+}
+
+/* ------------------------------------------------------------------ title --------- */
+.title {
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-family: var(--pixel);
+  font-size: clamp(2rem, 11vw, 3.25rem);
+  line-height: 1;
+  text-shadow:
+    4px 4px 0 #000,
+    -2px -2px 0 #000;
+}
+
+.logo-top {
+  color: var(--pink);
+}
+
+.logo-bottom {
+  color: var(--cyan);
+}
+
+.tagline {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.how {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.875rem;
+  border: 3px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  text-align: left;
+}
+
+.how li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.disclosure {
+  padding-top: 0.25rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* ------------------------------------------------------------------ gate / problems */
+.gate,
+.problem {
+  justify-content: center;
+}
+
+.turnstile {
+  min-height: 4.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------------ lobby --------- */
+.packs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pack {
+  width: 100%;
+  min-height: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.75rem 1rem;
+  border: 3px solid var(--cyan);
+  border-radius: 0;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.pack:disabled {
+  opacity: 0.5;
+}
+
+.pack-title {
+  font-size: 1.1875rem;
+  font-weight: 700;
+}
+
+.pack-meta {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* ------------------------------------------------------------------ game ---------- */
+.game {
+  gap: 0.875rem;
+}
+
+.hud {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border: 3px solid var(--text);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.hud-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  justify-content: flex-end;
+}
+
+.hud-label {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.hud-value {
+  font-size: 1rem;
+  color: var(--yellow);
+}
+
+.hud-value.hot {
+  color: var(--pink);
+}
+
+.timer {
+  height: 1rem;
+  border: 3px solid var(--text);
+  background: var(--ink);
+}
+
+.timer-fill {
+  height: 100%;
+  background: var(--green);
+  transform-origin: left;
+}
+
+.timer.low .timer-fill {
+  background: var(--red);
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 9.5rem;
+}
+
+.sprite-status {
+  width: 5rem;
+  height: 5rem;
+}
+
+.game[data-phase='listening'] .sprite-status {
+  animation: pulse 700ms steps(2) infinite;
+}
+
+.game[data-phase='checking'] .sprite-status {
+  animation: blink 600ms steps(2) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.status-text {
+  min-height: 1.5em;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--cyan);
+}
+
+.game[data-phase='listening'] .status-text {
+  color: var(--green);
+}
+
+.meter {
+  width: 60%;
+  height: 0.5rem;
+  background: var(--panel-2);
+  visibility: hidden;
+}
+
+.meter.live {
+  visibility: visible;
+}
+
+.meter-fill {
+  height: 100%;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.prompt {
+  padding: 1rem;
+  border: 3px solid var(--cyan);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  font-size: clamp(1.25rem, 5.5vw, 1.625rem);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.verdict {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.875rem 1rem;
+  border: 3px solid var(--muted);
+  background: var(--panel);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.verdict.good {
+  border-color: var(--green);
+}
+
+.verdict.bad {
+  border-color: var(--red);
+}
+
+.verdict-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.verdict.good .verdict-title {
+  color: var(--green);
+}
+
+.verdict.bad .verdict-title {
+  color: var(--red);
+}
+
+.points {
+  color: var(--yellow);
+  font-size: 0.9375rem;
+}
+
+.caption {
+  min-height: 3em;
+  padding: 0.5rem 0.75rem;
+  background: rgb(0 0 0 / 70%);
+  font-size: 1.0625rem;
+  overflow-wrap: anywhere;
+}
+
+.caption:empty {
+  visibility: hidden;
+}
+
+/* ------------------------------------------------------------------ game over ----- */
+.final-score {
+  font-size: clamp(2.5rem, 14vw, 4rem);
+  line-height: 1.1;
+  color: var(--yellow);
+  text-shadow: 4px 4px 0 #000;
+}
+
+.nick-form,
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.nick-form {
+  padding: 1rem;
+  border: 3px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+}
+
+.field-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+}
+
+.input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.625rem 0.75rem;
+  border: 3px solid var(--text);
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--text);
+  font: inherit;
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--red);
+}
+
+textarea.input {
+  resize: vertical;
+}
+
+input[type='checkbox'] {
+  width: 1.5rem;
+  height: 1.5rem;
+  accent-color: var(--pink);
+}
+
+input[type='range'] {
+  width: 100%;
+  min-height: 2.75rem;
+  accent-color: var(--pink);
+}
+
+.again {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------------ leaderboard --- */
+.board-body {
+  min-height: 8rem;
+}
+
+.board-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid var(--text);
+  background: var(--panel);
+  text-align: left;
+}
+
+.board-table th,
+.board-table td {
+  padding: 0.625rem 0.5rem;
+  border-bottom: 2px solid var(--line);
+}
+
+.board-table th {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.board-table td.pixel {
+  font-size: 0.8125rem;
+  color: var(--yellow);
+  white-space: nowrap;
+}
+
+.board-table .top-1 .nick {
+  color: var(--yellow);
+}
+
+.nick {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* ------------------------------------------------------------------ dialogs ------- */
+.dialog {
+  width: min(28rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  padding: 1.25rem;
+  border: 3px solid var(--text);
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 6px 6px 0 #000;
+}
+
+.dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dialog::backdrop {
+  background: rgb(0 0 0 / 70%);
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+/* ------------------------------------------------------------------ creator ------- */
+.creator {
+  max-width: 38rem;
+  text-align: left;
+}
+
+.creator .screen-title {
+  text-align: center;
+}
+
+.creator-pack,
+.creator-questions,
+.creator-question {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.creator-pack,
+.creator-question {
+  padding: 1rem;
+  border: 3px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+}
+
+.creator-question-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.issue {
+  color: var(--red);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.issue:empty {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ wider screens - */
+@media (min-width: 48rem) {
+  #app {
+    align-items: center;
+    padding-block: 2rem;
+  }
+
+  .hud-value {
+    font-size: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
