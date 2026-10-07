@@ -9,7 +9,7 @@ import {
   type LanguageCode,
   type PackSummary,
 } from '../protocol/messages';
-import { artImage, heroName, heroUrl, wizardUrl } from './art';
+import { artImage, heroName, heroUrl, sceneUrl, wizardUrl } from './art';
 import { button, clear, h, setText } from './dom';
 import { contentLang } from './game-screen';
 import { sprite, type SpriteName } from './sprites';
@@ -181,6 +181,34 @@ function heroPicker(t: Strings, current: Hero, onHero: (hero: Hero) => void): HT
   return h('div', { class: 'hero-pick' }, h('h2', { class: 'label', text: t.chooseHero }), grid, picked);
 }
 
+/** A pack in the list. Quests show their painted scene and wizard, so the story starts here. */
+function packButton(t: Strings, pack: PackSummary, onClick: () => void): HTMLButtonElement {
+  const story = pack.story;
+  const title = h(
+    'span',
+    { class: 'pack-title' },
+    h('span', { text: pack.title }),
+    story && h('span', { class: 'badge pixel', text: t.questBadge }),
+  );
+  const meta = h('span', { class: 'pack-meta', text: `${pack.topic} · ${t.questions(pack.questions)}` });
+  if (!story) {
+    return h('button', { class: 'pack', attrs: { type: 'button' }, on: { click: onClick } }, title, meta);
+  }
+  return h(
+    'button',
+    { class: 'pack quest-card', attrs: { type: 'button' }, on: { click: onClick } },
+    artImage(sceneUrl(story.scene), 'quest-scene'),
+    artImage(wizardUrl(story.sprite, 'ask'), 'quest-wizard'),
+    h(
+      'span',
+      { class: 'quest-info' },
+      title,
+      h('span', { class: 'quest-host', text: story.wizard }),
+      meta,
+    ),
+  );
+}
+
 export function lobbyScreen(
   t: Strings,
   gamesLeft: number,
@@ -216,17 +244,7 @@ export function lobbyScreen(
           h(
             'li',
             {},
-            h(
-              'button',
-              { class: 'pack', attrs: { type: 'button' }, on: { click: () => onPick(pack) } },
-              h(
-                'span',
-                { class: 'pack-title' },
-                h('span', { text: pack.title }),
-                pack.story && h('span', { class: 'badge pixel', text: t.questBadge }),
-              ),
-              h('span', { class: 'pack-meta', text: `${pack.topic} · ${t.questions(pack.questions)}` }),
-            ),
+            packButton(t, pack, () => onPick(pack)),
           ),
         );
       }

@@ -133,7 +133,14 @@ describe('parseServerMessage', () => {
 
 describe('wizard quest messages', () => {
   const parse = (value: unknown) => parseServerMessage(JSON.stringify(value));
-  const pack = { id: 'en-comet-01', title: 'The Comet Clock', language: 'en-IN', topic: 'space', questions: 10, story: true };
+  const pack = {
+    id: 'en-comet-01',
+    title: 'The Comet Clock',
+    language: 'en-IN',
+    topic: 'space',
+    questions: 10,
+    story: { wizard: 'Professor Hoot', wizard_sprite: 'owl', scene: 'observatory', chapters: 8 },
+  };
 
   it('reads hero, story and the two new languages from game_start', () => {
     expect(
@@ -148,7 +155,7 @@ describe('wizard quest messages', () => {
         story: { wizard: 'Professor Hoot', wizard_sprite: 'owl', scene: 'observatory', chapters: 8 },
       }),
     ).toMatchObject({
-      pack: { language: 'en-IN', story: true },
+      pack: { language: 'en-IN', story: { wizard: 'Professor Hoot', sprite: 'owl', scene: 'observatory', chapters: 8 } },
       hero: 'sana',
       story: { wizard: 'Professor Hoot', sprite: 'owl', scene: 'observatory', chapters: 8 },
     });

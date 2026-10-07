@@ -179,4 +179,5 @@ Story fields the client uses:
 | `wizard_sprite` | `sage`, `sorceress`, `owl` (default `sage`) |
 | `scene` | `library-a`, `library-b`, `forest-temple`, `sky-islands`, `crystal-cave`, `night-bazaar`, `observatory` (default `library-a`) |
 
-In `/api/packs`, `story` is `true` for story packs; show a "quest" badge on those.
+In `/api/packs`, `story` is `{wizard, wizard_sprite, scene, chapters}` for quest packs and `null`
+otherwise, so the quest list can show each quest's scene and wizard before it starts.

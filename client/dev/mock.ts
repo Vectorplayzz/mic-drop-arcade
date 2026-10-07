@@ -109,6 +109,14 @@ PACKS.push({
   ],
 });
 
+for (const [id, title, wizard, sprite, scene] of [
+  ['en-sky-mock', 'Sky Islands Code Crash', 'Zoya', 'sorceress', 'sky-islands'],
+  ['en-temple-mock', 'The Lost Lab Temple', 'Taarak Baba', 'sage', 'forest-temple'],
+] as const) {
+  const base = PACKS.find((p) => p.id === 'en-comet-mock')!;
+  PACKS.push({ ...base, id, title, topic: 'mock quest', story: { ...base.story!, wizard, wizard_sprite: sprite, scene } });
+}
+
 const LINES = {
   intro: 'Mock server: welcome to Mic Drop Arcade!',
   correct: 'Correct!',
@@ -142,7 +150,9 @@ const summary = (p: MockPack) => ({
   language: p.language,
   topic: p.topic,
   questions: p.questions.length,
-  story: p.story !== undefined,
+  story: p.story
+    ? { wizard: p.story.wizard, wizard_sprite: p.story.wizard_sprite, scene: p.story.scene, chapters: p.story.chapters.length }
+    : null,
 });
 
 function maxScore(n: number): number {

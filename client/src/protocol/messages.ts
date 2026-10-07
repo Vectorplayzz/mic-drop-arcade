@@ -36,8 +36,8 @@ export interface PackSummary {
   language: LanguageCode;
   topic: string;
   questions: number;
-  /** A wizard quest pack (PROTOCOL §9). */
-  story: boolean;
+  /** Wizard, scene and length for quest packs (PROTOCOL §9); null for a plain quiz. */
+  story: StoryInfo | null;
 }
 
 /** Pickable heroes (server/app/game/characters.py). Sprites: src/assets/art/sprites/heroes. */
@@ -227,7 +227,7 @@ export function parsePackSummary(v: unknown): PackSummary | null {
   if (!str(id) || !str(title) || !isLanguageCode(language) || !str(topic) || !count(questions)) {
     return null;
   }
-  return { id, title, language, topic, questions, story: v.story === true };
+  return { id, title, language, topic, questions, story: parseStoryInfo(v.story) };
 }
 
 function parseStoryInfo(v: unknown): StoryInfo | null {

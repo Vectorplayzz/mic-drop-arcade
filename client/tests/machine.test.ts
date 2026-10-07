@@ -8,7 +8,7 @@ import {
 } from '../src/game/machine';
 import type { ServerMessage } from '../src/protocol/messages';
 
-const PACK = { id: 'te-01', title: 'T', language: 'te-IN', topic: 'x', questions: 10, story: false } as const;
+const PACK = { id: 'te-01', title: 'T', language: 'te-IN', topic: 'x', questions: 10, story: null } as const;
 
 const READY: ServerMessage = { type: 'ready', protocol: 'maata.v1', max_games: 5 };
 const GAME_START: ServerMessage = {
@@ -249,7 +249,7 @@ describe('wizard quest', () => {
   const STORY_START: ServerMessage = {
     type: 'game_start',
     game_id: 'g2',
-    pack: { ...PACK, id: 'en-comet-01', language: 'en-IN', story: true },
+    pack: { ...PACK, id: 'en-comet-01', language: 'en-IN', story: { wizard: 'Professor Hoot', sprite: 'owl', scene: 'observatory', chapters: 8 } },
     questions: 2,
     time_limit_s: 12,
     max_score: 310,

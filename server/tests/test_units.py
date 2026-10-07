@@ -527,7 +527,13 @@ def test_tenglish_transcripts_match_across_scripts():
 def test_story_branches_on_answers():
     pack = parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes())
     story = pack.story
-    assert story is not None and pack.summary()["story"] is True
+    assert story is not None
+    assert pack.summary()["story"] == {
+        "wizard": story.wizard,
+        "wizard_sprite": story.wizard_sprite,
+        "scene": story.scene,
+        "chapters": len(story.chapters),
+    }
     assert story.chapter(1) == story.chapters[0]
     assert story.chapter(len(story.chapters) + 1) is None  # more right answers than chapters
     assert story.setback(1) == story.setbacks[0]

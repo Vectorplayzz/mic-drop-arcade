@@ -229,7 +229,17 @@ class Pack(BaseModel):
             "language": self.language,
             "topic": self.topic,
             "questions": len(self.questions),
-            "story": self.story is not None,
+            # Enough for the quest list to show the scene and the wizard before a game starts.
+            "story": (
+                {
+                    "wizard": self.story.wizard,
+                    "wizard_sprite": self.story.wizard_sprite,
+                    "scene": self.story.scene,
+                    "chapters": len(self.story.chapters),
+                }
+                if self.story
+                else None
+            ),
         }
 
 
