@@ -60,8 +60,14 @@ QUESTION_SCHEMA = {
                     "display_answer": {"type": "string"},
                     "kind": {"type": "string", "enum": ["text", "number"]},
                     "explanation": {"type": "string"},
+                    "options": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "minItems": 3,
+                        "maxItems": 3,
+                    },
                 },
-                "required": ["prompt", "answers", "display_answer", "kind"],
+                "required": ["prompt", "answers", "display_answer", "kind", "options"],
             },
         }
     },
@@ -92,6 +98,8 @@ def build_prompt(language: str, topic: str, count: int) -> str:
         '(for example "7").\n'
         "- 'display_answer' is how the answer appears on screen, in the native script.\n"
         "- 'explanation' is one short sentence.\n"
+        "- 'options' is exactly three on-screen choices: the display_answer plus two plausible\n"
+        "  wrong answers of the same type and length, all clearly different when spoken.\n"
         "Return JSON only."
     )
 

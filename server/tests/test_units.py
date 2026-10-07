@@ -522,3 +522,70 @@ def test_tenglish_transcripts_match_across_scripts():
         id="c", prompt="Telangana capital edi?", answers=["hyderabad"], display_answer="Hyderabad"
     )
     assert match_answer("నా ఆన్సర్ హైదరాబాద్", q2, language="te-en").correct
+
+
+def test_story_branches_on_answers():
+    pack = parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes())
+    story = pack.story
+    assert story is not None and pack.summary()["story"] is True
+    assert story.chapter(1) == story.chapters[0]
+    assert story.chapter(len(story.chapters) + 1) is None  # more right answers than chapters
+    assert story.setback(1) == story.setbacks[0]
+    assert story.setback(3) == story.setbacks[0]  # setbacks cycle
+    assert story.ending(9, 10)[0] == "great"
+    assert story.ending(5, 10)[0] == "good"
+    assert story.ending(2, 10)[0] == "try_again"
+    assert len(story.all_lines()) == 1 + len(story.chapters) + len(story.setbacks) + 3
+
+
+def test_story_schema_limits():
+    import json as _json
+
+    raw = _json.loads((FIXTURES / "packs" / "hi-story-01.json").read_text(encoding="utf-8"))
+    raw["story"]["chapters"] = ["x" * 300, "ok line", "ok line"]
+    with pytest.raises(ValueError):
+        parse_pack(_json.dumps(raw))
+    raw = _json.loads((FIXTURES / "packs" / "hi-story-01.json").read_text(encoding="utf-8"))
+    raw["story"]["evil"] = True
+    with pytest.raises(ValueError):
+        parse_pack(_json.dumps(raw))
+
+
+def test_characters_allowlist():
+    from app.game.characters import CHARACTERS, valid_character
+
+    assert valid_character(None) == "arjun" and len(CHARACTERS) == 6
+    assert all(valid_character(c) == c for c in CHARACTERS)
+    for bad in ("<script>", "", "ARJUN", "robot", 7, ["arjun"]):
+        assert valid_character(bad) is None
+
+
+def test_score_token_carries_character():
+    svc = TokenService(SECRET, 60, 60)
+    tok = svc.issue_score(ScoreClaims("g", "s", 1, 10, 1, 2, "te-en", "p", "zara"))
+    assert svc.verify_score(tok)[0].character == "zara"
+
+
+def test_options_need_exactly_one_right_answer():
+    ok = Question(
+        id="o",
+        prompt="Capital of India?",
+        answers=["new delhi", "delhi"],
+        display_answer="New Delhi",
+        options=["New Delhi", "Mumbai", "Chennai"],
+    )
+    assert ok.options == ["New Delhi", "Mumbai", "Chennai"]
+    for opts in (
+        ["Mumbai", "Chennai", "Pune"],
+        ["Delhi", "New Delhi", "Pune"],
+        ["Mumbai", "Mumbai", "New Delhi"],
+        ["New Delhi", "Mumbai"],
+    ):
+        with pytest.raises(ValueError):
+            Question(
+                id="o",
+                prompt="Capital of India?",
+                answers=["new delhi", "delhi"],
+                display_answer="New Delhi",
+                options=opts,
+            )

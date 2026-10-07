@@ -21,8 +21,9 @@ from starlette.websockets import WebSocket, WebSocketDisconnect, WebSocketState
 
 from app.deps import Deps
 from app.game import scoring
+from app.game.characters import valid_character
 from app.game.languages import LanguageRoute, route
-from app.game.matching import looks_like_echo, match_answer, pack_answer_index
+from app.game.matching import looks_like_echo, match_answer, normalize, pack_answer_index
 from app.game.packs import Pack, Question
 from app.gnani.errors import GnaniAuthError, GnaniError
 from app.gnani.stt import SttStream
@@ -75,6 +76,9 @@ class GameState:
     correct: int = 0
     streak: int = 0
     answered: int = 0
+    misses: int = 0
+    options: dict[str, list[str]] = field(default_factory=dict)
+    character: str = "arjun"
     distractors: dict[str, frozenset[str]] = field(default_factory=dict)
 
 
@@ -193,6 +197,10 @@ class PlaySession:
             if pack is None:
                 await self._send_error("unknown_pack", "That question pack is not available.")
                 continue
+            character = valid_character(cmd.get("character"))
+            if character is None:
+                await self._send_error("unknown_character", "Pick one of the heroes on screen.")
+                continue
             if not await self._check_open():
                 return
             games_key = f"maata:games:{self.claims.session_id}"
@@ -211,7 +219,7 @@ class PlaySession:
                 await self._send_error("busy", "Lots of players right now. Try again in a minute.")
                 continue
             try:
-                await self._play_game(game_id, pack)
+                await self._play_game(game_id, pack, character)
             finally:
                 await self.deps.slots.release_game(game_id)
 
@@ -227,12 +235,20 @@ class PlaySession:
         return False
 
     # ------------------------------------------------------------------ game -----------
-    async def _play_game(self, game_id: str, pack: Pack) -> None:
+    async def _play_game(self, game_id: str, pack: Pack, character: str) -> None:
         lang = route(pack.language)
         rng = secrets.SystemRandom()
         n = min(self.s.questions_per_game, len(pack.questions))
         game = GameState(game_id, pack, lang, rng.sample(pack.questions, n))
         game.distractors = pack_answer_index(list(pack.questions))
+        for q in game.questions:
+            if q.options:
+                # Saying one of the wrong on-screen options is wrong, even alongside the right one.
+                accepted = {normalize(a) for a in (*q.answers, q.display_answer)}
+                wrong = {normalize(o) for o in q.options} - accepted
+                game.distractors[q.id] = game.distractors.get(q.id, frozenset()) | wrong
+                game.options[q.id] = rng.sample(list(q.options), len(q.options))
+        game.character = character
         self._game = game
         self._tts = self.deps.new_tts()
         log.info("game_started", game_id=game_id, pack=pack.id, language=lang.code)
@@ -244,9 +260,18 @@ class PlaySession:
                 "questions": n,
                 "time_limit_s": self.s.answer_time_limit_s,
                 "max_score": scoring.max_score(n),
+                "character": character,
+                "story": (
+                    {"wizard": pack.story.wizard, "chapters": len(pack.story.chapters)}
+                    if pack.story
+                    else None
+                ),
             }
         )
-        await self._say(self.deps.lines.get(lang.code, "intro"), wait=True)
+        if pack.story:
+            await self._story("intro", pack.story.intro, mood="ask")
+        else:
+            await self._say(self.deps.lines.get(lang.code, "intro"), wait=True)
 
         for index, question in enumerate(game.questions):
             if self._gone.is_set():
@@ -271,7 +296,12 @@ class PlaySession:
                 await self._fail("audio_limit", "You've reached today's play limit.", CLOSE_LIMIT)
                 raise SessionEnded
 
-        await self._say(self.deps.lines.get(lang.code, "game_over"), wait=False)
+        if pack.story:
+            band, ending = pack.story.ending(game.correct, n)
+            mood = {"great": "cheer", "good": "happy", "try_again": "sad"}[band]
+            await self._story("ending", ending, mood=mood, wait=False, extra={"band": band})
+        else:
+            await self._say(self.deps.lines.get(lang.code, "game_over"), wait=False)
         token = self.deps.tokens.issue_score(
             ScoreClaims(
                 game_id=game_id,
@@ -282,6 +312,7 @@ class PlaySession:
                 questions=n,
                 language=lang.code,
                 pack_id=pack.id,
+                character=game.character,
             )
         )
         await self._send(
@@ -293,6 +324,7 @@ class PlaySession:
                 "questions": n,
                 "max_score": scoring.max_score(n),
                 "score_token": token,
+                "character": game.character,
             }
         )
         log.info(
@@ -317,6 +349,7 @@ class PlaySession:
                     "prompt": q.prompt,
                     "kind": q.kind,
                     "time_limit_s": limit,
+                    "options": game.options.get(q.id),
                 }
             )
             speech = await self._say(q.prompt, wait=False)
@@ -434,11 +467,35 @@ class PlaySession:
                 "streak": game.streak,
             }
         )
+        story = game.pack.story
         if correct:
-            await self._say(lines.get(lang, "correct"), wait=True)
+            chapter = story.chapter(game.correct) if story else None
+            if story and chapter:
+                await self._story("chapter", chapter, mood="happy", extra={"chapter": game.correct})
+            else:
+                await self._say(lines.get(lang, "correct"), wait=True)
         else:
-            await self._say(lines.get(lang, "timeout" if timed_out else "wrong"), wait=True)
+            game.misses += 1
+            if story:
+                await self._story("setback", story.setback(game.misses), mood="sad")
+            else:
+                await self._say(lines.get(lang, "timeout" if timed_out else "wrong"), wait=True)
             await self._say(lines.get(lang, "answer_was", answer=q.display_answer), wait=True)
+
+    async def _story(
+        self,
+        kind: str,
+        text: str,
+        *,
+        mood: str,
+        wait: bool = True,
+        extra: dict[str, Any] | None = None,
+    ) -> None:
+        """Tell the client which beat of the wizard's quest this is, then speak it."""
+        await self._send(
+            {"type": "story", "kind": kind, "text": text, "mood": mood, **(extra or {})}
+        )
+        await self._say(text, wait=wait)
 
     # ------------------------------------------------------------------ speech ---------
     async def _say(self, text: str, *, wait: bool) -> _Speech | None:
@@ -591,7 +648,13 @@ class PlaySession:
             await self._send({"type": "pong", "t": msg.get("t")})
         elif kind == "start":
             if self._game is None and self._commands.empty():
-                self._commands.put_nowait({"type": "start", "pack_id": msg.get("pack_id")})
+                self._commands.put_nowait(
+                    {
+                        "type": "start",
+                        "pack_id": msg.get("pack_id"),
+                        "character": msg.get("character"),
+                    }
+                )
         elif kind == "quit":
             self._gone.set()
         elif kind == "playback_done":

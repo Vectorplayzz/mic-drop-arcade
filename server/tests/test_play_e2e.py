@@ -19,6 +19,10 @@ from tests.mock_gnani import silence, tone
 
 PACK = parse_pack((FIXTURES / "packs" / "hi-test-01.json").read_bytes())
 ANSWERS = {q.prompt: q for q in PACK.questions}
+ANSWERS_STORY = {
+    q.prompt: q
+    for q in parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes()).questions
+}
 MIC_CHUNK = 640  # 20 ms at 16 kHz — a typical AudioWorklet buffer
 
 
@@ -276,3 +280,61 @@ async def test_session_audio_cap_survives_reconnect(live, clean_gnani):
         await stream_mic(c2.ws, silence(1.0))
         err = await c2.next("error", timeout=10)
         assert err["code"] == "audio_limit"
+
+
+async def test_wizard_story_and_character_reach_leaderboard(live, clean_gnani):
+    with live(questions_per_game=2) as server:
+        c = await open_game(server, await get_session(server.http))
+        await c.ws.send(
+            json.dumps({"type": "start", "pack_id": "hi-story-01", "character": "meera"})
+        )
+        start = await c.next("game_start")
+        assert start["character"] == "meera"
+        assert start["story"] == {"wizard": "Taara", "chapters": 5}
+        intro = await c.next("story")
+        assert intro["kind"] == "intro" and intro["mood"] == "ask"
+
+        q = await c.next("question")
+        assert len(q["options"]) == 3
+        assert ANSWERS_STORY[q["prompt"]].display_answer in q["options"]
+        await c.next("listen")
+        await answer(c, clean_gnani, ANSWERS_STORY[q["prompt"]].answers[0])
+        assert (await c.next("result"))["correct"] is True
+        beat = await c.next("story")
+        assert beat["kind"] == "chapter" and beat["chapter"] == 1 and beat["mood"] == "happy"
+
+        q2 = await c.next("question")
+        await c.next("listen")
+        right = ANSWERS_STORY[q2["prompt"]].display_answer
+        wrong_option = next(o for o in q2["options"] if o != right)
+        # Hedging with a wrong on-screen option alongside the right one is wrong.
+        await answer(c, clean_gnani, f"{right} या {wrong_option}")
+        assert (await c.next("result"))["correct"] is False
+        setback = await c.next("story")
+        assert setback["kind"] == "setback" and setback["mood"] == "sad"
+
+        end = await c.next("story", timeout=15)
+        assert end["kind"] == "ending" and end["band"] == "good"
+        over = await c.next("game_over")
+        assert over["character"] == "meera"
+        await c.ws.close()
+
+        async with httpx.AsyncClient(base_url=server.http) as h:
+            r = await h.post(
+                "/api/scores",
+                headers={"Origin": ORIGIN},
+                json={"score_token": over["score_token"], "nickname": "Wizard Fan"},
+            )
+            assert r.status_code == 200
+            board = (await h.get("/api/leaderboard", params={"language": "hi-IN"})).json()
+            assert board["entries"][0]["character"] == "meera"
+
+
+async def test_unknown_character_is_refused(live):
+    with live() as server:
+        c = await open_game(server, await get_session(server.http))
+        await c.ws.send(
+            json.dumps({"type": "start", "pack_id": "hi-test-01", "character": "<script>"})
+        )
+        err = await c.next("error")
+        assert err["code"] == "unknown_character" and err["fatal"] is False
