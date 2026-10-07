@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "id": "hi-test-01",
+  "title": "टेस्ट क्विज़",
+  "language": "hi-IN",
+  "topic": "test fixtures",
+  "version": 1,
+  "source": "hand",
+  "reviewed_by": "Test Suite",
+  "reviewed_at": "2026-10-07",
+  "questions": [
+    {"id": "q1", "prompt": "भारत की राजधानी क्या है?", "answers": ["दिल्ली", "नई दिल्ली", "delhi", "new delhi"], "display_answer": "नई दिल्ली"},
+    {"id": "q2", "prompt": "एक हफ़्ते में कितने दिन होते हैं?", "answers": ["7"], "display_answer": "सात", "kind": "number"},
+    {"id": "q3", "prompt": "सूरज किस दिशा में उगता है?", "answers": ["पूर्व", "पूरब", "east"], "display_answer": "पूर्व"},
+    {"id": "q4", "prompt": "पानी का रासायनिक सूत्र क्या है?", "answers": ["एच टू ओ", "h2o", "h 2 o"], "display_answer": "H₂O"},
+    {"id": "q5", "prompt": "इंद्रधनुष में कितने रंग होते हैं?", "answers": ["7"], "display_answer": "सात", "kind": "number"}
+  ]
+}

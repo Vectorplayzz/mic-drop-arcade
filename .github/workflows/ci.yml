@@ -1,0 +1,83 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  server:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: server
+    services:
+      redis:
+        image: redis:7.4-alpine
+        ports: ["6379:6379"]
+        options: --health-cmd "redis-cli ping" --health-interval 5s --health-retries 10
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: maata
+          POSTGRES_PASSWORD: maata
+          POSTGRES_DB: maata_test
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U maata" --health-interval 5s --health-retries 10
+    env:
+      MAATA_TEST_REDIS_URL: redis://127.0.0.1:6379/1
+      MAATA_TEST_DATABASE_URL: postgresql://maata:maata@127.0.0.1:5432/maata_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install (hash-pinned)
+        run: |
+          python -m pip install --upgrade pip
+          pip install --require-hashes --no-deps -r requirements-dev.lock
+          pip install --no-deps -e .
+      - name: Lint
+        run: |
+          ruff check .
+          ruff format --check .
+      - name: Tests
+        run: pytest -q
+      - name: Dependency audit
+        run: pip install pip-audit==2.9.0 && pip-audit -r requirements.lock --require-hashes --disable-pip
+
+  secrets:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Gitleaks
+        run: |
+          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.24.2/gitleaks_8.24.2_linux_x64.tar.gz \
+            | tar -xz gitleaks
+          ./gitleaks git --redact --verbose --exit-code 1 .
+
+  image:
+    runs-on: ubuntu-24.04
+    needs: [server]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image
+        run: docker build -t maata-arcade-api:ci server
+      - name: Image runs as non-root
+        run: test "$(docker image inspect -f '{{.Config.User}}' maata-arcade-api:ci)" = "app"
+      - name: Trivy scan (fail on fixable HIGH/CRITICAL)
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: maata-arcade-api:ci
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "1"

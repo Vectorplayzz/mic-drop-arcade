@@ -1,0 +1,27 @@
+# secrets
+.env
+*.env
+!.env.example
+deploy/.previous_tag
+deploy/.current_tag
+deploy/backups/
+*.pem
+*.key
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# local data
+server/data/
+*.pcm
+*.gguf
+
+# client build output (Devesh)
+client/node_modules/
+client/dist/
+*.docx

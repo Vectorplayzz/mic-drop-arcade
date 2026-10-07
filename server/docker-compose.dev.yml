@@ -1,0 +1,14 @@
+# Local Redis + Postgres for development and tests:
+#   docker compose -f docker-compose.dev.yml up -d
+services:
+  redis:
+    image: redis:7.4-alpine
+    ports: ["127.0.0.1:6379:6379"]
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: maata
+      POSTGRES_PASSWORD: maata
+      POSTGRES_DB: maata
+    ports: ["127.0.0.1:5432:5432"]
+    volumes: ["./dev/pg-init:/docker-entrypoint-initdb.d:ro"]

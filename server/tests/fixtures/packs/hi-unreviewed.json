@@ -1,0 +1,11 @@
+{
+  "schema": 1, "id": "hi-unreviewed", "title": "Draft pack", "language": "hi-IN",
+  "topic": "drafts", "version": 1, "source": "evon-v3.3",
+  "questions": [
+    {"id": "q1", "prompt": "प्रश्न एक?", "answers": ["एक"], "display_answer": "एक"},
+    {"id": "q2", "prompt": "प्रश्न दो?", "answers": ["दो"], "display_answer": "दो"},
+    {"id": "q3", "prompt": "प्रश्न तीन?", "answers": ["तीन"], "display_answer": "तीन"},
+    {"id": "q4", "prompt": "प्रश्न चार?", "answers": ["चार"], "display_answer": "चार"},
+    {"id": "q5", "prompt": "प्रश्न पाँच?", "answers": ["पाँच"], "display_answer": "पाँच"}
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "te-IN": {
+    "intro": "మాట ఆర్కేడ్‌కి స్వాగతం! ప్రశ్న విని, సమాధానం గట్టిగా చెప్పండి.",
+    "correct": "సరైన సమాధానం!",
+    "wrong": "అయ్యో, తప్పు సమాధానం.",
+    "timeout": "సమయం అయిపోయింది.",
+    "answer_was": "సరైన సమాధానం {answer}.",
+    "game_over": "ఆట ముగిసింది! మీ స్కోరు తెరపై చూడండి.",
+    "retry": "చిన్న సాంకేతిక సమస్య వచ్చింది. తర్వాతి ప్రశ్నకు వెళ్దాం."
+  },
+  "hi-IN": {
+    "intro": "माटा आर्केड में आपका स्वागत है! सवाल सुनिए और जवाब बोलकर दीजिए।",
+    "correct": "बिल्कुल सही!",
+    "wrong": "अरे, ये जवाब गलत है।",
+    "timeout": "समय खत्म हो गया।",
+    "answer_was": "सही जवाब है {answer}।",
+    "game_over": "खेल खत्म! अपना स्कोर स्क्रीन पर देखिए।",
+    "retry": "थोड़ी तकनीकी दिक्कत आई। अगले सवाल पर चलते हैं।"
+  },
+  "hi-en": {
+    "intro": "Maata Arcade में welcome! Question सुनो और answer बोलकर दो।",
+    "correct": "एकदम correct!",
+    "wrong": "Oops, ये answer wrong है।",
+    "timeout": "Time up!",
+    "answer_was": "सही answer है {answer}।",
+    "game_over": "Game over! अपना score screen पर देखो।",
+    "retry": "छोटी सी technical problem आई। Next question पर चलते हैं।"
+  }
+}
