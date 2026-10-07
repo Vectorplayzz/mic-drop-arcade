@@ -30,7 +30,7 @@ jobs:
     # in Settings -> Environments -> production to gate deploys.
     environment:
       name: production
-      url: https://${{ vars.DEPLOY_DOMAIN || 'maata.ourspaces.net' }}
+      url: https://${{ vars.DEPLOY_DOMAIN || 'micdrop.ourspaces.net' }}
     steps:
       - name: Pick the commit to ship
         id: pick
@@ -57,7 +57,7 @@ jobs:
       - name: Release
         env:
           VPS: ${{ vars.DEPLOY_TARGET || 'root@138.252.215.137' }}
-          DOMAIN: ${{ vars.DEPLOY_DOMAIN || 'maata.ourspaces.net' }}
+          DOMAIN: ${{ vars.DEPLOY_DOMAIN || 'micdrop.ourspaces.net' }}
           SSH_KEY: /home/runner/.ssh/deploy_key
           STRICT_HOST_KEYS: "yes"   # fail closed if the VPS host key ever changes
           SHA: ${{ steps.pick.outputs.sha }}

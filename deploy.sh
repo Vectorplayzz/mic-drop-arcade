@@ -18,14 +18,14 @@
 # like the other sites on this VPS. DNS for DOMAIN must point at the VPS first.
 #
 # Settings (environment overrides):
-#   VPS=root@138.252.215.137   APP_USER=abyss   DOMAIN=maata.ourspaces.net
+#   VPS=root@138.252.215.137   APP_USER=abyss   DOMAIN=micdrop.ourspaces.net
 #   SSH_KEY=deploy/.ssh/id_ed25519 (used if present; otherwise your ssh agent / default key)
 #   STRICT_HOST_KEYS=accept-new (CI uses yes)
 set -Eeuo pipefail
 
 VPS=${VPS:-root@138.252.215.137}
 APP_USER=${APP_USER:-abyss}
-DOMAIN=${DOMAIN:-maata.ourspaces.net}
+DOMAIN=${DOMAIN:-micdrop.ourspaces.net}
 APP_DIR=${APP_DIR:-/home/$APP_USER/mic-drop-arcade}
 WEB_ROOT=${WEB_ROOT:-/var/www/maata/client}
 NODE_IMAGE=${NODE_IMAGE:-node:22-alpine}
@@ -86,7 +86,7 @@ EOF
 # --------------------------------------------------------------------------------------
 cmd_setup() {
   say "Provisioning $VPS for $DOMAIN (idempotent; leaves the firewall and other sites alone)"
-  scp "${SSH_OPTS[@]}" -q deploy/nginx/maata.ourspaces.net.conf deploy/nginx/maata-security-headers.conf \
+  scp "${SSH_OPTS[@]}" -q deploy/nginx/micdrop.ourspaces.net.conf deploy/nginx/maata-security-headers.conf \
       deploy/nginx/update-cloudflare-realip.sh "$VPS:/tmp/"
   run <<'EOF'
 . /etc/os-release
@@ -128,7 +128,8 @@ install -d -o "$APP_USER" -g www-data -m 755 "$(dirname "$WEB_ROOT")" "$WEB_ROOT
 
 echo "-- nginx site for $DOMAIN"
 install -d /etc/nginx/snippets
-install -m 644 /tmp/maata-security-headers.conf /etc/nginx/snippets/maata-security-headers.conf
+sed "s/micdrop\.ourspaces\.net/$DOMAIN/g" /tmp/maata-security-headers.conf > /etc/nginx/snippets/maata-security-headers.conf
+chmod 644 /etc/nginx/snippets/maata-security-headers.conf
 if [[ -s /etc/nginx/conf.d/cloudflare-realip.conf ]]; then
   echo "   keeping the existing Cloudflare real-IP config"
 else
@@ -142,7 +143,7 @@ le=/etc/letsencrypt/live/$DOMAIN
 if [[ -s $cf/ourspaces.net.pem && -s $cf/ourspaces.net.key && -s $cf/authenticated_origin_pull_ca.pem ]]; then
   echo "   TLS: Cloudflare origin certificate with authenticated origin pulls"
   chmod 600 "$cf/ourspaces.net.key"
-  sed "s/maata\.ourspaces\.net/$DOMAIN/g" /tmp/maata.ourspaces.net.conf > "$site"
+  sed "s/micdrop\.ourspaces\.net/$DOMAIN/g" /tmp/micdrop.ourspaces.net.conf > "$site"
 else
   echo "   TLS: Let's Encrypt via certbot"
   if [[ ! -s $le/fullchain.pem ]]; then
@@ -157,18 +158,18 @@ else
       exit 4
     fi
   fi
-  sed -e "s/maata\.ourspaces\.net/$DOMAIN/g" \
+  sed -e "s/micdrop\.ourspaces\.net/$DOMAIN/g" \
       -e "s|/etc/ssl/cloudflare/ourspaces.net.pem|$le/fullchain.pem|" \
       -e "s|/etc/ssl/cloudflare/ourspaces.net.key|$le/privkey.pem|" \
       -e '/ssl_client_certificate/d; /ssl_verify_client/d; /Authenticated origin pulls/d' \
-      /tmp/maata.ourspaces.net.conf > "$site"
+      /tmp/micdrop.ourspaces.net.conf > "$site"
 fi
 ver=$(nginx -v 2>&1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
 if [[ $(printf '%s\n' 1.25 "$ver" | sort -V | head -1) == 1.25 ]]; then   # 'listen ... http2' is deprecated
   sed -i -E 's/listen (\[::\]:)?443 ssl http2;/listen \1443 ssl;/; 0,/listen 443 ssl;/s//listen 443 ssl;\n    http2 on;/' "$site"
 fi
 ln -sf "$site" "/etc/nginx/sites-enabled/$DOMAIN.conf"
-rm -f /tmp/maata-security-headers.conf /tmp/maata.ourspaces.net.conf /tmp/update-cloudflare-realip.sh
+rm -f /tmp/maata-security-headers.conf /tmp/micdrop.ourspaces.net.conf /tmp/update-cloudflare-realip.sh
 nginx -t -q && systemctl reload nginx
 
 echo "-- nightly leaderboard backup (root cron, because it uses docker)"
@@ -223,7 +224,7 @@ for k in MAATA_JWT_SECRET MAATA_IP_HASH_SECRET REDIS_PASSWORD POSTGRES_PASSWORD;
   v=$(python3 -c 'import secrets; print(secrets.token_urlsafe(48))')
   sed -i "s|^$k=.*|$k=$v|" .env
 done
-sed -i "s|maata\.ourspaces\.net|$2|g" .env
+sed -i "s|micdrop\.ourspaces\.net|$2|g" .env
 APP
   echo "created $envf with generated secrets"
 fi

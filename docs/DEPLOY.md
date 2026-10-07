@@ -1,4 +1,4 @@
-# Deploying to maata.ourspaces.net
+# Deploying to micdrop.ourspaces.net
 
 Target: the new Ubuntu VPS. Prod apps run under the `abyss` user, and Cloudflare holds DNS for
 ourspaces.net.
@@ -17,13 +17,13 @@ ourspaces.net.
    [origin-pull CA](https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull/set-up/global/)
    to `/etc/ssl/cloudflare/authenticated_origin_pull_ca.pem`.
 4. **Turnstile:** in Cloudflare, go to Turnstile and Add widget, for hostname
-   `maata.ourspaces.net`. Use Managed mode. Give the site key to Devesh; the secret goes in
+   `micdrop.ourspaces.net`. Use Managed mode. Give the site key to Devesh; the secret goes in
    `deploy/.env`.
 5. **nginx:**
    ```bash
    sudo cp deploy/nginx/maata-security-headers.conf /etc/nginx/snippets/
-   sudo cp deploy/nginx/maata.ourspaces.net.conf /etc/nginx/sites-available/
-   sudo ln -s /etc/nginx/sites-available/maata.ourspaces.net.conf /etc/nginx/sites-enabled/
+   sudo cp deploy/nginx/micdrop.ourspaces.net.conf /etc/nginx/sites-available/
+   sudo ln -s /etc/nginx/sites-available/micdrop.ourspaces.net.conf /etc/nginx/sites-enabled/
    sudo deploy/nginx/update-cloudflare-realip.sh      # writes conf.d/cloudflare-realip.conf
    sudo cp deploy/nginx/update-cloudflare-realip.sh /etc/cron.weekly/cloudflare-realip
    sudo mkdir -p /var/www/maata/client && sudo chown abyss: /var/www/maata/client
@@ -86,7 +86,7 @@ Set these in GitHub under Settings → Environments → `production`:
 | secret | `VPS_SSH_KEY` | Private key of the CI deploy key (`deploy/.ssh/ci_ed25519`), authorized for root on the VPS |
 | secret | `VPS_KNOWN_HOSTS` | The VPS host key line. CI refuses to connect if it ever changes |
 | variable (optional) | `DEPLOY_TARGET` | Default `root@138.252.215.137` |
-| variable (optional) | `DEPLOY_DOMAIN` | Default `maata.ourspaces.net` |
+| variable (optional) | `DEPLOY_DOMAIN` | Default `micdrop.ourspaces.net` |
 
 Recommended protection on the `production` environment:
 - **Deployment branches:** `main` only.
@@ -118,4 +118,4 @@ docker compose -f deploy/docker-compose.yml logs -f --tail 100 api
 * **Backups:** add a cron entry as `abyss`: `15 3 * * * /path/to/deploy/backup.sh`. It keeps
   14 days of `pg_dump`s.
 * **Uptime:** point UptimeRobot, BetterStack or your Hermes agent at
-  `https://maata.ourspaces.net/api/readyz` (returns 503 if Redis or Postgres is down).
+  `https://micdrop.ourspaces.net/api/readyz` (returns 503 if Redis or Postgres is down).
