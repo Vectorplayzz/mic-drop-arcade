@@ -1342,6 +1342,11 @@ input[type='range'] {
   color: var(--green);
 }
 
+.trail-step.puzzle.void {
+  border-color: var(--muted);
+  color: var(--muted);
+}
+
 .trail-step.puzzle.bad {
   border-color: var(--red);
   color: var(--red);

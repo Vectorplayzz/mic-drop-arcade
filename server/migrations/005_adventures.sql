@@ -26,6 +26,19 @@ ALTER TABLE scores DROP CONSTRAINT IF EXISTS scores_wizard_check;
 ALTER TABLE scores ADD CONSTRAINT scores_wizard_check
     CHECK (wizard IN ('sorceress', 'sage', 'owl', 'enchantress', 'trickster'));
 
+-- 001 declared "questions > 0" as an unnamed check, so Postgres picked its name (scores_check1
+-- on a fresh database). Drop it by what it says, not by name.
+DO $$
+DECLARE c record;
+BEGIN
+    FOR c IN
+        SELECT conname FROM pg_constraint
+        WHERE conrelid = 'scores'::regclass AND contype = 'c'
+          AND pg_get_constraintdef(oid) LIKE '%questions > 0%'
+    LOOP
+        EXECUTE format('ALTER TABLE scores DROP CONSTRAINT %I', c.conname);
+    END LOOP;
+END $$;
 ALTER TABLE scores DROP CONSTRAINT IF EXISTS scores_questions_check;
 ALTER TABLE scores ADD CONSTRAINT scores_questions_check
     CHECK (questions >= 0 AND correct <= questions);

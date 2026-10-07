@@ -83,8 +83,9 @@ describe('adventure protocol', () => {
     expect(state.items.map((i) => i.id)).toEqual(['walkie']);
     expect(state.trail).toEqual([
       { kind: 'choice', index: 1, auto: false },
-      { kind: 'puzzle', correct: true },
+      { kind: 'puzzle', correct: true, skipped: false },
     ]);
+    expect(state.attemptsLeft).toBeNull();
     expect(state.final?.ending?.rank).toBe('gold');
     expect(state.final?.duration_ms).toBe(61000);
     expect(state.endingInfo?.scene).toBe('train-station');

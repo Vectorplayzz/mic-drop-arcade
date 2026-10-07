@@ -501,9 +501,9 @@ export function overScreen(o: OverOptions): OverScreen {
               h('li', {
                 class:
                   s.kind === 'puzzle'
-                    ? `trail-step puzzle ${s.correct ? 'good' : 'bad'}`
+                    ? `trail-step puzzle ${s.skipped ? 'void' : s.correct ? 'good' : 'bad'}`
                     : `trail-step pick${s.auto ? ' auto' : ''}`,
-                text: s.kind === 'choice' ? String(s.index + 1) : s.correct ? '✓' : '✗',
+                text: s.kind === 'choice' ? String(s.index + 1) : s.skipped ? '–' : s.correct ? '✓' : '✗',
               }),
             ),
             h('li', { class: `trail-step end medal-${final.ending.rank}`, text: '★' }),

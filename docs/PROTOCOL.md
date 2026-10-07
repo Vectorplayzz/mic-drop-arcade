@@ -248,10 +248,10 @@ line, which the client never sees.
 | `adventure_start` | `game_id`, `adventure` (as in the list), `routed`, `character`, `wizard`, `meter`, `time_limit_s`, `choice_time_limit_s` | show the game screen on `adventure.cover`; start the genre's music |
 | `node` | `id`, `scene`, `mood`, `step`, `kind` (`choice`, `puzzle`, `story`), `meter`, `meter_delta`, `items` (`[{id, label}]`), `gained` (item ids) | swap to `scene`, set the wizard's `mood`, update meter and bag, toast newly gained items |
 | `choices` | `choices` (`[{label}]`, 2–3), `attempt`, `time_limit_s` | show numbered choice cards; the next `speak_start` is the question |
-| `unclear` | `heard`, `attempts_left` | nothing matched: shake the cards. The wizard asks again (a new `speak_start`, then `listen`) |
+| `unclear` | `heard`, `attempts_left` | nothing matched: shake the cards and show `attempts_left`. The wizard asks again (a new `speak_start`, then `listen`). A speech-recognition failure doesn't use up a try |
 | `chosen` | `index`, `heard`, `auto` | light the chosen card. `auto: true` means three tries failed and the wizard picked the first card |
 | `puzzle` | `prompt`, `options` (3, shuffled), `kind`, `time_limit_s` | show the riddle's options |
-| `puzzle_result` | `correct`, `timed_out`, `skipped`, `heard`, `answer`, `points`, `score`, `streak` | mark the right option, play the sound |
+| `puzzle_result` | `correct`, `timed_out`, `skipped`, `heard`, `answer`, `points`, `score`, `streak` | mark the right option, play the sound. `skipped: true` means speech recognition failed repeatedly: the riddle is voided (no points, streak kept) and the story takes its right-answer path |
 | `state` | `meter`, `meter_delta`, `items`, `gained` | after a choice or riddle changes the meter or bag |
 | `wizard` | `key`, `mood` | the wizard's own reaction line follows (`greet`, `choose_again`, `chose_for_you`, `puzzle_right`, `puzzle_wrong`, `ending_good`, `ending_bad`) |
 | `ending` | `id`, `title`, `rank`, `scene`, `mood`, `bonus`, `score`, `endings` | show the ending scene; its lines follow as speech |

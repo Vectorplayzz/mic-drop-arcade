@@ -43,7 +43,7 @@ from app.security.ratelimit import day_key, seconds_until_ist_midnight
 from app.security.tokens import ScoreClaims, SessionClaims, TokenError
 from app.voice.cache import cache_key
 from app.voice.vad import BargeInDetector
-from app.ws.adventure import AdventureRunner
+from app.ws.adventure import AdventureRunner, LimitReached
 
 log = get_logger(__name__)
 
@@ -285,7 +285,10 @@ class PlaySession:
         self._tts = self.deps.new_tts()
         log.info("adventure_started", game_id=game_id, adventure=adventure.id, language=language)
         try:
-            await AdventureRunner(self, lang).run(game_id, adventure, wizard, character)
+            try:
+                await AdventureRunner(self, lang).run(game_id, adventure, wizard, character)
+            except LimitReached:
+                pass
             if self._limit_reason:
                 await self._fail("audio_limit", "You've reached today's play limit.", CLOSE_LIMIT)
                 raise SessionEnded

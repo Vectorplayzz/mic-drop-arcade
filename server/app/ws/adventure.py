@@ -49,6 +49,13 @@ if TYPE_CHECKING:
 log = get_logger(__name__)
 
 CHOICE_ATTEMPTS = 3  # tries to hear a choice before the wizard picks one
+MAX_SKIPS = 2  # provider failures retried per choice or riddle before giving up
+
+
+class LimitReached(Exception):
+    """The player's audio allowance ran out mid-run; the session ends without a score."""
+
+
 MAX_STEPS = 80  # defensive cap on nodes visited in one run (validated graphs stay far below)
 ENDING_BONUS = {"gold": 500, "silver": 300, "bronze": 100}
 MOOD_FOR_RANK = {"gold": "cheer", "silver": "happy", "bronze": "sad"}
@@ -102,8 +109,7 @@ class AdventureRunner:
             if target.startswith("end:"):
                 await self._finish(st, target[4:])
                 return
-            if sess._limit_reason:
-                return
+            self._check_limit()
             st.step += 1
             if st.step > MAX_STEPS:
                 raise RuntimeError("adventure exceeded the step cap")
@@ -189,33 +195,44 @@ class AdventureRunner:
         heard = ""
         from app.ws.play import RoundSkipped
 
-        for attempt in range(1, CHOICE_ATTEMPTS + 1):
+        again = self.deps.wizards.get(self.code, st.wizard, "choose_again")
+        attempt = 0
+        skips = 0
+        while attempt < CHOICE_ATTEMPTS:
+            attempt += 1
+            first = attempt == 1 and skips == 0
 
-            async def announce(attempt: int = attempt) -> _Speech | None:
-                if attempt == 1:
+            async def announce(first: bool = first) -> _Speech | None:
+                if first:
                     await sess._send(
                         {
                             "type": "choices",
                             "choices": [{"label": label} for label in labels],
-                            "attempt": attempt,
+                            "attempt": 1,
                             "time_limit_s": self.s.choice_time_limit_s,
                         }
                     )
                     return await self._speak(last)
-                line = self.deps.wizards.get(self.code, st.wizard, "choose_again")
-                return await sess._say(line.tts, wait=False, caption=line.text)
+                return await sess._say(again.tts, wait=False, caption=again.text)
 
             try:
                 transcript, _, _ = await sess._listen_round(
                     stt_lang=self.lang.stt_lang,
                     index=st.step,
                     announce=announce,
-                    echo_of=spoken(last, self.code),
+                    # Echo guard: compare against the line actually being spoken.
+                    echo_of=spoken(last, self.code) if first else again.tts,
                     limit=self.s.choice_time_limit_s,
                     bias_words=bias,
                 )
             except RoundSkipped:
+                # A provider failure is not the player's fault: it doesn't use up a try
+                # (but gives up after a few, so an outage can't stall the run).
                 transcript = None
+                skips += 1
+                if skips <= MAX_SKIPS:
+                    attempt -= 1
+            self._check_limit()
             heard = transcript or ""
             picked = match_choice(heard, cards) if heard else None
             if picked is not None:
@@ -227,8 +244,6 @@ class AdventureRunner:
                     "attempts_left": CHOICE_ATTEMPTS - attempt,
                 }
             )
-            if sess._limit_reason:
-                break
         auto = picked is None
         if auto:
             picked = 0
@@ -263,21 +278,31 @@ class AdventureRunner:
             return await self._speak(p.prompt)
 
         skipped = False
-        try:
-            transcript, answered_at, deadline = await sess._listen_round(
-                stt_lang=self.lang.stt_lang,
-                index=st.step,
-                announce=announce,
-                echo_of=spoken(p.prompt, code),
-                limit=limit,
-                bias_words=_puzzle_bias(shown),
-            )
-        except RoundSkipped:
-            skipped, transcript = True, None
-            answered_at = deadline = time.monotonic()
+        transcript: str | None = None
+        answered_at = deadline = time.monotonic()
+        for tries in range(MAX_SKIPS + 1):
+            try:
+                transcript, answered_at, deadline = await sess._listen_round(
+                    stt_lang=self.lang.stt_lang,
+                    index=st.step,
+                    announce=announce,
+                    echo_of=spoken(p.prompt, code),
+                    limit=limit,
+                    bias_words=_puzzle_bias(shown),
+                )
+                skipped = False
+                break
+            except RoundSkipped:
+                # Ask again; if the provider keeps failing, the riddle is voided below.
+                skipped = True
+                transcript = None
+                answered_at = deadline = time.monotonic()
+                log.warning("adventure_riddle_skipped", tries=tries + 1)
+        self._check_limit()
         correct = bool(transcript) and puzzle_correct(p, code, transcript or "")
-        st.puzzles += 1
-        st.streak = st.streak + 1 if correct else 0
+        st.puzzles += int(not skipped)
+        if not skipped:
+            st.streak = st.streak + 1 if correct else 0
         remaining = max(0.0, deadline - self.s.answer_grace_s - answered_at)
         points = scoring.points_for(
             correct=correct, remaining_s=remaining, limit_s=limit, streak=st.streak
@@ -297,8 +322,10 @@ class AdventureRunner:
                 "streak": st.streak,
             }
         )
-        await self._wizard_line(st, "puzzle_right" if correct else "puzzle_wrong")
-        outcome = p.pass_ if correct else p.fail
+        if not skipped:
+            await self._wizard_line(st, "puzzle_right" if correct else "puzzle_wrong")
+        # A riddle voided by a provider outage must not push the player down the worse path.
+        outcome = p.pass_ if correct or skipped else p.fail
         return await self._outcome(st, outcome.effects, outcome.say, outcome.go)
 
     # ------------------------------------------------------------------ shared --------
@@ -400,6 +427,10 @@ class AdventureRunner:
         line = self.deps.wizards.get(self.code, st.wizard, key)
         await self.session._send({"type": "wizard", "key": key, "mood": mood})
         await self.session._say(line.tts, wait=wait, caption=line.text)
+
+    def _check_limit(self) -> None:
+        if self.session._limit_reason:
+            raise LimitReached
 
     def _top(self, st: RunState) -> int:
         return st.adventure.meter.max if st.adventure.meter else 0

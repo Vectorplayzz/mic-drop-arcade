@@ -259,9 +259,9 @@ export function gameScreen(o: GameScreenOptions): GameScreen {
         h('li', {
           class:
             s.kind === 'puzzle'
-              ? `trail-step puzzle ${s.correct ? 'good' : 'bad'}`
+              ? `trail-step puzzle ${s.skipped ? 'void' : s.correct ? 'good' : 'bad'}`
               : `trail-step pick${s.auto ? ' auto' : ''}`,
-          text: s.kind === 'choice' ? String(s.index + 1) : s.correct ? '✓' : '✗',
+          text: s.kind === 'choice' ? String(s.index + 1) : s.skipped ? '–' : s.correct ? '✓' : '✗',
         }),
       ),
     );
@@ -299,15 +299,16 @@ export function gameScreen(o: GameScreenOptions): GameScreen {
         item.classList.toggle('picked', state.chosen === i);
         item.classList.toggle('dim', state.chosen !== null && state.chosen !== i);
       });
-      cards.classList.toggle('shake', state.phase === 'speaking' && state.heardNothing > 0);
+      const unclear = state.attemptsLeft !== null && state.chosen === null;
+      cards.classList.toggle('shake', unclear && state.phase === 'speaking');
       setText(
         cardsHint,
         state.chosen !== null
           ? state.chosenAuto
             ? a.wizardPicked
             : ''
-          : state.heardNothing > 0
-            ? `${a.unclear} · ${a.triesLeft(Math.max(0, 3 - state.heardNothing))}`
+          : unclear && state.attemptsLeft !== null && state.attemptsLeft > 0
+            ? `${a.unclear} · ${a.triesLeft(state.attemptsLeft)}`
             : a.sayChoice,
       );
       return;

@@ -303,7 +303,13 @@ def _register_routes(app: FastAPI) -> None:
             f"maata:jti:{jti}", "1", nx=True, ex=max(exp - int(time.time()), 1) + 60
         ):
             raise HTTPException(409, "already_submitted")
-        inserted = await deps.leaderboard.insert(claims, nickname)
+        try:
+            inserted = await deps.leaderboard.insert(claims, nickname)
+        except Exception:
+            # Give the token back so the player can retry once the database is healthy.
+            await deps.redis.delete(f"maata:jti:{jti}")
+            log.exception("score_insert_failed", game_id=claims.game_id)
+            raise HTTPException(503, "unavailable") from None
         if not inserted:
             raise HTTPException(409, "already_submitted")
         log.info("score_submitted", game_id=claims.game_id, score=claims.score)

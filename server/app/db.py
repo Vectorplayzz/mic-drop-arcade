@@ -173,15 +173,17 @@ class Leaderboard:
         ]
 
     async def rank_of(self, claims: ScoreClaims) -> int | None:
-        """Where a just-submitted adventure run places on its all-time language board."""
+        """Where a just-submitted adventure run places on that adventure's all-time board in its
+        language (the board the score screen links to)."""
         if claims.mode != "adventure":
             return None
         better = await self._pool.fetchval(
             "SELECT count(*) FROM scores WHERE language = $1 AND mode = 'adventure'"
-            " AND (score > $2 OR (score = $2 AND duration_ms < $3))",
+            " AND pack_id = $4 AND (score > $2 OR (score = $2 AND duration_ms < $3))",
             claims.language,
             claims.score,
             claims.duration_ms if claims.duration_ms is not None else 2**31 - 1,
+            claims.pack_id,
         )
         return int(better) + 1
 

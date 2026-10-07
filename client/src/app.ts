@@ -263,6 +263,7 @@ export class App {
       // Names for the adventure filter; the board itself doesn't need them to load.
       getAdventures(language).then(
         (list) => {
+          if (language !== this.language) return; // the player switched language meanwhile
           this.adventures = list;
           if (flow === this.flow && list.adventures.length > 0) {
             this.showBoard(language, period, adventure);
@@ -395,11 +396,14 @@ export class App {
     }
     if (inGame(state)) {
       if (state.scene && state.scene !== before.scene) setScene(state.scene, 'game');
-      if (state.adventure && state.adventure.id !== before.adventure?.id) {
+      // A new adventure, a routed one, or a replay of the same one: its genre's loop.
+      if (state.adventure && (state.adventure.id !== before.adventure?.id || !inGame(before))) {
         this.music?.play(TRACK_FOR_GENRE[state.adventure.genre], 'story');
       }
       if (state.phase !== before.phase) {
-        this.music?.setLevel(state.phase === 'listening' ? 'listening' : 'story');
+        // Silent for as long as the mic may be streaming, so Prisma only hears the player.
+        const micOpen = state.phase === 'listening' || state.phase === 'checking';
+        this.music?.setLevel(micOpen ? 'listening' : 'story');
       }
       this.gameView?.update(state);
     }
@@ -493,8 +497,9 @@ export class App {
     this.lobbyView = view;
     this.show(view);
     try {
-      const list = this.adventures ?? (await getAdventures(this.language));
-      if (flow !== this.flow) return;
+      const language = this.language;
+      const list = this.adventures ?? (await getAdventures(language));
+      if (flow !== this.flow || language !== this.language) return;
       this.adventures = list;
       view.setAdventures(list);
     } catch (err) {
@@ -604,7 +609,8 @@ export class App {
         if (again) this.startAdventure(again);
       },
       onNewAdventure: () => void this.showLobby(),
-      onBoard: () => this.showBoard(this.language, 'today', final.adventure),
+      // The rank shown after posting is on this adventure's all-time board: open that one.
+      onBoard: () => this.showBoard(this.language, 'all', final.adventure),
       onHome: () => this.goHome(),
     });
     if (this.submitted === final.score_token) {

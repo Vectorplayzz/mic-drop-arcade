@@ -520,3 +520,28 @@ async def test_bad_adventure_requests_are_refused(live, clean_gnani):
             err = await c.next("error")
             assert err["code"] == code and err["fatal"] is False
         await c.ws.close()
+
+
+async def test_adventure_without_riddles_reaches_the_board(live, clean_gnani):
+    """Some endings need no riddle at all: such a run (0 questions) must still be postable."""
+    with live() as server:
+        token = await get_session(server.http)
+        c = await open_game(server, token)
+        await c.ws.send(
+            json.dumps({"type": "start_adventure", "adventure": "test-quest", "language": "en-IN"})
+        )
+        await c.next("choices")
+        await c.next("listen")
+        await answer(c, clean_gnani, "the green door please")
+        assert (await c.next("chosen"))["index"] == 2
+        over = await c.next("game_over")
+        assert over["questions"] == 0 and over["ending"]["rank"] == "silver"
+        await c.ws.close()
+        async with httpx.AsyncClient(base_url=server.http) as h:
+            post = await h.post(
+                "/api/scores",
+                headers={"Origin": ORIGIN},
+                json={"score_token": over["score_token"], "nickname": "Riddleless"},
+            )
+            assert post.status_code == 200, post.text
+            assert post.json()["rank"] == 1

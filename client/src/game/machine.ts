@@ -98,6 +98,8 @@ export interface GameState {
   choices: string[] | null;
   /** Which choice the server heard (or picked), once it has. */
   chosen: number | null;
+  /** Tries left after the last `unclear`, or null before any. */
+  attemptsLeft: number | null;
   chosenAuto: boolean;
   puzzle: PuzzleMsg | null;
   puzzleResult: PuzzleResultMsg | null;
@@ -108,7 +110,7 @@ export interface GameState {
 
 export type TrailStep =
   | { kind: 'choice'; index: number; auto: boolean }
-  | { kind: 'puzzle'; correct: boolean };
+  | { kind: 'puzzle'; correct: boolean; skipped: boolean };
 
 export type Effect =
   | { type: 'voice_start'; utterance: number; sampleRate: number }
@@ -172,6 +174,7 @@ export function initialState(): GameState {
     gained: [],
     choices: null,
     chosen: null,
+    attemptsLeft: null,
     chosenAuto: false,
     puzzle: null,
     puzzleResult: null,
@@ -394,6 +397,7 @@ function onMessage(state: GameState, m: ServerMessage): Step {
           prompt: '',
           choices: null,
           chosen: null,
+          attemptsLeft: null,
           chosenAuto: false,
           puzzle: null,
           puzzleResult: null,
@@ -416,6 +420,7 @@ function onMessage(state: GameState, m: ServerMessage): Step {
           phase: 'speaking',
           choices: m.choices,
           chosen: null,
+          attemptsLeft: null,
           timeLimitS: m.time_limit_s,
           awaitingQuestionAudio: true,
           questionUtterance: null,
@@ -429,7 +434,7 @@ function onMessage(state: GameState, m: ServerMessage): Step {
         state: {
           ...state,
           phase: 'speaking',
-          heardNothing: state.heardNothing + 1,
+          attemptsLeft: m.attempts_left,
           awaitingQuestionAudio: true,
           questionUtterance: null,
         },
@@ -479,7 +484,7 @@ function onMessage(state: GameState, m: ServerMessage): Step {
           score: m.score,
           streak: m.streak,
           mood: m.correct ? 'happy' : 'sad',
-          trail: [...state.trail, { kind: 'puzzle', correct: m.correct }],
+          trail: [...state.trail, { kind: 'puzzle', correct: m.correct, skipped: m.skipped }],
         },
         effects,
       };
