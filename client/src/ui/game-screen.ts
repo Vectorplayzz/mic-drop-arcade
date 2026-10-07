@@ -1,12 +1,17 @@
 /**
- * The in-game screen, laid out like a visual novel over the full-screen quest scene: the
- * player's wizard big on the left, the player's hero on the right, the three spoken choices
- * plus "something else" as a 2×2 grid top right, and a dark dialogue box along the bottom that
- * covers the characters' lower halves. It only displays what the server sent.
+ * The in-game screen, laid out like a visual novel over the full-screen painted scene:
+ * - the player's wizard big on the left and the player's hero on the right;
+ * - the spoken choice cards (or a riddle's options) top right;
+ * - a dark dialogue box along the bottom.
+ *
+ * During an adventure the HUD shows the RPG state the server sends: score, the adventure's meter
+ * (time, spark, clues, power, nerve...), the bag of items picked up, and a trail with one pip per
+ * answer. It only displays what the server sent; every verdict and number comes from there.
  */
 import type { GameState, Phase } from '../game/machine';
 import type { Strings } from '../i18n';
-import type { Hero, LanguageCode, Mood, Wizard } from '../protocol/messages';
+import { type AdvStrings, advStringsFor } from '../i18n-adventure';
+import type { Hero, LanguageCode, MeterIcon, Mood, Wizard } from '../protocol/messages';
 import { artImage, heroName, heroUrl, preload, wizardUrl } from './art';
 import { button, clear, h, setText } from './dom';
 import type { Screen } from './screens';
@@ -25,7 +30,7 @@ export interface GameScreen extends Screen {
 export interface GameScreenOptions {
   t: Strings;
   language: LanguageCode;
-  /** The wizard the player picked; it narrates every quest. */
+  /** The wizard the player picked; it narrates. */
   wizard: Wizard;
   onQuit(): void;
   onUnmute(): void;
@@ -37,34 +42,63 @@ const STATUS_ICON: Partial<Record<Phase, SpriteName>> = {
   checking: 'dots',
 };
 
+const METER_SPRITE: Record<MeterIcon, SpriteName> = {
+  clock: 'clock',
+  heart: 'heart',
+  search: 'search',
+  bolt: 'bolt',
+  nerve: 'nerve',
+  flame: 'flame',
+  star: 'star',
+};
+
 const MOODS: readonly Mood[] = ['ask', 'happy', 'sad', 'cheer'];
+const TOAST_MS = 2600;
 
 /** Loose comparison for highlighting the right choice: case, spacing and Unicode form. */
 const same = (a: string, b: string): boolean =>
   a.normalize('NFC').trim().toLocaleLowerCase() === b.normalize('NFC').trim().toLocaleLowerCase();
 
+/** The `lang` attribute for text in a game language (Hinglish and Tenglish are Latin script). */
 export function contentLang(language: LanguageCode): string {
-  return language === 'hi-en' ? 'hi' : language === 'te-en' ? 'te' : language === 'en-IN' ? 'en' : language;
+  switch (language) {
+    case 'hi-en':
+      return 'hi-Latn';
+    case 'te-en':
+      return 'te-Latn';
+    case 'en-IN':
+      return 'en';
+    default:
+      return language;
+  }
 }
 
 /**
  * The name on the dialogue box: the quest's own wizard name when the player's wizard is the
- * one the quest was written for, otherwise the picked wizard's title.
+ * one a quiz pack was written for, otherwise the picked wizard's title.
  */
 export function speakerName(t: Strings, wizard: Wizard, state: GameState): string {
-  if (state.story && state.story.sprite === wizard) return state.story.wizard;
-  return t.wizardNames[wizard];
+  if (state.mode === 'quiz' && state.story && state.story.sprite === wizard) return state.story.wizard;
+  return t.wizardNames[state.wizard ?? wizard];
 }
 
 export function gameScreen(o: GameScreenOptions): GameScreen {
-  const { t, wizard: wizardId } = o;
+  const { t } = o;
+  const a: AdvStrings = advStringsFor(o.language);
   const lang = contentLang(o.language);
+  let wizardId: Wizard = o.wizard;
 
   // --- HUD ---------------------------------------------------------------------------
   const score = h('span', { class: 'hud-value pixel', text: '0' });
-  const streak = h('span', { class: 'hud-value pixel', text: '0' });
-  const progress = h('span', { class: 'hud-value pixel', text: '' });
-  const progressLabel = h('span', { class: 'sr-only' });
+  const meterLabel = h('span', { class: 'sr-only' });
+  const meterPips = h('span', { class: 'meter-pips', attrs: { 'aria-hidden': 'true' } });
+  const meter = h(
+    'div',
+    { class: 'hud-item hud-meter', attrs: { hidden: true } },
+    meterPips,
+    meterLabel,
+  );
+  const trail = h('ol', { class: 'trail', attrs: { 'aria-label': a.yourPath } });
   const unmute = h('button', {
     class: 'btn btn-small sound-chip',
     text: t.soundOff,
@@ -72,15 +106,14 @@ export function gameScreen(o: GameScreenOptions): GameScreen {
     on: { click: () => o.onUnmute() },
   });
 
-  const questName = h('span', { class: 'quest-name' });
-  const questCount = h('span', { class: 'quest-count pixel' });
-  const questFill = h('div', { class: 'quest-fill' });
-  const quest = h(
+  const bagList = h('ul', { class: 'bag-items' });
+  const bag = h(
     'div',
-    { class: 'quest', attrs: { hidden: true } },
-    h('div', { class: 'quest-head' }, questName, questCount),
-    h('div', { class: 'quest-bar', attrs: { 'aria-hidden': 'true' } }, questFill),
+    { class: 'bag', attrs: { hidden: true, 'aria-label': a.bag, role: 'group' } },
+    sprite('bag', 'sprite-bag'),
+    bagList,
   );
+  const toast = h('p', { class: 'toast', attrs: { role: 'status', hidden: true } });
 
   const timerFill = h('div', { class: 'timer-fill' });
   const timerText = h('span', { class: 'sr-only' });
@@ -91,33 +124,22 @@ export function gameScreen(o: GameScreenOptions): GameScreen {
     timerText,
   );
 
-  // --- characters and choices ---------------------------------------------------------
+  // --- characters and cards -----------------------------------------------------------
   const wizard = artImage(wizardUrl(wizardId, 'ask'), 'stage-wizard');
   const hero = artImage(heroUrl('arjun'), 'stage-hero');
   const heroLabel = h('span', { class: 'sr-only' });
-  preload(MOODS.map((mood) => wizardUrl(wizardId, mood)));
 
-  const choiceItems = [0, 1, 2].map((i) =>
-    h(
-      'li',
-      { class: 'choice' },
-      h('span', { class: 'choice-key pixel', text: String(i + 1) }),
-      h('span', { class: 'choice-text', attrs: { lang } }),
-    ),
+  const cardsTitle = h('p', { class: 'cards-title pixel' });
+  const cardList = h('ol', { class: 'cards' });
+  const cardsHint = h('p', { class: 'cards-hint' });
+  const cards = h(
+    'div',
+    { class: 'card-panel', attrs: { hidden: true, 'aria-live': 'polite' } },
+    cardsTitle,
+    cardList,
+    cardsHint,
   );
-  const otherItem = h(
-    'li',
-    { class: 'choice choice-other' },
-    h('span', { class: 'choice-key pixel', text: '?' }),
-    h('span', { class: 'choice-text', text: t.otherAnswer }),
-  );
-  const choices = h(
-    'ol',
-    { class: 'choices', attrs: { 'aria-label': t.optionsHint, hidden: true } },
-    ...choiceItems,
-    otherItem,
-  );
-  const play = h('div', { class: 'play' }, wizard, hero, heroLabel, choices);
+  const play = h('div', { class: 'play' }, wizard, hero, heroLabel, cards);
 
   // --- dialogue box --------------------------------------------------------------------
   const speaker = h('p', { class: 'dialogue-name pixel' });
@@ -125,13 +147,13 @@ export function gameScreen(o: GameScreenOptions): GameScreen {
   const icon = h('div', { class: 'status-icon' });
   const statusText = h('p', { class: 'status-text', attrs: { role: 'status', 'aria-live': 'assertive' } });
   const meterFill = h('div', { class: 'meter-fill' });
-  const meter = h('div', { class: 'meter', attrs: { 'aria-hidden': 'true' } }, meterFill);
+  const level = h('div', { class: 'meter', attrs: { 'aria-hidden': 'true' } }, meterFill);
   const micState = h('span', { class: 'sr-only', attrs: { role: 'status' } });
   const verdict = h('div', { class: 'verdict', attrs: { 'aria-live': 'polite', hidden: true } });
-  const status = h('div', { class: 'dialogue-status' }, icon, statusText, meter, micState);
+  const status = h('div', { class: 'dialogue-status' }, icon, statusText, level, micState);
   const dialogue = h('div', { class: 'dialogue' }, speaker, line, status, verdict);
 
-  const prompt = h('h1', { class: 'sr-only', attrs: { tabindex: -1, lang } });
+  const heading = h('h1', { class: 'sr-only', attrs: { tabindex: -1, lang } });
 
   const el = h(
     'section',
@@ -140,22 +162,27 @@ export function gameScreen(o: GameScreenOptions): GameScreen {
       'header',
       { class: 'hud' },
       h('div', { class: 'hud-item' }, h('span', { class: 'hud-label', text: t.score }), score),
-      h('div', { class: 'hud-item' }, h('span', { class: 'hud-label', text: t.streak }), streak),
-      h('div', { class: 'hud-item' }, progress, progressLabel),
+      meter,
+      trail,
       button(t.quit, o.onQuit, { class: 'btn-small hud-quit' }),
     ),
     unmute,
-    quest,
+    bag,
+    toast,
     timer,
-    prompt,
+    heading,
     play,
     dialogue,
   );
 
   let shownIcon: SpriteName | null = null;
-  let shownResult: unknown = null;
-  let shownOptions: string[] | null | undefined;
-  let setUp = false;
+  let shownCards = '';
+  let shownVerdict: unknown = null;
+  let shownMeter = '';
+  let shownBag = '';
+  let shownTrail = -1;
+  let shownHero = '';
+  let toastTimer = 0;
 
   const showIcon = (name: SpriteName): void => {
     if (shownIcon === name) return;
@@ -167,42 +194,147 @@ export function gameScreen(o: GameScreenOptions): GameScreen {
     if (img.getAttribute('src') !== src) img.src = src;
   };
 
-  const setUpGame = (state: GameState): void => {
-    setSrc(hero, heroUrl(state.hero as Hero));
-    setText(heroLabel, `${t.yourHero}: ${heroName(state.hero)}`);
-    setText(speaker, speakerName(t, wizardId, state));
-    quest.hidden = state.story === null;
-    setUp = true;
+  const showToast = (text: string): void => {
+    window.clearTimeout(toastTimer);
+    setText(toast, text);
+    toast.hidden = false;
+    toast.classList.remove('pop');
+    void toast.offsetWidth; // restart the CSS animation
+    toast.classList.add('pop');
+    toastTimer = window.setTimeout(() => {
+      toast.hidden = true;
+    }, TOAST_MS);
   };
 
-  const showChoices = (state: GameState): void => {
-    if (state.options === shownOptions) return;
-    shownOptions = state.options;
-    choices.hidden = state.options === null;
-    state.options?.forEach((option, i) => {
-      const item = choiceItems[i];
-      if (!item) return;
-      setText(item.querySelector('.choice-text')!, option);
-    });
+  const setWizard = (next: Wizard): void => {
+    if (next === wizardId && shownHero) return;
+    wizardId = next;
+    preload(MOODS.map((mood) => wizardUrl(wizardId, mood)));
   };
 
-  /** After the verdict, light up the right choice so a wrong guess still teaches something. */
-  const markChoices = (state: GameState): void => {
-    const result = state.phase === 'result' ? state.result : null;
-    const options = state.options ?? [];
-    choiceItems.forEach((item, i) => {
+  // --- meter, bag, trail -----------------------------------------------------------------
+  const renderMeter = (state: GameState): void => {
+    const info = state.adventure?.meter;
+    const key = info ? `${info.icon}:${state.meter}:${info.max}:${state.meterDelta}` : '';
+    if (key === shownMeter) return;
+    const prev = shownMeter;
+    shownMeter = key;
+    meter.hidden = !info || state.meter === null;
+    if (!info || state.meter === null) return;
+    const pips: HTMLElement[] = [];
+    for (let i = 0; i < info.max; i++) {
+      const pip = h('span', { class: `pip${i < state.meter ? ' on' : ''}` });
+      pip.append(sprite(METER_SPRITE[info.icon], 'sprite-pip'));
+      pips.push(pip);
+    }
+    meterPips.replaceChildren(h('span', { class: 'hud-label', text: info.label }), ...pips);
+    setText(meterLabel, a.meterAria(info.label, state.meter, info.max));
+    if (prev && state.meterDelta !== 0) {
+      meter.classList.remove('up', 'down');
+      void meter.offsetWidth;
+      meter.classList.add(state.meterDelta > 0 ? 'up' : 'down');
+    }
+  };
+
+  const renderBag = (state: GameState): void => {
+    const key = state.items.map((i) => i.id).join(',');
+    if (key === shownBag) return;
+    const before = new Set(shownBag ? shownBag.split(',') : []);
+    shownBag = key;
+    bag.hidden = state.items.length === 0;
+    bagList.replaceChildren(
+      ...state.items.map((item) =>
+        h('li', { class: `bag-item${before.has(item.id) ? '' : ' new'}`, text: item.label, attrs: { lang } }),
+      ),
+    );
+    const fresh = state.items.filter((i) => !before.has(i.id) && state.gained.includes(i.id));
+    if (fresh.length > 0) showToast(a.got(fresh.map((i) => i.label).join(', ')));
+  };
+
+  const renderTrail = (state: GameState): void => {
+    if (state.trail.length === shownTrail) return;
+    shownTrail = state.trail.length;
+    trail.replaceChildren(
+      ...state.trail.map((s) =>
+        h('li', {
+          class:
+            s.kind === 'puzzle'
+              ? `trail-step puzzle ${s.correct ? 'good' : 'bad'}`
+              : `trail-step pick${s.auto ? ' auto' : ''}`,
+          text: s.kind === 'choice' ? String(s.index + 1) : s.correct ? '✓' : '✗',
+        }),
+      ),
+    );
+  };
+
+  // --- cards -----------------------------------------------------------------------------
+  const renderCards = (state: GameState): void => {
+    const adventure = state.mode === 'adventure';
+    const options = adventure ? (state.choices ?? (state.puzzle ? state.options : null)) : state.options;
+    const isPuzzle = adventure ? state.puzzle !== null && state.choices === null : true;
+    const key = options ? `${isPuzzle ? 'p' : 'c'}|${options.join('|')}` : '';
+    if (key !== shownCards) {
+      shownCards = key;
+      cards.hidden = options === null;
+      play.classList.toggle('has-choices', options !== null);
+      cards.classList.toggle('is-puzzle', isPuzzle);
+      setText(cardsTitle, isPuzzle ? (adventure ? a.riddle : '') : '');
+      cardsTitle.hidden = !isPuzzle || !adventure;
+      cardList.replaceChildren(
+        ...(options ?? []).map((option, i) =>
+          h(
+            'li',
+            { class: 'card' },
+            h('span', { class: 'card-key pixel', text: String(i + 1) }),
+            h('span', { class: 'card-text', text: option, attrs: { lang } }),
+          ),
+        ),
+      );
+    }
+    if (!options) return;
+    const items = [...cardList.children];
+    // Choice made: light the card the server heard, dim the rest.
+    if (adventure && state.choices) {
+      items.forEach((item, i) => {
+        item.classList.toggle('picked', state.chosen === i);
+        item.classList.toggle('dim', state.chosen !== null && state.chosen !== i);
+      });
+      cards.classList.toggle('shake', state.phase === 'speaking' && state.heardNothing > 0);
+      setText(
+        cardsHint,
+        state.chosen !== null
+          ? state.chosenAuto
+            ? a.wizardPicked
+            : ''
+          : state.heardNothing > 0
+            ? `${a.unclear} · ${a.triesLeft(Math.max(0, 3 - state.heardNothing))}`
+            : a.sayChoice,
+      );
+      return;
+    }
+    // Riddle or quiz answer: after the verdict, light up the right one.
+    const result = adventure ? state.puzzleResult : state.phase === 'result' ? state.result : null;
+    items.forEach((item, i) => {
       const option = options[i];
       const right = Boolean(result && !result.skipped && option && same(option, result.answer));
       item.classList.toggle('right', right);
       item.classList.toggle('dim', Boolean(result && !result.skipped && !right));
     });
-    otherItem.classList.toggle('dim', Boolean(result && !result.skipped));
+    setText(cardsHint, result ? '' : adventure ? a.sayAnswer : '');
   };
 
-  const showVerdict = (state: GameState): void => {
-    const result = state.phase === 'result' ? state.result : null;
-    if (result === shownResult) return;
-    shownResult = result;
+  // --- verdict ---------------------------------------------------------------------------
+  const renderVerdict = (state: GameState): void => {
+    const result =
+      state.mode === 'adventure'
+        ? state.phase === 'result'
+          ? state.puzzleResult
+          : null
+        : state.phase === 'result'
+          ? state.result
+          : null;
+    if (result === shownVerdict) return;
+    shownVerdict = result;
     clear(verdict);
     verdict.hidden = result === null;
     status.hidden = result !== null;
@@ -239,7 +371,7 @@ export function gameScreen(o: GameScreenOptions): GameScreen {
           'p',
           { class: 'verdict-line muted' },
           h('span', { text: `${t.youSaid}: ` }),
-          h('span', { text: result.heard, attrs: { lang } }),
+          h('span', { text: result.heard }),
         ),
       );
     }
@@ -247,45 +379,55 @@ export function gameScreen(o: GameScreenOptions): GameScreen {
 
   return {
     el,
-    focus: prompt,
+    focus: heading,
     update(state) {
-      if (!setUp) setUpGame(state);
-      setText(score, String(state.score));
-      setText(streak, `x${state.streak}`);
-      streak.classList.toggle('hot', state.streak >= 2);
-      if (state.index >= 0) {
-        setText(progress, `${state.index + 1}/${state.total}`);
-        setText(progressLabel, t.questionOf(state.index + 1, state.total));
+      if (state.wizard && state.wizard !== wizardId) setWizard(state.wizard);
+      if (!shownHero) setWizard(wizardId);
+      if (shownHero !== state.hero) {
+        shownHero = state.hero;
+        setSrc(hero, heroUrl(state.hero as Hero));
+        setText(heroLabel, `${t.yourHero}: ${heroName(state.hero)}`);
       }
-      setText(prompt, state.index >= 0 ? state.prompt : t.getReady);
+      setText(speaker, speakerName(t, wizardId, state));
+      setText(score, String(state.score));
+      el.dataset.mode = state.mode;
 
-      if (state.story) {
-        const done = Math.min(state.chaptersDone, state.story.chapters);
-        setText(questName, speakerName(t, wizardId, state));
-        setText(questCount, t.questProgress(done, state.story.chapters));
-        questFill.style.transform = `scaleX(${(state.story.chapters ? done / state.story.chapters : 0).toFixed(3)})`;
+      setText(
+        heading,
+        state.mode === 'adventure'
+          ? (state.adventure?.title ?? t.getReady)
+          : state.index >= 0
+            ? state.prompt
+            : t.getReady,
+      );
+
+      if (state.mode === 'adventure') {
+        renderMeter(state);
+        renderBag(state);
+        renderTrail(state);
       }
 
       setSrc(wizard, wizardUrl(wizardId, state.mood));
       el.dataset.mood = state.mood;
       el.dataset.phase = state.phase;
-      play.classList.toggle('has-choices', state.options !== null);
 
-      showChoices(state);
-      markChoices(state);
+      renderCards(state);
+      renderVerdict(state);
 
-      // While the player answers, the question stays up; otherwise show the latest spoken line.
-      const asking = state.phase === 'listening' || state.phase === 'checking';
+      // While the player answers a quiz question, the question stays up; otherwise the latest
+      // spoken line (the wizard's caption) is shown.
+      const asking =
+        state.mode === 'quiz' && (state.phase === 'listening' || state.phase === 'checking');
       setText(line, asking || !state.caption ? state.prompt || t.getReady : state.caption);
 
       const listening = state.phase === 'listening';
       setText(micState, listening ? t.micOn : t.micOff);
-      meter.classList.toggle('live', listening);
+      level.classList.toggle('live', listening);
       showIcon(STATUS_ICON[state.phase] ?? 'speaker');
       setText(
         statusText,
         listening
-          ? state.heardNothing > 0
+          ? state.heardNothing > 0 && state.mode === 'quiz'
             ? t.heardNothing
             : t.speakNow
           : state.phase === 'checking'
@@ -294,10 +436,9 @@ export function gameScreen(o: GameScreenOptions): GameScreen {
               ? t.listenUp
               : '',
       );
-      showVerdict(state);
     },
-    setLevel(level) {
-      meterFill.style.transform = `scaleX(${level.toFixed(2)})`;
+    setLevel(value) {
+      meterFill.style.transform = `scaleX(${value.toFixed(2)})`;
     },
     setTimer(fraction, secondsLeft) {
       timer.hidden = fraction === null;
@@ -308,6 +449,9 @@ export function gameScreen(o: GameScreenOptions): GameScreen {
     },
     setSoundBlocked(blocked) {
       unmute.hidden = !blocked;
+    },
+    destroy() {
+      window.clearTimeout(toastTimer);
     },
   };
 }

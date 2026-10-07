@@ -1,11 +1,17 @@
 /** Same-origin HTTP API (PROTOCOL §1 and §7). Nothing here ever talks to another host. */
 import {
+  type AdventureSummary,
   type Hero,
   heroOr,
   isLanguageCode,
+  isRank,
+  isWizard,
   type LanguageCode,
   type PackSummary,
+  parseAdventureSummary,
   parsePackSummary,
+  type Rank,
+  type Wizard,
 } from '../protocol/messages';
 
 export interface Language {
@@ -32,6 +38,17 @@ export interface LeaderboardEntry {
   correct: number;
   questions: number;
   hero: Hero;
+  wizard: Wizard | null;
+  adventure: string | null;
+  /** Server-timed run length; ties on score go to the faster run. */
+  durationMs: number | null;
+  endingRank: Rank | null;
+}
+
+export interface Adventures {
+  /** The wizard's prologue is available: "let the wizard choose". */
+  auto: boolean;
+  adventures: AdventureSummary[];
 }
 
 export type Period = 'today' | 'all';
@@ -114,6 +131,18 @@ export async function getPacks(language: LanguageCode): Promise<PackSummary[]> {
   return packs.filter((p): p is PackSummary => p !== null);
 }
 
+export async function getAdventures(language: LanguageCode): Promise<Adventures> {
+  const body = (await request(`/api/adventures?language=${encodeURIComponent(language)}`)) as {
+    auto?: unknown;
+    adventures?: unknown;
+  };
+  const list = Array.isArray(body.adventures) ? body.adventures.map(parseAdventureSummary) : [];
+  return {
+    auto: body.auto === true,
+    adventures: list.filter((a): a is AdventureSummary => a !== null),
+  };
+}
+
 export async function createSession(turnstileToken: string): Promise<Session> {
   const body = (await post('/api/session', { turnstile_token: turnstileToken })) as Record<
     string,
@@ -125,17 +154,23 @@ export async function createSession(turnstileToken: string): Promise<Session> {
   return { token: body.token, expiresAt: body.expires_at };
 }
 
-export async function postScore(scoreToken: string, nickname: string): Promise<void> {
-  await post('/api/scores', { score_token: scoreToken, nickname });
+/** Returns the run's place on the all-time board for adventures (null for quiz games). */
+export async function postScore(scoreToken: string, nickname: string): Promise<number | null> {
+  const body = (await post('/api/scores', { score_token: scoreToken, nickname })) as Record<
+    string,
+    unknown
+  >;
+  return typeof body.rank === 'number' && body.rank > 0 ? body.rank : null;
 }
 
 export async function getLeaderboard(
   language: LanguageCode,
   period: Period,
+  adventure: string | null = null,
 ): Promise<LeaderboardEntry[]> {
-  const body = (await request(
-    `/api/leaderboard?language=${encodeURIComponent(language)}&period=${period}`,
-  )) as { entries?: unknown };
+  const query = new URLSearchParams({ language, period, mode: 'adventure' });
+  if (adventure) query.set('adventure', adventure);
+  const body = (await request(`/api/leaderboard?${query.toString()}`)) as { entries?: unknown };
   const entries: LeaderboardEntry[] = [];
   for (const item of Array.isArray(body.entries) ? body.entries : []) {
     const e = item as Record<string, unknown> | null;
@@ -154,6 +189,13 @@ export async function getLeaderboard(
         correct: e.correct,
         questions: e.questions,
         hero: heroOr(e.character),
+        wizard: isWizard(e.wizard) ? e.wizard : null,
+        adventure: typeof e.adventure === 'string' ? e.adventure.slice(0, 48) : null,
+        durationMs:
+          typeof e.duration_ms === 'number' && e.duration_ms >= 0 ? e.duration_ms : null,
+        endingRank: isRank((e.ending as Record<string, unknown> | null)?.rank)
+          ? ((e.ending as Record<string, unknown>).rank as Rank)
+          : null,
       });
     }
   }

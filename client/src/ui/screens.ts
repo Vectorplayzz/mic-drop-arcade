@@ -1,13 +1,16 @@
 /** The menu screens. Each builder returns its root element plus a few targeted updaters. */
+import type { TrailStep } from '../game/machine';
 import type { Strings } from '../i18n';
-import type { Language, LeaderboardEntry, Period } from '../net/api';
+import { type AdvStrings, formatTime } from '../i18n-adventure';
+import type { Adventures, Language, LeaderboardEntry, Period } from '../net/api';
+import { type FoundEnding, levelFor, type Prefs } from '../prefs';
 import {
+  type AdventureSummary,
   type EndingBand,
   type GameOverMsg,
   type Hero,
   HEROES,
   type LanguageCode,
-  type PackSummary,
   type Wizard,
   WIZARDS,
 } from '../protocol/messages';
@@ -79,9 +82,11 @@ export function titleScreen(o: TitleOptions): Screen {
     h(
       'div',
       { class: 'title-art', attrs: { 'aria-hidden': 'true' } },
-      artImage(wizardUrl('sorceress', 'happy'), 'title-wizard'),
-      artImage(wizardUrl('sage', 'ask'), 'title-wizard title-wizard-main'),
+      artImage(wizardUrl('trickster', 'happy'), 'title-wizard title-wizard-far'),
       artImage(wizardUrl('owl', 'cheer'), 'title-wizard'),
+      artImage(wizardUrl('sorceress', 'happy'), 'title-wizard title-wizard-main'),
+      artImage(wizardUrl('sage', 'ask'), 'title-wizard'),
+      artImage(wizardUrl('enchantress', 'ask'), 'title-wizard title-wizard-far'),
     ),
     h('p', { class: 'tagline', text: t.tagline }),
     h('h2', { class: 'label', text: t.chooseLanguage }),
@@ -144,13 +149,34 @@ export function gateScreen(t: Strings, onCancel: () => void): GateScreen {
 
 // ---------------------------------------------------------------- lobby --------------
 export interface LobbyScreen extends Screen {
-  setPacks(packs: PackSummary[]): void;
+  setAdventures(list: Adventures): void;
   setNotice(text: string): void;
   setBusy(busy: boolean): void;
 }
 
-/** Three wizards, shown big; the pick narrates every quest. */
-function wizardPicker(t: Strings, current: Wizard, onWizard: (wizard: Wizard) => void): HTMLElement {
+export interface LobbyOptions {
+  t: Strings;
+  a: AdvStrings;
+  language: LanguageCode;
+  gamesLeft: number;
+  hero: Hero;
+  wizard: Wizard;
+  prefs: Prefs;
+  onHero(hero: Hero): void;
+  onWizard(wizard: Wizard): void;
+  /** Let the wizard's prologue pick the adventure. */
+  onAuto(): void;
+  onPick(adventure: AdventureSummary): void;
+  onBack(): void;
+}
+
+/** Five wizards, each with a voice and a personality; the pick narrates every adventure. */
+function wizardPicker(
+  t: Strings,
+  a: AdvStrings,
+  current: Wizard,
+  onWizard: (wizard: Wizard) => void,
+): HTMLElement {
   const buttons = new Map<Wizard, HTMLButtonElement>();
   const select = (wizard: Wizard): void => {
     for (const [id, b] of buttons) b.setAttribute('aria-pressed', String(id === wizard));
@@ -173,6 +199,7 @@ function wizardPicker(t: Strings, current: Wizard, onWizard: (wizard: Wizard) =>
         },
         artImage(wizardUrl(wizard, 'ask'), 'wizard-pick-img'),
         h('span', { class: 'wizard-pick-name', text: t.wizardNames[wizard] }),
+        h('span', { class: 'wizard-pick-blurb', text: a.wizardBlurbs[wizard] }),
       );
       buttons.set(wizard, b);
       return b;
@@ -182,7 +209,7 @@ function wizardPicker(t: Strings, current: Wizard, onWizard: (wizard: Wizard) =>
   return h('div', { class: 'picker' }, h('h2', { class: 'label', text: t.chooseWizard }), row);
 }
 
-/** Twelve heroes, boys then girls; the pick is remembered and rides along with every game. */
+/** Twenty heroes; the pick is remembered and rides along with every game. */
 function heroPicker(t: Strings, current: Hero, onHero: (hero: Hero) => void): HTMLElement {
   const picked = h('p', { class: 'hero-picked', attrs: { 'aria-live': 'polite' } });
   const buttons = new Map<Hero, HTMLButtonElement>();
@@ -216,98 +243,126 @@ function heroPicker(t: Strings, current: Hero, onHero: (hero: Hero) => void): HT
   return h('div', { class: 'picker' }, h('h2', { class: 'label', text: t.chooseHero }), grid, picked);
 }
 
-/** A pack in the list. Quests show their painted scene and wizard, so the story starts here. */
-function packButton(
-  t: Strings,
-  pack: PackSummary,
-  wizard: Wizard,
-  onClick: () => void,
-): HTMLButtonElement {
-  const story = pack.story;
-  const title = h(
-    'span',
-    { class: 'pack-title' },
-    h('span', { text: pack.title }),
-    story && h('span', { class: 'badge pixel', text: t.questBadge }),
-  );
-  const meta = h('span', { class: 'pack-meta', text: `${pack.topic} · ${t.questions(pack.questions)}` });
-  if (!story) {
-    return h('button', { class: 'pack', attrs: { type: 'button' }, on: { click: onClick } }, title, meta);
-  }
+/** One medal per ending: filled when found, a "?" when still locked. */
+function endingShelf(adventure: AdventureSummary, found: Record<string, FoundEnding> | undefined) {
   return h(
-    'button',
-    { class: 'pack quest-card', attrs: { type: 'button' }, on: { click: onClick } },
-    artImage(sceneUrl(story.scene), 'quest-scene'),
-    artImage(wizardUrl(wizard, 'ask'), 'quest-wizard'),
-    h(
-      'span',
-      { class: 'quest-info' },
-      title,
-      h('span', { class: 'quest-host', text: story.sprite === wizard ? story.wizard : t.wizardNames[wizard] }),
-      meta,
+    'span',
+    { class: 'shelf', attrs: { 'aria-hidden': 'true' } },
+    ...adventure.endings.map((e) =>
+      h('span', {
+        class: `medal medal-${e.rank}${found?.[e.id] ? ' found' : ''}`,
+        text: found?.[e.id] ? '' : '?',
+      }),
     ),
   );
 }
 
-export function lobbyScreen(
-  t: Strings,
-  gamesLeft: number,
-  hero: Hero,
-  onHero: (hero: Hero) => void,
-  wizard: Wizard,
-  onWizard: (wizard: Wizard) => void,
-  onPick: (pack: PackSummary) => void,
-  onBack: () => void,
-): LobbyScreen {
-  let chosenWizard = wizard;
-  const title = heading(t.choosePack);
-  const list = h('ul', { class: 'packs' }, h('li', { class: 'muted', text: t.loading }));
+/** The player's level, from experience earned across every run (RPG-style). */
+export function levelBadge(xp: number): HTMLElement {
+  const { level, into, need } = levelFor(xp);
+  const bar = h('span', { class: 'xp-fill' });
+  bar.style.transform = `scaleX(${(need > 0 ? into / need : 0).toFixed(3)})`;
+  return h(
+    'div',
+    { class: 'level', attrs: { 'aria-label': `Level ${level}, ${into} of ${need} XP` } },
+    h('span', { class: 'level-num pixel', text: `LV ${level}` }),
+    h('span', { class: 'xp-bar', attrs: { 'aria-hidden': 'true' } }, bar),
+  );
+}
+
+function adventureCard(
+  o: LobbyOptions,
+  adventure: AdventureSummary,
+  onClick: () => void,
+): HTMLButtonElement {
+  const { a } = o;
+  const found = o.prefs.endings[adventure.id];
+  const count = adventure.endings.filter((e) => found?.[e.id]).length;
+  const best = o.prefs.best[adventure.id];
+  const lang = contentLang(o.language);
+  return h(
+    'button',
+    { class: `adventure-card genre-${adventure.genre}`, attrs: { type: 'button' }, on: { click: onClick } },
+    artImage(sceneUrl(adventure.cover), 'adventure-cover'),
+    h(
+      'span',
+      { class: 'adventure-info' },
+      h('span', { class: 'badge pixel', text: a.genres[adventure.genre] }),
+      h('span', { class: 'adventure-title', text: adventure.title, attrs: { lang } }),
+      h('span', { class: 'adventure-tagline', text: adventure.tagline, attrs: { lang } }),
+      h(
+        'span',
+        { class: 'adventure-meta' },
+        endingShelf(adventure, found),
+        h('span', { text: a.endingsFound(count, adventure.endings.length) }),
+        best && h('span', { class: 'muted', text: a.best(best.score, formatTime(best.ms)) }),
+      ),
+    ),
+  );
+}
+
+export function lobbyScreen(o: LobbyOptions): LobbyScreen {
+  const { t, a } = o;
+  const title = heading(a.orPick);
+  const list = h('ul', { class: 'adventures' }, h('li', { class: 'muted', text: t.loading }));
   const notice = h('p', { class: 'notice', attrs: { role: 'alert' } });
+  const auto = h(
+    'button',
+    { class: 'adventure-card auto-card', attrs: { type: 'button', hidden: true }, on: { click: () => o.onAuto() } },
+    artImage(sceneUrl('portals'), 'adventure-cover'),
+    h(
+      'span',
+      { class: 'adventure-info' },
+      h('span', { class: 'badge pixel', text: a.genres.prologue }),
+      h('span', { class: 'adventure-title', text: a.letWizardChoose }),
+      h('span', { class: 'adventure-tagline', text: a.letWizardChooseBody }),
+    ),
+  );
+  const make = h(
+    'div',
+    { class: 'adventure-card make-card', attrs: { 'aria-disabled': 'true' } },
+    h(
+      'span',
+      { class: 'adventure-info' },
+      h('span', { class: 'badge badge-soon pixel', text: a.comingSoon }),
+      h('span', { class: 'adventure-title', text: a.makeTitle }),
+      h('span', { class: 'adventure-tagline', text: a.makeBody }),
+    ),
+  );
   const el = h(
     'section',
     { class: 'screen lobby' },
-    wizardPicker(t, wizard, (next) => {
-      chosenWizard = next;
-      // Repaint the quest cards so they show the wizard who will tell the story.
-      if (lastPacks) render(lastPacks);
-      onWizard(next);
-    }),
-    heroPicker(t, hero, onHero),
-    title,
+    levelBadge(o.prefs.xp),
+    wizardPicker(t, a, o.wizard, o.onWizard),
+    heroPicker(t, o.hero, o.onHero),
     notice,
+    auto,
+    title,
     list,
-    h('p', { class: 'muted', text: t.gamesLeft(gamesLeft) }),
-    button(t.back, onBack),
+    make,
+    h('p', { class: 'muted', text: t.gamesLeft(o.gamesLeft) }),
+    button(t.back, o.onBack),
   );
-  let lastPacks: PackSummary[] | null = null;
-  const render = (packs: PackSummary[]): void => {
-    lastPacks = packs;
-    clear(list);
-      if (packs.length === 0) {
+  const buttons = (): HTMLButtonElement[] => [auto, ...list.querySelectorAll('button')];
+  return {
+    el,
+    focus: auto,
+    setAdventures(data) {
+      auto.hidden = !data.auto;
+      clear(list);
+      if (data.adventures.length === 0) {
         list.append(h('li', { class: 'muted', text: t.noPacks }));
         return;
       }
-      for (const pack of packs) {
-        list.append(
-          h(
-            'li',
-            {},
-            packButton(t, pack, chosenWizard, () => onPick(pack)),
-          ),
-        );
+      for (const adventure of data.adventures) {
+        list.append(h('li', {}, adventureCard(o, adventure, () => o.onPick(adventure))));
       }
-  };
-  return {
-    el,
-    focus: title,
-    setPacks(packs) {
-      render(packs);
     },
     setNotice(text) {
       setText(notice, text);
     },
     setBusy(busy) {
-      for (const item of list.querySelectorAll('button')) item.disabled = busy;
+      for (const b of buttons()) b.disabled = busy;
     },
   };
 }
@@ -322,20 +377,34 @@ export interface OverScreen extends Screen {
 
 export interface OverOptions {
   t: Strings;
+  a: AdvStrings;
+  language: LanguageCode;
   final: GameOverMsg;
-  /** How the wizard quest ended, for story packs. */
+  /** The adventure that was played (null for a quiz). */
+  adventure: AdventureSummary | null;
+  /** Endings found so far in that adventure, including this one. */
+  found: Record<string, FoundEnding>;
+  trail: TrailStep[];
+  newBest: boolean;
+  xpGained: number;
+  xpTotal: number;
+  levelUp: boolean;
+  nickname: string;
+  /** How the wizard quest ended, for quiz story packs. */
   ending: EndingBand | null;
   canPlayAgain: boolean;
   onSubmit(nickname: string): void;
   onShare(): void;
   onPlayAgain(): void;
+  onNewAdventure(): void;
   onBoard(): void;
   onHome(): void;
 }
 
 export function overScreen(o: OverOptions): OverScreen {
-  const { t, final } = o;
-  const title = heading(t.gameOver, 'screen-title pixel');
+  const { t, a, final } = o;
+  const adventureRun = final.mode === 'adventure' && final.ending !== null;
+  const title = heading(adventureRun ? a.endingReached : t.gameOver, 'screen-title pixel');
   const input = h('input', {
     class: 'input',
     attrs: {
@@ -350,6 +419,7 @@ export function overScreen(o: OverOptions): OverScreen {
       'aria-describedby': 'nickname-hint nickname-status',
     },
   });
+  input.value = o.nickname;
   const submit = h('button', {
     class: 'btn btn-primary',
     text: t.submitScore,
@@ -382,8 +452,82 @@ export function overScreen(o: OverOptions): OverScreen {
   const again = h(
     'div',
     { class: 'again' },
-    o.canPlayAgain ? button(t.playAgain, o.onPlayAgain, { class: 'btn-primary' }) : noMoreGames(),
+    o.canPlayAgain
+      ? button(adventureRun ? a.playAgain : t.playAgain, o.onPlayAgain, { class: 'btn-primary' })
+      : noMoreGames(),
+    o.canPlayAgain && adventureRun ? button(a.newAdventure, o.onNewAdventure) : null,
   );
+
+  const lang = contentLang(o.language);
+  let summary: HTMLElement;
+  if (adventureRun && final.ending) {
+    const adv = o.adventure;
+    const found = adv ? adv.endings.filter((e) => o.found[e.id]).length : 0;
+    summary = h(
+      'div',
+      { class: 'run-summary' },
+      adv && h('p', { class: 'run-adventure', text: adv.title, attrs: { lang } }),
+      h(
+        'p',
+        { class: `ending-title ending-rank-${final.ending.rank}` },
+        h('span', { class: `medal medal-${final.ending.rank} found`, attrs: { 'aria-hidden': 'true' } }),
+        h('span', { text: final.ending.title, attrs: { lang } }),
+      ),
+      h('p', { class: 'muted', text: a.ranks[final.ending.rank] }),
+      h(
+        'dl',
+        { class: 'run-stats' },
+        h('div', {}, h('dt', { text: t.finalScore }), h('dd', { class: 'pixel', text: String(final.score) })),
+        h(
+          'div',
+          {},
+          h('dt', { text: a.time }),
+          h('dd', { class: 'pixel', text: formatTime(final.duration_ms ?? 0) }),
+        ),
+        h('div', {}, h('dt', { text: 'XP' }), h('dd', { class: 'pixel xp-gain', text: `+${o.xpGained}` })),
+      ),
+      o.newBest && h('p', { class: 'flash good', text: a.newBest }),
+      o.levelUp && h('p', { class: 'flash level-up pixel', text: `LEVEL UP! LV ${levelFor(o.xpTotal).level}` }),
+      levelBadge(o.xpTotal),
+      o.trail.length > 0 &&
+        h(
+          'div',
+          { class: 'run-path' },
+          h('p', { class: 'label', text: a.yourPath }),
+          h(
+            'ol',
+            { class: 'trail big' },
+            ...o.trail.map((s) =>
+              h('li', {
+                class:
+                  s.kind === 'puzzle'
+                    ? `trail-step puzzle ${s.correct ? 'good' : 'bad'}`
+                    : `trail-step pick${s.auto ? ' auto' : ''}`,
+                text: s.kind === 'choice' ? String(s.index + 1) : s.correct ? '✓' : '✗',
+              }),
+            ),
+            h('li', { class: `trail-step end medal-${final.ending.rank}`, text: '★' }),
+          ),
+        ),
+      adv &&
+        h(
+          'div',
+          { class: 'run-shelf' },
+          endingShelf(adv, o.found),
+          h('p', { class: 'muted', text: a.moreEndings(found, adv.endings.length) }),
+        ),
+    );
+  } else {
+    summary = h(
+      'div',
+      { class: 'run-summary' },
+      o.ending && h('p', { class: `ending ending-${o.ending}`, text: t.endings[o.ending] }),
+      h('p', { class: 'label', text: t.finalScore }),
+      h('p', { class: 'final-score pixel', text: String(final.score) }),
+      h('p', { class: 'lead', text: t.correctOf(final.correct, final.questions) }),
+    );
+  }
+
   const el = h(
     'section',
     { class: 'screen over' },
@@ -394,10 +538,7 @@ export function overScreen(o: OverOptions): OverScreen {
       h('figcaption', { class: 'pixel', text: heroName(final.hero) }),
     ),
     title,
-    o.ending && h('p', { class: `ending ending-${o.ending}`, text: t.endings[o.ending] }),
-    h('p', { class: 'label', text: t.finalScore }),
-    h('p', { class: 'final-score pixel', text: String(final.score) }),
-    h('p', { class: 'lead', text: t.correctOf(final.correct, final.questions) }),
+    summary,
     form,
     button(t.share, o.onShare),
     shareStatus,
@@ -432,26 +573,48 @@ export interface BoardScreen extends Screen {
 
 export interface BoardOptions {
   t: Strings;
+  a: AdvStrings;
   languages: Language[];
   language: LanguageCode;
   period: Period;
-  onChange(language: LanguageCode, period: Period): void;
+  /** Adventure filter; null shows every adventure. */
+  adventure: string | null;
+  adventures: AdventureSummary[];
+  onChange(language: LanguageCode, period: Period, adventure: string | null): void;
   onBack(): void;
 }
 
 export function boardScreen(o: BoardOptions): BoardScreen {
-  const { t } = o;
+  const { t, a } = o;
   const title = heading(t.leaderboard);
   const body = h('div', { class: 'board-body', attrs: { 'aria-live': 'polite' } });
   const periods: Array<[Period, string]> = [
     ['today', t.today],
     ['all', t.allTime],
   ];
+  const titles = new Map(o.adventures.map((adv) => [adv.id, adv.title]));
+  const filter = h(
+    'select',
+    {
+      class: 'input board-filter',
+      attrs: { 'aria-label': a.allAdventures },
+      on: {
+        change: (event) => {
+          const value = (event.target as HTMLSelectElement).value;
+          o.onChange(o.language, o.period, value || null);
+        },
+      },
+    },
+    h('option', { text: a.allAdventures, attrs: { value: '' } }),
+    ...o.adventures.map((adv) =>
+      h('option', { text: adv.title, attrs: { value: adv.id, selected: adv.id === o.adventure } }),
+    ),
+  );
   const el = h(
     'section',
     { class: 'screen board' },
     title,
-    languagePicker(t, o.languages, o.language, (code) => o.onChange(code, o.period)),
+    languagePicker(t, o.languages, o.language, (code) => o.onChange(code, o.period, o.adventure)),
     h(
       'div',
       { class: 'segmented', attrs: { role: 'group', 'aria-label': t.leaderboard } },
@@ -460,10 +623,11 @@ export function boardScreen(o: BoardOptions): BoardScreen {
           class: 'segment',
           text: label,
           attrs: { type: 'button', 'aria-pressed': String(period === o.period) },
-          on: { click: () => o.onChange(o.language, period) },
+          on: { click: () => o.onChange(o.language, period, o.adventure) },
         }),
       ),
     ),
+    o.adventures.length > 0 && filter,
     body,
     button(t.back, o.onBack),
   );
@@ -490,6 +654,7 @@ export function boardScreen(o: BoardOptions): BoardScreen {
               {},
               h('th', { text: t.rank, attrs: { scope: 'col' } }),
               h('th', { text: t.player, attrs: { scope: 'col' } }),
+              h('th', { text: a.boardTime, attrs: { scope: 'col' } }),
               h('th', { text: t.score, attrs: { scope: 'col' } }),
             ),
           ),
@@ -505,9 +670,26 @@ export function boardScreen(o: BoardOptions): BoardScreen {
                   'td',
                   { class: 'board-player' },
                   artImage(heroUrl(entry.hero), 'board-hero', ''),
-                  h('span', { class: 'nick', text: entry.nickname }),
-                  h('span', { class: 'muted', text: ` ${entry.correct}/${entry.questions}` }),
+                  h(
+                    'span',
+                    { class: 'board-who' },
+                    h('span', { class: 'nick', text: entry.nickname }),
+                    entry.adventure &&
+                      h('span', {
+                        class: 'muted board-adv',
+                        text: titles.get(entry.adventure) ?? entry.adventure,
+                      }),
+                  ),
+                  entry.endingRank &&
+                    h('span', {
+                      class: `medal medal-${entry.endingRank} found`,
+                      attrs: { title: a.ranks[entry.endingRank], 'aria-label': a.ranks[entry.endingRank] },
+                    }),
                 ),
+                h('td', {
+                  class: 'pixel',
+                  text: entry.durationMs !== null ? formatTime(entry.durationMs) : '–',
+                }),
                 h('td', { class: 'pixel', text: String(entry.score) }),
               ),
             ),

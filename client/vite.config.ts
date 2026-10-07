@@ -49,6 +49,9 @@ function listFiles(dir: string, base = dir): string[] {
   });
 }
 
+/** Hashed art and music under /assets/: runtime-cached instead of precached. */
+const MEDIA = /^assets\/.+\.(png|mp3)$/;
+
 /** Fills the service worker's precache list and version once the bundle's file names exist. */
 function serviceWorkerManifest(): Plugin {
   return {
@@ -60,10 +63,15 @@ function serviceWorkerManifest(): Plugin {
       if (!worker || worker.type !== 'chunk') throw new Error('sw.js missing from the bundle');
       const hash = createHash('sha256');
       const urls = ['/index.html'];
+      // Painted scenes, sprites and music are large and mostly not needed at once: they are
+      // cached as they are first used (see sw.ts), not downloaded when the app installs.
+      const media: string[] = [];
       for (const [name, file] of Object.entries(bundle).sort(([a], [b]) => a.localeCompare(b))) {
         if (name === 'sw.js' || name.endsWith('.map')) continue;
         hash.update(name).update(file.type === 'chunk' ? file.code : file.source);
-        if (name !== 'index.html') urls.push(`/${name}`);
+        if (name === 'index.html') continue;
+        if (MEDIA.test(name)) media.push(`/${name}`);
+        else urls.push(`/${name}`);
       }
       for (const name of listFiles('public').sort()) {
         hash.update(name);
@@ -76,6 +84,7 @@ function serviceWorkerManifest(): Plugin {
       };
       fill('__MAATA_SW_VERSION__', hash.digest('hex').slice(0, 16));
       fill('__MAATA_SW_PRECACHE__', JSON.stringify(urls));
+      fill('__MAATA_SW_MEDIA__', JSON.stringify(media));
     },
   };
 }

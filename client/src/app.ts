@@ -3,6 +3,7 @@
  * runs every server message through the game state machine.
  */
 import { MicCapture, MicError, micSupported } from './audio/mic';
+import { Music, TRACK_FOR_GENRE } from './audio/music';
 import { VoicePlayer } from './audio/player';
 import { Sfx } from './audio/sfx';
 import {
@@ -15,11 +16,13 @@ import {
   reduce,
 } from './game/machine';
 import { type ProblemCode, type Strings, stringsFor } from './i18n';
+import { type AdvStrings, advStringsFor, formatTime } from './i18n-adventure';
 import {
+  type Adventures,
   ApiError,
   createSession,
+  getAdventures,
   getLeaderboard,
-  getPacks,
   getStatus,
   nicknameProblem,
   type Period,
@@ -29,8 +32,8 @@ import {
 } from './net/api';
 import { GameSocket } from './net/socket';
 import { runTurnstile, TurnstileError } from './net/turnstile';
-import { loadPrefs, type Prefs, savePrefs } from './prefs';
-import { CLOSE, type LanguageCode, type PackSummary } from './protocol/messages';
+import { levelFor, loadPrefs, type Prefs, type RunRecord, recordRun, savePrefs } from './prefs';
+import { CLOSE, type LanguageCode } from './protocol/messages';
 import { shareScoreCard } from './share/card';
 import { creatorScreen } from './ui/creator-screen';
 import { privacyDialog, settingsDialog } from './ui/dialogs';
@@ -93,11 +96,21 @@ export class App {
   private status: Status | null = null;
   private language: LanguageCode = 'hi-en';
   private t: Strings = stringsFor('hi-en');
+  private a: AdvStrings = advStringsFor('hi-en');
 
   private ctx: AudioContext | null = null;
   private player: VoicePlayer | null = null;
   private mic: MicCapture | null = null;
   private sfx: Sfx | null = null;
+  private music: Music | null = null;
+  /** The adventure list for the current language (also used to name runs on the board). */
+  private adventures: Adventures | null = null;
+  /** What the last start asked for: an adventure id or "auto", for "play again". */
+  private lastPick: string | null = null;
+  /** The run already recorded on this device (endings shelf, best, XP), by score token. */
+  private recorded: { token: string; record: RunRecord } | null = null;
+  /** Leaderboard place after submitting, for the score card. */
+  private place: number | null = null;
 
   private session: Session | null = null;
   private readonly socket: GameSocket;
@@ -156,6 +169,8 @@ export class App {
   private setLanguage(language: LanguageCode): void {
     this.language = language;
     this.t = stringsFor(language);
+    this.a = advStringsFor(language);
+    this.adventures = null;
     document.documentElement.lang = this.t.htmlLang;
   }
 
@@ -172,7 +187,7 @@ export class App {
       void this.boot();
       return;
     }
-    this.sfx?.startMusic();
+    this.music?.play('menu', 'menu');
     this.show(
       titleScreen({
         t: this.t,
@@ -185,7 +200,7 @@ export class App {
           this.showTitle();
         },
         onStart: () => void this.start(),
-        onBoard: () => this.showBoard(this.language, 'today'),
+        onBoard: () => this.showBoard(this.language, 'today', null),
         onCreator: () => this.showCreator(),
         onSettings: () => this.showSettings(),
         onPrivacy: () => privacyDialog(this.t),
@@ -204,10 +219,9 @@ export class App {
         savePrefs(this.prefs);
         this.player?.setVolume(prefs.voiceVolume);
         this.sfx?.configure(prefs);
-        if (prefs.music) {
-          this.ensureAudio();
-          this.sfx?.startMusic();
-        }
+        if (prefs.music) this.ensureAudio();
+        this.music?.configure(prefs.music);
+        if (prefs.music) this.music?.play('menu', 'menu');
         if (language !== this.language) {
           this.setLanguage(language);
           this.showTitle();
@@ -228,19 +242,36 @@ export class App {
     );
   }
 
-  private showBoard(language: LanguageCode, period: Period): void {
+  private showBoard(language: LanguageCode, period: Period, adventure: string | null): void {
     const flow = ++this.flow;
+    if (language !== this.language) this.setLanguage(language);
     const view = boardScreen({
       t: this.t,
+      a: this.a,
       languages: this.status?.languages ?? [],
       language,
       period,
-      onChange: (nextLanguage, nextPeriod) => this.showBoard(nextLanguage, nextPeriod),
+      adventure,
+      adventures: this.adventures?.adventures ?? [],
+      onChange: (nextLanguage, nextPeriod, nextAdventure) =>
+        this.showBoard(nextLanguage, nextPeriod, nextAdventure),
       onBack: () => (this.game.phase === 'over' ? this.showOver() : this.showTitle()),
     });
     view.setEntries('loading');
     this.show(view);
-    getLeaderboard(language, period).then(
+    if (!this.adventures) {
+      // Names for the adventure filter; the board itself doesn't need them to load.
+      getAdventures(language).then(
+        (list) => {
+          this.adventures = list;
+          if (flow === this.flow && list.adventures.length > 0) {
+            this.showBoard(language, period, adventure);
+          }
+        },
+        () => undefined,
+      );
+    }
+    getLeaderboard(language, period, adventure).then(
       (entries) => flow === this.flow && view.setEntries(entries),
       () => flow === this.flow && view.setEntries('failed'),
     );
@@ -255,7 +286,6 @@ export class App {
       return;
     }
     const { mic, sfx } = this.ensureAudio();
-    sfx.stopMusic();
     sfx.play('start');
     const gate = gateScreen(this.t, () => this.goHome());
     this.show(gate);
@@ -313,6 +343,8 @@ export class App {
       this.player = new VoicePlayer(ctx, this.prefs.voiceVolume);
       this.sfx = new Sfx(ctx);
       this.sfx.configure(this.prefs);
+      this.music = new Music(ctx);
+      this.music.configure(this.prefs.music);
       const mic = new MicCapture(ctx);
       mic.onFrame = (frame) => this.socket.sendAudio(frame);
       mic.onLevel = (level) => this.gameView?.setLevel(level);
@@ -342,12 +374,12 @@ export class App {
       this.gameView = gameScreen({
         t: this.t,
         language: state.pack?.language ?? this.language,
-        wizard: this.prefs.wizard,
+        wizard: state.wizard ?? this.prefs.wizard,
         onQuit: () => this.goHome(),
         onUnmute: () => this.unmute(),
       });
       this.show(this.gameView);
-      setScene(state.story?.scene ?? MENU_SCENE, 'game');
+      setScene(state.scene ?? state.story?.scene ?? MENU_SCENE, 'game');
       this.gameView.setSoundBlocked(this.soundBlocked());
     } else if (state.phase === 'over' && before.phase !== 'over') {
       this.showOver();
@@ -361,7 +393,16 @@ export class App {
         void this.showLobby().then(() => this.lobbyView?.setNotice(notice));
       }
     }
-    if (inGame(state)) this.gameView?.update(state);
+    if (inGame(state)) {
+      if (state.scene && state.scene !== before.scene) setScene(state.scene, 'game');
+      if (state.adventure && state.adventure.id !== before.adventure?.id) {
+        this.music?.play(TRACK_FOR_GENRE[state.adventure.genre], 'story');
+      }
+      if (state.phase !== before.phase) {
+        this.music?.setLevel(state.phase === 'listening' ? 'listening' : 'story');
+      }
+      this.gameView?.update(state);
+    }
   }
 
   private run(effect: Effect): void {
@@ -426,45 +467,55 @@ export class App {
 
   private async showLobby(): Promise<void> {
     const flow = ++this.flow;
-    const view = lobbyScreen(
-      this.t,
-      gamesLeft(this.game),
-      this.prefs.hero,
-      (hero) => {
+    this.music?.play('menu', 'menu');
+    const view = lobbyScreen({
+      t: this.t,
+      a: this.a,
+      language: this.language,
+      gamesLeft: gamesLeft(this.game),
+      hero: this.prefs.hero,
+      wizard: this.prefs.wizard,
+      prefs: this.prefs,
+      onHero: (hero) => {
         this.prefs.hero = hero;
         savePrefs(this.prefs);
         this.sfx?.play('select');
       },
-      this.prefs.wizard,
-      (wizard) => {
+      onWizard: (wizard) => {
         this.prefs.wizard = wizard;
         savePrefs(this.prefs);
         this.sfx?.play('select');
       },
-      (pack) => this.startGame(pack),
-      () => this.goHome(),
-    );
+      onAuto: () => this.startAdventure('auto'),
+      onPick: (adventure) => this.startAdventure(adventure.id),
+      onBack: () => this.goHome(),
+    });
     this.lobbyView = view;
     this.show(view);
     try {
-      const packs = await getPacks(this.language);
-      if (flow === this.flow) view.setPacks(packs);
+      const list = this.adventures ?? (await getAdventures(this.language));
+      if (flow !== this.flow) return;
+      this.adventures = list;
+      view.setAdventures(list);
     } catch (err) {
       if (flow === this.flow) this.showApiProblem(err, () => void this.start());
     }
   }
 
-  private startGame(pack: PackSummary): void {
+  private startAdventure(pick: string): void {
     if (!this.socket.isOpen) return;
     const { mic } = this.ensureAudio();
     this.lobbyView?.setBusy(true);
     this.lobbyView?.setNotice('');
+    this.lastPick = pick;
+    const adventure = this.adventures?.adventures.find((a) => a.id === pick);
+    if (adventure) this.music?.prefetch(TRACK_FOR_GENRE[adventure.genre]);
     // The mic was released at the end of the last game; permission is already granted.
     mic.open().then(
       () => {
         if (this.game.phase !== 'lobby' && this.game.phase !== 'over') return;
         this.dispatch({ type: 'start_requested' });
-        this.socket.startGame(pack.id, this.prefs.hero, this.prefs.wizard);
+        this.socket.startAdventure(pick, this.language, this.prefs.hero, this.prefs.wizard);
       },
       (err: unknown) => this.endSession(micProblem(err)),
     );
@@ -475,38 +526,93 @@ export class App {
     this.flow++;
     const final = this.game.final;
     if (!final) return;
-    const pack = this.game.pack;
+    this.music?.play('menu', 'menu');
+    const adventure = this.game.adventure;
+    let record: RunRecord | null = null;
+    if (final.mode === 'adventure' && final.adventure && final.ending) {
+      if (this.recorded?.token !== final.score_token) {
+        this.place = null;
+        this.recorded = {
+          token: final.score_token,
+          record: recordRun(
+            this.prefs,
+            final.adventure,
+            final.ending,
+            final.score,
+            final.duration_ms ?? 0,
+          ),
+        };
+      }
+      record = this.recorded.record;
+    }
     const view = overScreen({
       t: this.t,
+      a: this.a,
+      language: this.language,
       final,
+      adventure,
+      found: (final.adventure && this.prefs.endings[final.adventure]) || {},
+      trail: this.game.trail,
+      newBest: record?.newBest ?? false,
+      xpGained: record?.xpGained ?? 0,
+      xpTotal: this.prefs.xp,
+      levelUp: record?.levelUp ?? false,
+      nickname: this.prefs.nickname,
       ending: this.game.ending,
-      canPlayAgain: this.socket.isOpen && gamesLeft(this.game) > 0 && pack !== null,
+      canPlayAgain: this.socket.isOpen && gamesLeft(this.game) > 0 && this.lastPick !== null,
       onSubmit: (nickname) => void this.submitScore(view, final.score_token, nickname),
       onShare: () => {
         const language =
-          this.status?.languages.find((l) => l.code === pack?.language)?.label ??
+          this.status?.languages.find((l) => l.code === this.language)?.label ??
           this.t.shareLanguage;
+        const run =
+          final.mode === 'adventure' && final.ending && adventure
+            ? {
+                nickname: this.prefs.nickname,
+                adventureTitle: adventure.title,
+                endingTitle: final.ending.title,
+                rank: final.ending.rank,
+                timeText: formatTime(final.duration_ms ?? 0),
+                level: levelFor(this.prefs.xp).level,
+                scene: this.game.endingInfo?.scene ?? adventure.cover,
+                headline: this.a.cardReached,
+                challenge: this.a.cardChallenge,
+                place: this.place,
+              }
+            : undefined;
         shareScoreCard({
           correct: final.correct,
           questions: final.questions,
           score: final.score,
           maxScore: final.max_score,
-          line: this.t.shareLine(final.correct, final.questions, language),
-          packTitle: pack?.title ?? '',
+          line: run
+            ? this.a.shareLine(run.adventureTitle, run.endingTitle, final.score, run.timeText)
+            : this.t.shareLine(final.correct, final.questions, language),
+          packTitle: adventure?.title ?? this.game.pack?.title ?? '',
           hero: final.hero,
           url: location.origin,
+          run,
         }).then(
           (how) => view.setShareStatus(how === 'downloaded' ? this.t.shareSaved : ''),
           () => view.setShareStatus(this.t.problems.internal.title),
         );
       },
       onPlayAgain: () => {
-        if (pack) this.startGame(pack);
+        // "auto" again would re-ask the wizard's questions; replay the adventure it picked.
+        const again =
+          this.lastPick === 'auto' ? (this.game.adventure?.id ?? 'auto') : this.lastPick;
+        if (again) this.startAdventure(again);
       },
-      onBoard: () => this.showBoard(pack?.language ?? this.language, 'today'),
+      onNewAdventure: () => void this.showLobby(),
+      onBoard: () => this.showBoard(this.language, 'today', final.adventure),
       onHome: () => this.goHome(),
     });
-    if (this.submitted === final.score_token) view.setSubmitState('done', this.t.submitted);
+    if (this.submitted === final.score_token) {
+      view.setSubmitState(
+        'done',
+        this.place ? `${this.t.submitted} ${this.a.placed(this.place)}` : this.t.submitted,
+      );
+    }
     this.overView = view;
     this.show(view);
   }
@@ -524,9 +630,15 @@ export class App {
     }
     view.setSubmitState('sending');
     try {
-      await postScore(scoreToken, nickname.trim());
+      const place = await postScore(scoreToken, nickname.trim());
       this.submitted = scoreToken;
-      view.setSubmitState('done', this.t.submitted);
+      this.place = place;
+      this.prefs.nickname = nickname.trim();
+      savePrefs(this.prefs);
+      view.setSubmitState(
+        'done',
+        place ? `${this.t.submitted} ${this.a.placed(place)}` : this.t.submitted,
+      );
     } catch (err) {
       const api = err instanceof ApiError ? err : new ApiError(0, 'offline');
       if (api.status === 409) {

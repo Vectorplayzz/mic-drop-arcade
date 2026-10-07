@@ -9,6 +9,8 @@ export const ERROR_CODES = [
   'unauthorized',
   'already_connected',
   'unknown_pack',
+  'unknown_adventure',
+  'unknown_language',
   'unknown_character',
   'busy',
   'closed_for_today',
@@ -54,21 +56,111 @@ export const HEROES = [
   'ananya',
   'priya',
   'sana',
+  'vikas',
+  'arnav',
+  'harpreet',
+  'dhruv',
+  'aisha',
+  'kavya',
+  'nila',
+  'tara',
 ] as const;
 export type Hero = (typeof HEROES)[number];
 export const DEFAULT_HERO: Hero = 'arjun';
 
-export const WIZARDS = ['sage', 'sorceress', 'owl'] as const;
+export const WIZARDS = ['sorceress', 'sage', 'owl', 'enchantress', 'trickster'] as const;
 export type Wizard = (typeof WIZARDS)[number];
 
+/** Painted scenes the client ships (src/assets/art/backgrounds), matching the server's list. */
 export const SCENES = [
+  'crystal-cave',
+  'fest-arena',
+  'fest-dawn',
+  'fest-garden',
+  'fest-gate',
+  'fest-lab',
+  'fest-library',
+  'fest-rain',
+  'fest-rooftop',
+  'fest-stage',
+  'fest-stalls',
+  'forest-temple',
+  'hack-alley',
+  'hack-cafe',
+  'hack-datacenter',
+  'hack-dawn',
+  'hack-hall',
+  'hack-metro',
+  'hack-netroom',
+  'hack-rooftop',
+  'hack-stage',
+  'hack-van',
+  'hampi-bazaar',
+  'hampi-camp',
+  'hampi-cave',
+  'hampi-chariot',
+  'hampi-cliff',
+  'hampi-gate',
+  'hampi-hall',
+  'hampi-river',
+  'hampi-stepwell',
+  'hampi-vault',
+  'hostel-basement',
+  'hostel-corridor',
+  'hostel-dawn',
+  'hostel-mess',
+  'hostel-outside',
+  'hostel-room',
+  'hostel-stairs',
+  'hostel-terrace',
+  'hostel-warden',
+  'hostel-well',
+  'lab-canteen',
+  'lab-cctv',
+  'lab-corridor',
+  'lab-dawn',
+  'lab-electronics',
+  'lab-library',
+  'lab-office',
+  'lab-rooftop',
+  'lab-server',
+  'lab-workshop',
   'library-a',
   'library-b',
-  'forest-temple',
-  'sky-islands',
-  'crystal-cave',
+  'loop-bedroom',
+  'loop-bus',
+  'loop-canteen',
+  'loop-clocktower',
+  'loop-corridor',
+  'loop-ground',
+  'loop-rewind',
+  'loop-sunset',
+  'loop-viva',
+  'loop-xerox',
   'night-bazaar',
   'observatory',
+  'orbit-ai',
+  'orbit-alarm',
+  'orbit-core',
+  'orbit-deck',
+  'orbit-garden',
+  'orbit-ocean',
+  'orbit-pods',
+  'orbit-reentry',
+  'orbit-spacewalk',
+  'orbit-storm',
+  'portals',
+  'sky-islands',
+  'train-bridge',
+  'train-coach',
+  'train-dawn',
+  'train-engine',
+  'train-landslide',
+  'train-river',
+  'train-roof',
+  'train-signal',
+  'train-station',
+  'train-tunnel',
 ] as const;
 export type Scene = (typeof SCENES)[number];
 
@@ -170,7 +262,145 @@ export interface GameOverMsg {
   max_score: number;
   score_token: string;
   hero: Hero;
+  mode: 'quiz' | 'adventure';
+  wizard: Wizard | null;
+  /** Adventure runs only. */
+  adventure: string | null;
+  ending: FinalEnding | null;
+  duration_ms: number | null;
 }
+// ---------------------------------------------------------------- adventures (§10) ---
+export const GENRES = [
+  'prologue',
+  'action',
+  'romance',
+  'mystery',
+  'scifi',
+  'horror',
+  'fantasy',
+  'comedy',
+  'thriller',
+] as const;
+export type Genre = (typeof GENRES)[number];
+
+export const RANKS = ['gold', 'silver', 'bronze'] as const;
+export type Rank = (typeof RANKS)[number];
+
+export const METER_ICONS = ['clock', 'heart', 'search', 'bolt', 'nerve', 'flame', 'star'] as const;
+export type MeterIcon = (typeof METER_ICONS)[number];
+
+export interface MeterInfo {
+  label: string;
+  icon: MeterIcon;
+  max: number;
+}
+export interface EndingRef {
+  id: string;
+  rank: Rank;
+}
+export interface AdventureSummary {
+  id: string;
+  genre: Genre;
+  title: string;
+  tagline: string;
+  cover: Scene;
+  meter: MeterInfo | null;
+  endings: EndingRef[];
+  scenes: Scene[];
+}
+export interface Item {
+  id: string;
+  label: string;
+}
+export type NodeKind = 'choice' | 'puzzle' | 'story';
+
+export interface AdventureStartMsg {
+  type: 'adventure_start';
+  game_id: string;
+  adventure: AdventureSummary;
+  /** True when the wizard's prologue just picked this adventure. */
+  routed: boolean;
+  hero: Hero;
+  wizard: Wizard;
+  meter: number | null;
+  time_limit_s: number;
+  choice_time_limit_s: number;
+}
+export interface StateFields {
+  meter: number | null;
+  meter_delta: number;
+  items: Item[];
+  gained: string[];
+}
+export interface NodeMsg extends StateFields {
+  type: 'node';
+  id: string;
+  scene: Scene;
+  mood: Mood;
+  step: number;
+  kind: NodeKind;
+}
+export interface StateMsg extends StateFields {
+  type: 'state';
+}
+export interface ChoicesMsg {
+  type: 'choices';
+  choices: string[];
+  attempt: number;
+  time_limit_s: number;
+}
+export interface UnclearMsg {
+  type: 'unclear';
+  heard: string;
+  attempts_left: number;
+}
+export interface ChosenMsg {
+  type: 'chosen';
+  index: number;
+  heard: string;
+  /** The wizard picked because nothing clear was heard. */
+  auto: boolean;
+}
+export interface PuzzleMsg {
+  type: 'puzzle';
+  prompt: string;
+  options: string[];
+  kind: 'text' | 'number';
+  time_limit_s: number;
+}
+export interface PuzzleResultMsg {
+  type: 'puzzle_result';
+  correct: boolean;
+  timed_out: boolean;
+  skipped: boolean;
+  heard: string;
+  answer: string;
+  points: number;
+  score: number;
+  streak: number;
+}
+export interface WizardMsg {
+  type: 'wizard';
+  key: string;
+  mood: Mood | null;
+}
+export interface EndingMsg {
+  type: 'ending';
+  id: string;
+  title: string;
+  rank: Rank;
+  scene: Scene;
+  mood: Mood;
+  bonus: number;
+  score: number;
+  endings: EndingRef[];
+}
+export interface FinalEnding {
+  id: string;
+  title: string;
+  rank: Rank;
+}
+
 export interface ErrorMsg {
   type: 'error';
   code: ErrorCode;
@@ -196,7 +426,17 @@ export type ServerMessage =
   | ResultMsg
   | GameOverMsg
   | ErrorMsg
-  | PongMsg;
+  | PongMsg
+  | AdventureStartMsg
+  | NodeMsg
+  | StateMsg
+  | ChoicesMsg
+  | UnclearMsg
+  | ChosenMsg
+  | PuzzleMsg
+  | PuzzleResultMsg
+  | WizardMsg
+  | EndingMsg;
 
 type Json = Record<string, unknown>;
 
@@ -215,6 +455,62 @@ const oneOf = <T extends string>(list: readonly T[], v: unknown): v is T =>
   str(v) && (list as readonly string[]).includes(v);
 
 export const isHero = (v: unknown): v is Hero => oneOf(HEROES, v);
+export const isWizard = (v: unknown): v is Wizard => oneOf(WIZARDS, v);
+export const isScene = (v: unknown): v is Scene => oneOf(SCENES, v);
+export const isRank = (v: unknown): v is Rank => oneOf(RANKS, v);
+const slug = (v: unknown): v is string => str(v) && /^[a-z][a-z0-9_-]{0,47}$/.test(v);
+const text = (v: unknown, max: number): string => (str(v) ? v.slice(0, max) : '');
+
+function parseEndingRefs(v: unknown): EndingRef[] {
+  if (!Array.isArray(v)) return [];
+  const out: EndingRef[] = [];
+  for (const e of v.slice(0, 12)) {
+    if (obj(e) && slug(e.id) && isRank(e.rank)) out.push({ id: e.id, rank: e.rank });
+  }
+  return out;
+}
+
+function parseMeterInfo(v: unknown): MeterInfo | null {
+  if (!obj(v) || !str(v.label) || !oneOf(METER_ICONS, v.icon) || !count(v.max)) return null;
+  return { label: v.label.slice(0, 30), icon: v.icon, max: Math.min(v.max, 9) };
+}
+
+export function parseAdventureSummary(v: unknown): AdventureSummary | null {
+  if (!obj(v) || !slug(v.id) || !oneOf(GENRES, v.genre) || !str(v.title)) return null;
+  return {
+    id: v.id,
+    genre: v.genre,
+    title: v.title.slice(0, 60),
+    tagline: text(v.tagline, 160),
+    cover: isScene(v.cover) ? v.cover : 'library-a',
+    meter: parseMeterInfo(v.meter),
+    endings: parseEndingRefs(v.endings),
+    scenes: Array.isArray(v.scenes) ? v.scenes.filter(isScene).slice(0, 40) : [],
+  };
+}
+
+function parseItems(v: unknown): Item[] {
+  if (!Array.isArray(v)) return [];
+  const out: Item[] = [];
+  for (const i of v.slice(0, 12)) {
+    if (obj(i) && slug(i.id) && str(i.label)) out.push({ id: i.id, label: i.label.slice(0, 40) });
+  }
+  return out;
+}
+
+function parseStateFields(m: Json): StateFields {
+  return {
+    meter: count(m.meter) ? Math.min(m.meter, 9) : null,
+    meter_delta: num(m.meter_delta) ? Math.trunc(m.meter_delta) : 0,
+    items: parseItems(m.items),
+    gained: Array.isArray(m.gained) ? m.gained.filter(slug).slice(0, 8) : [],
+  };
+}
+
+function parseFinalEnding(v: unknown): FinalEnding | null {
+  if (!obj(v) || !slug(v.id) || !str(v.title) || !isRank(v.rank)) return null;
+  return { id: v.id, title: v.title.slice(0, 60), rank: v.rank };
+}
 
 /** Unknown or missing hero ids fall back to the default rather than breaking the screen. */
 export function heroOr(v: unknown, fallback: Hero = DEFAULT_HERO): Hero {
@@ -357,6 +653,98 @@ export function parseServerMessage(raw: string): ServerMessage | null {
         max_score: m.max_score,
         score_token: m.score_token,
         hero: heroOr(m.character),
+        mode: m.mode === 'adventure' ? 'adventure' : 'quiz',
+        wizard: isWizard(m.wizard) ? m.wizard : null,
+        adventure: slug(m.adventure) ? m.adventure : null,
+        ending: parseFinalEnding(m.ending),
+        duration_ms: count(m.duration_ms) ? m.duration_ms : null,
+      };
+    case 'adventure_start': {
+      const adventure = parseAdventureSummary(m.adventure);
+      if (!str(m.game_id) || !adventure || !num(m.time_limit_s)) return null;
+      return {
+        type: 'adventure_start',
+        game_id: m.game_id,
+        adventure,
+        routed: m.routed === true,
+        hero: heroOr(m.character),
+        wizard: isWizard(m.wizard) ? m.wizard : 'sorceress',
+        meter: count(m.meter) ? Math.min(m.meter, 9) : null,
+        time_limit_s: m.time_limit_s,
+        choice_time_limit_s: num(m.choice_time_limit_s) ? m.choice_time_limit_s : m.time_limit_s,
+      };
+    }
+    case 'node': {
+      const kinds = ['choice', 'puzzle', 'story'] as const;
+      if (!slug(m.id) || !isScene(m.scene) || !count(m.step) || !oneOf(kinds, m.kind)) return null;
+      return {
+        type: 'node',
+        id: m.id,
+        scene: m.scene,
+        mood: oneOf(MOODS, m.mood) ? m.mood : 'ask',
+        step: m.step,
+        kind: m.kind,
+        ...parseStateFields(m),
+      };
+    }
+    case 'state':
+      return { type: 'state', ...parseStateFields(m) };
+    case 'choices': {
+      if (!Array.isArray(m.choices) || m.choices.length < 2 || m.choices.length > 4) return null;
+      const labels = m.choices.map((c) => (obj(c) && str(c.label) ? c.label.slice(0, 60) : null));
+      if (labels.some((l) => l === null) || !count(m.attempt)) return null;
+      return {
+        type: 'choices',
+        choices: labels as string[],
+        attempt: m.attempt,
+        time_limit_s: num(m.time_limit_s) ? m.time_limit_s : 15,
+      };
+    }
+    case 'unclear':
+      if (!count(m.attempts_left)) return null;
+      return { type: 'unclear', heard: text(m.heard, 200), attempts_left: m.attempts_left };
+    case 'chosen':
+      if (!count(m.index) || m.index > 3) return null;
+      return { type: 'chosen', index: m.index, heard: text(m.heard, 200), auto: m.auto === true };
+    case 'puzzle': {
+      const options = parseOptions(m.options);
+      if (!str(m.prompt) || !options || !num(m.time_limit_s)) return null;
+      return {
+        type: 'puzzle',
+        prompt: m.prompt.slice(0, 300),
+        options,
+        kind: m.kind === 'number' ? 'number' : 'text',
+        time_limit_s: m.time_limit_s,
+      };
+    }
+    case 'puzzle_result':
+      if (!bool(m.correct) || !count(m.points) || !count(m.score) || !count(m.streak)) return null;
+      return {
+        type: 'puzzle_result',
+        correct: m.correct,
+        timed_out: m.timed_out === true,
+        skipped: m.skipped === true,
+        heard: text(m.heard, 200),
+        answer: text(m.answer, 80),
+        points: m.points,
+        score: m.score,
+        streak: m.streak,
+      };
+    case 'wizard':
+      if (!str(m.key)) return null;
+      return { type: 'wizard', key: m.key.slice(0, 30), mood: oneOf(MOODS, m.mood) ? m.mood : null };
+    case 'ending':
+      if (!slug(m.id) || !str(m.title) || !isRank(m.rank) || !count(m.score)) return null;
+      return {
+        type: 'ending',
+        id: m.id,
+        title: m.title.slice(0, 60),
+        rank: m.rank,
+        scene: isScene(m.scene) ? m.scene : 'library-a',
+        mood: oneOf(MOODS, m.mood) ? m.mood : 'happy',
+        bonus: count(m.bonus) ? m.bonus : 0,
+        score: m.score,
+        endings: parseEndingRefs(m.endings),
       };
     case 'error': {
       const code = (ERROR_CODES as readonly string[]).includes(m.code as string)

@@ -139,8 +139,11 @@ bytes 4..  : PCM s16le mono 24 000 Hz
 ## 7. Post the score
 
 ```
-POST /api/scores { score_token, nickname } -> { ok: true }
+POST /api/scores { score_token, nickname } -> { ok: true, rank }
 ```
+
+`rank` is where an adventure run places on its language's all-time adventure board (1-based),
+or `null` for a quiz game.
 
 * Nickname: 3–16 characters. Letters (any script), digits, space, `_` and `-` are allowed, and
   it needs at least one letter.
@@ -151,8 +154,13 @@ POST /api/scores { score_token, nickname } -> { ok: true }
 * A score token can only be used once.
 
 ```
-GET /api/leaderboard?language=te-IN&period=today|all -> { entries: [{rank, nickname, score, correct, questions, character}] }
+GET /api/leaderboard?language=te-IN&period=today|all&mode=adventure|quiz&adventure=<id>
+  -> { language, period, mode, adventure, entries: [{rank, nickname, score, correct, questions,
+       character, wizard, adventure, duration_ms, ending: {id, rank} | null}] }
 ```
+
+`mode` defaults to `adventure`. `adventure` (optional) filters to one adventure. Rows are ordered
+by score, then by the faster `duration_ms` (server-timed), then the earlier submission.
 
 ## 8. Keep-alive
 
@@ -185,3 +193,82 @@ Story fields the client uses:
 
 In `/api/packs`, `story` is `{wizard, wizard_sprite, scene, chapters}` for quest packs and `null`
 otherwise, so the quest list can show each quest's scene and wizard before it starts.
+
+## 10. Adventures (branching voice RPG)
+
+Adventures are the main mode. An adventure is a story graph in `server/adventures/*.json`
+(schema and graph checks in `server/app/game/adventures.py`). At each node the wizard speaks a
+few lines over a painted scene. Then one of three things happens:
+- the player **says a choice**;
+- the player **answers a riddle**, where right and wrong lead to different nodes;
+- the story moves on by itself.
+
+Choices and riddles change the adventure's **meter** (time, spark, clues, power, nerve, lamp
+oil, sanity or battery) and the items in the **bag**. Later nodes branch on them, so earlier
+answers decide which scenes, lines and endings come next. Every line is fixed, reviewed text and
+pre-rendered audio, so no live language model is involved.
+
+### List
+
+```
+GET /api/adventures?language=te-en
+  -> { language, auto: bool, adventures: [{id, genre, title, tagline, cover, meter, endings, scenes}] }
+```
+
+| field | meaning |
+|---|---|
+| `genre` | `action`, `romance`, `mystery`, `scifi`, `horror`, `fantasy`, `comedy`, `thriller` |
+| `cover`, `scenes` | scene ids (`client/src/assets/art/backgrounds/<id>.png`); prefetch `scenes` while the lobby is open |
+| `meter` | `{label, icon, max}` or `null`. `icon` is one of `clock`, `heart`, `search`, `bolt`, `nerve`, `flame`, `star` |
+| `endings` | `[{id, rank}]`, with `rank` one of `gold`, `silver`, `bronze`. Titles stay secret until reached |
+| `auto` | `true` when the wizard's prologue can pick an adventure for the player |
+
+Hinglish and Tenglish text is Latin script. The voice reads a mixed-script version of the same
+line, which the client never sees.
+
+### Start
+
+```json
+{ "type": "start_adventure", "adventure": "monsoon-express" | "auto", "language": "te-en",
+  "character": "tara", "wizard": "enchantress" }
+```
+
+- **`auto`** plays the prologue: two questions whose answers pick one of the adventures. The
+  run then continues straight into that adventure, which arrives as a second `adventure_start`
+  with `routed: true`.
+- **Wizards:** `sorceress` (default), `sage`, `owl`, `enchantress`, `trickster`. Each has its own
+  voice, speaking speed and reaction lines.
+- **Errors (non-fatal):** a bad request gets `unknown_adventure`, `unknown_language` or
+  `unknown_character`.
+
+### Messages from the server
+
+| `type` | fields | client does |
+|---|---|---|
+| `adventure_start` | `game_id`, `adventure` (as in the list), `routed`, `character`, `wizard`, `meter`, `time_limit_s`, `choice_time_limit_s` | show the game screen on `adventure.cover`; start the genre's music |
+| `node` | `id`, `scene`, `mood`, `step`, `kind` (`choice`, `puzzle`, `story`), `meter`, `meter_delta`, `items` (`[{id, label}]`), `gained` (item ids) | swap to `scene`, set the wizard's `mood`, update meter and bag, toast newly gained items |
+| `choices` | `choices` (`[{label}]`, 2–3), `attempt`, `time_limit_s` | show numbered choice cards; the next `speak_start` is the question |
+| `unclear` | `heard`, `attempts_left` | nothing matched: shake the cards. The wizard asks again (a new `speak_start`, then `listen`) |
+| `chosen` | `index`, `heard`, `auto` | light the chosen card. `auto: true` means three tries failed and the wizard picked the first card |
+| `puzzle` | `prompt`, `options` (3, shuffled), `kind`, `time_limit_s` | show the riddle's options |
+| `puzzle_result` | `correct`, `timed_out`, `skipped`, `heard`, `answer`, `points`, `score`, `streak` | mark the right option, play the sound |
+| `state` | `meter`, `meter_delta`, `items`, `gained` | after a choice or riddle changes the meter or bag |
+| `wizard` | `key`, `mood` | the wizard's own reaction line follows (`greet`, `choose_again`, `chose_for_you`, `puzzle_right`, `puzzle_wrong`, `ending_good`, `ending_bad`) |
+| `ending` | `id`, `title`, `rank`, `scene`, `mood`, `bonus`, `score`, `endings` | show the ending scene; its lines follow as speech |
+| `game_over` | the §3 fields plus `mode: "adventure"`, `adventure`, `ending` (`{id, title, rank}`), `duration_ms`, `wizard`, `choices` | score screen: record the ending on the player's shelf, offer the leaderboard and share card |
+
+`listen`, `eos`, `heard_nothing`, `speak_*` and audio frames work as in §3–§5. The mic streams
+only between `listen` and the matching `chosen`, `unclear` or `puzzle_result`.
+
+### Hearing choices
+
+Players say a card's number ("two", "दो", "రెండు", also English numbers written in Indic script)
+or its words; each choice also has extra keywords per language. Words are compared by sound
+across scripts, so "ల్యాబ్" matches "lab". Saying two cards' words, or nothing clear, is
+`unclear`. Prisma gets the Latin-script card words as bias keywords.
+
+### Scoring
+
+Riddles score like quiz answers (§6). Reaching an ending adds 500 (gold), 300 (silver) or 100
+(bronze). The server times the run from `adventure_start` to the ending. That time goes into the
+score token as `duration_ms` and breaks ties on the leaderboard.

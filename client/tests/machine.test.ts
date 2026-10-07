@@ -59,6 +59,11 @@ const GAME_OVER: ServerMessage = {
   max_score: 310,
   score_token: 'tok',
   hero: 'arjun',
+  mode: 'quiz',
+  wizard: null,
+  adventure: null,
+  ending: null,
+  duration_ms: null,
 };
 
 /** Feeds messages through the machine, collecting every effect. */

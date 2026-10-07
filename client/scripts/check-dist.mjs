@@ -9,10 +9,17 @@ const DIST = fileURLToPath(new URL('../dist/', import.meta.url));
 const ALLOWED_ORIGINS = new Set(['https://challenges.cloudflare.com']);
 // Namespace URIs and the like are identifiers, not network requests.
 const HARMLESS_URLS = [/^https?:\/\/www\.w3\.org\//];
-const MAX_TOTAL_BYTES = 400 * 1024;
+// The app shell (HTML, JS, CSS, font, icons) is what a first visit must download: keep it small.
+// Painted art and music load as they are needed and get their own caps.
+const MAX_SHELL_BYTES = 400 * 1024;
+const MEDIA = /^assets\/.+\.(png|mp3)$/;
+const MAX_IMAGE_BYTES = 80 * 1024;
+const MAX_TRACK_BYTES = 1300 * 1024;
+const MAX_MEDIA_BYTES = 9 * 1024 * 1024;
 
 const problems = [];
 let total = 0;
+let media = 0;
 
 function walk(dir) {
   return readdirSync(dir).flatMap((name) => {
@@ -23,7 +30,14 @@ function walk(dir) {
 
 for (const path of walk(DIST)) {
   const name = relative(DIST, path).replaceAll('\\', '/');
-  total += statSync(path).size;
+  const size = statSync(path).size;
+  if (MEDIA.test(name)) {
+    media += size;
+    const cap = name.endsWith('.mp3') ? MAX_TRACK_BYTES : MAX_IMAGE_BYTES;
+    if (size > cap) problems.push(`${name}: ${Math.round(size / 1024)} KB, over ${cap / 1024} KB`);
+    continue;
+  }
+  total += size;
   if (!/\.(html|js|css|webmanifest)$/.test(name)) continue;
   const text = readFileSync(path, 'utf8');
 
@@ -51,12 +65,17 @@ for (const path of walk(DIST)) {
   }
 }
 
-if (total > MAX_TOTAL_BYTES) {
-  problems.push(`dist is ${Math.round(total / 1024)} KB, over the ${MAX_TOTAL_BYTES / 1024} KB budget`);
+if (total > MAX_SHELL_BYTES) {
+  problems.push(`app shell is ${Math.round(total / 1024)} KB, over the ${MAX_SHELL_BYTES / 1024} KB budget`);
+}
+if (media > MAX_MEDIA_BYTES) {
+  problems.push(`media is ${Math.round(media / 1024)} KB, over the ${MAX_MEDIA_BYTES / 1024} KB budget`);
 }
 
 if (problems.length > 0) {
   console.error(`dist/ check failed:\n  ${[...new Set(problems)].join('\n  ')}`);
   process.exit(1);
 }
-console.log(`dist/ check passed: ${Math.round(total / 1024)} KB total, nothing the CSP would block.`);
+console.log(
+  `dist/ check passed: app shell ${Math.round(total / 1024)} KB, media ${Math.round(media / 1024)} KB, nothing the CSP would block.`,
+);

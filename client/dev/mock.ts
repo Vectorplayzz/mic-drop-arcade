@@ -2,7 +2,8 @@
  * A stand-in for the game server, for working on the client without Redis, Postgres or a Gnani
  * key: `npm run dev:mock`. It speaks docs/PROTOCOL.md closely enough to drive every screen, but
  * it is not the server: "speech" is a synthesised tone, and since nothing here can recognise an
- * answer, any spoken reply is marked right on odd questions and wrong on even ones.
+ * answer, any spoken reply is marked right on odd questions and wrong on even ones. In the mock
+ * adventure the first spoken reply to each choice is "unclear" and the second picks card one.
  *
  * Development only. It is never part of the production build.
  */
@@ -133,6 +134,9 @@ interface Score {
   correct: number;
   questions: number;
   language: string;
+  adventure?: string;
+  durationMs?: number;
+  rank?: string;
 }
 const scores: Score[] = [
   { nickname: 'PixelPanda', score: 610, correct: 4, questions: 5, language: 'te-IN' },
@@ -154,6 +158,36 @@ const summary = (p: MockPack) => ({
     ? { wizard: p.story.wizard, wizard_sprite: p.story.wizard_sprite, scene: p.story.scene, chapters: p.story.chapters.length }
     : null,
 });
+
+const MOCK_ADVENTURE = {
+  summary: {
+    id: 'mock-fest',
+    genre: 'romance',
+    title: 'Mock Fest Night',
+    tagline: 'A tiny two-step adventure for working on the client.',
+    cover: 'fest-gate',
+    meter: { label: 'Spark', icon: 'heart', max: 4 },
+    endings: [
+      { id: 'together', rank: 'gold' },
+      { id: 'solo', rank: 'bronze' },
+    ],
+    scenes: ['fest-gate', 'fest-lab', 'fest-dawn'],
+  },
+  choices: ['Go straight to the lab', 'Get chai for both of us', 'Tell Kiran to fix it alone'],
+  lines: {
+    gate: "It's Techfest night. Your project partner Kiran texts: our robot won't start!",
+    chose: 'You grab two chais on the way. Kiran smiles.',
+    lab: 'Kiran is bent over the robot, wires everywhere.',
+  },
+  riddle: {
+    prompt: 'Twelve volts across a resistor, two amps flowing. How many ohms?',
+    options: ['10', '24', '6'],
+  },
+  endings: {
+    gold: { id: 'together', title: 'Fest Night Forever', text: 'You talk until the sky turns pink.' },
+    bronze: { id: 'solo', title: 'Solo Champion', text: 'You head home early. Maybe next fest.' },
+  },
+};
 
 function maxScore(n: number): number {
   let total = 0;
@@ -204,6 +238,12 @@ const api: Connect.NextHandleFunction = (req, res, next) => {
           packs: PACKS.filter((p) => !language || p.language === language).map(summary),
         });
       }
+      case 'GET /api/adventures':
+        return json(res, 200, {
+          language: url.searchParams.get('language'),
+          auto: false,
+          adventures: [MOCK_ADVENTURE.summary],
+        });
       case 'POST /api/session': {
         const body = await readBody(req);
         if (!req.headers.origin) return json(res, 403, { detail: 'forbidden_origin' });
@@ -227,7 +267,7 @@ const api: Connect.NextHandleFunction = (req, res, next) => {
         }
         scoreTokens.delete(token);
         scores.push({ nickname, ...claim });
-        return json(res, 200, { ok: true });
+        return json(res, 200, { ok: true, rank: 1 });
       }
       case 'GET /api/leaderboard': {
         const language = url.searchParams.get('language');
@@ -242,6 +282,9 @@ const api: Connect.NextHandleFunction = (req, res, next) => {
             correct: s.correct,
             questions: s.questions,
             character: s.character ?? 'arjun',
+            adventure: s.adventure ?? null,
+            duration_ms: s.durationMs ?? null,
+            ending: s.rank ? { id: 'mock', rank: s.rank } : null,
           }));
         return json(res, 200, { language, period: url.searchParams.get('period'), entries });
       }
@@ -328,7 +371,14 @@ class MockSession {
       this.onAudio(data);
       return;
     }
-    let msg: { type?: string; pack_id?: string; t?: number; character?: string };
+    let msg: {
+      type?: string;
+      pack_id?: string;
+      t?: number;
+      character?: string;
+      wizard?: string;
+      adventure?: string;
+    };
     try {
       msg = JSON.parse(data.toString());
     } catch {
@@ -336,7 +386,18 @@ class MockSession {
     }
     if (msg.type === 'ping') this.send({ type: 'pong', t: msg.t ?? null });
     else if (msg.type === 'quit') this.ws.close(1000);
-    else if (msg.type === 'start' && !this.playing) {
+    else if (msg.type === 'start_adventure' && !this.playing) {
+      if (msg.adventure !== MOCK_ADVENTURE.summary.id) {
+        this.send({ type: 'error', code: 'unknown_adventure', message: 'Not available.', fatal: false });
+      } else if (++this.games > MAX_GAMES) {
+        this.fail('session_limit', "That's the most games for one session.", 4429);
+      } else {
+        this.playing = true;
+        void this.adventure(msg.character ?? 'arjun', msg.wizard ?? 'sorceress').finally(
+          () => (this.playing = false),
+        );
+      }
+    } else if (msg.type === 'start' && !this.playing) {
       const pack = PACKS.find((p) => p.id === msg.pack_id);
       if (!pack) {
         this.send({
@@ -410,6 +471,106 @@ class MockSession {
   private async tell(kind: string, text: string, mood: string, extra: Record<string, unknown> = {}): Promise<void> {
     this.send({ type: 'story', kind, text, mood, ...extra });
     await this.say(text, true);
+  }
+
+  /** Open the mic window after `prompt` is spoken; true when the player said something. */
+  private async listenOnce(index: number): Promise<boolean> {
+    const prompt = this.speaking;
+    this.speechMs = this.silenceMs = 0;
+    this.listening = true;
+    this.send({ type: 'listen', index, barge_in: true });
+    let spoke = false;
+    while (this.alive && !spoke) {
+      const deadline = (prompt?.endsAt ?? Date.now()) + (TIME_LIMIT_S + GRACE_S) * 1000;
+      if (Date.now() >= deadline) break;
+      spoke = await Promise.race([
+        new Promise<boolean>((resolve) => (this.heardSpeech = () => resolve(true))),
+        sleep(100).then(() => false),
+      ]);
+    }
+    if (spoke) {
+      this.send({ type: 'eos' });
+      await sleep(400);
+    }
+    this.listening = false;
+    this.heardSpeech = null;
+    return spoke;
+  }
+
+  private async adventure(character: string, wizard: string): Promise<void> {
+    const a = MOCK_ADVENTURE;
+    const gameId = `mock-${Date.now()}`;
+    const started = Date.now();
+    let meter = 2;
+    let score = 0;
+    const items: Array<{ id: string; label: string }> = [];
+    this.send({
+      type: 'adventure_start',
+      game_id: gameId,
+      adventure: a.summary,
+      routed: false,
+      character,
+      wizard,
+      meter,
+      time_limit_s: TIME_LIMIT_S,
+      choice_time_limit_s: 15,
+    });
+    this.send({ type: 'wizard', key: 'greet', mood: 'happy' });
+    await this.say('Come, let me tell you a story.', true);
+
+    // A choice: the first reply is "unclear", the second picks card one.
+    this.send({ type: 'node', id: 'gate', scene: 'fest-gate', mood: 'ask', step: 1, kind: 'choice', meter, meter_delta: 0, items, gained: [] });
+    await this.say(a.lines.gate, true);
+    this.send({ type: 'choices', choices: a.choices.map((label) => ({ label })), attempt: 1, time_limit_s: 15 });
+    await this.say('What do you do?', false);
+    let heard = await this.listenOnce(1);
+    if (!this.alive) return;
+    this.send({ type: 'unclear', heard: heard ? '(mock) mumble' : '', attempts_left: 2 });
+    await this.say('Say one, two or three, or the words on a card.', false);
+    heard = await this.listenOnce(1);
+    if (!this.alive) return;
+    this.send({ type: 'chosen', index: 0, heard: heard ? '(mock) one' : '', auto: !heard });
+    meter += 1;
+    items.push({ id: 'chai', label: 'Two chais' });
+    this.send({ type: 'state', meter, meter_delta: 1, items, gained: ['chai'] });
+    await this.say(a.lines.chose, true);
+
+    // A riddle: any spoken answer is right.
+    this.send({ type: 'node', id: 'lab', scene: 'fest-lab', mood: 'ask', step: 2, kind: 'puzzle', meter, meter_delta: 0, items, gained: [] });
+    await this.say(a.lines.lab, true);
+    this.send({ type: 'puzzle', prompt: a.riddle.prompt, options: a.riddle.options, kind: 'number', time_limit_s: TIME_LIMIT_S });
+    await this.say(a.riddle.prompt, false);
+    heard = await this.listenOnce(2);
+    if (!this.alive) return;
+    const points = heard ? 140 : 0;
+    score += points;
+    this.send({ type: 'puzzle_result', correct: heard, timed_out: !heard, skipped: false, heard: heard ? '6' : '', answer: '6', points, score, streak: heard ? 1 : 0 });
+    this.send({ type: 'wizard', key: heard ? 'puzzle_right' : 'puzzle_wrong', mood: null });
+    await this.say(heard ? 'Wonderful!' : 'Not quite.', true);
+
+    const rank = heard ? 'gold' : 'bronze';
+    const ending = a.endings[rank];
+    score += rank === 'gold' ? 500 : 100;
+    this.send({ type: 'ending', id: ending.id, title: ending.title, rank, scene: 'fest-dawn', mood: heard ? 'cheer' : 'sad', bonus: rank === 'gold' ? 500 : 100, score, endings: a.summary.endings });
+    await this.say(ending.text, true);
+    const scoreToken = `mock-score-${gameId}`;
+    const durationMs = Date.now() - started;
+    scoreTokens.set(scoreToken, { score, correct: Number(heard), questions: 1, language: 'en-IN', adventure: a.summary.id, durationMs, rank });
+    this.send({
+      type: 'game_over',
+      game_id: gameId,
+      mode: 'adventure',
+      score,
+      correct: Number(heard),
+      questions: 1,
+      max_score: 1200,
+      score_token: scoreToken,
+      character,
+      wizard,
+      adventure: a.summary.id,
+      ending: { id: ending.id, title: ending.title, rank },
+      duration_ms: durationMs,
+    });
   }
 
   private async play(pack: MockPack, character: string): Promise<void> {

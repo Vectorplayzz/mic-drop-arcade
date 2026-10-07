@@ -1,5 +1,5 @@
-import type { Hero } from '../protocol/messages';
-import { heroUrl } from '../ui/art';
+import type { Hero, Rank, Scene } from '../protocol/messages';
+import { heroUrl, sceneUrl } from '../ui/art';
 
 /**
  * The shareable score card: drawn on a canvas in the browser and exported as a PNG. Nothing is
@@ -17,7 +17,24 @@ export interface ScoreCard {
   url: string;
   /** The player's hero, drawn big on the card. */
   hero: Hero;
+  /** Adventure runs: the ending reached, time and level, drawn over the adventure's scene. */
+  run?: {
+    nickname: string;
+    adventureTitle: string;
+    endingTitle: string;
+    rank: Rank;
+    timeText: string;
+    level: number;
+    scene: Scene;
+    /** "ENDING REACHED" and "Can you beat me?" in the player's language (Latin script). */
+    headline: string;
+    challenge: string;
+    /** Leaderboard place, once submitted. */
+    place: number | null;
+  };
 }
+
+const RANK_COLOUR: Record<Rank, string> = { gold: '#ffd23f', silver: '#d6dcef', bronze: '#e08a4a' };
 
 async function loadImage(src: string): Promise<HTMLImageElement | null> {
   const img = new Image();
@@ -106,6 +123,10 @@ export async function drawScoreCard(canvas: HTMLCanvasElement, card: ScoreCard):
   ctx.fillStyle = CYAN;
   ctx.fillText('ARCADE', W / 2, 284);
 
+  if (card.run) {
+    await drawRun(ctx, card, card.run);
+    return;
+  }
   // The hero at a whole-number scale (128 px → 384 px) keeps every pixel square.
   const hero = await loadImage(heroUrl(card.hero));
   if (hero) {
@@ -136,6 +157,62 @@ export async function drawScoreCard(canvas: HTMLCanvasElement, card: ScoreCard):
   ctx.fillStyle = CYAN;
   ctx.font = `28px ${PIXEL_FONT}`;
   ctx.fillText(card.url.replace(/^https?:\/\//, ''), W / 2, 1250);
+}
+
+async function drawRun(
+  ctx: CanvasRenderingContext2D,
+  card: ScoreCard,
+  run: NonNullable<ScoreCard['run']>,
+): Promise<void> {
+  ctx.textAlign = 'center';
+  // The adventure's painted scene behind the hero, at a whole-number scale (448 → 896 px).
+  const scene = await loadImage(sceneUrl(run.scene));
+  if (scene) {
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(scene, (W - 896) / 2, 300, 896, 512);
+    ctx.fillStyle = 'rgba(11, 10, 31, 0.25)';
+    ctx.fillRect((W - 896) / 2, 300, 896, 512);
+  }
+  const hero = await loadImage(heroUrl(card.hero));
+  if (hero) {
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(hero, (W - 384) / 2, 428, 384, 384);
+  }
+
+  ctx.fillStyle = WHITE;
+  ctx.font = `600 52px ${TEXT_FONT}`;
+  ctx.fillText(fit(ctx, run.nickname || 'Player', W - 260), W / 2, 880);
+  ctx.fillStyle = CYAN;
+  ctx.font = `24px ${PIXEL_FONT}`;
+  ctx.fillText(`LV ${run.level}${run.place ? `  ·  #${run.place}` : ''}`, W / 2, 925);
+
+  ctx.fillStyle = RANK_COLOUR[run.rank];
+  ctx.font = `28px ${PIXEL_FONT}`;
+  ctx.fillText(`★ ${run.headline} ★`, W / 2, 985);
+  ctx.font = `600 50px ${TEXT_FONT}`;
+  ctx.fillText(fit(ctx, run.endingTitle, W - 240), W / 2, 1050);
+  ctx.fillStyle = '#a9a6d6';
+  ctx.font = `36px ${TEXT_FONT}`;
+  ctx.fillText(fit(ctx, run.adventureTitle, W - 260), W / 2, 1100);
+
+  ctx.fillStyle = YELLOW;
+  ctx.font = `40px ${PIXEL_FONT}`;
+  ctx.fillText(`${card.score} PTS  ${run.timeText}`, W / 2, 1170);
+
+  ctx.fillStyle = WHITE;
+  ctx.font = `600 34px ${TEXT_FONT}`;
+  ctx.fillText(fit(ctx, run.challenge, W - 260), W / 2, 1222);
+  ctx.fillStyle = CYAN;
+  ctx.font = `26px ${PIXEL_FONT}`;
+  ctx.fillText(card.url.replace(/^https?:\/\//, ''), W / 2, 1262);
+}
+
+/** Shrink-to-fit one line: ellipsis when even the smallest size overflows. */
+function fit(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): string {
+  if (ctx.measureText(text).width <= maxWidth) return text;
+  let out = text;
+  while (out.length > 1 && ctx.measureText(`${out}…`).width > maxWidth) out = out.slice(0, -1);
+  return `${out}…`;
 }
 
 function toBlob(canvas: HTMLCanvasElement): Promise<Blob> {

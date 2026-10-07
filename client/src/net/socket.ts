@@ -49,6 +49,11 @@ export class GameSocket {
     this.send({ type: 'start', pack_id: packId, character: hero, wizard });
   }
 
+  /** `adventure` is an adventure id, or "auto" to let the wizard's prologue pick (§10). */
+  startAdventure(adventure: string, language: string, hero: string, wizard: string): void {
+    this.send({ type: 'start_adventure', adventure, language, character: hero, wizard });
+  }
+
   sendAudio(frame: ArrayBuffer): void {
     const ws = this.ws;
     if (ws?.readyState === WebSocket.OPEN && ws.bufferedAmount < MAX_BUFFERED_BYTES) {
