@@ -30,12 +30,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from app.game.matching import normalize
 from app.game.packs import Pack, Question
 
-LANG_NAMES = {"te-IN": "Telugu", "hi-IN": "Hindi", "hi-en": "Hinglish (Hindi-English mix)"}
+LANG_NAMES = {
+    "te-IN": "Telugu",
+    "hi-IN": "Hindi",
+    "hi-en": "Hinglish (Hindi-English mix)",
+    "te-en": "Tenglish (Telugu-English mix)",
+    "en-IN": "Indian English",
+}
 SCRIPT_RULES = {
     "te-IN": "Write prompts in Telugu script.",
     "hi-IN": "Write prompts in Devanagari script.",
     "hi-en": "Write Hindi words in Devanagari and English words in Latin script, "
     "as people actually mix them.",
+    "te-en": "Write Telugu words in Telugu script and English words in Latin script, "
+    "as people in Hyderabad actually mix them.",
+    "en-IN": "Write in simple Indian English.",
 }
 
 QUESTION_SCHEMA = {
@@ -75,7 +84,8 @@ def build_prompt(language: str, topic: str, count: int) -> str:
         "Rules:\n"
         "- Each question is one short sentence, under 25 words, easy to understand by ear.\n"
         "- Write numbers in the question as words, never digits.\n"
-        "- The answer is one to three words, or a number.\n"
+        "- The answer is one to three words, or a number. Avoid answers that are a formula, an\n"
+        "abbreviation or end in a single short syllable; they are hard to hear when spoken.\n"
         "- 'answers' lists every accepted way to say the answer: native script, the common "
         "English or romanised form, and common synonyms. 1 to 6 items.\n"
         "- For number answers set kind to 'number' and put digits in 'answers' "

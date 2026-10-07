@@ -163,7 +163,7 @@ class ScoreRequest(BaseModel):
     nickname: str = Field(min_length=1, max_length=64)
 
 
-Language = Literal["te-IN", "hi-IN", "hi-en"]
+Language = Literal["te-IN", "hi-IN", "hi-en", "en-IN", "te-en"]
 
 
 def _register_routes(app: FastAPI) -> None:

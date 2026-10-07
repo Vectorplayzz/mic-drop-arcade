@@ -81,7 +81,7 @@ class Pack(BaseModel):
     schema_version: Literal[1] = Field(alias="schema", default=1)
     id: Slug
     title: Annotated[str, StringConstraints(min_length=3, max_length=60)]
-    language: Literal["te-IN", "hi-IN", "hi-en"]
+    language: Literal["te-IN", "hi-IN", "hi-en", "en-IN", "te-en"]
     topic: Annotated[str, StringConstraints(min_length=2, max_length=40)]
     version: int = Field(ge=1)
     source: Literal["evon-v3.3", "hand", "creator"]

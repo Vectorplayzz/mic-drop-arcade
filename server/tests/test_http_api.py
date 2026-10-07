@@ -117,7 +117,7 @@ async def test_packs_and_leaderboard_reads(live):
             empty = (await c.get("/api/leaderboard", params={"language": "te-IN"})).json()
             assert empty["entries"] == []
             st = (await c.get("/api/status")).json()
-            assert st["open"] is True and len(st["languages"]) == 3
+            assert st["open"] is True and len(st["languages"]) == 5
 
 
 def test_docs_disabled_in_production():

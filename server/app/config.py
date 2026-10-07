@@ -22,7 +22,7 @@ TURNSTILE_TEST_SECRETS = {
     "3x0000000000000000000000000000000AA",
 }
 
-LanguageCode = Literal["te-IN", "hi-IN", "hi-en"]
+LanguageCode = Literal["te-IN", "hi-IN", "hi-en", "en-IN", "te-en"]
 
 
 class Settings(BaseSettings):
