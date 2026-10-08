@@ -63,6 +63,7 @@ const PROBLEM_ICONS: Partial<Record<ProblemCode, SpriteName>> = {
   offline: 'plug',
   connection_lost: 'plug',
   closed_for_today: 'clock',
+  audio_limit: 'heart',
   maintenance: 'clock',
   rate_limited: 'clock',
   idle: 'clock',
@@ -712,7 +713,9 @@ export class App {
     this.game = initialState();
     const terminal = code === 'closed_for_today' || code === 'audio_limit';
     this.showProblem(code, {
-      detail: error?.message,
+      // The daily-limit screen says it all in the player's language; the server's English
+      // note would only repeat it.
+      detail: code === 'audio_limit' ? undefined : error?.message,
       retry: terminal ? () => void this.boot() : () => void this.start(),
     });
   }
@@ -742,10 +745,21 @@ export class App {
     window.clearInterval(this.retryTimer);
     const { title, body } = this.problemText(code);
     const actions: Array<{ label: string; primary?: boolean; run(): void }> = [];
-    if (options.retry) actions.push({ label: this.t.retry, primary: true, run: options.retry });
-    else actions.push({ label: this.t.reload, primary: true, run: () => location.reload() });
-    if (this.status?.open) actions.push({ label: this.t.home, run: () => this.goHome() });
-    const view = problemScreen({
+    let view: ProblemScreen | null = null;
+    if (code === 'audio_limit') {
+      // Out of play for today: nothing to retry, so the main action is passing the game on.
+      actions.push({
+        label: this.t.shareGame,
+        primary: true,
+        run: () => void this.shareGame((note) => view?.setDetail(note)),
+      });
+      actions.push({ label: this.t.home, run: () => void this.boot() });
+    } else {
+      if (options.retry) actions.push({ label: this.t.retry, primary: true, run: options.retry });
+      else actions.push({ label: this.t.reload, primary: true, run: () => location.reload() });
+      if (this.status?.open) actions.push({ label: this.t.home, run: () => this.goHome() });
+    }
+    view = problemScreen({
       icon: PROBLEM_ICONS[code] ?? 'cross',
       title,
       body,
@@ -763,6 +777,26 @@ export class App {
     }
     this.show(view);
     return view;
+  }
+
+  /** Share the game's link: the system share sheet where there is one, else the clipboard. */
+  private async shareGame(note: (text: string) => void): Promise<void> {
+    const url = location.origin;
+    const text = this.t.shareGameText;
+    if (typeof navigator.share === 'function') {
+      try {
+        await navigator.share({ title: 'Mic Drop Arcade', text, url });
+        return;
+      } catch (err) {
+        if (err instanceof DOMException && err.name === 'AbortError') return; // closed the sheet
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(`${text} ${url}`);
+      note(this.t.linkCopied);
+    } catch {
+      note(url); // no clipboard either: show the link to copy by hand
+    }
   }
 
   private showApiProblem(err: unknown, retry: () => void): void {
