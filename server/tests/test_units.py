@@ -217,6 +217,53 @@ async def test_tts_streams_and_reuses_connection(clean_gnani):
     await tts.close()
 
 
+@pytest.mark.parametrize("trailer", [True, False])
+async def test_tts_lines_never_get_each_others_audio(clean_gnani, trailer):
+    # Timbre sends a "Streaming completed" trailer after the final chunk and reuses the request
+    # id. A trailer left unread used to end the next line early (empty) and hand the line after
+    # it the previous line's audio.
+    clean_gnani.state.tts_s_per_char = 0.05
+    clean_gnani.state.tts_trailer = trailer
+    tts = TtsStreamer(url=clean_gnani.tts_url, api_key=API_KEY, model="timbre-v2.5")
+    for text in ["one", "a longer line", "mid line", "x", "the final line of five"]:
+        audio = b"".join([c async for c in tts.stream(text, voice="Shlok", language="en-IN")])
+        assert len(audio) == int(len(text) * 0.05 * 24000) * 2, text
+    await tts.close()
+
+
+async def test_tts_line_ends_without_waiting_for_the_trailer(clean_gnani):
+    # The trailer is read when the next line starts, so a missing one costs nothing on the
+    # line itself, and the next line reconnects rather than trusting the connection.
+    clean_gnani.state.tts_trailer = False
+    tts = TtsStreamer(url=clean_gnani.tts_url, api_key=API_KEY, model="timbre-v2.5")
+    t0 = time.monotonic()
+    audio = b"".join([c async for c in tts.stream("hello", voice="Shlok", language="en-IN")])
+    assert audio and tts.complete and time.monotonic() - t0 < 1.0
+    audio = b"".join([c async for c in tts.stream("again", voice="Shlok", language="en-IN")])
+    assert audio and tts.complete
+    assert clean_gnani.state.tts_connections == 2
+    await tts.close()
+
+
+async def test_tts_stray_trailer_drops_the_connection_instead_of_shifting_lines(clean_gnani):
+    clean_gnani.state.tts_s_per_char = 0.05
+    tts = TtsStreamer(url=clean_gnani.tts_url, api_key=API_KEY, model="timbre-v2.5")
+    clean_gnani.state.tts_stray_trailers = 1  # one trailer too many after the first line
+    got = {}
+    for text in ["one", "a longer line", "mid line"]:
+        try:
+            got[text] = b"".join(
+                [c async for c in tts.stream(text, voice="Shlok", language="en-IN")]
+            )
+        except GnaniError:
+            got[text] = None  # the out-of-step line is lost, never mislabelled
+            assert not tts.complete
+    for text, audio in got.items():
+        assert audio is None or len(audio) == int(len(text) * 0.05 * 24000) * 2, text
+    assert got["mid line"] is not None
+    await tts.close()
+
+
 async def test_tts_bad_key(clean_gnani):
     tts = TtsStreamer(
         url=clean_gnani.tts_url, api_key="nope", model="timbre-v2.5", connect_retries=0
@@ -654,23 +701,60 @@ def test_wizard_picks_the_narrator_voice():
     from app.game.languages import (
         DEFAULT_WIZARD,
         LANGUAGES,
-        VOICES,
+        VOICE_CATALOG,
+        WIZARD_GENDER,
         WIZARD_VOICES,
         WIZARDS,
-        route,
         route_for_game,
+        route_for_wizard,
         valid_wizard,
     )
 
     pack = parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes())
     assert DEFAULT_WIZARD == "sorceress"
     assert route_for_game(pack, "sorceress").voice == "Nalini"
-    assert route_for_game(pack, "sage").voice == "Jalaj"
+    assert route_for_game(pack, "sage").voice == "Roopesh"
     assert route_for_game(pack, "owl").voice == "Omkar"
-    # Every wizard has a real Timbre voice in every game language.
     for code in LANGUAGES:
+        # Every wizard sounds different (but in Telugu and Tenglish, where both women share
+        # Poorvi by choice, by pace), and male wizards have male voices.
+        sounds = {(WIZARD_VOICES[code][w], route_for_wizard(code, w).speed) for w in WIZARDS}
+        assert len(sounds) == len(WIZARDS), code
         for wizard in WIZARDS:
-            assert WIZARD_VOICES[code][wizard] in VOICES[route(code).tts_lang], (code, wizard)
+            r = route_for_wizard(code, wizard)
+            assert r.voice in VOICE_CATALOG, (code, wizard)
+            assert VOICE_CATALOG[r.voice][1] == WIZARD_GENDER[wizard], (code, wizard)
+            # The text's language goes to Timbre, except that hi-en belongs to Poorvi: Hindi
+            # voices read Hinglish as hi-IN.
+            expected = {"te-en": "te-IN", "hi-en": "hi-en" if r.voice == "Poorvi" else "hi-IN"}
+            assert r.tts_lang == expected.get(code, code), (code, wizard)
     for bad in (None, "", "dragon", "SAGE", 3, ["owl"]):
         assert valid_wizard(bad) is None
     assert all(valid_wizard(w) == w for w in WIZARDS)
+
+
+# ---------------------------------------------------------------- speech playout ---
+def test_playout_tracks_when_the_client_finishes(monkeypatch):
+    from app.ws import play
+
+    now = [100.0]
+    monkeypatch.setattr(play.time, "monotonic", lambda: now[0])
+    second = play.TTS_BYTES_PER_S
+    lead = play.PLAYOUT_LEAD_S
+
+    # A cached line arrives at once: it ends one lead after sending plus its length.
+    p = play.Playout()
+    for _ in range(5):
+        p.sent(second // 5)
+    assert p.ends_at == pytest.approx(100.0 + lead + 1.0)
+
+    # A live line whose first chunk takes 1.5 s, then streams slower than real time: the
+    # client's queue runs dry, so playback ends well after "start + length".
+    p = play.Playout()
+    now[0] = 101.5
+    p.sent(second // 5)
+    for _ in range(4):
+        now[0] += 0.4  # 200 ms of audio every 400 ms
+        p.sent(second // 5)
+    assert p.ends_at == pytest.approx(now[0] + lead + 0.2)
+    assert p.ends_at > 100.0 + 1.0 + 1.5

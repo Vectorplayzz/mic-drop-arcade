@@ -20,7 +20,7 @@ from app.game.adventures import (
     parse_adventure,
     spoken,
 )
-from app.game.languages import LANGUAGES, VOICES, WIZARD_VOICES, WIZARDS, route_for_wizard
+from app.game.languages import LANGUAGES, VOICE_CATALOG, WIZARD_VOICES, WIZARDS, route_for_wizard
 from app.game.wizards import KEYS, WizardLines
 from app.ws.adventure import adventure_max_score, puzzle_correct
 
@@ -262,15 +262,16 @@ def test_every_wizard_has_a_voice_and_lines():
     for lang in LANGUAGES:
         for wizard in WIZARDS:
             r = route_for_wizard(lang, wizard)
-            assert r.voice in VOICES[r.tts_lang]
+            assert r.voice in VOICE_CATALOG
             for key in KEYS:
                 line = lines.get(lang, wizard, key)
                 assert line.text and line.tts
                 if lang in ("hi-en", "te-en"):
                     assert not _INDIC.search(line.text)
-    # Where Timbre has enough voices, every wizard sounds different.
-    for lang in ("te-IN", "hi-IN", "en-IN", "te-en"):
-        assert len(set(WIZARD_VOICES[lang].values())) == len(WIZARDS)
+    # Every wizard has its own voice, except the two women sharing Poorvi in Telugu/Tenglish.
+    for lang in LANGUAGES:
+        shared = 1 if lang in ("te-IN", "te-en") else 0
+        assert len(set(WIZARD_VOICES[lang].values())) == len(WIZARDS) - shared
 
 
 def test_wizard_lines_must_be_complete(tmp_path):

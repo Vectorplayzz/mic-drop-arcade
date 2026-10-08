@@ -57,10 +57,12 @@ def collect(
 
     The player's wizard picks the voice and speed, so a line is rendered once per wizard.
     """
-    items: dict[tuple[str, str, float, str], Item] = {}
+    # Keyed like the audio cache (voice, Timbre language, speed, text): Hindi and Hinglish (and
+    # Telugu and Tenglish) can share a voice and a spoken line, which is rendered only once.
+    items: dict[tuple[str, str, str, str], Item] = {}
 
     def add(r: LanguageRoute, text: str) -> None:
-        items.setdefault((r.code, r.voice, r.speed, text), (r, text))
+        items.setdefault((r.voice, r.tts_lang, f"{r.speed:.2f}", text.strip()), (r, text))
 
     # Adventures first (the main mode), then the wizards' own lines, then the quiz.
     if adventures is not None:
@@ -113,11 +115,15 @@ async def render(
                         language=r.tts_lang,
                         speed=r.speed,
                     )
+                    if len(pcm) < 2400:  # under 50 ms: Timbre returned no real audio
+                        raise GnaniError("tts returned no audio", retryable=True)
                     await cache.put(key, pcm)
                     print(f"  ok   {r.code} {r.voice:8} {r.speed:.2f} {text[:50]}")
                     return
-                except GnaniError as exc:
-                    if not exc.retryable or attempt == 5:
+                except (GnaniError, httpx.TransportError) as exc:
+                    # Network blips (DNS, resets) are retried like Gnani's own 429s/5xx.
+                    retryable = isinstance(exc, httpx.TransportError) or exc.retryable
+                    if not retryable or attempt == 5:
                         failures += 1
                         print(f"  FAIL {r.code}  {text[:50]}  ({exc})", file=sys.stderr)
                         return

@@ -23,8 +23,8 @@ bundled.
 | Score card | `src/share/card.ts` | Drawn procedurally at runtime. |
 | Sound effects | `src/audio/sfx.ts` | Synthesised at runtime from oscillators; no samples. |
 | Music: four seamless lofi loops (menu, calm, tension, spooky) | `src/assets/music/` | Generated for this game in AICade Studio with ACE-Step 1.5 (MIT; its model card allows commercial use of generated music), instrumental only. Trimmed to whole bars with the last bar crossfaded into the first so they loop without a seam, loudness-normalised and encoded as MP3. Prompts, seeds and steps: [`../art/credits-adventures.json`](../art/credits-adventures.json). |
-| Adventure scenes (81), two more wizards (enchantress, trickster; four moods each), eight more heroes | `src/assets/art/` | Generated in AICade Studio with Z-Image Turbo (Apache-2.0) and cut out with BiRefNet (MIT). Every prompt, seed and post-processing step is in [`../art/credits-adventures.json`](../art/credits-adventures.json). Original characters and places only. |
-| Wizards (sage, sorceress, owl; four moods each), 12 heroes, 7 scenes | `src/assets/art/` (copied from the repo's `art/`) | Generated for this game in AICade Studio with Z-Image Turbo (Apache-2.0) and cut out with BiRefNet (MIT); every prompt, seed and post-processing step is in [`../art/credits.json`](../art/credits.json). Recompressed losslessly with oxipng (pixel-identical). Original characters only. |
+| Adventure scenes (81); all five wizards (four moods each) and all 20 heroes as 512 px high-resolution pixel art (regenerated Oct 8) | `src/assets/art/` | Generated in AICade Studio with Z-Image Turbo (Apache-2.0) and cut out with BiRefNet (MIT). Every prompt, seed and post-processing step is in [`../art/credits-adventures.json`](../art/credits-adventures.json). Original characters and places only. |
+| 7 library scenes | `src/assets/art/` (copied from the repo's `art/`) | Generated for this game in AICade Studio with Z-Image Turbo (Apache-2.0); every prompt, seed and post-processing step is in [`../art/credits.json`](../art/credits.json). Recompressed losslessly with oxipng (pixel-identical). |
 
 ## Not client assets
 
