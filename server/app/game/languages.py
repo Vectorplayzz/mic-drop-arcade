@@ -66,9 +66,6 @@ VOICES: dict[str, frozenset[str]] = {
 # showed those as intelligible as the Telugu voices. Likewise Hinglish has a single voice
 # (Poorvi), so the other wizards read the Devanagari-plus-English spoken text with Hindi voices.
 VOICE_CATALOG: dict[str, tuple[str, str]] = {
-    "Suhana": ("te-IN", "f"),
-    "Lehara": ("te-IN", "f"),
-    "Varuni": ("te-IN", "f"),
     "Nalini": ("hi-IN", "f"),
     "Chitra": ("hi-IN", "f"),
     "Roopesh": ("hi-IN", "m"),
@@ -94,13 +91,15 @@ WIZARD_GENDER: dict[str, str] = {
     "trickster": "m",  # Lomdi Jaadugar
 }
 # Each character keeps one voice across languages where it can: the sage is a grounded elder
-# (Roopesh), the trickster an expressive showman (Jalaj).
+# (Roopesh), the trickster an expressive showman (Jalaj). In Telugu and Tenglish both women
+# speak with Poorvi (G Nagarjuna's pick, Oct 8; she read Telugu more clearly than the Telugu
+# voices in the audition) and differ by pace only.
 WIZARD_VOICES: dict[str, dict[str, str]] = {
     "te-IN": {
-        "sorceress": "Suhana",
+        "sorceress": "Poorvi",
         "sage": "Roopesh",
         "owl": "Kavin",
-        "enchantress": "Lehara",
+        "enchantress": "Poorvi",
         "trickster": "Jalaj",
     },
     "hi-IN": {
@@ -118,10 +117,10 @@ WIZARD_VOICES: dict[str, dict[str, str]] = {
         "trickster": "Jalaj",
     },
     "te-en": {
-        "sorceress": "Varuni",
+        "sorceress": "Poorvi",
         "sage": "Roopesh",
         "owl": "Kavin",
-        "enchantress": "Lehara",
+        "enchantress": "Poorvi",
         "trickster": "Jalaj",
     },
     "en-IN": {

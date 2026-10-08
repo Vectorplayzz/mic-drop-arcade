@@ -268,9 +268,10 @@ def test_every_wizard_has_a_voice_and_lines():
                 assert line.text and line.tts
                 if lang in ("hi-en", "te-en"):
                     assert not _INDIC.search(line.text)
-    # Every wizard sounds different in every language.
+    # Every wizard has its own voice, except the two women sharing Poorvi in Telugu/Tenglish.
     for lang in LANGUAGES:
-        assert len(set(WIZARD_VOICES[lang].values())) == len(WIZARDS)
+        shared = 1 if lang in ("te-IN", "te-en") else 0
+        assert len(set(WIZARD_VOICES[lang].values())) == len(WIZARDS) - shared
 
 
 def test_wizard_lines_must_be_complete(tmp_path):
