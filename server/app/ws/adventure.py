@@ -38,7 +38,7 @@ from app.game.adventures import (
     spoken,
 )
 from app.game.languages import LanguageRoute
-from app.game.matching import match_answer, normalize
+from app.game.matching import match_answer, normalize, phonetic_key
 from app.game.packs import Question
 from app.logging import get_logger
 from app.security.tokens import ScoreClaims
@@ -485,7 +485,63 @@ def puzzle_correct(p: Puzzle, lang: str, transcript: str) -> bool:
         questions.append(
             Question(id="p", prompt=p.prompt[lang], answers=accepted[:10], display_answer=answer)
         )
-    return any(match_answer(transcript, q, wrong, language=lang).correct for q in questions)
+    right, bad = _sound_spans(transcript, accepted, p.wrong_options(lang))
+    if bad:
+        return False  # a wrong option was said ("anti clockwise" split in two, say)
+    if any(match_answer(transcript, q, wrong, language=lang).correct for q in questions):
+        return True
+    return bool(right)
+
+
+# Prisma writes English words in Indic script, and spells them differently from one try to the
+# next ("క్లాక్ వైస్", "క్లాక్‌వైజ్" for "clockwise"), sometimes split in two. So, as a fallback,
+# answers are also compared by consonant skeleton across runs of up to four spoken words.
+_MAX_WINDOW = 4
+_SIBILANTS = str.maketrans({"j": "s", "z": "s"})
+
+
+def _skeleton(text: str) -> str:
+    # Digits stay as they are ("300" and "3000" must differ).
+    key = "".join(t if t.isdigit() else phonetic_key(t) for t in normalize(text).split())
+    key = key.translate(_SIBILANTS)
+    return "".join(c for c in key if c not in "aeiouyh")
+
+
+def _usable(skeleton: str) -> bool:
+    """Numbers always count; words need two consonants to be told apart reliably."""
+    return skeleton.isdigit() or len(skeleton) >= 2
+
+
+def _spans(heard: list[str], target: str) -> list[tuple[int, int]]:
+    out = []
+    for i in range(len(heard)):
+        for j in range(i + 1, min(len(heard), i + _MAX_WINDOW) + 1):
+            if "".join(heard[i:j]) == target:
+                out.append((i, j))
+    return out
+
+
+# "anti clockwise", "counter clockwise": a word like this right before the answer flips it.
+_NEGATORS = frozenset({"nt", "kntr"})
+
+
+def _sound_spans(
+    transcript: str, accepted: list[str], wrong: list[str]
+) -> tuple[list[tuple[int, int]], list[tuple[int, int]]]:
+    """Runs of spoken words that sound like an accepted answer, and runs that sound like a
+    wrong option. A run inside a longer run of the other kind doesn't count: "anti clock
+    wise" contains "clock wise" but is the wrong option."""
+    heard = [_skeleton(t) for t in normalize(transcript).split()]
+    right = [sp for a in accepted if _usable(sk := _skeleton(a)) for sp in _spans(heard, sk)]
+    bad = [sp for w in wrong if _usable(sk := _skeleton(w)) for sp in _spans(heard, sk)]
+    bad += [(i - 1, j) for i, j in right if i > 0 and heard[i - 1] in _NEGATORS]
+
+    def inside(a: tuple[int, int], b: tuple[int, int]) -> bool:
+        return b[0] <= a[0] and a[1] <= b[1] and a != b
+
+    right_left = [r for r in right if not any(inside(r, b) for b in bad)]
+    bad_left = [b for b in bad if not any(inside(b, r) for r in right)]
+    return right_left, bad_left
 
 
 def adventure_max_score(adv: Adventure) -> int:
