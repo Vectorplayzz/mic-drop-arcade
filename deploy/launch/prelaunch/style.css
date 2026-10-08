@@ -1,0 +1,132 @@
+/* Mic Drop Arcade pre-launch page: one screen, arcade night palette, no inline styles (CSP). */
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("/assets/press-start-2p.woff2") format("woff2");
+  font-display: swap;
+}
+
+:root {
+  --bg: #14122b;
+  --panel: rgb(23 21 59 / 88%);
+  --line: #3a3570;
+  --text: #ece9ff;
+  --muted: #a9a6d6;
+  --pink: #ff4fa3;
+  --cyan: #50e6ff;
+  --yellow: #ffd23f;
+  --pixel: "Press Start 2P", ui-monospace, monospace;
+  --body: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Telugu", "Noto Sans Devanagari", sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg) url("/assets/portals.png") center / cover no-repeat fixed;
+  image-rendering: pixelated;
+  color: var(--text);
+  font: 16px/1.5 var(--body);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgb(20 18 43 / 55%), rgb(20 18 43 / 92%));
+  pointer-events: none;
+}
+
+.pixel { font-family: var(--pixel); font-weight: 400; }
+
+.stage {
+  position: relative;
+  max-width: 56rem;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: calc(2rem + env(safe-area-inset-top, 0px)) 1rem calc(2rem + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  text-align: center;
+  image-rendering: auto;
+}
+
+.kicker { margin: 0; font-size: 0.6875rem; color: var(--cyan); letter-spacing: 0.08em; }
+
+.title {
+  margin: 0;
+  font-size: clamp(1.75rem, 7vw, 3.5rem);
+  line-height: 1.2;
+  text-wrap: balance;
+  text-shadow: 4px 4px 0 #000;
+}
+.title .mic { color: var(--pink); }
+.title .arcade { color: var(--cyan); }
+
+.lead { margin: 0; max-width: 40rem; color: var(--text); font-size: 1.0625rem; }
+
+.launch {
+  width: 100%;
+  max-width: 34rem;
+  padding: 1rem;
+  border: 3px solid var(--yellow);
+  background: var(--panel);
+  box-shadow: 6px 6px 0 #000;
+}
+.launch h2 { margin: 0 0 0.75rem; font-size: 0.75rem; color: var(--yellow); line-height: 1.6; }
+
+.clock { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
+.unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.6rem 0.25rem;
+  border: 2px solid var(--line);
+  background: rgb(11 10 31 / 80%);
+}
+.num { font-size: clamp(1.25rem, 6vw, 2rem); color: var(--text); font-variant-numeric: tabular-nums; }
+.lbl { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.live { margin: 0.75rem 0 0; font-size: 0.75rem; color: var(--cyan); }
+
+.wizards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.25rem;
+  width: 100%;
+  max-width: 40rem;
+}
+.wizards img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(4px 4px 0 rgb(0 0 0 / 55%));
+  animation: bob 2.4s steps(4) infinite;
+}
+.wizards li:nth-child(2) img { animation-delay: -0.5s; }
+.wizards li:nth-child(3) img { animation-delay: -1s; }
+.wizards li:nth-child(4) img { animation-delay: -1.5s; }
+.wizards li:nth-child(5) img { animation-delay: -2s; }
+@keyframes bob { 50% { transform: translateY(-4%); } }
+
+.langs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+.langs li { padding: 0.3rem 0.7rem; border: 2px solid var(--cyan); background: rgb(11 10 31 / 70%); font-weight: 700; }
+
+.foot { margin: 0; color: var(--muted); font-size: 0.875rem; }
+
+@media (max-width: 30rem) {
+  .wizards { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .lead { font-size: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wizards img { animation: none; }
+}

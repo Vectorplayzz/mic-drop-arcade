@@ -1,0 +1,11 @@
+[Unit]
+Description=Mic Drop Arcade launch at 10 Oct 2026 00:00 IST (18:30 UTC on 9 Oct)
+
+[Timer]
+OnCalendar=2026-10-09 18:30:00 UTC
+AccuracySec=1s
+# If the server is down at that moment, launch as soon as it is back up.
+Persistent=true
+
+[Install]
+WantedBy=timers.target
