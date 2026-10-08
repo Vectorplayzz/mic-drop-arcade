@@ -1,8 +1,8 @@
 /**
- * On-screen text in the three game languages. The interface follows the language the player
+ * On-screen text in the five game languages. The interface follows the language the player
  * picks; spoken lines and their captions come from the server.
  */
-import type { LanguageCode } from './protocol/messages';
+import type { EndingBand, LanguageCode, Wizard } from './protocol/messages';
 
 export interface Strings {
   /** BCP 47 tag for the `lang` attribute. */
@@ -59,6 +59,27 @@ export interface Strings {
   micOn: string;
   micOff: string;
 
+  /** Who is talking in the dialogue box when the pack has no named wizard. */
+  quizMaster: string;
+  /** The fourth tile next to the three choices: any other answer can be spoken too. */
+  otherAnswer: string;
+  /** Screen-reader label for the choices: they are said aloud, not tapped. */
+  optionsHint: string;
+  questBadge: string;
+  questProgress: (done: number, total: number) => string;
+  chooseHero: string;
+  yourHero: string;
+  endings: Record<EndingBand, string>;
+  chooseWizard: string;
+  /** Titles for the three pickable wizards (a quest's own name is used when it matches). */
+  wizardNames: Record<Wizard, string>;
+  /** Shown when the browser is holding the game's sound back. */
+  soundOff: string;
+  /** The sixth card in the quest list: player-made quizzes, generated live (not built yet). */
+  customQuizTitle: string;
+  customQuizBody: string;
+  comingSoon: string;
+
   gameOver: string;
   finalScore: string;
   correctOf: (correct: number, total: number) => string;
@@ -113,6 +134,9 @@ export type ProblemCode =
   | 'idle'
   | 'busy'
   | 'unknown_pack'
+  | 'unknown_character'
+  | 'unknown_adventure'
+  | 'unknown_language'
   | 'protocol'
   | 'internal'
   | 'mic_denied'
@@ -124,7 +148,7 @@ export type ProblemCode =
 const hinglish: Strings = {
   htmlLang: 'hi-Latn',
   shareLanguage: 'Hinglish',
-  tagline: 'Bolo aur jeeto! Sirf awaaz se khelne wala quiz.',
+  tagline: 'Awaaz se khelne wala RPG. Raasta chuno, paheliyan suljhao, saari endings dhoondo.',
   start: 'START',
   chooseLanguage: 'Language chuno',
   leaderboard: 'Leaderboard',
@@ -148,7 +172,7 @@ const hinglish: Strings = {
   ],
 
   howTitle: 'Kaise khelein',
-  howSteps: ['Sawal suno', 'Jawab zor se bolo', 'Koi button nahi: jaldi bolo, zyada points!'],
+  howSteps: ['Wizard ki kahani suno', 'Apni choice bolkar batao', 'Saari endings collect karo'],
 
   botCheckTitle: 'Ek second…',
   botCheckBody: 'Check kar rahe hain ki aap robot nahi ho.',
@@ -178,6 +202,27 @@ const hinglish: Strings = {
   quit: 'Game chhodo',
   micOn: 'Mic on hai, bolo',
   micOff: 'Mic off hai',
+
+  quizMaster: 'Quiz Master',
+  otherAnswer: 'Kuch aur? Bol do!',
+  optionsHint: 'In mein se ek jawab zor se bolo',
+  questBadge: 'QUEST',
+  questProgress: (d, t) => `Quest ${d}/${t}`,
+  chooseHero: 'Apna hero chuno',
+  yourHero: 'Aapka hero',
+  endings: { great: 'Legend ban gaye!', good: 'Badhiya quest!', try_again: 'Agli baar pakka!' },
+  chooseWizard: 'Apna wizard chuno',
+  wizardNames: {
+    sorceress: 'Jaadugarni',
+    sage: 'Baba Sage',
+    owl: 'Professor Ullu',
+    enchantress: 'Mohini',
+    trickster: 'Lomdi Jaadugar',
+  },
+  soundOff: 'Awaaz band hai, tap karo',
+  customQuizTitle: 'Apna quiz banao',
+  customQuizBody: 'Koi bhi topic bolo, AI tumhare liye quiz bana dega.',
+  comingSoon: 'Jald aa raha hai',
 
   gameOver: 'GAME OVER',
   finalScore: 'Aapka score',
@@ -215,7 +260,7 @@ const hinglish: Strings = {
   problems: {
     offline: {
       title: 'Internet nahi hai',
-      body: 'Maata Arcade ko khelne ke liye internet chahiye. Connection check karke phir try karo.',
+      body: 'Mic Drop Arcade ko khelne ke liye internet chahiye. Connection check karke phir try karo.',
     },
     connection_lost: {
       title: 'Connection toot gaya',
@@ -274,6 +319,9 @@ const hinglish: Strings = {
       title: 'Pack nahi mila',
       body: 'Ye quiz pack ab available nahi hai. Koi aur chuno.',
     },
+    unknown_character: { title: 'Hero nahi mila', body: 'Screen par diye heroes mein se ek chuno.' },
+    unknown_adventure: { title: 'Adventure nahi mila', body: 'List mein se koi aur adventure chuno.' },
+    unknown_language: { title: 'Bhasha nahi mili', body: 'Screen par di gayi bhashaon mein se ek chuno.' },
     protocol: {
       title: 'Connection band ho gaya',
       body: 'Kuch gadbad ho gayi. Page reload karke phir try karo.',
@@ -300,7 +348,7 @@ const hinglish: Strings = {
     },
     unsupported: {
       title: 'Ye browser nahi chalega',
-      body: 'Maata Arcade ko naya Chrome ya Safari chahiye, HTTPS par, microphone ke saath.',
+      body: 'Mic Drop Arcade ko naya Chrome ya Safari chahiye, HTTPS par, microphone ke saath.',
     },
   },
   rateLimited: (s) => `${s} second mein phir try karo.`,
@@ -309,7 +357,7 @@ const hinglish: Strings = {
 const hindi: Strings = {
   htmlLang: 'hi',
   shareLanguage: 'हिन्दी',
-  tagline: 'बोलो और जीतो! सिर्फ़ आवाज़ से खेला जाने वाला क्विज़।',
+  tagline: 'आवाज़ से खेला जाने वाला RPG. रास्ता चुनिए, पहेलियाँ सुलझाइए, हर एंडिंग खोजिए।',
   start: 'शुरू करें',
   chooseLanguage: 'भाषा चुनें',
   leaderboard: 'लीडरबोर्ड',
@@ -333,7 +381,7 @@ const hindi: Strings = {
   ],
 
   howTitle: 'कैसे खेलें',
-  howSteps: ['सवाल सुनिए', 'जवाब ज़ोर से बोलिए', 'कोई बटन नहीं: जल्दी बोलिए, ज़्यादा पॉइंट!'],
+  howSteps: ['जादूगर की कहानी सुनिए', 'अपना फ़ैसला बोलकर बताइए', 'सारी एंडिंग्स इकट्ठा कीजिए'],
 
   botCheckTitle: 'एक सेकंड…',
   botCheckBody: 'जाँच रहे हैं कि आप रोबोट नहीं हैं।',
@@ -363,6 +411,27 @@ const hindi: Strings = {
   quit: 'गेम छोड़ें',
   micOn: 'माइक चालू है, बोलिए',
   micOff: 'माइक बंद है',
+
+  quizMaster: 'क्विज़ मास्टर',
+  otherAnswer: 'कुछ और? बोल दीजिए!',
+  optionsHint: 'इनमें से एक जवाब ज़ोर से बोलिए',
+  questBadge: 'क्वेस्ट',
+  questProgress: (d, t) => `क्वेस्ट ${d}/${t}`,
+  chooseHero: 'अपना हीरो चुनिए',
+  yourHero: 'आपका हीरो',
+  endings: { great: 'आप तो लेजेंड हैं!', good: 'बढ़िया क्वेस्ट!', try_again: 'अगली बार पक्का!' },
+  chooseWizard: 'अपना जादूगर चुनिए',
+  wizardNames: {
+    sorceress: 'जादूगरनी',
+    sage: 'ऋषि बाबा',
+    owl: 'प्रोफ़ेसर उल्लू',
+    enchantress: 'मोहिनी',
+    trickster: 'लोमड़ी जादूगर',
+  },
+  soundOff: 'आवाज़ बंद है, टैप कीजिए',
+  customQuizTitle: 'अपना क्विज़ बनाइए',
+  customQuizBody: 'कोई भी विषय बोलिए, AI आपके लिए क्विज़ बना देगा।',
+  comingSoon: 'जल्द आ रहा है',
 
   gameOver: 'खेल खत्म',
   finalScore: 'आपका स्कोर',
@@ -400,7 +469,7 @@ const hindi: Strings = {
   problems: {
     offline: {
       title: 'इंटरनेट नहीं है',
-      body: 'माटा आर्केड खेलने के लिए इंटरनेट चाहिए। कनेक्शन जाँचकर फिर कोशिश करें।',
+      body: 'माइक ड्रॉप आर्केड खेलने के लिए इंटरनेट चाहिए। कनेक्शन जाँचकर फिर कोशिश करें।',
     },
     connection_lost: {
       title: 'कनेक्शन टूट गया',
@@ -459,6 +528,9 @@ const hindi: Strings = {
       title: 'पैक नहीं मिला',
       body: 'यह क्विज़ पैक अब उपलब्ध नहीं है। कोई और चुनिए।',
     },
+    unknown_character: { title: 'हीरो नहीं मिला', body: 'स्क्रीन पर दिए हीरो में से एक चुनिए।' },
+    unknown_adventure: { title: 'एडवेंचर नहीं मिला', body: 'सूची में से कोई और एडवेंचर चुनिए।' },
+    unknown_language: { title: 'भाषा नहीं मिली', body: 'स्क्रीन पर दी गई भाषाओं में से एक चुनिए।' },
     protocol: {
       title: 'कनेक्शन बंद हो गया',
       body: 'कुछ गड़बड़ हो गई। पेज रीलोड करके फिर कोशिश करें।',
@@ -485,7 +557,7 @@ const hindi: Strings = {
     },
     unsupported: {
       title: 'यह ब्राउज़र नहीं चलेगा',
-      body: 'माटा आर्केड को नया Chrome या Safari चाहिए, HTTPS पर, माइक्रोफ़ोन के साथ।',
+      body: 'माइक ड्रॉप आर्केड को नया Chrome या Safari चाहिए, HTTPS पर, माइक्रोफ़ोन के साथ।',
     },
   },
   rateLimited: (s) => `${s} सेकंड में फिर कोशिश करें।`,
@@ -494,7 +566,7 @@ const hindi: Strings = {
 const telugu: Strings = {
   htmlLang: 'te',
   shareLanguage: 'తెలుగు',
-  tagline: 'మాట్లాడండి, గెలవండి! కేవలం మాటతో ఆడే క్విజ్.',
+  tagline: 'మీ గొంతుతో ఆడే RPG. దారి ఎంచుకోండి, పొడుపు కథలు విప్పండి, అన్ని ఎండింగ్స్ కనుక్కోండి.',
   start: 'ప్రారంభించు',
   chooseLanguage: 'భాష ఎంచుకోండి',
   leaderboard: 'లీడర్‌బోర్డ్',
@@ -518,7 +590,7 @@ const telugu: Strings = {
   ],
 
   howTitle: 'ఎలా ఆడాలి',
-  howSteps: ['ప్రశ్న వినండి', 'సమాధానం గట్టిగా చెప్పండి', 'బటన్లు లేవు: త్వరగా చెబితే ఎక్కువ పాయింట్లు!'],
+  howSteps: ['విజార్డ్ కథ వినండి', 'మీ ఎంపికను గట్టిగా చెప్పండి', 'అన్ని ఎండింగ్స్ సేకరించండి'],
 
   botCheckTitle: 'ఒక్క క్షణం…',
   botCheckBody: 'మీరు రోబో కాదని సరిచూస్తున్నాం.',
@@ -548,6 +620,27 @@ const telugu: Strings = {
   quit: 'ఆట వదిలేయి',
   micOn: 'మైక్ ఆన్‌లో ఉంది, చెప్పండి',
   micOff: 'మైక్ ఆఫ్‌లో ఉంది',
+
+  quizMaster: 'క్విజ్ మాస్టర్',
+  otherAnswer: 'ఇంకేదైనా? చెప్పేయండి!',
+  optionsHint: 'వీటిలో ఒక సమాధానం గట్టిగా చెప్పండి',
+  questBadge: 'క్వెస్ట్',
+  questProgress: (d, t) => `క్వెస్ట్ ${d}/${t}`,
+  chooseHero: 'మీ హీరోని ఎంచుకోండి',
+  yourHero: 'మీ హీరో',
+  endings: { great: 'మీరు లెజెండ్!', good: 'చక్కని క్వెస్ట్!', try_again: 'ఈసారి తప్పకుండా!' },
+  chooseWizard: 'మీ మాంత్రికుడిని ఎంచుకోండి',
+  wizardNames: {
+    sorceress: 'మాంత్రికురాలు',
+    sage: 'ముని బాబా',
+    owl: 'గుడ్లగూబ ప్రొఫెసర్',
+    enchantress: 'మోహిని',
+    trickster: 'నక్క మాంత్రికుడు',
+  },
+  soundOff: 'సౌండ్ ఆఫ్‌లో ఉంది, ట్యాప్ చేయండి',
+  customQuizTitle: 'మీ సొంత క్విజ్',
+  customQuizBody: 'ఏ విషయమైనా చెప్పండి, AI మీ కోసం క్విజ్ తయారుచేస్తుంది.',
+  comingSoon: 'త్వరలో వస్తోంది',
 
   gameOver: 'ఆట ముగిసింది',
   finalScore: 'మీ స్కోరు',
@@ -585,7 +678,7 @@ const telugu: Strings = {
   problems: {
     offline: {
       title: 'ఇంటర్నెట్ లేదు',
-      body: 'మాట ఆర్కేడ్ ఆడటానికి ఇంటర్నెట్ కావాలి. కనెక్షన్ చూసుకుని మళ్లీ ప్రయత్నించండి.',
+      body: 'మైక్ డ్రాప్ ఆర్కేడ్ ఆడటానికి ఇంటర్నెట్ కావాలి. కనెక్షన్ చూసుకుని మళ్లీ ప్రయత్నించండి.',
     },
     connection_lost: {
       title: 'కనెక్షన్ తెగిపోయింది',
@@ -644,6 +737,9 @@ const telugu: Strings = {
       title: 'ప్యాక్ దొరకలేదు',
       body: 'ఈ క్విజ్ ప్యాక్ ఇప్పుడు అందుబాటులో లేదు. వేరేది ఎంచుకోండి.',
     },
+    unknown_character: { title: 'హీరో దొరకలేదు', body: 'తెరపై ఉన్న హీరోలలో ఒకరిని ఎంచుకోండి.' },
+    unknown_adventure: { title: 'అడ్వెంచర్ దొరకలేదు', body: 'జాబితాలో నుండి వేరే అడ్వెంచర్ ఎంచుకోండి.' },
+    unknown_language: { title: 'భాష దొరకలేదు', body: 'తెరపై ఉన్న భాషలలో ఒకటి ఎంచుకోండి.' },
     protocol: {
       title: 'కనెక్షన్ మూసుకుంది',
       body: 'ఏదో పొరపాటు జరిగింది. పేజీ రీలోడ్ చేసి మళ్లీ ప్రయత్నించండి.',
@@ -670,16 +766,340 @@ const telugu: Strings = {
     },
     unsupported: {
       title: 'ఈ బ్రౌజర్ పనిచేయదు',
-      body: 'మాట ఆర్కేడ్‌కు కొత్త Chrome లేదా Safari, HTTPS, మైక్రోఫోన్ కావాలి.',
+      body: 'మైక్ డ్రాప్ ఆర్కేడ్‌కు కొత్త Chrome లేదా Safari, HTTPS, మైక్రోఫోన్ కావాలి.',
     },
   },
   rateLimited: (s) => `${s} సెకన్లలో మళ్లీ ప్రయత్నించండి.`,
+};
+
+const english: Strings = {
+  htmlLang: 'en-IN',
+  shareLanguage: 'English',
+  tagline: 'An RPG you play with your voice. Choose your path, crack riddles, find every ending.',
+  start: 'START',
+  chooseLanguage: 'Choose a language',
+  leaderboard: 'Leaderboard',
+  creator: 'Creator Mode',
+  settings: 'Settings',
+  back: 'Back',
+  home: 'Home',
+  retry: 'Try again',
+  reload: 'Reload',
+  close: 'Close',
+  loading: 'Loading…',
+
+  disclosure: 'Your voice is never stored. The voices in the game are AI-generated (Gnani Timbre).',
+  privacyLink: 'Privacy & AI voice',
+  privacyTitle: 'Privacy & AI voice',
+  privacyBody: [
+    'The mic only listens while "Speak!" is on screen. During that time your voice goes through our server to Gnani speech recognition, so your answer can be understood.',
+    'No audio is stored: not on our server, not on your phone. Only the text of your answer is used, for that round.',
+    'The voices that read questions and feedback are not human. They are AI-generated (Gnani Timbre).',
+    'The leaderboard only shows the nickname you choose and your score. Don\'t use your real name.',
+  ],
+
+  howTitle: 'How to play',
+  howSteps: ['Listen to the wizard\'s story', 'Say your choice out loud', 'Collect every ending'],
+
+  botCheckTitle: 'One second…',
+  botCheckBody: 'Checking that you are not a robot.',
+  connecting: 'Connecting…',
+
+  choosePack: 'Pick a quest',
+  noPacks: 'No packs in this language yet.',
+  questions: (n) => `${n} questions`,
+  gamesLeft: (n) => `${n} games left in this session`,
+
+  score: 'SCORE',
+  streak: 'STREAK',
+  questionOf: (n, total) => `Question ${n} of ${total}`,
+  getReady: 'Get ready!',
+  listenUp: 'Listen…',
+  speakNow: 'Speak!',
+  checking: 'Checking…',
+  heardNothing: "Didn't catch that. Say it again!",
+  correct: 'Correct!',
+  wrong: 'Wrong!',
+  timeout: "Time's up!",
+  skipped: 'Technical hiccup: this question is skipped, no penalty.',
+  youSaid: 'You said',
+  answerIs: 'Answer',
+  points: (n) => `+${n}`,
+  secondsLeft: (n) => `${n} seconds left`,
+  quit: 'Quit game',
+  micOn: 'Mic is on, speak now',
+  micOff: 'Mic is off',
+
+  quizMaster: 'Quiz Master',
+  otherAnswer: 'Something else? Say it!',
+  optionsHint: 'Say one of these answers out loud',
+  questBadge: 'QUEST',
+  questProgress: (d, t) => `Quest ${d}/${t}`,
+  chooseHero: 'Choose your hero',
+  yourHero: 'Your hero',
+  endings: { great: 'Legendary run!', good: 'Nice quest!', try_again: 'So close. Again?' },
+  chooseWizard: 'Choose your wizard',
+  wizardNames: {
+    sorceress: 'The Sorceress',
+    sage: 'The Sage',
+    owl: 'Professor Owl',
+    enchantress: 'The Enchantress',
+    trickster: 'The Trickster',
+  },
+  soundOff: 'Sound is off. Tap to turn it on',
+  customQuizTitle: 'Make your own quiz',
+  customQuizBody: 'Say any topic and AI builds a quiz for you on the spot.',
+  comingSoon: 'Coming soon',
+
+  gameOver: 'GAME OVER',
+  finalScore: 'Your score',
+  correctOf: (c, t) => `${c} of ${t} correct`,
+  nickname: 'Nickname',
+  nicknameHint: '3 to 16 characters. Don\'t use your real name.',
+  nickLength: 'A nickname needs 3 to 16 characters.',
+  nickCharacters: 'Only letters, numbers, space, _ and - are allowed.',
+  nickLetter: 'A nickname needs at least one letter.',
+  nickRejected: "That nickname won't work. Pick another one.",
+  submitScore: 'Post to leaderboard',
+  submitting: 'Sending…',
+  submitted: "You're on the leaderboard!",
+  alreadySubmitted: 'This score was already posted.',
+  scoreExpired: 'The time to post this score has passed (10 minutes).',
+  share: 'Share score card',
+  shareLine: (c, t, lang) => `I scored ${c}/${t} in ${lang}. Beat me if you can!`,
+  shareSaved: 'Score card downloaded.',
+  playAgain: 'Play again',
+  noGamesLeft: 'No games left in this session. Go Home to start a new one.',
+
+  today: 'Today',
+  allTime: 'All time',
+  boardEmpty: 'No scores yet. Be the first!',
+  boardFailed: "The leaderboard didn't load.",
+  rank: '#',
+  player: 'Player',
+
+  settingsTitle: 'Settings',
+  voiceVolume: 'Voice volume',
+  sfx: 'Sound effects',
+  music: 'Music',
+  language: 'Language',
+
+  problems: {
+    offline: {
+      title: 'No internet',
+      body: 'Mic Drop Arcade needs the internet. Check your connection and try again.',
+    },
+    connection_lost: {
+      title: 'Connection lost',
+      body: 'The network dropped mid-game, so this game ended. Start a new one when you are back online.',
+    },
+    closed_for_today: { title: 'Closed for today', body: "Today's limit is used up. Come back tomorrow!" },
+    maintenance: { title: 'Back soon', body: 'The arcade is being worked on. Try again in a little while.' },
+    unavailable: { title: 'Server is busy', body: "We couldn't reach the server. Try again in a moment." },
+    bot_check_failed: { title: 'Check failed', body: "We couldn't confirm you're human. Try again." },
+    bot_check_unreachable: {
+      title: "Check didn't load",
+      body: "The security check didn't load. Check your ad blocker or network and try again.",
+    },
+    rate_limited: { title: 'Slow down a bit', body: 'Too many tries too quickly.' },
+    forbidden_origin: { title: 'Wrong address', body: 'Open the game from its official address.' },
+    unauthorized: { title: 'Session ended', body: 'Your session expired. Press START again.' },
+    already_connected: {
+      title: 'Open in another tab',
+      body: 'The game is running in another tab. Play there, or close it and try here.',
+    },
+    session_limit: {
+      title: 'Session games used up',
+      body: "That's the most games for one session. Start a new session.",
+    },
+    audio_limit: { title: "Today's play limit reached", body: "You've played a lot today. Come back tomorrow!" },
+    idle: { title: 'Still there?', body: 'Nothing happened for a while, so the connection was closed.' },
+    busy: { title: 'Lots of players right now', body: 'Every machine is busy. Try again in a minute.' },
+    unknown_pack: { title: 'Pack not found', body: 'This quiz pack is no longer available. Pick another.' },
+    unknown_character: { title: 'Hero not found', body: 'Pick one of the heroes on screen.' },
+    unknown_adventure: { title: 'Adventure not found', body: 'Pick another adventure from the list.' },
+    unknown_language: { title: 'Language not available', body: 'Pick one of the languages on screen.' },
+    protocol: { title: 'Connection closed', body: 'Something went wrong. Reload the page and try again.' },
+    internal: { title: 'Something went wrong', body: 'The problem is on our side. Reload the page and try again.' },
+    mic_denied: {
+      title: 'Mic permission needed',
+      body: "This game is played only by speaking. Allow the microphone in your browser's site settings, then try again.",
+    },
+    mic_missing: { title: 'No mic found', body: 'No microphone was found on this device. Plug in a mic or headset and try again.' },
+    mic_busy: { title: 'Mic is busy', body: 'Another app is using the mic. Close it and try again.' },
+    mic_lost: { title: 'Mic disconnected', body: 'The mic stopped mid-game. Check it and start a new game.' },
+    unsupported: {
+      title: "This browser won't work",
+      body: 'Mic Drop Arcade needs a recent Chrome or Safari, over HTTPS, with a microphone.',
+    },
+  },
+  rateLimited: (s) => `Try again in ${s} seconds.`,
+};
+
+const tenglish: Strings = {
+  htmlLang: 'te-Latn',
+  shareLanguage: 'Tenglish',
+  tagline: 'Mee voice tho aade RPG. Daari select cheyyandi, riddles solve cheyyandi, anni endings kanukkondi.',
+  start: 'START',
+  chooseLanguage: 'Language select cheyyandi',
+  leaderboard: 'Leaderboard',
+  creator: 'Creator Mode',
+  settings: 'Settings',
+  back: 'Back',
+  home: 'Home',
+  retry: 'Malli try cheyyandi',
+  reload: 'Reload',
+  close: 'Close',
+  loading: 'Load avtundi…',
+
+  disclosure: 'Mee voice ekkada store avvadu. Game lo voices AI-generated (Gnani Timbre).',
+  privacyLink: 'Privacy & AI voice',
+  privacyTitle: 'Privacy & AI voice',
+  privacyBody: [
+    'Screen meeda "Cheppandi!" kanipinchinappude mic vintundi. Aa time lo mee voice maa server dwara Gnani speech recognition ki veltundi, answer artham chesukovadaniki.',
+    'E audio store avvadu: maa server lo kadu, mee phone lo kadu. Answer text aa round ki matrame use avtundi.',
+    'Questions, feedback cheppe voices manushulavi kavu. Avi AI-generated (Gnani Timbre).',
+    'Leaderboard lo mee nickname, score matrame kanipistayi. Real name pettakandi.',
+  ],
+
+  howTitle: 'Ela aadali',
+  howSteps: ['Wizard katha vinandi', 'Mee choice gattiga cheppandi', 'Anni endings collect cheyyandi'],
+
+  botCheckTitle: 'Okka second…',
+  botCheckBody: 'Meeru robot kadani check chestunnam.',
+  connecting: 'Connect avtundi…',
+
+  choosePack: 'Quest select cheyyandi',
+  noPacks: 'E language lo inka packs levu.',
+  questions: (n) => `${n} questions`,
+  gamesLeft: (n) => `E session lo inka ${n} games`,
+
+  score: 'SCORE',
+  streak: 'STREAK',
+  questionOf: (n, total) => `Question ${n} / ${total}`,
+  getReady: 'Ready ga undandi!',
+  listenUp: 'Vinandi…',
+  speakNow: 'Cheppandi!',
+  checking: 'Check chestunnam…',
+  heardNothing: 'Vinipinchaledu. Malli cheppandi!',
+  correct: 'Correct answer!',
+  wrong: 'Wrong!',
+  timeout: 'Time ayipoyindi!',
+  skipped: 'Technical problem: e question skip, penalty ledu.',
+  youSaid: 'Meeru cheppindi',
+  answerIs: 'Correct answer',
+  points: (n) => `+${n}`,
+  secondsLeft: (n) => `Inka ${n} seconds`,
+  quit: 'Game quit',
+  micOn: 'Mic on lo undi, cheppandi',
+  micOff: 'Mic off lo undi',
+
+  quizMaster: 'Quiz Master',
+  otherAnswer: 'Vere answer? Cheppeyandi!',
+  optionsHint: 'Veetilo oka answer gattiga cheppandi',
+  questBadge: 'QUEST',
+  questProgress: (d, t) => `Quest ${d}/${t}`,
+  chooseHero: 'Mee hero ni select cheyyandi',
+  yourHero: 'Mee hero',
+  endings: { great: 'Meeru legend!', good: 'Super quest!', try_again: 'Next time pakka!' },
+  chooseWizard: 'Mee wizard ni select cheyyandi',
+  wizardNames: {
+    sorceress: 'Sorceress',
+    sage: 'Sage Baba',
+    owl: 'Professor Owl',
+    enchantress: 'Mohini',
+    trickster: 'Nakka Mantrikudu',
+  },
+  soundOff: 'Sound off lo undi, tap cheyyandi',
+  customQuizTitle: 'Mee own quiz',
+  customQuizBody: 'E topic aina cheppandi, AI mee kosam quiz tayaru chestundi.',
+  comingSoon: 'Coming soon',
+
+  gameOver: 'GAME OVER',
+  finalScore: 'Mee score',
+  correctOf: (c, t) => `${t} lo ${c} correct`,
+  nickname: 'Nickname',
+  nicknameHint: '3 nundi 16 characters. Real name pettakandi.',
+  nickLength: 'Nickname 3 nundi 16 characters undali.',
+  nickCharacters: 'Letters, numbers, space, _ mariyu - matrame.',
+  nickLetter: 'Nickname lo kanisam oka letter undali.',
+  nickRejected: 'E nickname kudaradu. Verodi select cheyyandi.',
+  submitScore: 'Leaderboard ki pampandi',
+  submitting: 'Pamputunnam…',
+  submitted: 'Mee score leaderboard lo vachindi!',
+  alreadySubmitted: 'E score already submit ayindi.',
+  scoreExpired: 'Score submit chese time ayipoyindi (10 minutes).',
+  share: 'Score card share cheyyandi',
+  shareLine: (c, t, lang) => `Nenu ${lang} lo ${c}/${t} score chesanu. Dammunte beat cheyyandi!`,
+  shareSaved: 'Score card download ayindi.',
+  playAgain: 'Malli aadandi',
+  noGamesLeft: 'E session games ayipoyayi. Kotta session kosam Home ki vellandi.',
+
+  today: 'Eroju',
+  allTime: 'All time',
+  boardEmpty: 'Inka scores levu. First meere avvandi!',
+  boardFailed: 'Leaderboard load kaledu.',
+  rank: '#',
+  player: 'Player',
+
+  settingsTitle: 'Settings',
+  voiceVolume: 'Voice volume',
+  sfx: 'Sound effects',
+  music: 'Music',
+  language: 'Language',
+
+  problems: {
+    offline: { title: 'Internet ledu', body: 'Mic Drop Arcade aadataniki internet kavali. Connection check chesi malli try cheyyandi.' },
+    connection_lost: {
+      title: 'Connection poyindi',
+      body: 'Game madhyalo network poyindi, anduke e game ended. Connection vachaka kotta game start cheyyandi.',
+    },
+    closed_for_today: { title: 'Erojuki closed', body: 'Eroju limit ayipoyindi. Repu malli randi!' },
+    maintenance: { title: 'Kasepatlo back', body: 'Arcade lo work jarugutundi. Kasepu aagi try cheyyandi.' },
+    unavailable: { title: 'Server busy', body: 'Ippudu server reach kaledu. Kasepatlo malli try cheyyandi.' },
+    bot_check_failed: { title: 'Check fail ayindi', body: 'Meeru human ani confirm cheyyalekapoyam. Malli try cheyyandi.' },
+    bot_check_unreachable: {
+      title: 'Check load kaledu',
+      body: 'Security check load kaledu. Ad blocker leda network check chesi malli try cheyyandi.',
+    },
+    rate_limited: { title: 'Kasta aagandi', body: 'Chala fast ga try chestunnaru.' },
+    forbidden_origin: { title: 'Wrong address', body: 'Game ni official address nundi open cheyyandi.' },
+    unauthorized: { title: 'Session ayipoyindi', body: 'Mee session expire ayindi. Malli START nokkandi.' },
+    already_connected: {
+      title: 'Vere tab lo open ga undi',
+      body: 'E game vere tab lo nadustundi. Akkada aadandi, leda daanni close chesi ikkada try cheyyandi.',
+    },
+    session_limit: { title: 'Session games ayipoyayi', body: 'Oka session lo inni games matrame. Kotta session start cheyyandi.' },
+    audio_limit: { title: 'Eroju play limit purti', body: 'Erojuki chala aadaru. Repu malli randi!' },
+    idle: { title: 'Nidrapoyara?', body: 'Chala sepu emi jaragaledu, anduke connection close ayindi.' },
+    busy: { title: 'Ippudu chala mandi players', body: 'Anni machines busy. Oka minute lo malli try cheyyandi.' },
+    unknown_pack: { title: 'Pack dorakaledu', body: 'E pack ippudu available ledu. Verodi select cheyyandi.' },
+    unknown_character: { title: 'Hero dorakaledu', body: 'Screen meeda unna heroes lo okarini select cheyyandi.' },
+    unknown_adventure: { title: 'Adventure dorakaledu', body: 'List lo nundi vere adventure select cheyyandi.' },
+    unknown_language: { title: 'Language dorakaledu', body: 'Screen meeda unna languages lo okati select cheyyandi.' },
+    protocol: { title: 'Connection close ayindi', body: 'Edo problem vachindi. Page reload chesi malli try cheyyandi.' },
+    internal: { title: 'Edo problem vachindi', body: 'Maa side problem undi. Page reload chesi malli try cheyyandi.' },
+    mic_denied: {
+      title: 'Mic permission kavali',
+      body: 'E game matladi matrame aadataru. Browser site settings lo microphone allow chesi malli try cheyyandi.',
+    },
+    mic_missing: { title: 'Mic dorakaledu', body: 'E device lo microphone dorakaledu. Mic leda headset petti malli try cheyyandi.' },
+    mic_busy: { title: 'Mic busy', body: 'Vere app mic use chestondi. Daanni close chesi malli try cheyyandi.' },
+    mic_lost: { title: 'Mic disconnect ayindi', body: 'Game madhyalo mic aagipoyindi. Mic check chesi kotta game start cheyyandi.' },
+    unsupported: {
+      title: 'E browser panicheyadu',
+      body: 'Mic Drop Arcade ki latest Chrome leda Safari, HTTPS, microphone kavali.',
+    },
+  },
+  rateLimited: (s) => `${s} seconds lo malli try cheyyandi.`,
 };
 
 const STRINGS: Record<LanguageCode, Strings> = {
   'te-IN': telugu,
   'hi-IN': hindi,
   'hi-en': hinglish,
+  'te-en': tenglish,
+  'en-IN': english,
 };
 
 export function stringsFor(language: LanguageCode): Strings {

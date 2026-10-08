@@ -19,6 +19,10 @@ from tests.mock_gnani import silence, tone
 
 PACK = parse_pack((FIXTURES / "packs" / "hi-test-01.json").read_bytes())
 ANSWERS = {q.prompt: q for q in PACK.questions}
+ANSWERS_STORY = {
+    q.prompt: q
+    for q in parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes()).questions
+}
 MIC_CHUNK = 640  # 20 ms at 16 kHz — a typical AudioWorklet buffer
 
 
@@ -129,7 +133,10 @@ async def test_full_game_correct_and_wrong_answers_then_leaderboard(live, clean_
             )
             assert replay.status_code == 409
             board = (
-                await h.get("/api/leaderboard", params={"language": "hi-IN", "period": "today"})
+                await h.get(
+                    "/api/leaderboard",
+                    params={"language": "hi-IN", "period": "today", "mode": "quiz"},
+                )
             ).json()
             assert board["entries"][0]["nickname"] == "Vector"
             assert board["entries"][0]["score"] == over["score"]
@@ -276,3 +283,265 @@ async def test_session_audio_cap_survives_reconnect(live, clean_gnani):
         await stream_mic(c2.ws, silence(1.0))
         err = await c2.next("error", timeout=10)
         assert err["code"] == "audio_limit"
+
+
+async def test_wizard_story_and_character_reach_leaderboard(live, clean_gnani):
+    with live(questions_per_game=2) as server:
+        c = await open_game(server, await get_session(server.http))
+        await c.ws.send(
+            json.dumps(
+                {"type": "start", "pack_id": "hi-story-01", "character": "meera", "wizard": "owl"}
+            )
+        )
+        start = await c.next("game_start")
+        assert start["character"] == "meera"
+        assert start["wizard"] == "owl"
+        assert start["story"] == {
+            "wizard": "Taara",
+            "wizard_sprite": "sage",
+            "scene": "library-a",
+            "chapters": 5,
+        }
+        intro = await c.next("story")
+        assert intro["kind"] == "intro" and intro["mood"] == "ask"
+
+        q = await c.next("question")
+        assert len(q["options"]) == 3
+        assert ANSWERS_STORY[q["prompt"]].display_answer in q["options"]
+        await c.next("listen")
+        await answer(c, clean_gnani, ANSWERS_STORY[q["prompt"]].answers[0])
+        assert (await c.next("result"))["correct"] is True
+        beat = await c.next("story")
+        assert beat["kind"] == "chapter" and beat["chapter"] == 1 and beat["mood"] == "happy"
+
+        q2 = await c.next("question")
+        await c.next("listen")
+        right = ANSWERS_STORY[q2["prompt"]].display_answer
+        wrong_option = next(o for o in q2["options"] if o != right)
+        # Hedging with a wrong on-screen option alongside the right one is wrong.
+        await answer(c, clean_gnani, f"{right} या {wrong_option}")
+        assert (await c.next("result"))["correct"] is False
+        setback = await c.next("story")
+        assert setback["kind"] == "setback" and setback["mood"] == "sad"
+
+        end = await c.next("story", timeout=15)
+        assert end["kind"] == "ending" and end["band"] == "good"
+        over = await c.next("game_over")
+        assert over["character"] == "meera"
+        await c.ws.close()
+
+        async with httpx.AsyncClient(base_url=server.http) as h:
+            r = await h.post(
+                "/api/scores",
+                headers={"Origin": ORIGIN},
+                json={"score_token": over["score_token"], "nickname": "Wizard Fan"},
+            )
+            assert r.status_code == 200
+            board = (
+                await h.get("/api/leaderboard", params={"language": "hi-IN", "mode": "quiz"})
+            ).json()
+            assert board["entries"][0]["character"] == "meera"
+
+
+async def test_unknown_character_is_refused(live):
+    with live() as server:
+        c = await open_game(server, await get_session(server.http))
+        await c.ws.send(
+            json.dumps({"type": "start", "pack_id": "hi-test-01", "character": "<script>"})
+        )
+        err = await c.next("error")
+        assert err["code"] == "unknown_character" and err["fatal"] is False
+
+
+async def test_unknown_wizard_is_refused_without_ending_the_session(live, clean_gnani):
+    with live(questions_per_game=1) as server:
+        c = await open_game(server, await get_session(server.http))
+        await c.ws.send(json.dumps({"type": "start", "pack_id": "hi-test-01", "wizard": "dragon"}))
+        err = await c.next("error")
+        assert err["code"] == "unknown_character" and err["fatal"] is False
+        await c.ws.send(json.dumps({"type": "start", "pack_id": "hi-test-01"}))
+        start = await c.next("game_start")
+        assert start["wizard"] == "sorceress"
+
+
+# ---------------------------------------------------------------- adventures (§10) ---
+async def test_adventure_choices_puzzle_ending_and_timed_leaderboard(live, clean_gnani):
+    with live() as server:
+        token = await get_session(server.http)
+        c = await open_game(server, token)
+        await c.ws.send(
+            json.dumps(
+                {
+                    "type": "start_adventure",
+                    "adventure": "test-quest",
+                    "language": "hi-IN",
+                    "character": "tara",
+                    "wizard": "trickster",
+                }
+            )
+        )
+        start = await c.next("adventure_start")
+        assert start["adventure"]["id"] == "test-quest" and start["routed"] is False
+        assert start["wizard"] == "trickster" and start["character"] == "tara"
+        assert start["meter"] == 1
+        assert [e["rank"] for e in start["adventure"]["endings"]] == ["gold", "silver", "bronze"]
+        greet = await c.next("wizard")
+        assert greet["key"] == "greet"
+
+        node = await c.next("node")
+        assert node["id"] == "a" and node["kind"] == "choice" and node["scene"] == "lab-corridor"
+        choices = await c.next("choices")
+        assert [x["label"] for x in choices["choices"]] == ["Red door", "Blue door", "Green door"]
+
+        # First try: nothing recognisable, so the wizard asks again.
+        await c.next("listen")
+        await answer(c, clean_gnani, "पता नहीं यार")
+        unclear = await c.next("unclear")
+        assert unclear["attempts_left"] == 2 and unclear["heard"] == "पता नहीं यार"
+        # Second try: the card's number.
+        await c.next("listen")
+        await answer(c, clean_gnani, "पहला")
+        chosen = await c.next("chosen")
+        assert chosen == {"type": "chosen", "index": 0, "heard": "पहला", "auto": False}
+        state = await c.next("state")
+        assert state["meter"] == 2 and state["gained"] == ["key"]
+        assert state["items"] == [{"id": "key", "label": "Brass key"}]
+
+        node = await c.next("node")
+        assert node["id"] == "b" and node["kind"] == "puzzle"
+        puzzle = await c.next("puzzle")
+        assert sorted(puzzle["options"]) == ["16", "4", "8"]
+        await c.next("listen")
+        await answer(c, clean_gnani, "आठ")
+        result = await c.next("puzzle_result")
+        assert result["correct"] is True and result["points"] >= 100
+        assert (await c.next("wizard"))["key"] == "puzzle_right"
+
+        ending = await c.next("ending")
+        assert ending["id"] == "gold" and ending["rank"] == "gold" and ending["bonus"] == 500
+        over = await c.next("game_over")
+        assert over["mode"] == "adventure" and over["adventure"] == "test-quest"
+        assert over["ending"] == {"id": "gold", "title": "Treasure Found", "rank": "gold"}
+        assert over["score"] == result["points"] + 500
+        assert over["correct"] == 1 and over["questions"] == 1
+        assert 0 < over["duration_ms"] < 120_000
+        await c.ws.close()
+
+        # The choice listener asked Prisma to boost the card words.
+        assert "x-bias-list" in clean_gnani.state.stt_headers[0]
+
+        async with httpx.AsyncClient(base_url=server.http) as h:
+            post = await h.post(
+                "/api/scores",
+                headers={"Origin": ORIGIN},
+                json={"score_token": over["score_token"], "nickname": "Vector"},
+            )
+            assert post.status_code == 200, post.text
+            assert post.json()["rank"] == 1
+            board = (
+                await h.get("/api/leaderboard", params={"language": "hi-IN", "period": "today"})
+            ).json()
+            top = board["entries"][0]
+            assert top["nickname"] == "Vector" and top["adventure"] == "test-quest"
+            assert top["ending"] == {"id": "gold", "rank": "gold"}
+            assert top["duration_ms"] == over["duration_ms"]
+            assert top["wizard"] == "trickster" and top["character"] == "tara"
+            only = (
+                await h.get(
+                    "/api/leaderboard",
+                    params={"language": "hi-IN", "period": "all", "adventure": "test-quest"},
+                )
+            ).json()
+            assert len(only["entries"]) == 1
+            quiz = (
+                await h.get("/api/leaderboard", params={"language": "hi-IN", "mode": "quiz"})
+            ).json()
+            assert quiz["entries"] == []
+
+            listing = (await h.get("/api/adventures", params={"language": "hi-IN"})).json()
+            assert listing["auto"] is True
+            assert [a["id"] for a in listing["adventures"]] == ["test-quest"]
+            assert listing["adventures"][0]["meter"] == {"label": "Luck", "icon": "star", "max": 3}
+
+
+async def test_auto_runs_the_prologue_then_the_picked_adventure(live, clean_gnani):
+    with live() as server:
+        token = await get_session(server.http)
+        c = await open_game(server, token)
+        await c.ws.send(
+            json.dumps({"type": "start_adventure", "adventure": "auto", "language": "en-IN"})
+        )
+        start = await c.next("adventure_start")
+        assert start["adventure"]["genre"] == "prologue" and start["wizard"] == "sorceress"
+        await c.next("choices")
+        await c.next("listen")
+        await answer(c, clean_gnani, "at the fest of course")
+        assert (await c.next("chosen"))["index"] == 1
+        routed = await c.next("adventure_start")
+        assert routed["routed"] is True and routed["adventure"]["id"] == "test-quest"
+        await c.ws.close()
+
+
+async def test_silence_three_times_lets_the_wizard_choose(live, clean_gnani):
+    with live() as server:
+        token = await get_session(server.http)
+        c = await open_game(server, token)
+        await c.ws.send(
+            json.dumps({"type": "start_adventure", "adventure": "test-quest", "language": "en-IN"})
+        )
+        await c.next("choices")
+        for left in (2, 1, 0):
+            await c.next("listen")
+            await answer(c, clean_gnani, "pineapple")
+            assert (await c.next("unclear"))["attempts_left"] == left
+        chosen = await c.next("chosen", timeout=20)
+        assert chosen["auto"] is True and chosen["index"] == 0
+        await c.ws.close()
+
+
+async def test_bad_adventure_requests_are_refused(live, clean_gnani):
+    with live() as server:
+        token = await get_session(server.http)
+        c = await open_game(server, token)
+        for msg, code in [
+            ({"adventure": "nope-nope", "language": "en-IN"}, "unknown_adventure"),
+            ({"adventure": "prologue", "language": "en-IN"}, "unknown_adventure"),
+            ({"adventure": "test-quest", "language": "fr-FR"}, "unknown_language"),
+            (
+                {"adventure": "test-quest", "language": "en-IN", "wizard": "dragon"},
+                "unknown_character",
+            ),
+            (
+                {"adventure": "test-quest", "language": "en-IN", "character": "x"},
+                "unknown_character",
+            ),
+        ]:
+            await c.ws.send(json.dumps({"type": "start_adventure", **msg}))
+            err = await c.next("error")
+            assert err["code"] == code and err["fatal"] is False
+        await c.ws.close()
+
+
+async def test_adventure_without_riddles_reaches_the_board(live, clean_gnani):
+    """Some endings need no riddle at all: such a run (0 questions) must still be postable."""
+    with live() as server:
+        token = await get_session(server.http)
+        c = await open_game(server, token)
+        await c.ws.send(
+            json.dumps({"type": "start_adventure", "adventure": "test-quest", "language": "en-IN"})
+        )
+        await c.next("choices")
+        await c.next("listen")
+        await answer(c, clean_gnani, "the green door please")
+        assert (await c.next("chosen"))["index"] == 2
+        over = await c.next("game_over")
+        assert over["questions"] == 0 and over["ending"]["rank"] == "silver"
+        await c.ws.close()
+        async with httpx.AsyncClient(base_url=server.http) as h:
+            post = await h.post(
+                "/api/scores",
+                headers={"Origin": ORIGIN},
+                json={"score_token": over["score_token"], "nickname": "Riddleless"},
+            )
+            assert post.status_code == 200, post.text
+            assert post.json()["rank"] == 1

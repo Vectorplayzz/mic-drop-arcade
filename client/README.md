@@ -1,4 +1,4 @@
-# Maata Arcade client
+# Mic Drop Arcade client
 
 The game client: a mobile-first, installable PWA with a pixel-art arcade look. It is played only
 by speaking. Owner: Devesh. The wire contract is [`docs/PROTOCOL.md`](../docs/PROTOCOL.md); the

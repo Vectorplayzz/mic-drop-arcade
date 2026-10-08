@@ -1,0 +1,1060 @@
+{
+ "schema": 1,
+ "id": "hampi-treasure",
+ "genre": "fantasy",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": null,
+ "reviewed_at": null,
+ "title": {
+  "en-IN": "Hampi Treasure",
+  "hi-IN": "हम्पी का ख़ज़ाना",
+  "hi-en": "Hampi Treasure",
+  "te-IN": "హంపి ట్రెజర్",
+  "te-en": "Hampi Treasure"
+ },
+ "tagline": {
+  "en-IN": "A copper plate, a royal riddle, and a rival who streams everything.",
+  "hi-IN": "एक ताँबे की प्लेट, एक शाही पहेली, और एक राइवल जो सब कुछ लाइव स्ट्रीम करता है.",
+  "hi-en": "Ek copper plate, ek shaahi riddle, aur ek rival jo sab kuch live stream karta hai.",
+  "te-IN": "ఒక రాగి రేకు, ఒక రాజుల పొడుపు కథ, అన్నీ లైవ్ స్ట్రీమ్ చేసే ఒక ప్రత్యర్థి.",
+  "te-en": "Oka copper plate, oka royal riddle, anni stream chese oka rival."
+ },
+ "cover": "hampi-bazaar",
+ "meter": {
+  "label": {
+   "en-IN": "Lamp oil",
+   "hi-IN": "दीये का तेल",
+   "hi-en": "Lamp ka tel",
+   "te-IN": "దీపం నూనె",
+   "te-en": "Lamp oil"
+  },
+  "icon": "flame",
+  "start": 3,
+  "max": 3,
+  "on_zero": "end:lost"
+ },
+ "items": {
+  "rana": {
+   "label": {
+    "en-IN": "Rana in tow",
+    "hi-IN": "राणा पीछे-पीछे",
+    "hi-en": "Rana peeche-peeche",
+    "te-IN": "రానా వెంటే ఉన్నాడు",
+    "te-en": "Rana vente unnadu"
+   }
+  },
+  "mallesh": {
+   "label": {
+    "en-IN": "Mallesh the guide",
+    "hi-IN": "गाइड मल्लेश",
+    "hi-en": "Guide Mallesh",
+    "te-IN": "గైడ్ మల్లేశ్",
+    "te-en": "Guide Mallesh"
+   }
+  },
+  "tricked": {
+   "label": {
+    "en-IN": "Rana fooled",
+    "hi-IN": "राणा को चकमा",
+    "hi-en": "Rana bewakoof bana",
+    "te-IN": "రానా బోల్తా పడ్డాడు",
+    "te-en": "Rana fool ayyadu"
+   }
+  }
+ },
+ "start": "k_start",
+ "nodes": {
+  "k_start": {
+   "scene": "hampi-bazaar",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "A college heritage trip to Hampi. At sunset in the old stone bazaar, you trip over a copper plate half buried in the dust.",
+     "hi-IN": "कॉलेज का हम्पी हेरिटेज ट्रिप. पुराने पत्थर के बाज़ार में ढलती शाम, और धूल में आधी दबी एक ताँबे की प्लेट से आपका पैर टकराता है.",
+     "hi-en": "College ka heritage trip, Hampi. Sunset ke waqt puraane patthar waale bazaar mein aapka pair dhool mein aadhi dabi ek copper plate se takraata hai.",
+     "te-IN": "కాలేజ్ హెరిటేజ్ ట్రిప్, హంపి. సూర్యాస్తమయం వేళ పాత రాతి బజార్‌లో, మట్టిలో సగం కూరుకుపోయిన ఒక రాగి రేకు మీ కాలికి తగులుతుంది.",
+     "te-en": "College heritage trip, Hampi. Sunset time lo paatha stone bazaar lo, dummulo sagam koorukupoyina oka copper plate thagili thadabadatharu.",
+     "hi-en@tts": "College का heritage trip, Hampi। Sunset के वक़्त पुराने पत्थर वाले bazaar में आपका पैर धूल में आधी दबी एक copper plate से टकराता है।",
+     "te-en@tts": "College heritage trip, Hampi. Sunset టైమ్ లో పాత stone bazaar లో, దుమ్ములో సగం కూరుకుపోయిన ఒక copper plate తగిలి తడబడతారు."
+    },
+    {
+     "en-IN": "It's engraved with a riddle: where the stone chariot rests, the sun shows the way. And someone is watching. Rana, the famous treasure-hunting influencer, camera already rolling.",
+     "hi-IN": "उस पर एक पहेली खुदी है: जहाँ पत्थर का रथ ठहरा है, वहाँ सूरज रास्ता दिखाता है. और कोई देख रहा है. मशहूर ख़ज़ाना-खोजी इन्फ़्लुएंसर राणा, कैमरा पहले से ऑन.",
+     "hi-en": "Us par ek riddle khudi hai: jahan patthar ka rath aaram kare, wahan sooraj raasta dikhaaye. Aur koi dekh raha hai. Rana, famous treasure-hunting influencer, camera already on.",
+     "te-IN": "దాని మీద ఒక పొడుపు కథ: రాతి రథం ఉన్న చోట, సూర్యుడే దారి చూపిస్తాడు. ఎవరో గమనిస్తున్నారు. ఫేమస్ ట్రెజర్ హంటింగ్ ఇన్‌ఫ్లుయెన్సర్ రానా, కెమెరా ఆల్రెడీ రోలింగ్.",
+     "te-en": "Daani meeda riddle: stone chariot aagina chota, sooryudu daari chupisthadu. Evaro chusthunnaru. Famous treasure-hunting influencer Rana, camera already rolling.",
+     "hi-en@tts": "उस पर एक riddle खुदी है: जहाँ पत्थर का रथ आराम करे, वहाँ सूरज रास्ता दिखाए। और कोई देख रहा है। Rana, famous treasure-hunting influencer, camera already on।",
+     "te-en@tts": "దాని మీద riddle: stone chariot ఆగిన చోట, సూర్యుడు దారి చూపిస్తాడు. ఎవరో చూస్తున్నారు. Famous treasure-hunting influencer Rana, camera already rolling."
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करते हैं?",
+     "hi-en": "Aap kya karte hain?",
+     "te-IN": "మీరేం చేస్తారు?",
+     "te-en": "Meeru em chestharu?",
+     "hi-en@tts": "आप क्या करते हैं?",
+     "te-en@tts": "మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Hide the plate",
+      "hi-IN": "प्लेट छिपा लो",
+      "hi-en": "Plate chhupa lo",
+      "te-IN": "రేకుని దాచేయి",
+      "te-en": "Plate daachestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "hide",
+       "pocket",
+       "plate"
+      ],
+      "hi-IN": [
+       "छिपा",
+       "छुपा",
+       "जेब"
+      ],
+      "hi-en": [
+       "chhupa",
+       "chupa",
+       "hide",
+       "pocket",
+       "jeb"
+      ],
+      "te-IN": [
+       "దాచు",
+       "దాచేయి",
+       "జేబు"
+      ],
+      "te-en": [
+       "దాచేస్తా",
+       "దాచు",
+       "పాకెట్",
+       "హైడ్",
+       "hide",
+       "pocket"
+      ]
+     },
+     "go": "k_chariot",
+     "say": [
+      {
+       "en-IN": "You slip the plate into your pocket. Rana smiles a little too wide.",
+       "hi-IN": "आप चुपके से प्लेट जेब में सरका देते हैं. राणा की मुस्कान ज़रूरत से कुछ ज़्यादा चौड़ी हो जाती है.",
+       "hi-en": "Aap plate chupchaap jeb mein daal lete hain. Rana ki muskaan kuch zyada hi chaudi ho jaati hai.",
+       "te-IN": "రేకుని జేబులో వేసుకుంటారు. రానా కొంచెం ఎక్కువగానే నవ్వుతాడు.",
+       "te-en": "Plate ni mellaga pocket lo pettestharu. Rana konchem ekkuvagaane navvuthadu.",
+       "hi-en@tts": "आप plate चुपचाप जेब में डाल लेते हैं। Rana की मुस्कान कुछ ज़्यादा ही चौड़ी हो जाती है।",
+       "te-en@tts": "Plate ని మెల్లగా pocket లో పెట్టేస్తారు. Rana కొంచెం ఎక్కువగానే నవ్వుతాడు."
+      }
+     ]
+    },
+    {
+     "label": {
+      "en-IN": "Show it to Rana",
+      "hi-IN": "राणा को दिखाओ",
+      "hi-en": "Rana ko dikhao",
+      "te-IN": "రానాకి చూపించు",
+      "te-en": "Rana ki chupistha"
+     },
+     "keywords": {
+      "en-IN": [
+       "show",
+       "rana",
+       "partner"
+      ],
+      "hi-IN": [
+       "दिखाओ",
+       "राणा",
+       "पार्टनर"
+      ],
+      "hi-en": [
+       "dikhao",
+       "show",
+       "rana",
+       "partner"
+      ],
+      "te-IN": [
+       "చూపించు",
+       "రానా",
+       "పార్ట్‌నర్"
+      ],
+      "te-en": [
+       "రానా",
+       "చూపిస్తా",
+       "షో",
+       "పార్ట్నర్",
+       "rana",
+       "show"
+      ]
+     },
+     "go": "k_chariot",
+     "say": [
+      {
+       "en-IN": "Rana's eyes light up: partners? Fifty fifty. Trust me.",
+       "hi-IN": "राणा की आँखें चमक उठती हैं: पार्टनर? फ़िफ़्टी फ़िफ़्टी. भरोसा रखो.",
+       "hi-en": "Rana ki aankhein chamak uthti hain: partners? Fifty fifty. Trust me, bro.",
+       "te-IN": "రానా కళ్ళు మెరుస్తాయి: పార్ట్‌నర్స్? ఫిఫ్టీ ఫిఫ్టీ. నన్ను నమ్ము.",
+       "te-en": "Rana kallu merusthayi: partners? Fifty fifty. Trust me.",
+       "hi-en@tts": "Rana की आँखें चमक उठती हैं: partners? Fifty fifty। Trust me, bro।",
+       "te-en@tts": "Rana కళ్ళు మెరుస్తాయి: partners? Fifty fifty. Trust me."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "rana"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Ask the guide, Mallesh",
+      "hi-IN": "गाइड मल्लेश से पूछो",
+      "hi-en": "Guide Mallesh se poocho",
+      "te-IN": "గైడ్ మల్లేశ్‌ని అడుగు",
+      "te-en": "Guide Mallesh ni aduguta"
+     },
+     "keywords": {
+      "en-IN": [
+       "guide",
+       "mallesh",
+       "ask"
+      ],
+      "hi-IN": [
+       "गाइड",
+       "मल्लेश",
+       "पूछो"
+      ],
+      "hi-en": [
+       "guide",
+       "mallesh",
+       "poocho",
+       "ask"
+      ],
+      "te-IN": [
+       "గైడ్",
+       "మల్లేశ్",
+       "అడుగు"
+      ],
+      "te-en": [
+       "మల్లేష్",
+       "గైడ్",
+       "అడుగుతా",
+       "mallesh",
+       "guide"
+      ]
+     },
+     "go": "k_chariot",
+     "say": [
+      {
+       "en-IN": "Old Mallesh reads the plate and goes quiet: my grandfather told stories about this. I'm coming with you.",
+       "hi-IN": "बूढ़े मल्लेश प्लेट पढ़ते हैं और चुप हो जाते हैं: मेरे दादा इसकी कहानियाँ सुनाते थे. मैं भी साथ चलता हूँ.",
+       "hi-en": "Boodhe Mallesh plate padhte hain aur chup ho jaate hain: mere daadaji iski kahaaniyan sunaate the. Main bhi saath chaloonga.",
+       "te-IN": "ముసలి మల్లేశ్ రేకు చదివి మౌనంగా అయిపోతాడు: మా తాత దీని గురించి కథలు చెప్పేవాడు. నేనూ మీతో వస్తా.",
+       "te-en": "Musali Mallesh plate chadivi silent ayipothadu: maa thatha deeni gurinchi kathalu cheppevadu. Nenu meetho vastha.",
+       "hi-en@tts": "बूढ़े Mallesh plate पढ़ते हैं और चुप हो जाते हैं: मेरे दादाजी इसकी कहानियाँ सुनाते थे। मैं भी साथ चलूँगा।",
+       "te-en@tts": "ముసలి Mallesh plate చదివి silent అయిపోతాడు: మా తాత దీని గురించి కథలు చెప్పేవాడు. నేనూ మీతో వస్తా."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "mallesh"
+      ]
+     }
+    }
+   ]
+  },
+  "k_chariot": {
+   "scene": "hampi-chariot",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "At the stone chariot, the last sunbeam falls on a carved wheel. Beneath it is a stone dial with numbers around its edge.",
+     "hi-IN": "पत्थर के रथ पर सूरज की आख़िरी किरण एक नक़्क़ाशीदार पहिये पर पड़ती है. उसके नीचे एक पत्थर का डायल है, किनारे पर नंबर खुदे हुए.",
+     "hi-en": "Patthar ke rath par sooraj ki aakhri kiran ek nakkashidaar pahiye par padti hai. Uske neeche patthar ka ek dial hai, kinaare par numbers ke saath.",
+     "te-IN": "రాతి రథం దగ్గర, చివరి సూర్యకిరణం చెక్కిన చక్రం మీద పడుతుంది. దాని కింద, అంచు చుట్టూ నంబర్లు ఉన్న ఒక రాతి డయల్.",
+     "te-en": "Stone chariot daggara, chivari soorya kiranam oka chekkina wheel meeda paduthundi. Daani kinda anchu chuttu numbers unna oka stone dial.",
+     "hi-en@tts": "पत्थर के रथ पर सूरज की आखिरी किरण एक नक्काशीदार पहिए पर पड़ती है। उसके नीचे पत्थर का एक dial है, किनारे पर numbers के साथ।",
+     "te-en@tts": "Stone chariot దగ్గర, చివరి సూర్య కిరణం ఒక చెక్కిన wheel మీద పడుతుంది. దాని కింద అంచు చుట్టూ numbers ఉన్న ఒక stone dial."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "The plate says: turn the dial to the number of spokes, as many as the hours on a clock face. Which number?",
+     "hi-IN": "प्लेट कहती है: डायल को तीलियों की गिनती पर घुमाओ, उतनी ही जितने घड़ी के चेहरे पर घंटे होते हैं. कौन-सा नंबर?",
+     "hi-en": "Plate kehti hai: dial ko spokes ki ginti par ghumaao, utne hi jitne ghadi par ghante hote hain. Kaun sa number?",
+     "te-IN": "రేకు మీద ఉంది: గడియారంలో ఎన్ని గంటలో, చక్రానికి అన్ని ఆకులు. ఆ నంబర్‌కి డయల్ తిప్పండి. ఏ నంబర్?",
+     "te-en": "Plate chepthondi: dial ni spokes number ki thippandi, clock face meeda enni hours untayo anni. E number?",
+     "hi-en@tts": "Plate कहती है: dial को spokes की गिनती पर घुमाओ, उतने ही जितने घड़ी पर घंटे होते हैं। कौन सा number?",
+     "te-en@tts": "Plate చెప్తోంది: dial ని spokes number కి తిప్పండి, clock face మీద ఎన్ని hours ఉంటాయో అన్ని. ఏ number?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "12",
+      "8",
+      "16"
+     ],
+     "hi-IN": [
+      "12",
+      "8",
+      "16"
+     ],
+     "hi-en": [
+      "12",
+      "8",
+      "16"
+     ],
+     "te-IN": [
+      "12",
+      "8",
+      "16"
+     ],
+     "te-en": [
+      "12",
+      "8",
+      "16"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "बारह",
+      "twelve"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "పన్నెండు",
+      "twelve"
+     ],
+     "te-en": [
+      "twelve",
+      "ట్వెల్వ్",
+      "పన్నెండు"
+     ]
+    },
+    "pass": {
+     "go": "k_cave",
+     "say": [
+      {
+       "en-IN": "Twelve. With a deep grinding sound, a stone slab slides aside. Steps lead down into the dark.",
+       "hi-IN": "बारह. गहरी घरघराहट के साथ एक पत्थर की सिल्ली खिसक जाती है. सीढ़ियाँ नीचे अंधेरे में उतरती हैं.",
+       "hi-en": "Baarah. Ek bhaari ghargharaahat ke saath patthar ki slab khisak jaati hai. Seedhiyan neeche andhere mein utarti hain.",
+       "te-IN": "పన్నెండు. గంభీరమైన రాపిడి శబ్దంతో ఒక రాతి పలక పక్కకు జరుగుతుంది. మెట్లు కిందికి, చీకట్లోకి దిగుతున్నాయి.",
+       "te-en": "Twelve. Gambheeramaina grinding sound tho oka stone slab pakkaki jaruguthundi. Cheekatiloki metlu diguthunnayi.",
+       "hi-en@tts": "बारह। एक भारी घरघराहट के साथ पत्थर की slab खिसक जाती है। सीढ़ियाँ नीचे अँधेरे में उतरती हैं।",
+       "te-en@tts": "Twelve. గంభీరమైన grinding sound తో ఒక stone slab పక్కకి జరుగుతుంది. చీకటిలోకి మెట్లు దిగుతున్నాయి."
+      }
+     ]
+    },
+    "fail": {
+     "go": "k_river",
+     "say": [
+      {
+       "en-IN": "The dial clunks and jams. But a thin crack in the courtyard runs all the way to the river. You follow it.",
+       "hi-IN": "डायल खटककर जाम हो जाता है. पर आँगन में एक पतली दरार सीधे नदी तक जाती है. आप उसके पीछे चलते हैं.",
+       "hi-en": "Dial khataak se jam ho jaata hai. Par aangan mein ek patli daraar seedhe nadi tak jaati hai. Aap uske peeche chalte hain.",
+       "te-IN": "డయల్ టక్కుమని జామ్ అవుతుంది. కానీ ప్రాంగణంలో ఒక సన్నని పగులు నది దాకా వెళ్తోంది. మీరు దాని వెంట వెళ్తారు.",
+       "te-en": "Dial clunk ani jam avuthundi. Kaani courtyard lo oka sannani pagulu river daaka veltondi. Meeru daanni follow avutharu.",
+       "hi-en@tts": "Dial खटाक से jam हो जाता है। पर आँगन में एक पतली दरार सीधे नदी तक जाती है। आप उसके पीछे चलते हैं।",
+       "te-en@tts": "Dial క్లంక్ అని jam అవుతుంది. కానీ courtyard లో ఒక సన్నని పగులు river దాకా వెళ్తోంది. మీరు దాన్ని follow అవుతారు."
+      }
+     ],
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  },
+  "k_river": {
+   "scene": "hampi-river",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The crack ends at the river, beside an old round coracle bobbing between the boulders. Behind a waterfall on the far bank, you glimpse a dark opening.",
+     "hi-IN": "दरार नदी पर ख़त्म होती है, जहाँ चट्टानों के बीच एक पुरानी गोल टोकरी-नाव डोल रही है. उस पार झरने के पीछे एक अंधेरा मुहाना झलकता है.",
+     "hi-en": "Daraar nadi par khatam hoti hai, jahan chattaanon ke beech ek puraana gol coracle dol raha hai. Us paar jharne ke peeche ek andhera muhaana dikhta hai.",
+     "te-IN": "పగులు తుంగభద్ర ఒడ్డున ముగుస్తుంది, బండరాళ్ళ మధ్య ఒక పాత గుండ్రటి పుట్టి తేలుతోంది. అవతలి ఒడ్డున జలపాతం వెనక ఒక చీకటి ద్వారం కనిపిస్తోంది.",
+     "te-en": "Pagulu river daggara aaguthundi, bandaraalla madhya ooguthunna paatha gundrati putti pakkana. Avathali odduna waterfall venaka oka cheekati dwaaram kanipisthondi.",
+     "hi-en@tts": "दरार नदी पर खत्म होती है, जहाँ चट्टानों के बीच एक पुराना गोल coracle डोल रहा है। उस पार झरने के पीछे एक अँधेरा मुहाना दिखता है।",
+     "te-en@tts": "పగులు river దగ్గర ఆగుతుంది, బండరాళ్ళ మధ్య ఊగుతున్న పాత గుండ్రటి పుట్టి పక్కన. అవతలి ఒడ్డున waterfall వెనక ఒక చీకటి ద్వారం కనిపిస్తోంది."
+    },
+    {
+     "en-IN": "How do you cross?",
+     "hi-IN": "पार कैसे जाना है?",
+     "hi-en": "Paar kaise jaana hai?",
+     "te-IN": "ఎలా దాటుతారు?",
+     "te-en": "Ela daatutharu?",
+     "hi-en@tts": "पार कैसे जाना है?",
+     "te-en@tts": "ఎలా దాటుతారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Row the coracle myself",
+      "hi-IN": "खुद नाव चलाओ",
+      "hi-en": "Khud coracle chalao",
+      "te-IN": "నేనే పుట్టి నడుపుతా",
+      "te-en": "Nene putti naduputha"
+     },
+     "keywords": {
+      "en-IN": [
+       "row",
+       "coracle",
+       "myself"
+      ],
+      "hi-IN": [
+       "खुद",
+       "ख़ुद",
+       "टोकरी"
+      ],
+      "hi-en": [
+       "coracle",
+       "khud",
+       "myself",
+       "row"
+      ],
+      "te-IN": [
+       "పుట్టి",
+       "నేనే",
+       "తెడ్డు"
+      ],
+      "te-en": [
+       "పుట్టి",
+       "నడుపుతా",
+       "కోరకిల్",
+       "నేనే",
+       "coracle",
+       "row"
+      ]
+     },
+     "go": "k_hall",
+     "say": [
+      {
+       "en-IN": "The coracle spins in circles, as coracles do. You land far downstream, near an old hall.",
+       "hi-IN": "टोकरी-नाव गोल-गोल घूमती है, जैसा ऐसी नावें करती हैं. किनारा बहुत नीचे जाकर मिलता है, एक पुराने मंडप के पास.",
+       "hi-en": "Coracle gol-gol ghoomta hai, jaisa coracles karte hain. Aap bahut neeche, ek puraane hall ke paas kinaare lagte hain.",
+       "te-IN": "పుట్టి గిర్రున గుండ్రంగా తిరుగుతుంది, పుట్టిలు అంతే మరి. చాలా దిగువన, ఒక పాత మండపం దగ్గర ఒడ్డుకి చేరతారు.",
+       "te-en": "Putti gundranga giragiraa thiruguthundi, puttilu anthe. Meeru chaala dooram lo, oka paatha hall daggara digutharu.",
+       "hi-en@tts": "Coracle गोल-गोल घूमता है, जैसा coracles करते हैं। आप बहुत नीचे, एक पुराने hall के पास किनारे लगते हैं।",
+       "te-en@tts": "పుట్టి గుండ్రంగా గిరగిరా తిరుగుతుంది, పుట్టిలు అంతే. మీరు చాలా దూరంలో, ఒక పాత hall దగ్గర దిగుతారు."
+      }
+     ],
+     "effects": {
+      "meter": -1
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Let Mallesh row",
+      "hi-IN": "मल्लेश को चलाने दो",
+      "hi-en": "Mallesh ko chalaane do",
+      "te-IN": "మల్లేశ్ నడపనివ్వు",
+      "te-en": "Mallesh nadapaali"
+     },
+     "keywords": {
+      "en-IN": [
+       "mallesh",
+       "let"
+      ],
+      "hi-IN": [
+       "मल्लेश",
+       "चलाने दो"
+      ],
+      "hi-en": [
+       "mallesh",
+       "unko",
+       "chalane do"
+      ],
+      "te-IN": [
+       "మల్లేశ్",
+       "నడపనివ్వు"
+      ],
+      "te-en": [
+       "మల్లేష్",
+       "మల్లేష్ నడపాలి",
+       "mallesh"
+      ]
+     },
+     "go": "k_cave",
+     "say": [
+      {
+       "en-IN": "Mallesh rows straight as an arrow, right behind the waterfall. He even refills your lamp.",
+       "hi-IN": "मल्लेश तीर की तरह सीधी नाव खेते हैं, ठीक झरने के पीछे तक. ऊपर से आपके दीये में तेल भी भर देते हैं.",
+       "hi-en": "Mallesh teer ki tarah seedha naav khete hain, theek jharne ke peeche tak. Upar se aapke lamp mein tel bhi bhar dete hain.",
+       "te-IN": "మల్లేశ్ బాణంలా నేరుగా, సరిగ్గా జలపాతం వెనక్కి పుట్టి నడుపుతాడు. మీ దీపంలో నూనె కూడా పోస్తాడు.",
+       "te-en": "Mallesh baanamlaa straight ga waterfall venakki naduputhadu. Mee lamp lo oil kooda nimputhadu.",
+       "hi-en@tts": "Mallesh तीर की तरह सीधा नाव खेते हैं, ठीक झरने के पीछे तक। ऊपर से आपके lamp में तेल भी भर देते हैं।",
+       "te-en@tts": "Mallesh బాణంలా straight గా waterfall వెనక్కి నడుపుతాడు. మీ lamp లో oil కూడా నింపుతాడు."
+      }
+     ],
+     "effects": {
+      "meter": 1
+     },
+     "if": {
+      "has": [
+       "mallesh"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Climb the boulders",
+      "hi-IN": "चट्टानों पर चढ़ो",
+      "hi-en": "Chattaanon par chadho",
+      "te-IN": "బండరాళ్ళు ఎక్కు",
+      "te-en": "Bandaraallu ekkutha"
+     },
+     "keywords": {
+      "en-IN": [
+       "climb",
+       "boulders",
+       "rocks"
+      ],
+      "hi-IN": [
+       "चढ़ो",
+       "चट्टान",
+       "पत्थरों"
+      ],
+      "hi-en": [
+       "chattan",
+       "chadho",
+       "climb",
+       "boulders",
+       "rocks"
+      ],
+      "te-IN": [
+       "ఎక్కు",
+       "బండరాళ్ళు",
+       "రాళ్ళు"
+      ],
+      "te-en": [
+       "బండరాళ్ళు",
+       "రాళ్ళు",
+       "ఎక్కుతా",
+       "క్లైంబ్",
+       "climb",
+       "rocks"
+      ]
+     },
+     "go": "k_hall"
+    }
+   ]
+  },
+  "k_hall": {
+   "scene": "hampi-hall",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "You reach the hall of musical pillars, silver in the moonlight. Each pillar rings a different note when you tap it, and one of them is hollow.",
+     "hi-IN": "चाँदनी में चाँदी-से चमकते संगीत वाले खंभों का मंडप. हर खंभा थपथपाने पर अलग सुर बजाता है, और उनमें से एक खोखला है.",
+     "hi-en": "Aap musical pillars waale hall mein pahunchte hain, chaandni mein chaandi jaise. Har pillar thapthapaane par alag sur deta hai, aur unmein se ek khokhla hai.",
+     "te-IN": "వెన్నెల్లో వెండిలా మెరిసే సంగీత స్తంభాల మండపం. ఒక్కో స్తంభం తడితే ఒక్కో స్వరం పలుకుతుంది, వాటిలో ఒకటి లోపల డొల్ల.",
+     "te-en": "Musical pillars hall ki cherukuntaru, vennelalo silver laa merusthondi. Tap chesthe prathi pillar vere note moguthundi, andulo okati lopala khaali.",
+     "hi-en@tts": "आप musical pillars वाले hall में पहुँचते हैं, चाँदनी में चाँदी जैसे। हर pillar थपथपाने पर अलग सुर देता है, और उनमें से एक खोखला है।",
+     "te-en@tts": "Musical pillars hall కి చేరుకుంటారు, వెన్నెలలో silver లా మెరుస్తోంది. Tap చేస్తే ప్రతి pillar వేరే note మోగుతుంది, అందులో ఒకటి లోపల ఖాళీ."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "A carving reads: tap the pillar numbered with the notes of the scale, sa re ga ma pa dha ni. Which pillar?",
+     "hi-IN": "एक नक़्क़ाशी पर लिखा है: उस खंभे को थपथपाओ जिसका नंबर सरगम के सुरों जितना है, सा रे गा मा पा धा नी. कौन-सा खंभा?",
+     "hi-en": "Nakkashi mein likha hai: us pillar ko thapthapaao jiska number sargam ke suron jitna hai, sa re ga ma pa dha ni. Kaun sa pillar?",
+     "te-IN": "ఒక శాసనం: స రి గ మ ప ద ని, ఈ స్వరాలు ఎన్నో, ఆ నంబర్ స్తంభం తట్టండి. ఏ స్తంభం?",
+     "te-en": "Oka chekkadam: scale lo enni notes untayo, sa re ga ma pa dha ni, aa number pillar ni tap cheyyandi. E pillar?",
+     "hi-en@tts": "नक्काशी में लिखा है: उस pillar को थपथपाओ जिसका number सरगम के सुरों जितना है, सा रे ग म प ध नि। कौन सा pillar?",
+     "te-en@tts": "ఒక చెక్కడం: scale లో ఎన్ని notes ఉంటాయో, sa re ga ma pa dha ni, ఆ number pillar ని tap చేయండి. ఏ pillar?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "7",
+      "5",
+      "8"
+     ],
+     "hi-IN": [
+      "7",
+      "5",
+      "8"
+     ],
+     "hi-en": [
+      "7",
+      "5",
+      "8"
+     ],
+     "te-IN": [
+      "7",
+      "5",
+      "8"
+     ],
+     "te-en": [
+      "7",
+      "5",
+      "8"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "सात",
+      "seven"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "ఏడు",
+      "seven"
+     ],
+     "te-en": [
+      "seven",
+      "సెవెన్",
+      "ఏడు"
+     ]
+    },
+    "pass": {
+     "go": "k_cave",
+     "say": [
+      {
+       "en-IN": "Seven! The pillar sings, and a hidden door in the floor swings open.",
+       "hi-IN": "सात! खंभा गा उठता है, और फ़र्श में छिपा एक दरवाज़ा खुल जाता है.",
+       "hi-en": "Saat! Pillar ga uthta hai, aur farsh mein ek chhupa darwaza khul jaata hai.",
+       "te-IN": "ఏడు! స్తంభం పాడుతుంది, నేలలో దాగి ఉన్న ఒక తలుపు తెరుచుకుంటుంది.",
+       "te-en": "Seven! Pillar paaduthundi, floor lo oka secret door theruchukuntundi.",
+       "hi-en@tts": "सात! Pillar गा उठता है, और फ़र्श में एक छुपा दरवाज़ा खुल जाता है।",
+       "te-en@tts": "Seven! Pillar పాడుతుంది, floor లో ఒక secret door తెరుచుకుంటుంది."
+      }
+     ]
+    },
+    "fail": {
+     "go": "k_cave",
+     "say": [
+      {
+       "en-IN": "The wrong pillar booms like a drum, and dust pours from the roof. You find the way down at last, coughing, with your lamp spluttering.",
+       "hi-IN": "ग़लत खंभा ढोल की तरह गूँजता है, और छत से धूल झड़ने लगती है. खाँसते-खाँसते, फड़फड़ाते दीये के साथ, आख़िरकार नीचे का रास्ता मिल ही जाता है.",
+       "hi-en": "Galat pillar dhol ki tarah goonjta hai, aur chhat se dhool barasti hai. Khaanste-khaanste aakhir neeche ka raasta milta hai, par lamp phadphada raha hai.",
+       "te-IN": "తప్పు స్తంభం డప్పులా ధమ్మని మోగుతుంది, పైకప్పు నుంచి దుమ్ము రాలుతుంది. దగ్గుతూ, ఆరిపోతున్న దీపంతో, చివరికి కిందికి దారి దొరుకుతుంది.",
+       "te-en": "Wrong pillar dappulaa moguthundi, roof nunchi dummu raaluthundi. Dagguthu, lamp chitapatalaaduthundaga, chivariki kindaki daari dorukuthundi.",
+       "hi-en@tts": "गलत pillar ढोल की तरह गूँजता है, और छत से धूल बरसती है। खाँसते-खाँसते आखिर नीचे का रास्ता मिलता है, पर lamp फड़फड़ा रहा है।",
+       "te-en@tts": "Wrong pillar డప్పులా మోగుతుంది, roof నుంచి దుమ్ము రాలుతుంది. దగ్గుతూ, lamp చిటపటలాడుతుండగా, చివరికి కిందకి దారి దొరుకుతుంది."
+      }
+     ],
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  },
+  "k_cave": {
+   "scene": "hampi-cave",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "A secret passage lit by ancient oil lamps, with faded paintings of royal engineers on the walls. Then, footsteps behind you. It's Rana, still filming!",
+     "hi-IN": "पुराने तेल के दीयों से रोशन एक गुप्त रास्ता, दीवारों पर शाही इंजीनियरों की फीकी पेंटिंग्स. तभी पीछे से क़दमों की आहट. राणा, अब भी फ़िल्म बनाते हुए!",
+     "hi-en": "Praacheen tel ke diyon se roshan ek secret passage, deewaron par shaahi engineers ki dhundhli paintings. Tabhi peeche kadmon ki aahat. Rana, ab bhi filming karte hue!",
+     "te-IN": "పురాతన నూనె దీపాల వెలుగులో ఒక రహస్య దారి, గోడల మీద రాజుల ఇంజనీర్ల వెలిసిపోయిన బొమ్మలు. అంతలో వెనక అడుగుల చప్పుడు. రానా, ఇంకా షూట్ చేస్తూనే!",
+     "te-en": "Puraathana oil lamps velugulo oka secret passage, godala meeda royal engineers paatha paintings. Anthalo venaka adugula sound. Rana, inka filming!",
+     "hi-en@tts": "प्राचीन तेल के दीयों से रोशन एक secret passage, दीवारों पर शाही engineers की धुंधली paintings। तभी पीछे क़दमों की आहट। Rana, अब भी filming करते हुए!",
+     "te-en@tts": "పురాతన oil lamps వెలుగులో ఒక secret passage, గోడల మీద royal engineers పాత paintings. అంతలో వెనక అడుగుల sound. Rana, ఇంకా filming!"
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करते हैं?",
+     "hi-en": "Aap kya karte hain?",
+     "te-IN": "మీరేం చేస్తారు?",
+     "te-en": "Meeru em chestharu?",
+     "hi-en@tts": "आप क्या करते हैं?",
+     "te-en@tts": "మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Run ahead to the vault",
+      "hi-IN": "भागकर तिजोरी तक",
+      "hi-en": "Vault ki taraf bhaago",
+      "te-IN": "ఖజానా వైపు పరుగు",
+      "te-en": "Vault vaipu parigeththutha"
+     },
+     "keywords": {
+      "en-IN": [
+       "run",
+       "ahead",
+       "vault"
+      ],
+      "hi-IN": [
+       "भाग",
+       "तिजोरी",
+       "आगे"
+      ],
+      "hi-en": [
+       "vault",
+       "aage",
+       "ahead",
+       "bhaago"
+      ],
+      "te-IN": [
+       "పరుగు",
+       "ఖజానా",
+       "ముందుకు"
+      ],
+      "te-en": [
+       "వాల్ట్",
+       "పరిగెత్తు",
+       "ముందుకి",
+       "vault",
+       "run"
+      ]
+     },
+     "go": "k_vault"
+    },
+    {
+     "label": {
+      "en-IN": "Team up with Rana",
+      "hi-IN": "राणा से हाथ मिलाओ",
+      "hi-en": "Rana ke saath team up",
+      "te-IN": "రానాతో టీమ్ అప్",
+      "te-en": "Rana tho team up"
+     },
+     "keywords": {
+      "en-IN": [
+       "team",
+       "rana",
+       "together"
+      ],
+      "hi-IN": [
+       "राणा",
+       "हाथ मिला",
+       "टीम"
+      ],
+      "hi-en": [
+       "team",
+       "rana",
+       "saath",
+       "together"
+      ],
+      "te-IN": [
+       "టీమ్",
+       "రానా",
+       "కలిసి"
+      ],
+      "te-en": [
+       "టీమ్ అప్",
+       "టీమ్",
+       "రానా తో",
+       "team",
+       "rana"
+      ]
+     },
+     "go": "k_vault",
+     "say": [
+      {
+       "en-IN": "Rana grins into the camera: and that, guys, is teamwork. You're not sure you like being content.",
+       "hi-IN": "राणा कैमरे की तरफ़ मुस्कुराता है: और गाइज़, इसे कहते हैं टीमवर्क. कंटेंट बनना आपको पसंद है या नहीं, पक्का नहीं.",
+       "hi-en": "Rana camera mein grin karta hai: aur guys, ise kehte hain teamwork. Aapko pakka nahi pata ki content banna achha lag raha hai ya nahi.",
+       "te-IN": "రానా కెమెరా వైపు నవ్వుతాడు: గైస్, దీన్నే టీమ్‌వర్క్ అంటారు. కంటెంట్‌గా మారడం మీకు నచ్చిందో లేదో తెలీట్లేదు.",
+       "te-en": "Rana camera loki grin chesthadu: and that, guys, is teamwork. Meeru content avvadam meeku nachchindo ledo theliyatledu.",
+       "hi-en@tts": "Rana camera में grin करता है: और guys, इसे कहते हैं teamwork। आपको पक्का नहीं पता कि content बनना अच्छा लग रहा है या नहीं।",
+       "te-en@tts": "Rana camera లోకి grin చేస్తాడు: and that, guys, is teamwork. మీరు content అవ్వడం మీకు నచ్చిందో లేదో తెలియట్లేదు."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "rana"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Trick him into a dead end",
+      "hi-IN": "उसे ग़लत रास्ते भेजो",
+      "hi-en": "Dead end mein phansao",
+      "te-IN": "రానాని దారి తప్పించు",
+      "te-en": "Dead end loki trick"
+     },
+     "keywords": {
+      "en-IN": [
+       "trick",
+       "dead end",
+       "fool"
+      ],
+      "hi-IN": [
+       "ग़लत रास्ते",
+       "गलत रास्ते",
+       "चकमा",
+       "भेजो"
+      ],
+      "hi-en": [
+       "dead end",
+       "phasao",
+       "trick",
+       "fool"
+      ],
+      "te-IN": [
+       "తప్పించు",
+       "బోల్తా",
+       "మోసం",
+       "డెడ్ ఎండ్"
+      ],
+      "te-en": [
+       "ట్రిక్",
+       "డెడ్ ఎండ్",
+       "ఫూల్",
+       "trick",
+       "dead end"
+      ]
+     },
+     "go": "k_vault",
+     "say": [
+      {
+       "en-IN": "You point down a side tunnel: the gold's that way! Rana sprints off into the dark. You hear a faint: guys, I think I'm lost.",
+       "hi-IN": "आप एक साइड सुरंग की तरफ़ इशारा करते हैं: सोना उधर है! राणा अंधेरे में दौड़ पड़ता है. फिर हल्की-सी आवाज़ आती है: गाइज़, लगता है मैं खो गया.",
+       "hi-en": "Aap ek side tunnel ki taraf ishaara karte hain: gold udhar hai! Rana andhere mein daud padta hai. Door se ek dheemi awaaz: guys, mujhe lagta hai main kho gaya.",
+       "te-IN": "పక్క సొరంగం వైపు చూపిస్తారు: బంగారం అటు ఉంది! రానా చీకట్లోకి పరిగెత్తుతాడు. దూరం నుంచి సన్నగా: గైస్, నేను తప్పిపోయాననుకుంటా.",
+       "te-en": "Oka side tunnel chupistharu: gold atu undi! Rana cheekatloki sprint chesthadu. Kaasepatiki sannaga vinipisthundi: guys, I think I'm lost.",
+       "hi-en@tts": "आप एक side tunnel की तरफ़ इशारा करते हैं: gold उधर है! Rana अँधेरे में दौड़ पड़ता है। दूर से एक धीमी आवाज़: guys, मुझे लगता है मैं खो गया।",
+       "te-en@tts": "ఒక side tunnel చూపిస్తారు: gold అటు ఉంది! Rana చీకట్లోకి sprint చేస్తాడు. కాసేపటికి సన్నగా వినిపిస్తుంది: guys, I think I'm lost."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "tricked"
+      ],
+      "lose": [
+       "rana"
+      ]
+     }
+    }
+   ]
+  },
+  "k_vault": {
+   "scene": "hampi-vault",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The vault! Gold coins and jewels glow in the lamplight. But behind you, the great stone door has started to close, slowly.",
+     "hi-IN": "तिजोरी! दीये की रोशनी में सोने के सिक्के और जवाहरात दमक रहे हैं. पर पीछे, पत्थर का भारी दरवाज़ा धीरे-धीरे बंद होने लगा है.",
+     "hi-en": "Vault! Lamp ki roshni mein sone ke sikke aur jawaahraat chamak rahe hain. Par peeche, bada patthar ka darwaza dheere-dheere band hone laga hai.",
+     "te-IN": "ఖజానా! దీపం వెలుగులో బంగారు నాణేలు, నగలు మెరుస్తున్నాయి. కానీ వెనక, పెద్ద రాతి తలుపు మెల్లగా మూసుకోవడం మొదలైంది.",
+     "te-en": "Vault! Lamp velugulo gold coins, jewels merusthunnayi. Kaani venaka pedda stone door nemmadiga moosukovadam start ayindi.",
+     "hi-en@tts": "Vault! Lamp की रोशनी में सोने के सिक्के और जवाहरात चमक रहे हैं। पर पीछे, बड़ा पत्थर का दरवाज़ा धीरे-धीरे बंद होने लगा है।",
+     "te-en@tts": "Vault! Lamp వెలుగులో gold coins, jewels మెరుస్తున్నాయి. కానీ వెనక పెద్ద stone door నెమ్మదిగా మూసుకోవడం start అయింది."
+    },
+    {
+     "en-IN": "On the door, a carved sun holds the final lock.",
+     "hi-IN": "दरवाज़े पर खुदा एक सूरज आख़िरी ताला है.",
+     "hi-en": "Darwaze par khuda ek sooraj, aakhri lock hai.",
+     "te-IN": "తలుపు మీద, చెక్కిన ఒక సూర్యుడే చివరి తాళం.",
+     "te-en": "Door meeda chekkina oka sooryude final lock.",
+     "hi-en@tts": "दरवाज़े पर खुदा एक सूरज, आखिरी lock है।",
+     "te-en@tts": "Door మీద చెక్కిన ఒక సూర్యుడే final lock."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "The plate translates the carving: how many degrees does the Earth turn in one hour?",
+     "hi-IN": "प्लेट उस नक़्क़ाशी का मतलब बताती है: धरती एक घंटे में कितने डिग्री घूमती है?",
+     "hi-en": "Plate nakkashi ka matlab batati hai: ek ghante mein Earth kitne degree ghoomti hai?",
+     "te-IN": "రేకు ఆ శాసనాన్ని ఇలా చెప్తోంది: ఒక గంటలో భూమి ఎన్ని డిగ్రీలు తిరుగుతుంది?",
+     "te-en": "Plate aa chekkadaanni translate chesthundi: oka gantalo Earth enni degrees thiruguthundi?",
+     "hi-en@tts": "Plate नक्काशी का मतलब बताती है: एक घंटे में Earth कितने degree घूमती है?",
+     "te-en@tts": "Plate ఆ చెక్కడాన్ని translate చేస్తుంది: ఒక గంటలో Earth ఎన్ని degrees తిరుగుతుంది?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "15",
+      "30",
+      "60"
+     ],
+     "hi-IN": [
+      "15",
+      "30",
+      "60"
+     ],
+     "hi-en": [
+      "15",
+      "30",
+      "60"
+     ],
+     "te-IN": [
+      "15",
+      "30",
+      "60"
+     ],
+     "te-en": [
+      "15",
+      "30",
+      "60"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "पंद्रह",
+      "fifteen"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "పదిహేను",
+      "fifteen"
+     ],
+     "te-en": [
+      "fifteen",
+      "ఫిఫ్టీన్",
+      "పదిహేను",
+      "fifteen degrees"
+     ]
+    },
+    "pass": {
+     "go": [
+      {
+       "if": {
+        "has": [
+         "rana"
+        ]
+       },
+       "go": "end:viral"
+      },
+      {
+       "go": "end:keeper"
+      }
+     ],
+     "say": [
+      {
+       "en-IN": "Fifteen degrees: three sixty divided by twenty four. The sun lock clicks, and the door stops, then rolls back open.",
+       "hi-IN": "पंद्रह डिग्री: तीन सौ साठ भाग चौबीस. सूरज वाला ताला क्लिक करता है, और दरवाज़ा रुककर वापस खुल जाता है.",
+       "hi-en": "Pandrah degree: three sixty ko twenty four se divide karo. Sun lock click karta hai, darwaza rukta hai, phir waapas khul jaata hai.",
+       "te-IN": "పదిహేను డిగ్రీలు: మూడు వందల అరవైని ఇరవై నాలుగుతో భాగిస్తే. సూర్య తాళం క్లిక్ అంటుంది, తలుపు ఆగి, మళ్ళీ వెనక్కి తెరుచుకుంటుంది.",
+       "te-en": "Fifteen degrees: three sixty divided by twenty four. Sun lock click avuthundi, door aagi, malli venakki open avuthundi.",
+       "hi-en@tts": "पंद्रह degree: three sixty को twenty four से divide करो। Sun lock click करता है, दरवाज़ा रुकता है, फिर वापस खुल जाता है।",
+       "te-en@tts": "Fifteen degrees: three sixty divided by twenty four. Sun lock click అవుతుంది, door ఆగి, మళ్ళీ వెనక్కి open అవుతుంది."
+      }
+     ]
+    },
+    "fail": {
+     "go": "end:escape",
+     "say": [
+      {
+       "en-IN": "The sun lock doesn't budge, and the door keeps closing. You dive through the gap at the last second.",
+       "hi-IN": "सूरज वाला ताला टस से मस नहीं होता, और दरवाज़ा बंद होता जाता है. आख़िरी पल में आप दरार से छलांग लगाकर बाहर निकलते हैं.",
+       "hi-en": "Sun lock tas se mas nahi hota, aur darwaza band hota ja raha hai. Aakhri second par aap gap se chhalaang lagaakar bahar nikalte hain.",
+       "te-IN": "సూర్య తాళం కదలదు, తలుపు మూసుకుంటూనే ఉంది. చివరి క్షణంలో మీరు సందులోంచి దూకి బయటపడతారు.",
+       "te-en": "Sun lock kadaladu, door moosukuntune undi. Chivari second lo gap lonchi dookestharu.",
+       "hi-en@tts": "Sun lock टस से मस नहीं होता, और दरवाज़ा बंद होता जा रहा है। आखिरी second पर आप gap से छलांग लगाकर बाहर निकलते हैं।",
+       "te-en@tts": "Sun lock కదలదు, door మూసుకుంటూనే ఉంది. చివరి second లో gap లోంచి దూకేస్తారు."
+      }
+     ]
+    }
+   }
+  }
+ },
+ "endings": {
+  "keeper": {
+   "title": {
+    "en-IN": "Keeper of Hampi",
+    "hi-IN": "हम्पी का रखवाला",
+    "hi-en": "Hampi ka Rakhwaala",
+    "te-IN": "హంపి రక్షకులు",
+    "te-en": "Keeper of Hampi"
+   },
+   "rank": "gold",
+   "scene": "hampi-cliff",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "At sunrise you hand the treasure to the archaeology department. A month later, the museum opens a new gallery, with your name on the plaque.",
+     "hi-IN": "सुबह होते ही आप ख़ज़ाना आर्कियोलॉजी डिपार्टमेंट को सौंप देते हैं. एक महीने बाद म्यूज़ियम में नई गैलरी खुलती है, और तख़्ती पर आपका नाम.",
+     "hi-en": "Subah aap khazaana archaeology department ko saunp dete hain. Ek mahine baad museum mein nayi gallery khulti hai, aur plaque par aapka naam.",
+     "te-IN": "సూర్యోదయానికి ఖజానాని ఆర్కియాలజీ డిపార్ట్‌మెంట్‌కి అప్పగిస్తారు. నెల తర్వాత మ్యూజియంలో కొత్త గ్యాలరీ తెరుస్తారు, ఫలకం మీద మీ పేరుతో.",
+     "te-en": "Thellavaare sariki treasure ni archaeology department ki appagistharu. Oka nela tharvatha museum kotha gallery open chesthundi, plaque meeda mee peru tho.",
+     "hi-en@tts": "सुबह आप खज़ाना archaeology department को सौंप देते हैं। एक महीने बाद museum में नई gallery खुलती है, और plaque पर आपका नाम।",
+     "te-en@tts": "తెల్లవారే సరికి treasure ని archaeology department కి అప్పగిస్తారు. ఒక నెల తర్వాత museum కొత్త gallery open చేస్తుంది, plaque మీద మీ పేరుతో."
+    },
+    {
+     "en-IN": "The royal engineers would be proud.",
+     "hi-IN": "शाही इंजीनियरों को आप पर गर्व होता.",
+     "hi-en": "Shaahi engineers ko aap par garv hota.",
+     "te-IN": "రాజుల ఇంజనీర్లు గర్వపడేవాళ్ళు.",
+     "te-en": "Royal engineers mimmalni chusi proud avutharu.",
+     "hi-en@tts": "शाही engineers को आप पर गर्व होता।",
+     "te-en@tts": "Royal engineers మిమ్మల్ని చూసి proud అవుతారు."
+    }
+   ]
+  },
+  "viral": {
+   "title": {
+    "en-IN": "Gone Viral",
+    "hi-IN": "वायरल",
+    "hi-en": "Viral ho gaye",
+    "te-IN": "వైరల్ అయిపోయారు",
+    "te-en": "Gone Viral"
+   },
+   "rank": "silver",
+   "scene": "hampi-camp",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "Rana's livestream hits ten million views and you're famous overnight. The treasure goes to the museum, but every news channel says it was Rana's find.",
+     "hi-IN": "राणा की लाइवस्ट्रीम पर एक करोड़ व्यूज़, और रातों-रात आप मशहूर. ख़ज़ाना म्यूज़ियम जाता है, पर हर न्यूज़ चैनल कहता है कि खोज राणा की थी.",
+     "hi-en": "Rana ka livestream das million views paar kar jaata hai aur raaton-raat aap famous. Khazaana museum jaata hai, par har news channel kehta hai ki yeh Rana ki khoj thi.",
+     "te-IN": "రానా లైవ్ స్ట్రీమ్‌కి కోటి వ్యూస్, రాత్రికి రాత్రే మీరు ఫేమస్. ఖజానా మ్యూజియంకి వెళ్తుంది, కానీ ప్రతి న్యూస్ ఛానల్ అది రానా కనిపెట్టాడనే చెప్తుంది.",
+     "te-en": "Rana livestream ki ten million views, meeru overnight famous. Treasure museum ki veltundi, kaani prathi news channel adi Rana find ani chepthondi.",
+     "hi-en@tts": "Rana का livestream दस million views पार कर जाता है और रातों-रात आप famous। खज़ाना museum जाता है, पर हर news channel कहता है कि ये Rana की खोज थी।",
+     "te-en@tts": "Rana livestream కి ten million views, మీరు overnight famous. Treasure museum కి వెళ్తుంది, కానీ ప్రతి news channel అది Rana find అని చెప్తోంది."
+    }
+   ]
+  },
+  "escape": {
+   "title": {
+    "en-IN": "Empty-Handed Escape",
+    "hi-IN": "ख़ाली हाथ वापसी",
+    "hi-en": "Khaali Haath Escape",
+    "te-IN": "ఖాళీ చేతులతో తప్పించుకున్నారు",
+    "te-en": "Empty-Handed Escape"
+   },
+   "rank": "bronze",
+   "scene": "hampi-gate",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "The door booms shut behind you. You climb out into a thunderstorm with nothing but one gold coin and a great story nobody believes.",
+     "hi-IN": "पीछे दरवाज़ा धड़ाम से बंद होता है. बाहर गरजता तूफ़ान है, हाथ में बस एक सोने का सिक्का, और एक शानदार कहानी जिस पर कोई यक़ीन नहीं करता.",
+     "hi-en": "Peeche darwaza dhadaam se band hota hai. Aap bahar toofan mein nikalte hain, haath mein bas ek sone ka sikka aur ek zabardast kahaani, jis par koi yakeen nahi karta.",
+     "te-IN": "వెనక తలుపు ధడేల్‌మని మూసుకుంటుంది. ఉరుముల వర్షంలోకి బయటికి వస్తారు, చేతిలో ఒకే ఒక్క బంగారు నాణెం, ఎవరూ నమ్మని ఒక గొప్ప కథ.",
+     "te-en": "Venaka door dhad mani moosukuntundi. Okka gold coin, evaru nammani oka goppa story tho, urumula varsham loki bayataki vastharu.",
+     "hi-en@tts": "पीछे दरवाज़ा धड़ाम से बंद होता है। आप बाहर तूफ़ान में निकलते हैं, हाथ में बस एक सोने का सिक्का और एक ज़बरदस्त कहानी, जिस पर कोई यकीन नहीं करता।",
+     "te-en@tts": "వెనక door ధడ్ మని మూసుకుంటుంది. ఒక్క gold coin, ఎవరూ నమ్మని ఒక గొప్ప story తో, ఉరుముల వర్షంలోకి బయటికి వస్తారు."
+    }
+   ]
+  },
+  "lost": {
+   "title": {
+    "en-IN": "Lost in the Dark",
+    "hi-IN": "अंधेरे में खोए",
+    "hi-en": "Andhere mein Gum",
+    "te-IN": "చీకట్లో తప్పిపోయారు",
+    "te-en": "Lost in the Dark"
+   },
+   "rank": "bronze",
+   "scene": "hampi-camp",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Your lamp flickers out. You wait in the dark until a friendly stray dog leads you out at dawn. Next time, carry more oil.",
+     "hi-IN": "आपका दीया बुझ जाता है. अंधेरे में इंतज़ार लंबा चलता है, फिर सुबह एक प्यारा-सा आवारा कुत्ता रास्ता दिखाकर बाहर ले आता है. अगली बार ज़्यादा तेल रखिए.",
+     "hi-en": "Lamp bujh jaata hai. Aap andhere mein intezaar karte hain, jab tak subah ek friendly aawaara kutta raasta dikhaakar bahar nahi le jaata. Agli baar, zyada tel rakho.",
+     "te-IN": "మీ దీపం ఆరిపోతుంది. తెల్లవారే దాకా చీకట్లో ఎదురుచూస్తారు, చివరికి ఒక మంచి వీధి కుక్క మిమ్మల్ని బయటికి తీసుకొస్తుంది. నెక్స్ట్ టైమ్, ఇంకా ఎక్కువ నూనె తెచ్చుకోండి.",
+     "te-en": "Mee lamp aaripothundi. Thellavaare daaka cheekatlo wait chestharu, oka friendly veedhi kukka mimmalni bayataki theesukosthundi. Next time, inka oil thechchukondi.",
+     "hi-en@tts": "Lamp बुझ जाता है। आप अँधेरे में इंतज़ार करते हैं, जब तक सुबह एक friendly आवारा कुत्ता रास्ता दिखाकर बाहर नहीं ले जाता। अगली बार, ज़्यादा तेल रखो।",
+     "te-en@tts": "మీ lamp ఆరిపోతుంది. తెల్లవారే దాకా చీకట్లో wait చేస్తారు, ఒక friendly వీధి కుక్క మిమ్మల్ని బయటకి తీసుకొస్తుంది. Next time, ఇంకా oil తెచ్చుకోండి."
+    }
+   ]
+  }
+ }
+}

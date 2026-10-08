@@ -1,7 +1,7 @@
 [project]
 name = "maata-arcade-server"
 version = "1.0.0"
-description = "Realtime voice game server for Maata Arcade (Gnani Prisma STT + Timbre TTS)"
+description = "Realtime voice game server for Mic Drop Arcade (Gnani Prisma STT + Timbre TTS)"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi==0.142.2",

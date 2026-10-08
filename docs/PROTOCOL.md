@@ -1,5 +1,8 @@
 # Browser ↔ server protocol (v1)
 
+The game is now called **Mic Drop Arcade** (formerly Maata Arcade). Wire identifiers such as
+`maata.v1` stay the same, so nothing on the wire changes.
+
 This is the contract between the game client (Devesh, features 17–30) and the server
 (G Nagarjuna, features 1–15). Items #1 and #18 meet here. If either side needs a change,
 change this file in the same PR.
@@ -10,7 +13,7 @@ The browser never talks to Gnani and never sees the API key.
 
 ```
 GET  /api/status                       -> { open, reason, languages: [{code, label}] }
-GET  /api/packs?language=te-IN         -> { packs: [{id, title, language, topic, questions}] }
+GET  /api/packs?language=te-IN         -> { packs: [{id, title, language, topic, questions, story}] }
 POST /api/session  { turnstile_token } -> { token, expires_at }
 ```
 
@@ -41,16 +44,27 @@ ws.onopen = () => ws.send(JSON.stringify({ type: "auth", token }));
 Server replies `{type:"ready", protocol:"maata.v1", max_games}`. Then:
 
 ```json
-{ "type": "start", "pack_id": "te-science-01" }
+{ "type": "start", "pack_id": "te-science-01", "character": "priya", "wizard": "sorceress" }
 ```
+
+`character` is the hero the player picked (default `arjun`). It's cosmetic. Anything else gets
+a non-fatal `unknown_character` error. Sprites are in `art/sprites/heroes/<id>.png`.
+
+`wizard` is the narrator the player picked: `sorceress` (default), `sage` or `owl`. It decides the
+voice every line is spoken in (`server/app/game/languages.py`, `WIZARD_VOICES`) and is echoed in
+`game_start.wizard`. Anything else gets a non-fatal `unknown_character` error.
+
+| Boys | Girls |
+|---|---|
+| `arjun`, `kabir`, `sai`, `rohan`, `aditya`, `imran` | `diya`, `meera`, `zara`, `ananya`, `priya`, `sana` |
 
 ## 3. Messages from the server
 
 | type | fields | client should |
 |---|---|---|
 | `ready` | `protocol`, `max_games` | show the pack picker / start button |
-| `game_start` | `game_id`, `pack`, `questions`, `time_limit_s`, `max_score` | reset HUD |
-| `question` | `index`, `total`, `prompt`, `kind` (`text`/`number`), `time_limit_s` | show the question text |
+| `game_start` | `game_id`, `pack`, `questions`, `time_limit_s`, `max_score`, `character`, `story` (`{wizard, wizard_sprite, scene, chapters}` or `null`) | reset HUD; if `story` is set, load `art/backgrounds/<scene>.png` and the `art/sprites/wizard/<wizard_sprite>/` set, and show a quest progress bar |
+| `question` | `index`, `total`, `prompt`, `kind` (`text`/`number`), `time_limit_s`, `options` (3 choices in display order, or `null`) | show the question; if `options` is set, show the three choices plus an "other" tile meaning "say your own answer". Answers are always spoken: saying a wrong option, or more than one option, is wrong |
 | `speak_start` | `utterance`, `caption`, `sample_rate` (24000) | **stop any older utterance**, show caption |
 | *binary* | 4-byte header + PCM | play (see §5) |
 | `speak_end` | `utterance`, `duration_ms`, `interrupted` | — |
@@ -59,11 +73,12 @@ Server replies `{type:"ready", protocol:"maata.v1", max_games}`. Then:
 | `eos` | — | player stopped talking: show a "checking…" state |
 | `heard_nothing` | — | transcript was empty or was the question's own echo; keep listening |
 | `result` | `index`, `correct`, `timed_out`, `heard`, `answer`, `explanation`, `points`, `score`, `streak` | show the verdict. `skipped: true` means a provider error voided the round: no penalty |
-| `game_over` | `game_id`, `score`, `correct`, `questions`, `max_score`, `score_token` | score card + nickname form |
+| `story` | `kind` (`intro`, `chapter`, `setback`, `ending`), `text`, `mood` (`ask`, `happy`, `sad`, `cheer`), `chapter` (on `chapter`), `band` (on `ending`: `great`, `good`, `try_again`) | swap the wizard sprite to `mood`, advance the quest bar on `chapter`. The line is also spoken, with its own `speak_start` caption |
+| `game_over` | `game_id`, `score`, `correct`, `questions`, `max_score`, `score_token`, `character` | score card with the player's hero, plus the nickname form |
 | `error` | `code`, `message`, `fatal` | show `message`. If `fatal`, the socket closes next |
 | `pong` | `t` | latency display (optional) |
 
-Error codes: `unauthorized`, `already_connected`, `unknown_pack`, `busy`, `closed_for_today`,
+Error codes: `unauthorized`, `already_connected`, `unknown_pack`, `unknown_character`, `busy`, `closed_for_today`,
 `session_limit`, `audio_limit`, `idle`, `protocol`, `internal`.
 
 Close codes:
@@ -124,8 +139,11 @@ bytes 4..  : PCM s16le mono 24 000 Hz
 ## 7. Post the score
 
 ```
-POST /api/scores { score_token, nickname } -> { ok: true }
+POST /api/scores { score_token, nickname } -> { ok: true, rank }
 ```
+
+`rank` is where an adventure run places on its language's all-time adventure board (1-based),
+or `null` for a quiz game.
 
 * Nickname: 3–16 characters. Letters (any script), digits, space, `_` and `-` are allowed, and
   it needs at least one letter.
@@ -136,10 +154,121 @@ POST /api/scores { score_token, nickname } -> { ok: true }
 * A score token can only be used once.
 
 ```
-GET /api/leaderboard?language=te-IN&period=today|all -> { entries: [{rank, nickname, score, correct, questions}] }
+GET /api/leaderboard?language=te-IN&period=today|all&mode=adventure|quiz&adventure=<id>
+  -> { language, period, mode, adventure, entries: [{rank, nickname, score, correct, questions,
+       character, wizard, adventure, duration_ms, ending: {id, rank} | null}] }
 ```
+
+`mode` defaults to `adventure`. `adventure` (optional) filters to one adventure. Rows are ordered
+by score, then by the faster `duration_ms` (server-timed), then the earlier submission.
 
 ## 8. Keep-alive
 
 The server pings at the WebSocket level every 20 s. Optionally send `{type:"ping", t}` for an
 RTT readout. More than 20 control messages per second counts as abuse.
+
+## 9. Wizard story (packs with a `story`)
+
+Story packs turn the quiz into a quest told by a wizard:
+- **Right answers:** each one plays the next chapter, `story.kind = "chapter"` with mood `happy`.
+- **Wrong answers and timeouts:** these play a setback (mood `sad`) followed by the usual "the
+  answer was" line.
+- **The ending** depends on the share of right answers:
+
+  | Band | Share of right answers | Mood |
+  |---|---|---|
+  | `great` | ≥ 80% | `cheer` |
+  | `good` | ≥ 50% | `happy` |
+  | `try_again` | below 50% | `sad` |
+
+Every story line is fixed text, reviewed with the pack and pre-rendered, so the story branches
+on answers with no live language model. Packs without a story behave exactly as before.
+
+Story fields the client uses:
+
+| field | values |
+|---|---|
+| `wizard_sprite` | `sage`, `sorceress`, `owl` (default `sage`) |
+| `scene` | `library-a`, `library-b`, `forest-temple`, `sky-islands`, `crystal-cave`, `night-bazaar`, `observatory` (default `library-a`) |
+
+In `/api/packs`, `story` is `{wizard, wizard_sprite, scene, chapters}` for quest packs and `null`
+otherwise, so the quest list can show each quest's scene and wizard before it starts.
+
+## 10. Adventures (branching voice RPG)
+
+Adventures are the main mode. An adventure is a story graph in `server/adventures/*.json`
+(schema and graph checks in `server/app/game/adventures.py`). At each node the wizard speaks a
+few lines over a painted scene. Then one of three things happens:
+- the player **says a choice**;
+- the player **answers a riddle**, where right and wrong lead to different nodes;
+- the story moves on by itself.
+
+Choices and riddles change the adventure's **meter** (time, spark, clues, power, nerve, lamp
+oil, sanity or battery) and the items in the **bag**. Later nodes branch on them, so earlier
+answers decide which scenes, lines and endings come next. Every line is fixed, reviewed text and
+pre-rendered audio, so no live language model is involved.
+
+### List
+
+```
+GET /api/adventures?language=te-en
+  -> { language, auto: bool, adventures: [{id, genre, title, tagline, cover, meter, endings, scenes}] }
+```
+
+| field | meaning |
+|---|---|
+| `genre` | `action`, `romance`, `mystery`, `scifi`, `horror`, `fantasy`, `comedy`, `thriller` |
+| `cover`, `scenes` | scene ids (`client/src/assets/art/backgrounds/<id>.png`); prefetch `scenes` while the lobby is open |
+| `meter` | `{label, icon, max}` or `null`. `icon` is one of `clock`, `heart`, `search`, `bolt`, `nerve`, `flame`, `star` |
+| `endings` | `[{id, rank}]`, with `rank` one of `gold`, `silver`, `bronze`. Titles stay secret until reached |
+| `auto` | `true` when the wizard's prologue can pick an adventure for the player |
+
+Hinglish and Tenglish text is Latin script. The voice reads a mixed-script version of the same
+line, which the client never sees.
+
+### Start
+
+```json
+{ "type": "start_adventure", "adventure": "monsoon-express" | "auto", "language": "te-en",
+  "character": "tara", "wizard": "enchantress" }
+```
+
+- **`auto`** plays the prologue: two questions whose answers pick one of the adventures. The
+  run then continues straight into that adventure, which arrives as a second `adventure_start`
+  with `routed: true`.
+- **Wizards:** `sorceress` (default), `sage`, `owl`, `enchantress`, `trickster`. Each has its own
+  voice, speaking speed and reaction lines.
+- **Errors (non-fatal):** a bad request gets `unknown_adventure`, `unknown_language` or
+  `unknown_character`.
+
+### Messages from the server
+
+| `type` | fields | client does |
+|---|---|---|
+| `adventure_start` | `game_id`, `adventure` (as in the list), `routed`, `character`, `wizard`, `meter`, `time_limit_s`, `choice_time_limit_s` | show the game screen on `adventure.cover`; start the genre's music |
+| `node` | `id`, `scene`, `mood`, `step`, `kind` (`choice`, `puzzle`, `story`), `meter`, `meter_delta`, `items` (`[{id, label}]`), `gained` (item ids) | swap to `scene`, set the wizard's `mood`, update meter and bag, toast newly gained items |
+| `choices` | `choices` (`[{label}]`, 2–3), `attempt`, `time_limit_s` | show numbered choice cards; the next `speak_start` is the question |
+| `unclear` | `heard`, `attempts_left` | nothing matched: shake the cards and show `attempts_left`. The wizard asks again (a new `speak_start`, then `listen`). A speech-recognition failure doesn't use up a try |
+| `chosen` | `index`, `heard`, `auto` | light the chosen card. `auto: true` means three tries failed and the wizard picked the first card |
+| `puzzle` | `prompt`, `options` (3, shuffled), `kind`, `time_limit_s` | show the riddle's options |
+| `puzzle_result` | `correct`, `timed_out`, `skipped`, `heard`, `answer`, `points`, `score`, `streak` | mark the right option, play the sound. `skipped: true` means speech recognition failed repeatedly: the riddle is voided (no points, streak kept) and the story takes its right-answer path |
+| `state` | `meter`, `meter_delta`, `items`, `gained` | after a choice or riddle changes the meter or bag |
+| `wizard` | `key`, `mood` | the wizard's own reaction line follows (`greet`, `choose_again`, `chose_for_you`, `puzzle_right`, `puzzle_wrong`, `ending_good`, `ending_bad`) |
+| `ending` | `id`, `title`, `rank`, `scene`, `mood`, `bonus`, `score`, `endings` | show the ending scene; its lines follow as speech |
+| `game_over` | the §3 fields plus `mode: "adventure"`, `adventure`, `ending` (`{id, title, rank}`), `duration_ms`, `wizard`, `choices` | score screen: record the ending on the player's shelf, offer the leaderboard and share card |
+
+`listen`, `eos`, `heard_nothing`, `speak_*` and audio frames work as in §3–§5. The mic streams
+only between `listen` and the matching `chosen`, `unclear` or `puzzle_result`.
+
+### Hearing choices
+
+Players say a card's number ("two", "दो", "రెండు", also English numbers written in Indic script)
+or its words; each choice also has extra keywords per language. Words are compared by sound
+across scripts, so "ల్యాబ్" matches "lab". Saying two cards' words, or nothing clear, is
+`unclear`. Prisma gets the Latin-script card words as bias keywords.
+
+### Scoring
+
+Riddles score like quiz answers (§6). Reaching an ending adds 500 (gold), 300 (silver) or 100
+(bronze). The server times the run from `adventure_start` to the ending. That time goes into the
+score token as `duration_ms` and breaks ties on the leaderboard.

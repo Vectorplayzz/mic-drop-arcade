@@ -1,0 +1,1731 @@
+[
+ {
+  "file": "client/src/assets/art/backgrounds/portals.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000001,
+  "prompt": "16-bit retro pixel art game background: a grand circular magic hall in a wizard tower at night with five tall glowing portal archways, each portal showing a different world: a train in monsoon rain, a college fest with fairy lights, a dark science lab, outer space with Earth, a haunted old building under a full moon; purple and gold light, floating candles. The left side is a smooth marble floor with a glowing rune circle, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/train-station.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000011,
+  "prompt": "16-bit retro pixel art game background: a small railway station in the Western Ghats of India at night in heavy monsoon rain, an old blue express train waiting at the platform with lit windows, station lamps, puddles reflecting light, misty green hills. The left side is a wet stone platform, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/train-coach.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000021,
+  "prompt": "16-bit retro pixel art game background: inside a moving Indian sleeper train coach at night, rows of blue berths, swinging ceiling fans, rain streaking the windows, dim yellow lights, bags on the luggage racks. The left side is the aisle floor of the coach, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/train-roof.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000031,
+  "prompt": "16-bit retro pixel art game background: on top of a speeding blue train at night in a monsoon storm, lightning over misty mountains, the train curving ahead towards a dark tunnel mouth, rain streaks. The left side is the flat roof of a carriage, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/train-bridge.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000041,
+  "prompt": "16-bit retro pixel art game background: an old stone arch railway bridge over a huge roaring waterfall in the Western Ghats during the monsoon, dramatic grey clouds, bright green cliffs, spray and mist. The left side is the railway track on the bridge, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/train-tunnel.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000050,
+  "prompt": "16-bit retro pixel art game background: inside a dark mountain railway tunnel lit by a train headlight and red emergency lamps, dripping water, rough stone walls, rails shining. The left side is a narrow maintenance walkway, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/train-engine.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000061,
+  "prompt": "16-bit retro pixel art game background: inside a diesel locomotive cab at night, glowing round dials, levers and a big brake handle, a wide front window showing rain and the track ahead lit by the headlight. The left side is the metal cab floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/train-signal.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000070,
+  "prompt": "16-bit retro pixel art game background: inside a lonely railway signal cabin on a hill in the rain at night, a row of big iron levers painted red and blue, a hanging lantern, a window showing a red signal light and a track junction below. The left side is a wooden plank floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/train-landslide.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000080,
+  "prompt": "16-bit retro pixel art game background: a railway track at night blocked ahead by a fresh landslide of mud and boulders in monsoon rain, uprooted trees, a flashing orange warning lamp, the train headlight glare. The left side is the gravel track bed, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/train-river.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000091,
+  "prompt": "16-bit retro pixel art game background: a flooded river valley at night in heavy rain, a railway line running along a high embankment, a swollen brown river rushing below, distant village lights, lightning. The left side is the top of the embankment beside the rails, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/train-dawn.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000101,
+  "prompt": "16-bit retro pixel art game background: a rain-washed hill station platform at sunrise, an old blue express train safely stopped, golden light breaking through clouds, a rainbow over green tea-garden hills. The left side is the platform, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/fest-gate.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000111,
+  "prompt": "16-bit retro pixel art game background: an Indian engineering college campus entrance during a big tech fest at night, a tall arch covered in fairy lights and colourful LED strips, blank banners, glowing food stalls behind, light trails. The left side is a paved plaza, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/fest-lab.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000120,
+  "prompt": "16-bit retro pixel art game background: a cluttered college robotics lab at night, workbenches with a small wheeled robot, a soldering iron, laptops showing code, sticky notes, a warm desk lamp, tangled wires. The left side is the lab floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/fest-arena.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000131,
+  "prompt": "16-bit retro pixel art game background: a robotics competition arena on a college stage at night, a square arena floor with ramps and obstacles, colourful spotlights, a big blank screen, falling confetti. The left side is the edge of the stage, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/fest-stalls.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000141,
+  "prompt": "16-bit retro pixel art game background: college fest food stalls at night, chai and dosa stalls, hanging bulbs, paper lanterns, steam rising, colourful striped canopies. The left side is an open path between the stalls, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/fest-rooftop.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000151,
+  "prompt": "16-bit retro pixel art game background: a college hostel rooftop terrace at night, warm string lights, a view of the glowing campus and the city skyline, a full moon, potted plants, a low parapet wall. The left side is the terrace floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/fest-rain.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000160,
+  "prompt": "16-bit retro pixel art game background: a covered canteen corridor on a college campus at night during sudden gentle rain, warm lamps, a wet stone floor reflecting the lights, a glowing vending machine. The left side is the corridor floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/fest-stage.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000171,
+  "prompt": "16-bit retro pixel art game background: a big outdoor college fest concert stage at night, laser beams, a drone light show of glowing dots forming a heart shape in the starry sky, haze. The left side is an open lawn in front of the stage, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/fest-library.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000180,
+  "prompt": "16-bit retro pixel art game background: a quiet college library at night, tall wooden bookshelves, a long reading table with two open laptops and coffee cups, moonlight through tall arched windows. The left side is the library floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/fest-garden.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000190,
+  "prompt": "16-bit retro pixel art game background: a college garden at night with a small lit fountain, old lamp posts, fireflies, a stone bench under a flowering tree, distant fest lights. The left side is a garden path, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/fest-dawn.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000201,
+  "prompt": "16-bit retro pixel art game background: a college bus stop under a big gulmohar tree with red flowers at dawn, petals on the road, a soft pink and orange sky, the campus gate behind. The left side is the footpath, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/lab-corridor.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000211,
+  "prompt": "16-bit retro pixel art game background: a long engineering college corridor at midnight, one flickering tube light, notice boards, closed wooden classroom doors, moonlight through barred windows. The left side is the corridor floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/lab-electronics.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000221,
+  "prompt": "16-bit retro pixel art game background: an electronics lab at midnight in disarray, oscilloscopes and breadboards on benches, an empty display stand with a broken glass case, scattered papers, a green exit glow. The left side is the lab floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/lab-server.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000230,
+  "prompt": "16-bit retro pixel art game background: a college server room glowing blue at night, rows of server racks with blinking green and blue lights, bundled cables, a single monitor showing lines of a log. The left side is the raised floor tiles, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/lab-cctv.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000241,
+  "prompt": "16-bit retro pixel art game background: a small campus security room at night with a wall of CCTV monitors showing grainy views, a desk with a glass of cold tea, a key board with hanging keys. The left side is the room floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/lab-canteen.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000250,
+  "prompt": "16-bit retro pixel art game background: an empty college canteen at night, plastic chairs stacked on tables, a tea counter with a big steel kettle, a single light on, rain on the windows. The left side is the canteen floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/lab-library.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000260,
+  "prompt": "16-bit retro pixel art game background: college library stacks at midnight, tall shelves of old bound project reports, a torch beam cutting through dust, a ladder. The left side is the floor between the shelves, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/lab-office.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000271,
+  "prompt": "16-bit retro pixel art game background: a professor's office at night, a desk piled with files, a locked steel cupboard, a whiteboard full of circuit diagrams, a window with the dark campus outside. The left side is the office floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/lab-workshop.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000280,
+  "prompt": "16-bit retro pixel art game background: a mechanical workshop at night, lathes and drill machines, metal shavings, a blue tarpaulin covering something on a workbench, a single hanging lamp. The left side is the concrete floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/lab-rooftop.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000291,
+  "prompt": "16-bit retro pixel art game background: a college building rooftop at midnight with a big black water tank, solar panels and antennas, the sleeping campus and a clock tower below, stars. The left side is the rooftop floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/lab-dawn.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000301,
+  "prompt": "16-bit retro pixel art game background: the front lawn of an old Indian engineering college at sunrise, a grand stone building with a clock tower, dew on the grass, birds in a pink sky. The left side is the lawn, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/orbit-deck.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000311,
+  "prompt": "16-bit retro pixel art game background: the command deck of a space station, a huge curved window showing planet Earth with India below, glowing blue control panels, floating checklists. The left side is the deck floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/orbit-alarm.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000321,
+  "prompt": "16-bit retro pixel art game background: a space station corridor in red alert, flashing red lights, floating loose tools and bags, round hatch doors, handrails. The left side is the corridor floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/orbit-garden.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000330,
+  "prompt": "16-bit retro pixel art game background: a hydroponics garden module in a space station, rows of green plants and tomatoes under purple grow lights, floating water bubbles. The left side is the module floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/orbit-spacewalk.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000341,
+  "prompt": "16-bit retro pixel art game background: outside a space station during a spacewalk, huge solar panel wings, the curve of the blue Earth, a bright sun flare, stars. The left side is a platform on the station hull, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/orbit-core.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000350,
+  "prompt": "16-bit retro pixel art game background: a space station power core room, a glowing cyan energy cylinder, thick pipes, yellow and black warning stripes, sparks. The left side is the metal floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/orbit-ai.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000361,
+  "prompt": "16-bit retro pixel art game background: the artificial intelligence core chamber of a space station, a tall circular computer tower with a calm glowing ring of light, cables hanging like vines, soft blue glow. The left side is the chamber floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/orbit-pods.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000370,
+  "prompt": "16-bit retro pixel art game background: an escape pod bay in a space station, three round escape pods with open hatches on launch rails, emergency lights. The left side is the bay floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/orbit-storm.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000380,
+  "prompt": "16-bit retro pixel art game background: a space station observation dome during a solar storm, green and pink auroras swirling over Earth, sparks, a cracked glass panel. The left side is the dome floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/orbit-reentry.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000391,
+  "prompt": "16-bit retro pixel art game background: inside a small space capsule during reentry, the round window full of orange plasma flames, shaking panels, the ocean far below. The left side is the capsule floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/orbit-ocean.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000401,
+  "prompt": "16-bit retro pixel art game background: a small space capsule floating in a calm blue ocean at sunrise, orange and white parachutes spread on the water, a recovery ship in the distance, seagulls. The left side is the top of the floating capsule, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hostel-outside.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000411,
+  "prompt": "16-bit retro pixel art game background: an old colonial-era college hostel building at night under a full moon, peeling paint, only one lit window, a huge banyan tree with hanging roots, bats. The left side is the courtyard, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hostel-corridor.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000421,
+  "prompt": "16-bit retro pixel art game background: a long dark hostel corridor at night, a single flickering tube light, rows of old wooden doors, clothes drying on a line, an old water cooler. The left side is the corridor floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hostel-room.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000430,
+  "prompt": "16-bit retro pixel art game background: an abandoned hostel room at night, an old iron cot, a dusty study table with a melted candle and old engineering textbooks, moonlight, cobwebs. The left side is the room floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hostel-stairs.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000440,
+  "prompt": "16-bit retro pixel art game background: a narrow stairwell in an old hostel at night, peeling green walls, a broken window, a torch beam, eerie green light from above. The left side is the landing, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hostel-terrace.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000451,
+  "prompt": "16-bit retro pixel art game background: an old hostel terrace at midnight, water tanks, old TV antennas, washing lines with white bedsheets fluttering, a foggy moon. The left side is the terrace floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hostel-mess.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000461,
+  "prompt": "16-bit retro pixel art game background: an empty hostel mess hall at night, long steel tables and benches, stacked steel plates, a big pot on a stove, a flickering bulb. The left side is the mess floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hostel-basement.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000471,
+  "prompt": "16-bit retro pixel art game background: a hostel basement at night, an old diesel generator, rusty pipes, old lockers, a dripping tap, a dim hanging lantern. The left side is the basement floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hostel-warden.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000480,
+  "prompt": "16-bit retro pixel art game background: a warden's office in an old hostel at night, a thick register on a wooden desk, a wall clock, keys on hooks, an old valve radio glowing. The left side is the office floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hostel-well.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000490,
+  "prompt": "16-bit retro pixel art game background: an old stone well behind a hostel at night, mist, fireflies, a rope and bucket, a lantern on the ledge, a banyan tree. The left side is a mossy stone ground, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hostel-dawn.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 710000000501,
+  "prompt": "16-bit retro pixel art game background: an old hostel courtyard at sunrise, birds, soft golden light, glasses of chai on a ledge, the banyan tree peaceful, everything calm. The left side is the courtyard, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hampi-bazaar.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000000,
+  "prompt": "16-bit retro pixel art game background: the ruined ancient stone bazaar street of Hampi at golden sunset, long rows of granite pillared pavilions, giant round boulders on the hills, a tall temple tower in the distance, warm orange sky. The left side is a sunlit stone street, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hampi-chariot.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000010,
+  "prompt": "16-bit retro pixel art game background: an ancient carved stone chariot in a temple courtyard in Hampi at dusk, intricate carvings, stone elephants, pillared halls, purple and orange sky, oil lamps. The left side is the stone courtyard floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hampi-river.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000020,
+  "prompt": "16-bit retro pixel art game background: a wide river flowing between huge granite boulders at sunrise, round woven coracle boats on the water, palm trees, mist, ancient ruins on the banks. The left side is a flat riverside rock, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hampi-stepwell.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000031,
+  "prompt": "16-bit retro pixel art game background: an ancient geometric stepped water tank with symmetrical stone steps going down to green water, carved pillars, evening light. The left side is the top platform of the stepwell, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hampi-hall.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000041,
+  "prompt": "16-bit retro pixel art game background: a moonlit ancient pillared stone hall with tall carved musical pillars, deep shadows, moonbeams through gaps in the roof. The left side is the polished stone floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hampi-cave.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000051,
+  "prompt": "16-bit retro pixel art game background: a secret underground passage lit by oil lamps, carved stone walls with faded paintings, a narrow stairway going down, roots hanging. The left side is a stone ledge, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hampi-vault.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000061,
+  "prompt": "16-bit retro pixel art game background: a hidden ancient treasure chamber glowing gold, heaps of old coins and jewels, a carved stone door with a sun symbol, lamp light. The left side is the chamber floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hampi-cliff.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000071,
+  "prompt": "16-bit retro pixel art game background: a giant boulder hilltop above an ancient ruined city at sunrise, endless boulders and banana plantations, a river shining, hot air balloon far away. The left side is the flat top of a boulder, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hampi-gate.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000081,
+  "prompt": "16-bit retro pixel art game background: an ancient fortified stone gateway in a monsoon storm at night, lightning, wet stone, a carved lion on the arch. The left side is the wet stone road, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hampi-camp.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000090,
+  "prompt": "16-bit retro pixel art game background: a small campfire camp among ancient ruins at night, two tents, a lantern, a starry sky, giant boulders silhouetted. The left side is the sandy camp ground, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/loop-bedroom.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000101,
+  "prompt": "16-bit retro pixel art game background: a messy Indian college hostel room in the early morning, an alarm clock ringing on the desk, sunlight through curtains, notes and textbooks everywhere, a calendar. The left side is the room floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/loop-bus.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000111,
+  "prompt": "16-bit retro pixel art game background: inside an old yellow college bus in the morning, seats, windows with a sunny campus road outside, swinging handles. The left side is the bus aisle, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/loop-viva.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000120,
+  "prompt": "16-bit retro pixel art game background: an empty viva room in an engineering college, a long table with three chairs, name plates without text, files, a glass of water, a whiteboard with formulas. The left side is the room floor near the door, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/loop-canteen.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000131,
+  "prompt": "16-bit retro pixel art game background: a busy college canteen in the morning, steaming samosas and chai, wooden benches, a menu board without text, sunlight. The left side is the canteen floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/loop-xerox.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000140,
+  "prompt": "16-bit retro pixel art game background: a tiny college photocopy shop crammed with stacks of notes and old machines, ring binders, a fan, posters without text. The left side is the shop floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/loop-clocktower.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000150,
+  "prompt": "16-bit retro pixel art game background: inside an old clock tower, giant brass gears and a huge clock face seen from behind, light beams, floating dust, a strange blue time glow. The left side is a wooden platform, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/loop-corridor.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000160,
+  "prompt": "16-bit retro pixel art game background: a sunny college corridor at noon, notice boards, students' bags on benches, potted plants, long shadows. The left side is the corridor floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/loop-ground.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000171,
+  "prompt": "16-bit retro pixel art game background: a college cricket ground at noon, a pavilion, stumps on the pitch, a big shady neem tree, blue sky. The left side is the grass, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/loop-rewind.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000181,
+  "prompt": "16-bit retro pixel art game background: a surreal campus scene frozen in time, swirling blue clock symbols in the sky, floating leaves, everything tinted blue, a giant glowing clock. The left side is the frozen pathway, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/loop-sunset.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000191,
+  "prompt": "16-bit retro pixel art game background: an engineering college campus at sunset, golden light on the main building, birds flying home, a peaceful sky. The left side is a campus pathway, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hack-hall.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000200,
+  "prompt": "16-bit retro pixel art game background: a huge hackathon hall at night, long tables of laptops with glowing screens, bean bags, energy drink cans, a giant countdown timer screen with no text, neon purple lights. The left side is the hall floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hack-stage.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000211,
+  "prompt": "16-bit retro pixel art game background: a hackathon demo stage with a big blank projector screen, spotlights, a podium, purple and teal lights. The left side is the front of the stage, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hack-netroom.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000221,
+  "prompt": "16-bit retro pixel art game background: a network room with glowing cables and blinking switches, a laptop on a crate showing a green terminal, dark blue light. The left side is the floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hack-rooftop.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000231,
+  "prompt": "16-bit retro pixel art game background: a city office rooftop at night with neon signs without text, a skyline of Bengaluru-like glass towers, rain puddles, an antenna. The left side is the rooftop, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hack-metro.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000241,
+  "prompt": "16-bit retro pixel art game background: a modern metro station at midnight, a train arriving, empty platform, glowing screens without text, clean tiles. The left side is the platform, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hack-cafe.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000250,
+  "prompt": "16-bit retro pixel art game background: a cosy 24-hour cafe at 3 am with laptops, coffee cups, warm lamps, rain on the big window, neon reflections. The left side is the cafe floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hack-alley.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000261,
+  "prompt": "16-bit retro pixel art game background: a rainy neon-lit alley at night behind tech offices, puddles reflecting pink and blue light, cables overhead, a parked scooter. The left side is the wet alley, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hack-datacenter.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000270,
+  "prompt": "16-bit retro pixel art game background: a vast data centre with endless aisles of glowing server racks, cold blue light, a raised floor, mist from cooling. The left side is the aisle floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hack-van.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000281,
+  "prompt": "16-bit retro pixel art game background: inside a surveillance van full of glowing monitors and blinking equipment, a swivel chair, cables, night outside. The left side is the van floor, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/backgrounds/hack-dawn.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "image, Z-Image Turbo (8 steps, res_multistep), 1344x768",
+  "seed": 720000000290,
+  "prompt": "16-bit retro pixel art game background: a startup office terrace at dawn, a sleepy city, pink sky, trophies and laptops on a table, confetti on the floor. The left side is the terrace, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)"
+  ],
+  "post": [
+   "box-downscaled 1344x768 -> 448x256",
+   "quantised to 48 colours (median cut, no dither)",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/enchantress/ask.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000001,
+  "prompt": "128x128 pixel art sprite, glamorous young enchantress woman, adult full-size proportions, full body head to toe, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, a small glowing heart-shaped flame floating above one palm, one eyebrow raised with a playful knowing smile as if asking a question, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/enchantress/happy.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000001,
+  "prompt": "128x128 pixel art sprite, glamorous young enchantress woman, adult full-size proportions, full body head to toe, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, a small glowing heart-shaped flame floating above one palm, warm charming smile, blowing a little sparkle from her palm, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/enchantress/sad.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000001,
+  "prompt": "128x128 pixel art sprite, glamorous young enchantress woman, adult full-size proportions, full body head to toe, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, a small glowing heart-shaped flame floating above one palm, pouting with a hand on her cheek, disappointed, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/enchantress/cheer.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000001,
+  "prompt": "128x128 pixel art sprite, glamorous young enchantress woman, adult full-size proportions, full body head to toe, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, a small glowing heart-shaped flame floating above one palm, arms raised gracefully, sparkles and tiny hearts swirling around her, delighted laugh, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/trickster/ask.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000010,
+  "prompt": "128x128 pixel art sprite, mischievous young trickster mage man, adult full-size proportions, full body head to toe, not chibi, messy silver hair, fox ears, purple and orange patchwork coat with many pockets, long striped scarf, glowing magic playing cards fanned in one hand, sly grin and one eye winking as if asking a riddle, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/trickster/happy.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000010,
+  "prompt": "128x128 pixel art sprite, mischievous young trickster mage man, adult full-size proportions, full body head to toe, not chibi, messy silver hair, fox ears, purple and orange patchwork coat with many pockets, long striped scarf, glowing magic playing cards fanned in one hand, smug grin, tossing a glowing card in the air, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/trickster/sad.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000010,
+  "prompt": "128x128 pixel art sprite, mischievous young trickster mage man, adult full-size proportions, full body head to toe, not chibi, messy silver hair, fox ears, purple and orange patchwork coat with many pockets, long striped scarf, glowing magic playing cards fanned in one hand, rolling his eyes with arms crossed, unimpressed, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/trickster/cheer.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000010,
+  "prompt": "128x128 pixel art sprite, mischievous young trickster mage man, adult full-size proportions, full body head to toe, not chibi, messy silver hair, fox ears, purple and orange patchwork coat with many pockets, long striped scarf, glowing magic playing cards fanned in one hand, laughing with arms wide open, glowing cards flying around him, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/vikas.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000020,
+  "prompt": "128x128 pixel art sprite, anime young college boy with normal full-size proportions, full body head to toe, long legs, not chibi, neat side-parted black hair, round glasses, grey hoodie and jeans, holding an open laptop, confident smile, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/arnav.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000030,
+  "prompt": "128x128 pixel art sprite, anime young college boy with normal full-size proportions, full body head to toe, long legs, not chibi, curly brown hair, denim jacket over a yellow t-shirt, acoustic guitar on his back, waving, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/harpreet.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000040,
+  "prompt": "128x128 pixel art sprite, anime young college boy with normal full-size proportions, full body head to toe, long legs, not chibi, Sikh boy wearing a royal blue patka, short neat beard, white and blue tracksuit, cricket bat resting on his shoulder, big grin, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/dhruv.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000050,
+  "prompt": "128x128 pixel art sprite, anime young college boy with normal full-size proportions, full body head to toe, long legs, not chibi, spiky black hair, white lab coat over a red t-shirt, holding a small robot arm, excited expression, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/aisha.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000060,
+  "prompt": "128x128 pixel art sprite, anime young college girl with normal full-size proportions, full body head to toe, long legs, not chibi, wearing a lilac hijab, olive green bomber jacket and jeans, holding a drone remote controller, bright smile, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/kavya.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000071,
+  "prompt": "128x128 pixel art sprite, anime young college girl with normal full-size proportions, full body head to toe, long legs, not chibi, short black bob haircut, thick black glasses, oversized teal hoodie, hugging a notebook, shy smile, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/nila.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000081,
+  "prompt": "128x128 pixel art sprite, anime young college girl with normal full-size proportions, full body head to toe, long legs, not chibi, long black braid with jasmine flowers, maroon kurta with jeans and white sneakers, holding a camera, cheerful, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/tara.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
+  "seed": 830000000091,
+  "prompt": "128x128 pixel art sprite, anime young college girl with normal full-size proportions, full body head to toe, long legs, not chibi, pixie cut hair dyed blue, black leather jacket and ripped jeans, holding a skateboard, cool smirk, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, threshold + 1px dilate",
+   "cropped, box-downscaled into 128x128 (bottom-centred)",
+   "quantised to 32 colours",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/music/menu.mp3",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "music: ACE-Step 1.5 turbo, 100 s, 82 bpm, D major, 4/4, lyrics [Instrumental]",
+  "seed": 940000000001,
+  "prompt": "lofi chillhop instrumental, warm rhodes piano chords, soft bansuri flute melody, gentle tabla and brushed drums, vinyl crackle, mellow bass, cozy, relaxing, seamless loop, no vocals",
+  "license_chain": [
+   "ACE-Step 1.5 (MIT; generated music may be used commercially)"
+  ],
+  "post": [
+   "trimmed to whole bars, last bar crossfaded into the first for a seamless loop",
+   "loudness-normalised to -18 LUFS",
+   "MP3 96 kb/s stereo"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/music/calm.mp3",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "music: ACE-Step 1.5 turbo, 100 s, 72 bpm, A minor, 4/4, lyrics [Instrumental]",
+  "seed": 940000000011,
+  "prompt": "ambient lofi instrumental, soft warm pads, gentle plucked sitar, slow dreamy piano, minimal soft percussion, calm background music for storytelling, seamless loop, no vocals",
+  "license_chain": [
+   "ACE-Step 1.5 (MIT; generated music may be used commercially)"
+  ],
+  "post": [
+   "trimmed to whole bars, last bar crossfaded into the first for a seamless loop",
+   "loudness-normalised to -18 LUFS",
+   "MP3 96 kb/s stereo"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/music/tension.mp3",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "music: ACE-Step 1.5 turbo, 100 s, 92 bpm, E minor, 4/4, lyrics [Instrumental]",
+  "seed": 940000000021,
+  "prompt": "lofi synthwave instrumental, pulsing analog bass, soft arpeggiated synths, light drum machine, mysterious and focused, background music, seamless loop, no vocals",
+  "license_chain": [
+   "ACE-Step 1.5 (MIT; generated music may be used commercially)"
+  ],
+  "post": [
+   "trimmed to whole bars, last bar crossfaded into the first for a seamless loop",
+   "loudness-normalised to -18 LUFS",
+   "MP3 96 kb/s stereo"
+  ],
+  "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/music/spooky.mp3",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "music: ACE-Step 1.5 turbo, 100 s, 68 bpm, C minor, 4/4, lyrics [Instrumental]",
+  "seed": 940000000031,
+  "prompt": "dark ambient lofi instrumental, slow music box melody, soft eerie pads, distant chimes, gentle suspense, background music, seamless loop, no vocals",
+  "license_chain": [
+   "ACE-Step 1.5 (MIT; generated music may be used commercially)"
+  ],
+  "post": [
+   "trimmed to whole bars, last bar crossfaded into the first for a seamless loop",
+   "loudness-normalised to -18 LUFS",
+   "MP3 96 kb/s stereo"
+  ],
+  "created": "2026-10-08"
+ }
+]

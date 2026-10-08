@@ -60,8 +60,14 @@ QUESTION_SCHEMA = {
                     "display_answer": {"type": "string"},
                     "kind": {"type": "string", "enum": ["text", "number"]},
                     "explanation": {"type": "string"},
+                    "options": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "minItems": 3,
+                        "maxItems": 3,
+                    },
                 },
-                "required": ["prompt", "answers", "display_answer", "kind"],
+                "required": ["prompt", "answers", "display_answer", "kind", "options"],
             },
         }
     },
@@ -69,7 +75,9 @@ QUESTION_SCHEMA = {
 }
 
 SYSTEM = (
-    "You write quiz questions for a voice game played by Indian school and college students. "
+    "You write quiz questions for a voice game played by Indian engineering students aged 18 "
+    "to 25. Aim at what a second-year engineering student knows: computing, electronics, "
+    "physics, maths, Indian space missions and tech history, not school-level trivia. "
     "Questions are read aloud by a text-to-speech voice and answered by speaking. "
     "Only produce factual, uncontroversial, age-appropriate questions with one clear answer. "
     "Never include politics, religion, caste, violence, real private people, or medical advice. "
@@ -92,6 +100,8 @@ def build_prompt(language: str, topic: str, count: int) -> str:
         '(for example "7").\n'
         "- 'display_answer' is how the answer appears on screen, in the native script.\n"
         "- 'explanation' is one short sentence.\n"
+        "- 'options' is exactly three on-screen choices: the display_answer plus two plausible\n"
+        "  wrong answers of the same type and length, all clearly different when spoken.\n"
         "Return JSON only."
     )
 

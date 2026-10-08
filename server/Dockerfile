@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.7
-# Maata Arcade API — multi-stage, hash-pinned dependencies, non-root, read-only at runtime.
+# Mic Drop Arcade API — multi-stage, hash-pinned dependencies, non-root, read-only at runtime.
 
 FROM python:3.12-slim-bookworm AS build
 ENV PIP_NO_CACHE_DIR=1 PIP_DISABLE_PIP_VERSION_CHECK=1
@@ -19,12 +19,15 @@ COPY --chown=root:root app ./app
 COPY --chown=root:root migrations ./migrations
 COPY --chown=root:root content ./content
 COPY --chown=root:root packs ./packs
+COPY --chown=root:root adventures ./adventures
 COPY --chown=root:root scripts ./scripts
 ENV PATH=/venv/bin:$PATH \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     MAATA_PACKS_DIR=/srv/packs \
     MAATA_LINES_FILE=/srv/content/lines.json \
+    MAATA_ADVENTURES_DIR=/srv/adventures \
+    MAATA_WIZARD_LINES_FILE=/srv/content/wizards.json \
     MAATA_AUDIO_CACHE_DIR=/data/audio
 USER app
 EXPOSE 8000

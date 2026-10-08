@@ -1,4 +1,4 @@
-/* Maata Arcade: mobile-first, dark, chunky. No inline styles anywhere: the CSP forbids them. */
+/* Mic Drop Arcade: mobile-first, dark, chunky. No inline styles anywhere: the CSP forbids them. */
 
 @font-face {
   font-family: 'Press Start 2P';
@@ -48,13 +48,33 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-#backdrop {
+/* The painted scene fills the whole window behind every screen (src/ui/scene.ts). A dark wash
+   keeps menu text readable; during play it lifts so the scene is the backdrop of the story. */
+#scene {
   position: fixed;
   inset: 0;
   z-index: -1;
+  background: var(--ink);
+}
+
+#scene img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: 35% 50%;
   image-rendering: pixelated;
+}
+
+#scene::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(11 10 31 / 62%);
+  transition: background 300ms steps(3);
+}
+
+#scene[data-mode='game']::after {
+  background: linear-gradient(rgb(11 10 31 / 45%), rgb(11 10 31 / 0%) 30%, rgb(11 10 31 / 0%) 65%, rgb(11 10 31 / 55%));
 }
 
 #app {
@@ -291,6 +311,34 @@ ul {
   color: #00222a;
 }
 
+/* Five languages don't fit one row on a phone: wrap, and let the last row stretch. Each
+   segment draws half of every 3px divider so the lines stay even wherever it wraps. */
+.segmented.langs {
+  flex-wrap: wrap;
+  border-width: 1.5px;
+}
+
+.segmented.langs .segment,
+.segmented.langs .segment + .segment {
+  flex: 1 1 6rem;
+  border: 1.5px solid var(--text);
+}
+
+.segmented.langs .segment[aria-pressed='true'] {
+  background: var(--cyan);
+}
+
+/* Painted pixel art is upscaled by the browser: keep the pixels square. */
+.title-wizard,
+.stage-wizard,
+.stage-hero,
+.hero-img,
+.over-hero-img,
+.board-hero {
+  image-rendering: pixelated;
+  user-select: none;
+}
+
 /* ------------------------------------------------------------------ title --------- */
 .title {
   justify-content: center;
@@ -315,6 +363,25 @@ ul {
 
 .logo-bottom {
   color: var(--cyan);
+}
+
+.title-art {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0;
+  margin-block: -0.5rem -0.75rem;
+}
+
+.title-wizard {
+  width: 7.5rem;
+  height: 7.5rem;
+  margin-inline: -1.25rem;
+}
+
+.title-wizard-main {
+  width: 10rem;
+  height: 10rem;
 }
 
 .tagline {
@@ -385,8 +452,170 @@ ul {
 }
 
 .pack-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 1.1875rem;
   font-weight: 700;
+}
+
+.quest-card {
+  position: relative;
+  min-height: 9rem;
+  justify-content: flex-end;
+  padding: 0.75rem 0.875rem 0.75rem 42%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.quest-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, rgb(11 10 31 / 0%) 15%, rgb(11 10 31 / 88%) 50%);
+}
+
+.quest-scene {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% 50%;
+  image-rendering: pixelated;
+}
+
+.quest-wizard {
+  position: absolute;
+  left: -2%;
+  bottom: -6%;
+  height: 112%;
+  aspect-ratio: 1;
+  image-rendering: pixelated;
+}
+
+.quest-info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.quest-host {
+  color: var(--pink);
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+
+.pack.quest-card:hover .quest-wizard,
+.pack.quest-card:focus-visible .quest-wizard {
+  animation: hop 480ms steps(3);
+}
+
+.custom-quiz {
+  border-style: dashed;
+  border-color: var(--muted);
+  background: rgb(23 21 59 / 80%);
+  cursor: default;
+}
+
+.badge-soon {
+  background: var(--muted);
+}
+
+.badge {
+  padding: 0.25rem 0.4rem;
+  background: var(--yellow);
+  color: #1d1400;
+  font-size: 0.625rem;
+  line-height: 1;
+}
+
+/* ------------------------------------------------------------------ pickers -------- */
+.lobby {
+  max-width: 46rem;
+}
+
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 3px solid var(--line);
+  background: rgb(23 21 59 / 88%);
+}
+
+.wizards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.wizard-pick,
+.hero {
+  position: relative;
+  padding: 0;
+  border: 3px solid var(--line);
+  background: rgb(11 10 31 / 70%);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.wizard-pick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0.5rem;
+}
+
+.wizard-pick[aria-pressed='true'],
+.hero[aria-pressed='true'] {
+  border-color: var(--cyan);
+  background: rgb(43 42 107 / 90%);
+  box-shadow: 0 0 0 3px #000 inset, 0 0 0 2px var(--cyan);
+}
+
+.wizard-pick-img {
+  width: 100%;
+  max-width: 11rem;
+  aspect-ratio: 1;
+  image-rendering: pixelated;
+}
+
+.wizard-pick-name {
+  font-weight: 800;
+  font-size: 0.9375rem;
+}
+
+.wizard-pick[aria-pressed='true'] .wizard-pick-name {
+  color: var(--cyan);
+}
+
+.heroes {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.375rem;
+}
+
+.hero {
+  aspect-ratio: 1;
+}
+
+.hero-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-picked {
+  min-height: 1.5em;
+  font-weight: 700;
+  color: var(--yellow);
 }
 
 .pack-meta {
@@ -396,12 +625,16 @@ ul {
 
 /* ------------------------------------------------------------------ game ---------- */
 .game {
-  gap: 0.875rem;
+  max-width: 72rem;
+  min-height: calc(100dvh - 2.5rem);
+  gap: 0.625rem;
 }
 
 .hud {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr auto auto;
+  align-items: end;
+  background: rgb(23 21 59 / 90%);
   gap: 0.5rem;
   padding: 0.625rem 0.75rem;
   border: 3px solid var(--text);
@@ -429,37 +662,258 @@ ul {
   color: var(--yellow);
 }
 
-.hud-value.hot {
+/* Quest progress: one notch per chapter the wizard has told. */
+.quest {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  border: 3px solid var(--line);
+  background: rgb(23 21 59 / 88%);
+  text-align: left;
+}
+
+.quest-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-weight: 700;
+}
+
+.quest-name {
   color: var(--pink);
 }
 
-.timer {
-  height: 1rem;
+.quest-count {
+  font-size: 0.75rem;
+  color: var(--yellow);
+  align-self: center;
+}
+
+.quest-bar {
+  height: 0.75rem;
   border: 3px solid var(--text);
   background: var(--ink);
 }
 
-.timer-fill {
+.quest-fill {
   height: 100%;
-  background: var(--green);
+  background: var(--yellow);
+  transform: scaleX(0);
   transform-origin: left;
+  transition: transform 400ms steps(6);
 }
 
-.timer.low .timer-fill {
-  background: var(--red);
+/* The play area: characters over the full-screen scene, visual-novel style. The wizard stands
+   big on the left, the player's hero on the right, the choices sit in a 2×2 grid at the top
+   right, and the dialogue box below overlaps both characters' lower halves. */
+.play {
+  position: relative;
+  flex: 1;
+  min-height: 21rem;
 }
 
-.status {
+.stage-wizard,
+.stage-hero {
+  position: absolute;
+  aspect-ratio: 1;
+  width: auto;
+  pointer-events: none;
+  image-rendering: pixelated;
+  filter: drop-shadow(6px 6px 0 rgb(0 0 0 / 50%));
+}
+
+.stage-wizard {
+  left: -14%;
+  bottom: -5.5rem;
+  height: calc(100% + 6rem);
+  max-height: 46rem;
+}
+
+.stage-hero {
+  right: -12%;
+  bottom: -5rem;
+  height: min(calc(78% + 5rem), 34rem);
+  transform: scaleX(-1); /* face the wizard */
+}
+
+.game[data-mood='happy'] .stage-wizard,
+.game[data-mood='cheer'] .stage-wizard {
+  animation: hop 480ms steps(3);
+}
+
+.game[data-mood='sad'] .stage-wizard {
+  animation: droop 600ms steps(3);
+}
+
+.game[data-phase='result'] .stage-hero {
+  animation: hop-flip 480ms steps(3);
+}
+
+@keyframes hop {
+  40% {
+    transform: translateY(-5%);
+  }
+}
+
+@keyframes hop-flip {
+  40% {
+    transform: scaleX(-1) translateY(-5%);
+  }
+}
+
+@keyframes droop {
+  50% {
+    transform: translateY(2%);
+  }
+}
+
+.choices {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.choice {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  min-height: 9.5rem;
+  min-height: 3.25rem;
+  padding: 0.5rem 0.625rem;
+  border: 3px solid var(--cyan);
+  border-radius: 0.5rem;
+  background: rgb(14 12 38 / 92%);
+  box-shadow: 3px 3px 0 #000;
+  font-size: clamp(0.9375rem, 2.8vw, 1.125rem);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.choice-key {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--cyan);
+  color: #00222a;
+  font-size: 0.75rem;
+}
+
+.choice-other {
+  border-style: dashed;
+  border-color: var(--muted);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.choice-other .choice-key {
+  background: var(--muted);
+}
+
+.choice.right {
+  border-color: var(--green);
+  background: rgb(18 60 38 / 95%);
+}
+
+.choice.right .choice-key {
+  background: var(--green);
+}
+
+.choice.dim {
+  opacity: 0.4;
+}
+
+.game[data-phase='listening'] .choice:not(.choice-other) {
+  animation: glow 900ms steps(2) infinite;
+}
+
+@keyframes glow {
+  50% {
+    border-color: var(--yellow);
+  }
+}
+
+.dialogue {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-height: 9rem;
+  padding: 1.375rem 1rem 0.875rem;
+  border: 3px solid var(--pink);
+  border-radius: 0.75rem;
+  background: rgb(10 8 28 / 96%);
+  box-shadow: 0 -1rem 2rem rgb(0 0 0 / 60%), var(--shadow);
+  text-align: left;
+}
+
+.dialogue-name {
+  position: absolute;
+  top: -0.95rem;
+  left: 0.875rem;
+  padding: 0.375rem 0.5rem;
+  border: 3px solid #000;
+  background: var(--pink);
+  color: #14001f;
+  font-size: 0.6875rem;
+}
+
+.dialogue-text {
+  font-size: clamp(1.0625rem, 3.6vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.dialogue-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.25rem;
+}
+
+.dialogue-status .meter {
+  flex: 1;
+  width: auto;
+}
+
+.dialogue .verdict {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 0.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.dialogue .verdict .verdict-line {
+  grid-column: 2;
+}
+
+.sound-chip {
+  align-self: center;
+  border-color: var(--yellow);
+  color: var(--yellow);
+  animation: blink 900ms steps(2) infinite;
+}
+
+.hud-quit {
+  align-self: center;
+  min-height: 2.25rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.8125rem;
 }
 
 .sprite-status {
-  width: 5rem;
-  height: 5rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .game[data-phase='listening'] .sprite-status {
@@ -478,7 +932,7 @@ ul {
 
 .status-text {
   min-height: 1.5em;
-  font-size: 1.25rem;
+  font-size: 1.0625rem;
   font-weight: 800;
   color: var(--cyan);
 }
@@ -565,6 +1019,42 @@ ul {
 }
 
 /* ------------------------------------------------------------------ game over ----- */
+.over-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+.over-hero-img {
+  width: 10rem;
+  height: 10rem;
+  margin-block: -0.75rem -0.5rem;
+}
+
+.over-hero figcaption {
+  font-size: 0.75rem;
+  color: var(--cyan);
+}
+
+.ending {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.ending-great {
+  color: var(--yellow);
+}
+
+.ending-good {
+  color: var(--green);
+}
+
+.ending-try_again {
+  color: var(--muted);
+}
+
 .final-score {
   font-size: clamp(2.5rem, 14vw, 4rem);
   line-height: 1.1;
@@ -668,6 +1158,19 @@ input[type='range'] {
   overflow-wrap: anywhere;
 }
 
+.board-player {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+}
+
+.board-hero {
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-block: -0.5rem;
+}
+
 /* ------------------------------------------------------------------ dialogs ------- */
 .dialog {
   width: min(28rem, calc(100vw - 2rem));
@@ -738,6 +1241,677 @@ input[type='range'] {
   display: none;
 }
 
+
+/* ------------------------------------------------------------------ adventures ---- */
+/* HUD: score, the adventure's meter (time, spark, clues...), the trail of answers, quit. */
+.game[data-mode='adventure'] .hud {
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.hud-meter {
+  flex-direction: row;
+  align-items: center;
+}
+
+.meter-pips {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.meter-pips .hud-label {
+  margin-right: 0.25rem;
+}
+
+.pip {
+  display: grid;
+  place-items: center;
+  opacity: 0.22;
+  filter: grayscale(1);
+}
+
+.pip.on {
+  opacity: 1;
+  filter: none;
+}
+
+.sprite-pip {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.hud-meter.up {
+  animation: pop-up 520ms steps(4);
+}
+
+.hud-meter.down {
+  animation: shake 420ms steps(4);
+}
+
+@keyframes pop-up {
+  40% {
+    transform: translateY(-4px) scale(1.12);
+  }
+}
+
+@keyframes shake {
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.trail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-self: center;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: flex-end;
+}
+
+.trail-step {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  margin: 0;
+  line-height: 1;
+  padding: 0 0.25rem;
+  border: 2px solid var(--cyan);
+  background: var(--ink);
+  color: var(--cyan);
+  font-family: var(--pixel);
+  font-size: 0.625rem;
+}
+
+.trail-step.auto {
+  border-style: dashed;
+  color: var(--muted);
+}
+
+.trail-step.puzzle.good {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.trail-step.puzzle.void {
+  border-color: var(--muted);
+  color: var(--muted);
+}
+
+.trail-step.puzzle.bad {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.trail-step.end {
+  border-color: currentcolor;
+}
+
+.trail.big {
+  justify-content: center;
+}
+
+.trail.big .trail-step {
+  min-width: 2rem;
+  height: 2rem;
+  font-size: 0.75rem;
+}
+
+/* The bag: items picked up on the way. */
+.bag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+  border: 3px solid var(--line);
+  background: rgb(23 21 59 / 88%);
+  text-align: left;
+}
+
+.sprite-bag {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+}
+
+.bag-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bag-item {
+  padding: 0.125rem 0.5rem;
+  border: 2px solid var(--yellow);
+  border-radius: 999px;
+  color: var(--yellow);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.bag-item.new {
+  animation: pop-up 600ms steps(4) 2;
+}
+
+.toast {
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  top: 5.5rem;
+  translate: -50% 0;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border: 3px solid var(--yellow);
+  background: var(--ink);
+  color: var(--yellow);
+  font-weight: 800;
+  box-shadow: var(--shadow);
+}
+
+.toast.pop {
+  animation: toast 2600ms steps(8) forwards;
+}
+
+@keyframes toast {
+  0% {
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+  10%,
+  85% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Choice cards and riddle options, top right of the stage. */
+.card-panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-left: auto;
+  width: min(60%, 26rem);
+}
+
+.cards-title {
+  align-self: flex-start;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  background: var(--yellow);
+  color: var(--ink);
+  font-size: 0.6875rem;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card-panel.is-puzzle .cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 3.25rem;
+  padding: 0.5rem 0.75rem;
+  border: 3px solid var(--cyan);
+  border-radius: 0.5rem;
+  background: rgb(14 12 38 / 92%);
+  box-shadow: 3px 3px 0 #000;
+  font-size: clamp(0.9375rem, 2.8vw, 1.125rem);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+  overflow-wrap: anywhere;
+  transition: opacity 200ms steps(2);
+}
+
+.card-key {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--cyan);
+  color: #00222a;
+  font-size: 0.75rem;
+}
+
+.card.picked {
+  border-color: var(--yellow);
+  background: rgb(70 54 6 / 95%);
+  transform: translateX(-0.5rem);
+}
+
+.card.picked .card-key {
+  background: var(--yellow);
+}
+
+.card.right {
+  border-color: var(--green);
+  background: rgb(18 60 38 / 95%);
+}
+
+.card.right .card-key {
+  background: var(--green);
+}
+
+.card.dim {
+  opacity: 0.35;
+}
+
+.game[data-phase='listening'] .card {
+  animation: glow 900ms steps(2) infinite;
+}
+
+.card-panel.shake .cards {
+  animation: shake 420ms steps(4);
+}
+
+.cards-hint {
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  background: rgb(11 10 31 / 80%);
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.cards-hint:empty {
+  display: none;
+}
+
+/* Lobby: level, wizard pick, hero pick, then the adventures as big painted cards. */
+.level {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  align-self: center;
+  padding: 0.375rem 0.75rem;
+  border: 3px solid var(--yellow);
+  background: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.level-num {
+  color: var(--yellow);
+  font-size: 0.75rem;
+}
+
+.xp-bar {
+  width: 8rem;
+  height: 0.75rem;
+  border: 2px solid var(--text);
+  background: var(--panel);
+}
+
+.xp-fill {
+  display: block;
+  height: 100%;
+  background: var(--green);
+  transform-origin: left;
+}
+
+.wizard-pick-blurb {
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.adventures {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.adventure-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  min-height: 9.5rem;
+  padding: 0;
+  overflow: hidden;
+  border: 3px solid var(--text);
+  border-radius: 0.5rem;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.adventure-card:disabled {
+  opacity: 0.5;
+  cursor: progress;
+}
+
+.adventure-card:focus-visible {
+  outline: 4px solid var(--yellow);
+  outline-offset: 2px;
+}
+
+.adventure-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  transition: transform 300ms steps(3);
+}
+
+.adventure-card:hover .adventure-cover,
+.adventure-card:focus-visible .adventure-cover {
+  transform: scale(1.04);
+}
+
+.adventure-info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  padding: 2rem 0.875rem 0.75rem;
+  background: linear-gradient(rgb(11 10 31 / 0%), rgb(11 10 31 / 92%) 45%);
+}
+
+.adventure-info .badge {
+  align-self: flex-start;
+}
+
+.adventure-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.adventure-tagline {
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.3;
+}
+
+.adventure-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.auto-card {
+  min-height: 12rem;
+  border-color: var(--yellow);
+}
+
+.auto-card .adventure-title {
+  color: var(--yellow);
+  font-size: 1.5rem;
+}
+
+.make-card {
+  min-height: 0;
+  border-style: dashed;
+  border-color: var(--muted);
+  background: rgb(23 21 59 / 80%);
+  cursor: default;
+}
+
+.make-card .adventure-info {
+  padding-top: 0.75rem;
+  background: none;
+}
+
+.genre-romance {
+  border-color: var(--pink);
+}
+
+.genre-horror {
+  border-color: #6dff9f;
+}
+
+.genre-action,
+.genre-thriller {
+  border-color: var(--red);
+}
+
+/* Ending medals: filled when found, "?" while locked. */
+.shelf {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.medal {
+  display: inline-grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--muted);
+  border-radius: 50%;
+  color: var(--muted);
+  font-family: var(--pixel);
+  font-size: 0.5rem;
+  vertical-align: middle;
+}
+
+.medal.found.medal-gold,
+.medal-gold.end {
+  border-color: #fff3b0;
+  background: var(--yellow);
+  color: var(--yellow);
+}
+
+.medal.found.medal-silver,
+.medal-silver.end {
+  border-color: #fff;
+  background: #d6dcef;
+  color: #d6dcef;
+}
+
+.medal.found.medal-bronze,
+.medal-bronze.end {
+  border-color: #ffd0a8;
+  background: #e08a4a;
+  color: #e08a4a;
+}
+
+.trail-step.end {
+  color: var(--ink);
+}
+
+/* Score screen for an adventure run. */
+.run-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.run-adventure {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.ending-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.ending-title .medal {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.ending-rank-gold {
+  color: var(--yellow);
+}
+
+.ending-rank-silver {
+  color: #e8ecf8;
+}
+
+.ending-rank-bronze {
+  color: #f0a26a;
+}
+
+.run-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 0.25rem 0;
+}
+
+.run-stats div {
+  padding: 0.5rem 0.75rem;
+  border: 3px solid var(--line);
+  background: var(--panel);
+}
+
+.run-stats dt {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.run-stats dd {
+  margin: 0.25rem 0 0;
+  color: var(--yellow);
+  font-size: 1rem;
+}
+
+.xp-gain {
+  color: var(--green) !important;
+}
+
+.flash {
+  margin: 0;
+  font-weight: 800;
+  animation: blink 900ms steps(2) 4;
+}
+
+.flash.good {
+  color: var(--green);
+}
+
+.level-up {
+  color: var(--yellow);
+  font-size: 0.875rem;
+}
+
+.run-path,
+.run-shelf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.board-filter {
+  align-self: center;
+  max-width: 20rem;
+}
+
+.board-who {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.board-adv {
+  font-size: 0.75rem;
+}
+
+.title-wizard-far {
+  opacity: 0.85;
+}
+
+/* On a phone the choices need the right half: slide the wizard left so the tiles sit beside
+   its face, not on it. Its far side is cropped by the stage edge, visual-novel style. */
+@media (max-width: 47.99rem) {
+  /* On a phone the characters are sized by the screen's width, not its height: the wizard
+     fills the left half and the hero the right edge, so neither stands in front of the other. */
+  .stage-wizard {
+    left: -30%;
+    height: min(calc(100% + 5.5rem), 118vw);
+  }
+
+  .stage-hero {
+    right: -14%;
+    height: min(calc(70% + 5rem), 70vw);
+  }
+
+  .play.has-choices .stage-wizard {
+    height: min(calc(100% - 1rem), 100vw);
+  }
+
+  .play.has-choices .stage-hero {
+    height: min(calc(55% + 2rem), 58vw);
+  }
+
+  .card-panel {
+    width: 64%;
+  }
+
+  .card-panel.is-puzzle .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .game[data-mode='adventure'] .hud {
+    grid-template-columns: auto auto auto;
+  }
+
+  .game[data-mode='adventure'] .trail {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+  }
+
+  .run-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.375rem;
+  }
+
+  .title-wizard-far {
+    display: none;
+  }
+}
+
 /* ------------------------------------------------------------------ wider screens - */
 @media (min-width: 48rem) {
   #app {
@@ -747,6 +1921,39 @@ input[type='range'] {
 
   .hud-value {
     font-size: 1.25rem;
+  }
+
+  .heroes {
+    grid-template-columns: repeat(10, 1fr);
+  }
+
+  .adventures {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .wizards {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .play {
+    min-height: 26rem;
+  }
+
+  /* Wide screens: the choices take the top right, as in the layout reference. */
+  .choices {
+    width: 52%;
+    margin-left: auto;
+    gap: 0.75rem;
+  }
+
+  .stage-wizard {
+    left: -4%;
+    height: calc(100% + 6rem);
+  }
+
+  .stage-hero {
+    right: 2%;
+    height: min(calc(64% + 5rem), 30rem);
   }
 }
 

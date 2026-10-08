@@ -522,3 +522,155 @@ def test_tenglish_transcripts_match_across_scripts():
         id="c", prompt="Telangana capital edi?", answers=["hyderabad"], display_answer="Hyderabad"
     )
     assert match_answer("నా ఆన్సర్ హైదరాబాద్", q2, language="te-en").correct
+
+
+def test_story_branches_on_answers():
+    pack = parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes())
+    story = pack.story
+    assert story is not None
+    assert pack.summary()["story"] == {
+        "wizard": story.wizard,
+        "wizard_sprite": story.wizard_sprite,
+        "scene": story.scene,
+        "chapters": len(story.chapters),
+    }
+    assert story.chapter(1) == story.chapters[0]
+    assert story.chapter(len(story.chapters) + 1) is None  # more right answers than chapters
+    assert story.setback(1) == story.setbacks[0]
+    assert story.setback(3) == story.setbacks[0]  # setbacks cycle
+    assert story.ending(9, 10)[0] == "great"
+    assert story.ending(5, 10)[0] == "good"
+    assert story.ending(2, 10)[0] == "try_again"
+    assert len(story.all_lines()) == 1 + len(story.chapters) + len(story.setbacks) + 3
+
+
+def test_story_schema_limits():
+    import json as _json
+
+    raw = _json.loads((FIXTURES / "packs" / "hi-story-01.json").read_text(encoding="utf-8"))
+    raw["story"]["chapters"] = ["x" * 300, "ok line", "ok line"]
+    with pytest.raises(ValueError):
+        parse_pack(_json.dumps(raw))
+    raw = _json.loads((FIXTURES / "packs" / "hi-story-01.json").read_text(encoding="utf-8"))
+    raw["story"]["evil"] = True
+    with pytest.raises(ValueError):
+        parse_pack(_json.dumps(raw))
+
+
+def test_story_voice_scene_and_sprite():
+    import json as _json
+
+    from app.game.languages import route_for_pack
+
+    base = _json.loads((FIXTURES / "packs" / "hi-story-01.json").read_text(encoding="utf-8"))
+    pack = parse_pack(_json.dumps(base))
+    assert pack.story is not None
+    assert (pack.story.wizard_sprite, pack.story.scene, pack.story.voice) == (
+        "sage",
+        "library-a",
+        None,
+    )
+    assert route_for_pack(pack).voice == "Nalini"  # language default
+
+    raw = _json.loads(_json.dumps(base))
+    raw["story"].update(voice="Jalaj", wizard_sprite="owl", scene="crystal-cave")
+    pack = parse_pack(_json.dumps(raw))
+    route = route_for_pack(pack)
+    assert route.voice == "Jalaj" and route.tts_lang == "hi-IN" and route.stt_lang == "hi-IN"
+
+    for field, bad in (
+        ("voice", "Girish"),  # an en-IN voice in a Hindi pack
+        ("voice", "../etc"),
+        ("wizard_sprite", "dragon"),
+        ("scene", "../../secrets"),
+    ):
+        raw = _json.loads(_json.dumps(base))
+        raw["story"][field] = bad
+        with pytest.raises(ValueError):
+            parse_pack(_json.dumps(raw))
+
+
+def test_builtin_story_packs_are_valid():
+    """The hand-written starter packs parse, use their own language's voices and hit every
+    branch of the story (each pack has enough chapters for a perfect run)."""
+    from app.game.languages import VOICES, route_for_pack
+
+    drafts = sorted((SERVER_DIR / "packs" / "drafts").glob("*.json"))
+    langs = set()
+    for path in drafts:
+        pack = parse_pack(path.read_bytes())
+        if pack.story is None:
+            continue
+        langs.add(pack.language)
+        route = route_for_pack(pack)
+        assert route.voice in VOICES[route.tts_lang]
+        assert len(pack.story.chapters) >= min(len(pack.questions), 8)
+        assert all(q.options is not None for q in pack.questions), pack.id
+    assert langs == {"te-IN", "hi-IN", "hi-en", "te-en", "en-IN"}
+
+
+def test_characters_allowlist():
+    from app.game.characters import CHARACTERS, valid_character
+
+    assert valid_character(None) == "arjun" and len(CHARACTERS) == 20
+    assert len(set(CHARACTERS)) == 20
+    assert all(valid_character(c) == c for c in CHARACTERS)
+    for bad in ("<script>", "", "ARJUN", "robot", 7, ["arjun"]):
+        assert valid_character(bad) is None
+
+
+def test_score_token_carries_character():
+    svc = TokenService(SECRET, 60, 60)
+    tok = svc.issue_score(ScoreClaims("g", "s", 1, 10, 1, 2, "te-en", "p", "zara"))
+    assert svc.verify_score(tok)[0].character == "zara"
+
+
+def test_options_need_exactly_one_right_answer():
+    ok = Question(
+        id="o",
+        prompt="Capital of India?",
+        answers=["new delhi", "delhi"],
+        display_answer="New Delhi",
+        options=["New Delhi", "Mumbai", "Chennai"],
+    )
+    assert ok.options == ["New Delhi", "Mumbai", "Chennai"]
+    for opts in (
+        ["Mumbai", "Chennai", "Pune"],
+        ["Delhi", "New Delhi", "Pune"],
+        ["Mumbai", "Mumbai", "New Delhi"],
+        ["New Delhi", "Mumbai"],
+    ):
+        with pytest.raises(ValueError):
+            Question(
+                id="o",
+                prompt="Capital of India?",
+                answers=["new delhi", "delhi"],
+                display_answer="New Delhi",
+                options=opts,
+            )
+
+
+def test_wizard_picks_the_narrator_voice():
+    from app.game.languages import (
+        DEFAULT_WIZARD,
+        LANGUAGES,
+        VOICES,
+        WIZARD_VOICES,
+        WIZARDS,
+        route,
+        route_for_game,
+        valid_wizard,
+    )
+
+    pack = parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes())
+    assert DEFAULT_WIZARD == "sorceress"
+    assert route_for_game(pack, "sorceress").voice == "Nalini"
+    assert route_for_game(pack, "sage").voice == "Jalaj"
+    assert route_for_game(pack, "owl").voice == "Omkar"
+    # Every wizard has a real Timbre voice in every game language.
+    for code in LANGUAGES:
+        for wizard in WIZARDS:
+            assert WIZARD_VOICES[code][wizard] in VOICES[route(code).tts_lang], (code, wizard)
+    for bad in (None, "", "dragon", "SAGE", 3, ["owl"]):
+        assert valid_wizard(bad) is None
+    assert all(valid_wizard(w) == w for w in WIZARDS)

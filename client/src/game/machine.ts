@@ -3,12 +3,26 @@
  * of side effects (open the mic, stop an utterance, play a sound) come out. Scores, streaks and
  * verdicts are copied from the server and never computed here.
  */
-import type {
-  ErrorMsg,
-  GameOverMsg,
-  PackSummary,
-  ResultMsg,
-  ServerMessage,
+import {
+  type AdventureSummary,
+  DEFAULT_HERO,
+  type EndingBand,
+  type EndingMsg,
+  type Item,
+  type NodeKind,
+  type PuzzleMsg,
+  type PuzzleResultMsg,
+  type Scene,
+  type StateFields,
+  type Wizard,
+  type ErrorMsg,
+  type GameOverMsg,
+  type Hero,
+  type Mood,
+  type PackSummary,
+  type ResultMsg,
+  type ServerMessage,
+  type StoryInfo,
 } from '../protocol/messages';
 
 export type Phase =
@@ -49,11 +63,54 @@ export interface GameState {
   awaitingQuestionAudio: boolean;
   /** Goes up on every `heard_nothing`, so the UI can nudge the player each time. */
   heardNothing: number;
+  /** The current question's three on-screen choices, or null for open answers. */
+  options: string[] | null;
+  /** The hero the server confirmed for this game. */
+  hero: Hero;
+  /** Wizard quest details for story packs; null for a plain quiz. */
+  story: StoryInfo | null;
+  /** Which wizard pose to show. */
+  mood: Mood;
+  /** Quest chapters completed so far. */
+  chaptersDone: number;
+  /** Set once the story's ending plays. */
+  ending: EndingBand | null;
   result: ResultMsg | null;
   final: GameOverMsg | null;
   error: ErrorMsg | null;
   closeCode: number | null;
+
+  // -- adventures (PROTOCOL §10) --
+  mode: 'quiz' | 'adventure';
+  adventure: AdventureSummary | null;
+  /** The narrator the server confirmed. */
+  wizard: Wizard | null;
+  scene: Scene | null;
+  nodeKind: NodeKind | null;
+  step: number;
+  meter: number | null;
+  /** The last change to the meter (+1, -2 ...), for a little pop on the HUD. */
+  meterDelta: number;
+  items: Item[];
+  /** Item ids gained by the last step. */
+  gained: string[];
+  /** The spoken choices on screen, or null. */
+  choices: string[] | null;
+  /** Which choice the server heard (or picked), once it has. */
+  chosen: number | null;
+  /** Tries left after the last `unclear`, or null before any. */
+  attemptsLeft: number | null;
+  chosenAuto: boolean;
+  puzzle: PuzzleMsg | null;
+  puzzleResult: PuzzleResultMsg | null;
+  /** One entry per answer given, for the path trail. */
+  trail: TrailStep[];
+  endingInfo: EndingMsg | null;
 }
+
+export type TrailStep =
+  | { kind: 'choice'; index: number; auto: boolean }
+  | { kind: 'puzzle'; correct: boolean; skipped: boolean };
 
 export type Effect =
   | { type: 'voice_start'; utterance: number; sampleRate: number }
@@ -65,7 +122,7 @@ export type Effect =
   /** Start the display timer once `after` has finished playing (or straight away if null). */
   | { type: 'timer_start'; seconds: number; after: number | null }
   | { type: 'timer_stop' }
-  | { type: 'sfx'; name: 'correct' | 'wrong' | 'timeout' | 'fanfare' };
+  | { type: 'sfx'; name: 'correct' | 'wrong' | 'timeout' | 'fanfare' | 'select' | 'item' };
 
 export type GameEvent =
   | { type: 'message'; message: ServerMessage }
@@ -95,11 +152,39 @@ export function initialState(): GameState {
     questionUtterance: null,
     awaitingQuestionAudio: false,
     heardNothing: 0,
+    options: null,
+    hero: DEFAULT_HERO,
+    story: null,
+    mood: 'ask',
+    chaptersDone: 0,
+    ending: null,
     result: null,
     final: null,
     error: null,
     closeCode: null,
+    mode: 'quiz',
+    adventure: null,
+    wizard: null,
+    scene: null,
+    nodeKind: null,
+    step: 0,
+    meter: null,
+    meterDelta: 0,
+    items: [],
+    gained: [],
+    choices: null,
+    chosen: null,
+    attemptsLeft: null,
+    chosenAuto: false,
+    puzzle: null,
+    puzzleResult: null,
+    trail: [],
+    endingInfo: null,
   };
+}
+
+function withState(state: GameState, f: StateFields): GameState {
+  return { ...state, meter: f.meter, meterDelta: f.meter_delta, items: f.items, gained: f.gained };
 }
 
 const IN_GAME: readonly Phase[] = ['speaking', 'listening', 'checking', 'result'];
@@ -136,7 +221,8 @@ function onMessage(state: GameState, m: ServerMessage): Step {
     case 'game_start':
       return {
         state: {
-          ...state,
+          ...initialState(),
+          maxGames: state.maxGames,
           phase: 'speaking',
           gamesStarted: state.gamesStarted + 1,
           pack: m.pack,
@@ -151,6 +237,12 @@ function onMessage(state: GameState, m: ServerMessage): Step {
           questionUtterance: null,
           awaitingQuestionAudio: false,
           heardNothing: 0,
+          options: null,
+          hero: m.hero,
+          story: m.story,
+          mood: 'ask',
+          chaptersDone: 0,
+          ending: null,
           result: null,
           final: null,
           error: null,
@@ -171,9 +263,22 @@ function onMessage(state: GameState, m: ServerMessage): Step {
           questionUtterance: null,
           awaitingQuestionAudio: true,
           heardNothing: 0,
+          options: m.options,
+          mood: 'ask',
           result: null,
         },
         effects: [{ type: 'timer_stop' }],
+      };
+
+    case 'story':
+      return {
+        state: {
+          ...state,
+          mood: m.mood,
+          chaptersDone: m.kind === 'chapter' && m.chapter !== null ? m.chapter : state.chaptersDone,
+          ending: m.kind === 'ending' ? (m.band ?? state.ending) : state.ending,
+        },
+        effects: [],
       };
 
     case 'speak_start':
@@ -247,5 +352,161 @@ function onMessage(state: GameState, m: ServerMessage): Step {
 
     case 'pong':
       return { state, effects: [] };
+
+    // ------------------------------------------------------------ adventures ------
+    case 'adventure_start': {
+      const fresh = m.routed ? state : initialState();
+      return {
+        state: {
+          ...fresh,
+          phase: 'speaking',
+          maxGames: state.maxGames,
+          gamesStarted: m.routed ? state.gamesStarted : state.gamesStarted + 1,
+          mode: 'adventure',
+          adventure: m.adventure,
+          hero: m.hero,
+          wizard: m.wizard,
+          scene: m.adventure.cover,
+          meter: m.meter,
+          meterDelta: 0,
+          items: [],
+          gained: [],
+          timeLimitS: m.time_limit_s,
+          score: m.routed ? state.score : 0,
+          trail: m.routed ? state.trail : [],
+          mood: 'ask',
+          error: null,
+        },
+        effects: [{ type: 'timer_stop' }],
+      };
+    }
+
+    case 'node': {
+      const next = withState(state, m);
+      const effects: Effect[] = [{ type: 'timer_stop' }];
+      if (m.gained.length > 0) effects.push({ type: 'sfx', name: 'item' });
+      return {
+        state: {
+          ...next,
+          phase: 'speaking',
+          scene: m.scene,
+          mood: m.mood,
+          step: m.step,
+          nodeKind: m.kind,
+          index: m.step,
+          prompt: '',
+          choices: null,
+          chosen: null,
+          attemptsLeft: null,
+          chosenAuto: false,
+          puzzle: null,
+          puzzleResult: null,
+          options: null,
+          heardNothing: 0,
+        },
+        effects,
+      };
+    }
+
+    case 'state': {
+      const effects: Effect[] = m.gained.length > 0 ? [{ type: 'sfx', name: 'item' }] : [];
+      return { state: withState(state, m), effects };
+    }
+
+    case 'choices':
+      return {
+        state: {
+          ...state,
+          phase: 'speaking',
+          choices: m.choices,
+          chosen: null,
+          attemptsLeft: null,
+          timeLimitS: m.time_limit_s,
+          awaitingQuestionAudio: true,
+          questionUtterance: null,
+          mood: 'ask',
+        },
+        effects: [],
+      };
+
+    case 'unclear':
+      return {
+        state: {
+          ...state,
+          phase: 'speaking',
+          attemptsLeft: m.attempts_left,
+          awaitingQuestionAudio: true,
+          questionUtterance: null,
+        },
+        effects: [{ type: 'mic', on: false }, { type: 'timer_stop' }],
+      };
+
+    case 'chosen':
+      return {
+        state: {
+          ...state,
+          phase: 'result',
+          chosen: m.index,
+          chosenAuto: m.auto,
+          trail: [...state.trail, { kind: 'choice', index: m.index, auto: m.auto }],
+        },
+        effects: [{ type: 'mic', on: false }, { type: 'timer_stop' }, { type: 'sfx', name: 'select' }],
+      };
+
+    case 'puzzle':
+      return {
+        state: {
+          ...state,
+          phase: 'speaking',
+          puzzle: m,
+          puzzleResult: null,
+          prompt: m.prompt,
+          kind: m.kind,
+          options: m.options,
+          timeLimitS: m.time_limit_s,
+          awaitingQuestionAudio: true,
+          questionUtterance: null,
+          mood: 'ask',
+        },
+        effects: [],
+      };
+
+    case 'puzzle_result': {
+      const effects: Effect[] = [{ type: 'mic', on: false }, { type: 'timer_stop' }];
+      if (!m.skipped) {
+        effects.push({ type: 'sfx', name: m.correct ? 'correct' : m.timed_out ? 'timeout' : 'wrong' });
+      }
+      return {
+        state: {
+          ...state,
+          phase: 'result',
+          puzzleResult: m,
+          score: m.score,
+          streak: m.streak,
+          mood: m.correct ? 'happy' : 'sad',
+          trail: [...state.trail, { kind: 'puzzle', correct: m.correct, skipped: m.skipped }],
+        },
+        effects,
+      };
+    }
+
+    case 'wizard':
+      return { state: m.mood ? { ...state, mood: m.mood } : state, effects: [] };
+
+    case 'ending':
+      return {
+        state: {
+          ...state,
+          phase: 'speaking',
+          endingInfo: m,
+          scene: m.scene,
+          mood: m.mood,
+          score: m.score,
+          choices: null,
+          puzzle: null,
+          options: null,
+        },
+        effects: [{ type: 'timer_stop' }],
+      };
   }
 }

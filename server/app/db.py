@@ -86,7 +86,14 @@ class LeaderboardRow:
     score: int
     correct: int
     questions: int
+    character: str
     created_at: datetime
+    mode: str = "quiz"
+    pack_id: str = ""
+    duration_ms: int | None = None
+    ending_id: str | None = None
+    ending_rank: str | None = None
+    wizard: str = "sorceress"
 
 
 class Leaderboard:
@@ -97,7 +104,8 @@ class Leaderboard:
         """Insert once per game; returns False if this game was already submitted."""
         row = await self._pool.fetchrow(
             "INSERT INTO scores (game_id, nickname, language, pack_id, score, max_score,"
-            " correct, questions) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)"
+            " correct, questions, character, mode, duration_ms, ending_id, ending_rank, wizard)"
+            " VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)"
             " ON CONFLICT (game_id) DO NOTHING RETURNING id",
             claims.game_id,
             nickname,
@@ -107,10 +115,25 @@ class Leaderboard:
             claims.max_score,
             claims.correct,
             claims.questions,
+            claims.character,
+            claims.mode,
+            claims.duration_ms,
+            claims.ending_id,
+            claims.ending_rank,
+            claims.wizard,
         )
         return row is not None
 
-    async def top(self, language: str, *, period: str, limit: int = 20) -> list[LeaderboardRow]:
+    async def top(
+        self,
+        language: str,
+        *,
+        period: str,
+        mode: str = "adventure",
+        adventure: str | None = None,
+        limit: int = 20,
+    ) -> list[LeaderboardRow]:
+        """Best runs: highest score first, then the fastest, then the earliest."""
         since = datetime(1970, 1, 1, tzinfo=UTC)
         if period == "today":
             # IST calendar day
@@ -119,19 +142,50 @@ class Leaderboard:
                 hours=5, minutes=30
             )
         rows = await self._pool.fetch(
-            "SELECT nickname, score, correct, questions, created_at FROM scores"
-            " WHERE language = $1 AND created_at >= $2"
-            " ORDER BY score DESC, created_at ASC LIMIT $3",
+            "SELECT nickname, score, correct, questions, character, created_at, mode, pack_id,"
+            " duration_ms, ending_id, ending_rank, wizard FROM scores"
+            " WHERE language = $1 AND created_at >= $2 AND mode = $3"
+            " AND ($4::text IS NULL OR pack_id = $4)"
+            " ORDER BY score DESC, duration_ms ASC NULLS LAST, created_at ASC LIMIT $5",
             language,
             since,
+            mode,
+            adventure,
             limit,
         )
         return [
             LeaderboardRow(
-                i + 1, r["nickname"], r["score"], r["correct"], r["questions"], r["created_at"]
+                rank=i + 1,
+                nickname=r["nickname"],
+                score=r["score"],
+                correct=r["correct"],
+                questions=r["questions"],
+                character=r["character"],
+                created_at=r["created_at"],
+                mode=r["mode"],
+                pack_id=r["pack_id"],
+                duration_ms=r["duration_ms"],
+                ending_id=r["ending_id"],
+                ending_rank=r["ending_rank"],
+                wizard=r["wizard"],
             )
             for i, r in enumerate(rows)
         ]
+
+    async def rank_of(self, claims: ScoreClaims) -> int | None:
+        """Where a just-submitted adventure run places on that adventure's all-time board in its
+        language (the board the score screen links to)."""
+        if claims.mode != "adventure":
+            return None
+        better = await self._pool.fetchval(
+            "SELECT count(*) FROM scores WHERE language = $1 AND mode = 'adventure'"
+            " AND pack_id = $4 AND (score > $2 OR (score = $2 AND duration_ms < $3))",
+            claims.language,
+            claims.score,
+            claims.duration_ms if claims.duration_ms is not None else 2**31 - 1,
+            claims.pack_id,
+        )
+        return int(better) + 1
 
     async def ping(self) -> None:
         await self._pool.fetchval("SELECT 1")

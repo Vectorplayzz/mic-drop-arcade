@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "id": "hinglish-sky-01",
+  "title": "Sky Islands का रहस्य",
+  "language": "hi-en",
+  "topic": "coding and tech",
+  "version": 3,
+  "source": "hand",
+  "reviewed_by": "G Nagarjuna",
+  "reviewed_at": "2026-10-07",
+  "questions": [
+    {
+      "id": "q01",
+      "prompt": "किस open source operating system का mascot एक penguin है?",
+      "answers": [
+        "linux"
+      ],
+      "display_answer": "Linux",
+      "kind": "text",
+      "options": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ]
+    },
+    {
+      "id": "q02",
+      "prompt": "Git में changes को save करने वाली command कौन सी है?",
+      "answers": [
+        "commit",
+        "git commit"
+      ],
+      "display_answer": "commit",
+      "kind": "text",
+      "options": [
+        "commit",
+        "push",
+        "merge"
+      ]
+    },
+    {
+      "id": "q03",
+      "prompt": "Last in first out पर कौन सा data structure काम करता है?",
+      "answers": [
+        "stack",
+        "a stack"
+      ],
+      "display_answer": "stack",
+      "kind": "text",
+      "options": [
+        "stack",
+        "queue",
+        "tree"
+      ]
+    },
+    {
+      "id": "q04",
+      "prompt": "Android operating system किस company का है?",
+      "answers": [
+        "google"
+      ],
+      "display_answer": "Google",
+      "kind": "text",
+      "options": [
+        "Google",
+        "Apple",
+        "Microsoft"
+      ]
+    },
+    {
+      "id": "q05",
+      "prompt": "Python language का नाम किस comedy group पर रखा गया था?",
+      "answers": [
+        "monty python",
+        "monty"
+      ],
+      "display_answer": "Monty Python",
+      "kind": "text",
+      "options": [
+        "Monty Python",
+        "Mr Bean",
+        "The Office"
+      ]
+    },
+    {
+      "id": "q06",
+      "prompt": "Father of the computer किसे कहा जाता है?",
+      "answers": [
+        "babbage",
+        "charles babbage"
+      ],
+      "display_answer": "Charles Babbage",
+      "kind": "text",
+      "options": [
+        "Charles Babbage",
+        "Alan Turing",
+        "Isaac Newton"
+      ]
+    },
+    {
+      "id": "q07",
+      "prompt": "Microsoft के co-founder कौन थे?",
+      "answers": [
+        "bill gates",
+        "gates"
+      ],
+      "display_answer": "Bill Gates",
+      "kind": "text",
+      "options": [
+        "Bill Gates",
+        "Elon Musk",
+        "Steve Jobs"
+      ]
+    },
+    {
+      "id": "q08",
+      "prompt": "Loop को बीच में रोकने के लिए कौन सा keyword use होता है?",
+      "answers": [
+        "break"
+      ],
+      "display_answer": "break",
+      "kind": "text",
+      "options": [
+        "break",
+        "continue",
+        "return"
+      ]
+    },
+    {
+      "id": "q09",
+      "prompt": "Code में bugs ढूँढकर ठीक करने को क्या कहते हैं?",
+      "answers": [
+        "debugging",
+        "debug"
+      ],
+      "display_answer": "debugging",
+      "kind": "text",
+      "options": [
+        "debugging",
+        "compiling",
+        "deploying"
+      ]
+    },
+    {
+      "id": "q10",
+      "prompt": "Python में list का पहला index कौन सा होता है?",
+      "answers": [
+        "0"
+      ],
+      "display_answer": "zero",
+      "kind": "number",
+      "options": [
+        "zero",
+        "one",
+        "minus one"
+      ]
+    }
+  ],
+  "story": {
+    "wizard": "Zoya",
+    "wizard_sprite": "sorceress",
+    "scene": "sky-islands",
+    "voice": "Poorvi",
+    "intro": "Sky islands में welcome! यहाँ का code crash हो गया है और सारे magic bridges टूट गए हैं। हर correct answer एक bridge को फिर से जोड़ेगा।",
+    "chapters": [
+      "Wow! पहला bridge जुड़ गया।",
+      "Great job! Waterfall फिर से चमक रहा है।",
+      "Super! Birds वापस आ गए हैं।",
+      "Awesome! आधे bridges ready हैं।",
+      "Fantastic! बादल रास्ता दे रहे हैं।",
+      "Amazing! Islands फिर से पास आ रहे हैं।",
+      "बस एक bridge और बाकी है!",
+      "तुमने सारे islands जोड़ दिए! Build successful!"
+    ],
+    "setbacks": [
+      "Oops! एक bug ने bridge हिला दिया।",
+      "अरे! एक cloud ने रास्ता छुपा दिया।",
+      "No problem, next question सुनो।"
+    ],
+    "endings": {
+      "great": "तुम असली sky wizard हो! सारे islands चमक रहे हैं।",
+      "good": "Nice! ज़्यादातर bridges ready हैं।",
+      "try_again": "कुछ bridges अभी भी टूटे हैं। थोड़ा debug करो और फिर से try करो!"
+    }
+  }
+}

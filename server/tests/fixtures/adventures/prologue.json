@@ -1,0 +1,99 @@
+{
+ "schema": 1,
+ "id": "prologue",
+ "genre": "prologue",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": "Test Reviewer",
+ "reviewed_at": "2026-10-08",
+ "title": {
+  "en-IN": "The Doors",
+  "hi-IN": "The Doors",
+  "hi-en": "The Doors",
+  "te-IN": "The Doors",
+  "te-en": "The Doors"
+ },
+ "tagline": {
+  "en-IN": "The wizard picks your story.",
+  "hi-IN": "The wizard picks your story.",
+  "hi-en": "The wizard picks your story.",
+  "te-IN": "The wizard picks your story.",
+  "te-en": "The wizard picks your story."
+ },
+ "cover": "portals",
+ "meter": null,
+ "items": {},
+ "start": "p",
+ "nodes": {
+  "p": {
+   "scene": "portals",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Where are you tonight?",
+     "hi-IN": "Where are you tonight?",
+     "hi-en": "Where are you tonight?",
+     "te-IN": "Where are you tonight?",
+     "te-en": "Where are you tonight?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "In the lab",
+      "hi-IN": "In the lab",
+      "hi-en": "In the lab",
+      "te-IN": "In the lab",
+      "te-en": "In the lab"
+     },
+     "keywords": {
+      "en-IN": [
+       "lab"
+      ],
+      "hi-IN": [
+       "lab"
+      ],
+      "hi-en": [
+       "lab"
+      ],
+      "te-IN": [
+       "lab"
+      ],
+      "te-en": [
+       "lab"
+      ]
+     },
+     "go": "adventure:test-quest"
+    },
+    {
+     "label": {
+      "en-IN": "At the fest",
+      "hi-IN": "At the fest",
+      "hi-en": "At the fest",
+      "te-IN": "At the fest",
+      "te-en": "At the fest"
+     },
+     "keywords": {
+      "en-IN": [
+       "fest"
+      ],
+      "hi-IN": [
+       "fest"
+      ],
+      "hi-en": [
+       "fest"
+      ],
+      "te-IN": [
+       "fest"
+      ],
+      "te-en": [
+       "fest"
+      ]
+     },
+     "go": "adventure:test-quest"
+    }
+   ]
+  }
+ },
+ "endings": {}
+}

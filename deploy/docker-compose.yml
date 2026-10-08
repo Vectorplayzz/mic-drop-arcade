@@ -1,4 +1,4 @@
-# Maata Arcade production stack. Run from this directory on the VPS:
+# Mic Drop Arcade production stack. Run from this directory on the VPS:
 #   docker compose --env-file .env up -d
 # Only the API is published, and only on the host's loopback for nginx.
 

@@ -130,3 +130,76 @@ describe('parseServerMessage', () => {
     });
   });
 });
+
+describe('wizard quest messages', () => {
+  const parse = (value: unknown) => parseServerMessage(JSON.stringify(value));
+  const pack = {
+    id: 'en-comet-01',
+    title: 'The Comet Clock',
+    language: 'en-IN',
+    topic: 'space',
+    questions: 10,
+    story: { wizard: 'Professor Hoot', wizard_sprite: 'owl', scene: 'observatory', chapters: 8 },
+  };
+
+  it('reads hero, story and the two new languages from game_start', () => {
+    expect(
+      parse({
+        type: 'game_start',
+        game_id: 'g',
+        pack,
+        questions: 10,
+        time_limit_s: 12,
+        max_score: 1750,
+        character: 'sana',
+        story: { wizard: 'Professor Hoot', wizard_sprite: 'owl', scene: 'observatory', chapters: 8 },
+      }),
+    ).toMatchObject({
+      pack: { language: 'en-IN', story: { wizard: 'Professor Hoot', sprite: 'owl', scene: 'observatory', chapters: 8 } },
+      hero: 'sana',
+      story: { wizard: 'Professor Hoot', sprite: 'owl', scene: 'observatory', chapters: 8 },
+    });
+    expect(parse({ type: 'game_start', game_id: 'g', pack: { ...pack, language: 'te-en' }, questions: 1, time_limit_s: 12, max_score: 1 })).toMatchObject({
+      hero: 'arjun',
+      story: null,
+    });
+  });
+
+  it('never trusts asset names from the wire', () => {
+    const msg = parse({
+      type: 'game_start',
+      game_id: 'g',
+      pack,
+      questions: 1,
+      time_limit_s: 12,
+      max_score: 1,
+      character: '../../etc/passwd',
+      story: { wizard: 'W', wizard_sprite: '<img onerror>', scene: 'javascript:alert(1)', chapters: 3 },
+    });
+    expect(msg).toMatchObject({ hero: 'arjun', story: { sprite: 'sage', scene: 'library-a' } });
+  });
+
+  it('parses story lines and question options', () => {
+    expect(parse({ type: 'story', kind: 'chapter', text: 'Gear one!', mood: 'happy', chapter: 1 })).toEqual({
+      type: 'story',
+      kind: 'chapter',
+      text: 'Gear one!',
+      mood: 'happy',
+      chapter: 1,
+      band: null,
+    });
+    expect(parse({ type: 'story', kind: 'ending', text: 'Done', mood: 'cheer', band: 'great' })).toMatchObject({ band: 'great' });
+    expect(parse({ type: 'story', kind: 'monologue', text: 'x', mood: 'happy' })).toBeNull();
+    expect(parse({ type: 'story', kind: 'intro', text: 'x', mood: 'furious' })).toMatchObject({ mood: 'ask' });
+
+    const q = { type: 'question', index: 0, total: 10, prompt: 'Q?', kind: 'text', time_limit_s: 12 };
+    expect(parse({ ...q, options: ['Mars', 'Venus', 'Saturn'] })).toMatchObject({ options: ['Mars', 'Venus', 'Saturn'] });
+    expect(parse({ ...q, options: ['only', 'two'] })).toMatchObject({ options: null });
+    expect(parse({ ...q, options: [1, 2, 3] })).toMatchObject({ options: null });
+  });
+
+  it('carries the hero to game_over and knows unknown_character', () => {
+    expect(parse({ type: 'game_over', game_id: 'g', score: 1, correct: 1, questions: 1, max_score: 1, score_token: 't', character: 'priya' })).toMatchObject({ hero: 'priya' });
+    expect(parse({ type: 'error', code: 'unknown_character', message: 'x', fatal: false })).toMatchObject({ code: 'unknown_character' });
+  });
+});

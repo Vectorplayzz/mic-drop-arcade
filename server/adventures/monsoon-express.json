@@ -1,0 +1,1328 @@
+{
+ "schema": 1,
+ "id": "monsoon-express",
+ "genre": "action",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": "G Nagarjuna",
+ "reviewed_at": "2026-10-08",
+ "title": {
+  "en-IN": "Monsoon Express",
+  "hi-IN": "मॉनसून एक्सप्रेस",
+  "hi-en": "Monsoon Express",
+  "te-IN": "మాన్సూన్ ఎక్స్‌ప్రెస్",
+  "te-en": "Monsoon Express"
+ },
+ "tagline": {
+  "en-IN": "A runaway train, a landslide ahead, and only you can stop it.",
+  "hi-IN": "बेकाबू ट्रेन, आगे लैंडस्लाइड, और उसे रोक सकते हैं सिर्फ़ आप.",
+  "hi-en": "Bekaabu train, aage landslide, aur use rokna sirf aapke haath mein hai.",
+  "te-IN": "అదుపు తప్పిన ట్రైన్, ముందు కొండచరియలు, ఆపగలిగేది మీరు మాత్రమే.",
+  "te-en": "Control leni train, mundu landslide, aapagaligedi meeru maathrame."
+ },
+ "cover": "train-station",
+ "meter": {
+  "label": {
+   "en-IN": "Time",
+   "hi-IN": "समय",
+   "hi-en": "Time",
+   "te-IN": "టైమ్",
+   "te-en": "Time"
+  },
+  "icon": "clock",
+  "start": 3,
+  "max": 3,
+  "on_zero": "end:long_night"
+ },
+ "items": {
+  "walkie": {
+   "label": {
+    "en-IN": "Walkie-talkie",
+    "hi-IN": "वॉकी-टॉकी",
+    "hi-en": "Walkie-talkie",
+    "te-IN": "వాకీ-టాకీ",
+    "te-en": "Walkie-talkie"
+   }
+  },
+  "torch": {
+   "label": {
+    "en-IN": "Torch",
+    "hi-IN": "टॉर्च",
+    "hi-en": "Torch",
+    "te-IN": "టార్చ్",
+    "te-en": "Torch"
+   }
+  },
+  "helped": {
+   "label": {
+    "en-IN": "Pilot helped",
+    "hi-IN": "पायलट की मदद",
+    "hi-en": "Pilot ki help",
+    "te-IN": "పైలట్‌కి సాయం",
+    "te-en": "Pilot ki help"
+   }
+  },
+  "loopline": {
+   "label": {
+    "en-IN": "Loop line tip",
+    "hi-IN": "लूप लाइन टिप",
+    "hi-en": "Loop line tip",
+    "te-IN": "లూప్ లైన్ సలహా",
+    "te-en": "Loop line tip"
+   }
+  },
+  "brave": {
+   "label": {
+    "en-IN": "Rooftop leap",
+    "hi-IN": "छत से छलांग",
+    "hi-en": "Roof par chhalaang",
+    "te-IN": "రూఫ్ మీద జంప్",
+    "te-en": "Rooftop jump"
+   }
+  }
+ },
+ "start": "t_start",
+ "nodes": {
+  "t_start": {
+   "scene": "train-coach",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Midnight on the Monsoon Express, roaring through the Western Ghats. Rain hammers the windows, and you're heading home after exams.",
+     "hi-IN": "आधी रात, मॉनसून एक्सप्रेस वेस्टर्न घाट्स में गरजती हुई दौड़ रही है. खिड़कियों पर बारिश बरस रही है, और एग्ज़ाम के बाद आपका घर का सफ़र चल रहा है.",
+     "hi-en": "Aadhi raat, Monsoon Express Western Ghats mein daud rahi hai. Khidkiyon par baarish baras rahi hai, exams khatam, aur ab ghar ki taraf safar.",
+     "te-IN": "అర్ధరాత్రి, పశ్చిమ కనుమల గుండా దూసుకుపోతున్న మాన్సూన్ ఎక్స్‌ప్రెస్. కిటికీలకు వర్షం కొడుతోంది, ఎగ్జామ్స్ అయిపోయి మీరు ఇంటికి వెళ్తున్నారు.",
+     "te-en": "Midnight, Western Ghats lo doosukeltunna Monsoon Express. Windows meeda varsham kodutondi, exams ayipoyi meeru intiki veltunnaru.",
+     "hi-en@tts": "आधी रात, Monsoon Express Western Ghats में दौड़ रही है। खिड़कियों पर बारिश बरस रही है, exams खत्म, और अब घर की तरफ़ सफ़र।",
+     "te-en@tts": "Midnight, Western Ghats లో దూసుకెళ్తున్న Monsoon Express. Windows మీద వర్షం కొడుతోంది, exams అయిపోయి మీరు ఇంటికి వెళ్తున్నారు."
+    },
+    {
+     "en-IN": "Suddenly the train lurches and speeds up. The ticket checker runs past shouting: the loco pilot has fainted, and there's a landslide on the line ahead!",
+     "hi-IN": "अचानक ट्रेन झटका खाती है और रफ़्तार बढ़ जाती है. टीटी चिल्लाता हुआ भागता है: लोको पायलट बेहोश है, और आगे पटरी पर लैंडस्लाइड है!",
+     "hi-en": "Achaanak train jhatka khaakar speed pakad leti hai. TC chillaate hue bhaagta hai: loco pilot behosh ho gaya hai, aur aage line par landslide hai!",
+     "te-IN": "ఒక్కసారిగా ట్రైన్ కుదుపుతో స్పీడ్ పెంచుతుంది. టీసీ అరుస్తూ పరిగెత్తుతాడు: లోకో పైలట్ స్పృహ తప్పాడు, ముందు ట్రాక్ మీద కొండచరియలు విరిగిపడ్డాయి!",
+     "te-en": "Sudden ga train kudupu tho speed perugutundi. TC arusthu parigeththuthadu: loco pilot kallu thirigi padipoyadu, mundu line meeda landslide!",
+     "hi-en@tts": "अचानक train झटका खाकर speed पकड़ लेती है। TC चिल्लाते हुए भागता है: loco pilot बेहोश हो गया है, और आगे line पर landslide है!",
+     "te-en@tts": "సడెన్ గా train కుదుపుతో speed పెరుగుతుంది. TC అరుస్తూ పరిగెత్తుతాడు: loco pilot కళ్ళు తిరిగి పడిపోయాడు, ముందు line మీద landslide!"
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करते हैं?",
+     "hi-en": "Aap kya karte hain?",
+     "te-IN": "మీరేం చేస్తారు?",
+     "te-en": "Meeru em chestharu?",
+     "hi-en@tts": "आप क्या करते हैं?",
+     "te-en@tts": "మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Run to the engine",
+      "hi-IN": "इंजन की तरफ़ दौड़ो",
+      "hi-en": "Engine ki taraf bhaago",
+      "te-IN": "ఇంజన్ వైపు పరుగు",
+      "te-en": "Engine daggariki parigeththutha"
+     },
+     "keywords": {
+      "en-IN": [
+       "run",
+       "engine",
+       "front"
+      ],
+      "hi-IN": [
+       "इंजन",
+       "दौड़ो",
+       "आगे"
+      ],
+      "hi-en": [
+       "engine",
+       "front",
+       "aage",
+       "bhaago"
+      ],
+      "te-IN": [
+       "ఇంజన్",
+       "పరుగు",
+       "పరిగెత్తు",
+       "ముందుకు"
+      ],
+      "te-en": [
+       "ఇంజన్",
+       "ఇంజిన్",
+       "పరిగెత్తు",
+       "engine",
+       "రన్"
+      ]
+     },
+     "go": "t_coaches"
+    },
+    {
+     "label": {
+      "en-IN": "Pull the emergency chain",
+      "hi-IN": "इमरजेंसी चेन खींचो",
+      "hi-en": "Emergency chain kheencho",
+      "te-IN": "ఎమర్జెన్సీ చైన్ లాగు",
+      "te-en": "Emergency chain laagutha"
+     },
+     "keywords": {
+      "en-IN": [
+       "chain",
+       "emergency"
+      ],
+      "hi-IN": [
+       "चेन",
+       "इमरजेंसी",
+       "ज़ंजीर"
+      ],
+      "hi-en": [
+       "chain",
+       "emergency",
+       "khincho"
+      ],
+      "te-IN": [
+       "చైన్",
+       "ఎమర్జెన్సీ"
+      ],
+      "te-en": [
+       "చైన్",
+       "ఎమర్జెన్సీ",
+       "chain",
+       "emergency"
+      ]
+     },
+     "go": "t_chain"
+    },
+    {
+     "label": {
+      "en-IN": "Find the guard's van",
+      "hi-IN": "गार्ड का डिब्बा ढूँढो",
+      "hi-en": "Guard ka van dhoondo",
+      "te-IN": "గార్డ్ బోగీ వెతుకు",
+      "te-en": "Guard van ki veltha"
+     },
+     "keywords": {
+      "en-IN": [
+       "guard",
+       "van"
+      ],
+      "hi-IN": [
+       "गार्ड",
+       "डिब्बा",
+       "पीछे"
+      ],
+      "hi-en": [
+       "guard",
+       "van"
+      ],
+      "te-IN": [
+       "గార్డ్",
+       "బోగీ",
+       "వ్యాన్"
+      ],
+      "te-en": [
+       "గార్డ్",
+       "వ్యాన్",
+       "guard",
+       "van"
+      ]
+     },
+     "go": "t_guard"
+    }
+   ]
+  },
+  "t_chain": {
+   "scene": "train-coach",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "You pull the chain with all your strength. It hisses, but the train doesn't slow down. On this old train, the brake valve is jammed.",
+     "hi-IN": "आप पूरी ताक़त से चेन खींचते हैं. सीटी जैसी आवाज़ आती है, पर ट्रेन धीमी नहीं होती. इस पुरानी ट्रेन का ब्रेक वाल्व जाम है.",
+     "hi-en": "Aap poori taakat se chain kheenchte hain. Hiss ki awaaz aati hai, par train slow nahi hoti. Is puraani train mein brake valve jam hai.",
+     "te-IN": "మీ బలమంతా పెట్టి చైన్ లాగుతారు. బుస్సుమంటుంది కానీ ట్రైన్ నెమ్మదించదు. ఈ పాత ట్రైన్‌లో బ్రేక్ వాల్వ్ జామ్ అయిపోయింది.",
+     "te-en": "Mee balamantha petti chain laaguthaaru. Hiss ani sound vasthundi, kaani train slow avvadu. Ee paatha train lo brake valve jam ayipoyindi.",
+     "hi-en@tts": "आप पूरी ताकत से chain खींचते हैं। Hiss की आवाज़ आती है, पर train slow नहीं होती। इस पुरानी train में brake valve jam है।",
+     "te-en@tts": "మీ బలమంతా పెట్టి chain లాగుతారు. Hiss అని sound వస్తుంది, కానీ train slow అవ్వదు. ఈ పాత train లో brake valve jam అయిపోయింది."
+    },
+    {
+     "en-IN": "You've lost precious time. There's only one way now: forward, to the engine!",
+     "hi-IN": "क़ीमती वक़्त हाथ से निकल चुका है. अब एक ही रास्ता है: आगे, इंजन की ओर!",
+     "hi-en": "Keemti time waste ho gaya. Ab bas ek hi raasta: aage, engine ki taraf!",
+     "te-IN": "విలువైన టైమ్ పోయింది. ఇక ఒకటే దారి: ముందుకు, ఇంజన్ దగ్గరికి!",
+     "te-en": "Viluvaina time poyindi. Ippudu okate daari: munduki, engine daggariki!",
+     "hi-en@tts": "कीमती time waste हो गया। अब बस एक ही रास्ता: आगे, engine की तरफ़!",
+     "te-en@tts": "విలువైన time పోయింది. ఇప్పుడు ఒకటే దారి: ముందుకి, engine దగ్గరకి!"
+    }
+   ],
+   "enter": {
+    "meter": -1
+   },
+   "go": "t_coaches"
+  },
+  "t_guard": {
+   "scene": "train-coach",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "In the guard's van you find the guard holding a sprained ankle. He hands you his walkie-talkie and a torch.",
+     "hi-IN": "गार्ड के डिब्बे में गार्ड मोच खाया टखना पकड़े बैठा है. वो आपको अपना वॉकी-टॉकी और एक टॉर्च थमा देता है.",
+     "hi-en": "Guard ke van mein guard apna muda hua ankle pakde baitha hai. Woh aapko apna walkie-talkie aur ek torch thama deta hai.",
+     "te-IN": "గార్డ్ బోగీలో, బెణికిన కాలు పట్టుకుని గార్డ్ కూర్చున్నాడు. ఆయన తన వాకీ-టాకీ, ఒక టార్చ్ మీ చేతికి ఇస్తాడు.",
+     "te-en": "Guard van lo guard benikina ankle pattukuni kurchunnadu. Aayana thana walkie-talkie, oka torch mee chethiki isthadu.",
+     "hi-en@tts": "Guard के van में guard अपना मुड़ा हुआ ankle पकड़े बैठा है। वो आपको अपना walkie-talkie और एक torch थमा देता है।",
+     "te-en@tts": "Guard van లో guard బెణికిన ankle పట్టుకుని కూర్చున్నాడు. ఆయన తన walkie-talkie, ఒక torch మీ చేతికి ఇస్తాడు."
+    },
+    {
+     "en-IN": "The engine is six coaches ahead, he gasps. Will you go through the coaches, or over the roof?",
+     "hi-IN": "इंजन छह डिब्बे आगे है, वो हाँफते हुए कहता है. डिब्बों के अंदर से जाना है, या छत के ऊपर से?",
+     "hi-en": "Engine chhe coaches aage hai, woh haanfte hue kehta hai. Coaches ke andar se jaana hai, ya roof ke upar se?",
+     "te-IN": "ఇంజన్ ఆరు బోగీల ముందుంది, అని ఆయాసపడుతూ చెప్తాడు. బోగీల లోపలి నుంచి వెళ్తారా, లేక పైకప్పు మీద నుంచా?",
+     "te-en": "Engine aaru coaches mundu undi, ani aayasanga chepthadu. Coaches lonchi veltara, leka roof meeda nunchaa?",
+     "hi-en@tts": "Engine छह coaches आगे है, वो हाँफते हुए कहता है। Coaches के अंदर से जाना है, या roof के ऊपर से?",
+     "te-en@tts": "Engine ఆరు coaches ముందు ఉంది, అని ఆయాసంగా చెప్తాడు. Coaches లోంచి వెళ్తారా, లేక roof మీద నుంచా?"
+    }
+   ],
+   "enter": {
+    "meter": -1,
+    "gain": [
+     "walkie",
+     "torch"
+    ]
+   },
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Through the coaches",
+      "hi-IN": "डिब्बों के अंदर से",
+      "hi-en": "Coaches ke andar se",
+      "te-IN": "బోగీల లోపలి నుంచి",
+      "te-en": "Coaches lonchi"
+     },
+     "keywords": {
+      "en-IN": [
+       "through",
+       "coaches"
+      ],
+      "hi-IN": [
+       "अंदर",
+       "डिब्बों"
+      ],
+      "hi-en": [
+       "coaches",
+       "coach",
+       "andar",
+       "through"
+      ],
+      "te-IN": [
+       "లోపలి",
+       "లోపల",
+       "బోగీలు"
+      ],
+      "te-en": [
+       "కోచెస్",
+       "కోచ్",
+       "లోంచి",
+       "coaches"
+      ]
+     },
+     "go": "t_coaches"
+    },
+    {
+     "label": {
+      "en-IN": "Over the roof",
+      "hi-IN": "छत के ऊपर से",
+      "hi-en": "Roof ke upar se",
+      "te-IN": "పైకప్పు మీద నుంచి",
+      "te-en": "Roof meeda nunchi"
+     },
+     "keywords": {
+      "en-IN": [
+       "over",
+       "roof"
+      ],
+      "hi-IN": [
+       "छत",
+       "ऊपर"
+      ],
+      "hi-en": [
+       "roof",
+       "upar",
+       "chhat",
+       "over"
+      ],
+      "te-IN": [
+       "పైకప్పు",
+       "రూఫ్",
+       "పైన"
+      ],
+      "te-en": [
+       "రూఫ్",
+       "పైన",
+       "మీద నుంచి",
+       "roof"
+      ]
+     },
+     "go": "t_roof"
+    }
+   ]
+  },
+  "t_coaches": {
+   "scene": "train-coach",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "You push through the swaying coaches past frightened passengers, until a steel door blocks your way. It has a keypad.",
+     "hi-IN": "हिलते-डुलते डिब्बों में डरे हुए यात्रियों के बीच से आप आगे बढ़ते हैं, तभी स्टील का एक दरवाज़ा रास्ता रोक लेता है. उस पर कीपैड लगा है.",
+     "hi-en": "Aap hilte-dulte coaches mein dare hue passengers ke beech se aage badhte hain, phir ek steel door raasta rok leta hai. Us par keypad laga hai.",
+     "te-IN": "ఊగుతున్న బోగీల్లో, భయపడ్డ ప్రయాణికుల మధ్య నుంచి ముందుకు వెళ్తారు. ఒక స్టీల్ డోర్ దారికి అడ్డొస్తుంది. దానికి కీప్యాడ్ ఉంది.",
+     "te-en": "Ooguthunna coaches lo bhayapadina passengers ni daatukuntu veltaru, inthalo oka steel door daariki addam vasthundi. Daaniki keypad undi.",
+     "hi-en@tts": "आप हिलते-डुलते coaches में डरे हुए passengers के बीच से आगे बढ़ते हैं, फिर एक steel door रास्ता रोक लेता है। उस पर keypad लगा है।",
+     "te-en@tts": "ఊగుతున్న coaches లో భయపడిన passengers ని దాటుకుంటూ వెళ్తారు, ఇంతలో ఒక steel door దారికి అడ్డం వస్తుంది. దానికి keypad ఉంది."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "The keypad screen flashes a riddle left by the railway engineers: how many bits make one byte?",
+     "hi-IN": "कीपैड की स्क्रीन पर रेलवे इंजीनियरों की छोड़ी एक पहेली चमकती है: एक बाइट में कितने बिट होते हैं?",
+     "hi-en": "Keypad ki screen par railway engineers ki chhodi riddle chamakti hai: ek byte mein kitne bits hote hain?",
+     "te-IN": "కీప్యాడ్ స్క్రీన్ మీద రైల్వే ఇంజనీర్లు వదిలిన పజిల్: ఒక బైట్‌లో ఎన్ని బిట్స్ ఉంటాయి?",
+     "te-en": "Railway engineers vadilina riddle keypad screen meeda flash avuthundi: oka byte lo enni bits untayi?",
+     "hi-en@tts": "Keypad की screen पर railway engineers की छोड़ी riddle चमकती है: एक byte में कितने bits होते हैं?",
+     "te-en@tts": "Railway engineers వదిలిన riddle keypad screen మీద flash అవుతుంది: ఒక byte లో ఎన్ని bits ఉంటాయి?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "8",
+      "4",
+      "16"
+     ],
+     "hi-IN": [
+      "8",
+      "4",
+      "16"
+     ],
+     "hi-en": [
+      "8",
+      "4",
+      "16"
+     ],
+     "te-IN": [
+      "8",
+      "4",
+      "16"
+     ],
+     "te-en": [
+      "8",
+      "4",
+      "16"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "आठ",
+      "eight"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "ఎనిమిది",
+      "eight"
+     ],
+     "te-en": [
+      "eight",
+      "ఎయిట్",
+      "ఎనిమిది"
+     ]
+    },
+    "pass": {
+     "go": "t_cab",
+     "say": [
+      {
+       "en-IN": "Eight! The keypad turns green and the door slides open. Nice!",
+       "hi-IN": "आठ! कीपैड हरा हो जाता है और दरवाज़ा सरककर खुल जाता है. बढ़िया!",
+       "hi-en": "Aath! Keypad green ho jaata hai aur door slide hokar khul jaata hai. Nice!",
+       "te-IN": "ఎనిమిది! కీప్యాడ్ గ్రీన్ అయి డోర్ పక్కకు జరుగుతుంది. సూపర్!",
+       "te-en": "Eight! Keypad green avuthundi, door slide ayyi open avuthundi. Nice!",
+       "hi-en@tts": "आठ! Keypad green हो जाता है और door slide होकर खुल जाता है। Nice!",
+       "te-en@tts": "Eight! Keypad green అవుతుంది, door slide అయ్యి open అవుతుంది. Nice!"
+      }
+     ]
+    },
+    "fail": {
+     "go": "t_roof",
+     "say": [
+      {
+       "en-IN": "The keypad buzzes red and locks. Only one way left: out of the window and onto the roof!",
+       "hi-IN": "कीपैड लाल होकर भिनभिनाता है और लॉक हो जाता है. अब बस एक रास्ता बचा है: खिड़की से बाहर, छत पर!",
+       "hi-en": "Keypad red hokar buzz karta hai aur lock ho jaata hai. Ab ek hi raasta bacha: khidki se bahar, roof par!",
+       "te-IN": "కీప్యాడ్ రెడ్ అయి బజ్ చేసి లాక్ అయిపోతుంది. ఇక ఒకటే దారి: కిటికీలోంచి బయటికి, పైకప్పు మీదికి!",
+       "te-en": "Keypad red ga buzz ayyi lock avuthundi. Migilindi okate daari: window lonchi bayataki, roof meedaki!",
+       "hi-en@tts": "Keypad red होकर buzz करता है और lock हो जाता है। अब एक ही रास्ता बचा: खिड़की से बाहर, roof पर!",
+       "te-en@tts": "Keypad red గా buzz అయ్యి lock అవుతుంది. మిగిలింది ఒకటే దారి: window లోంచి బయటకి, roof మీదకి!"
+      }
+     ],
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  },
+  "t_roof": {
+   "scene": "train-roof",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "On the roof, the rain stings like needles and the wind tries to throw you off. A dark tunnel is coming up fast!",
+     "hi-IN": "छत पर बारिश सुइयों जैसी चुभती है और हवा आपको नीचे गिराने पर तुली है. आगे एक अंधेरी सुरंग तेज़ी से पास आ रही है!",
+     "hi-en": "Roof par baarish suiyon jaisi chubh rahi hai aur hawa aapko giraane par tuli hai. Aage ek andheri tunnel tezi se paas aa rahi hai!",
+     "te-IN": "పైకప్పు మీద వర్షం సూదుల్లా గుచ్చుతోంది, గాలి మిమ్మల్ని కిందికి తోసేయాలని చూస్తోంది. ముందు ఒక చీకటి టన్నెల్ వేగంగా దగ్గరపడుతోంది!",
+     "te-en": "Roof meeda varsham soodullaa guchchukuntondi, gaali mimmalni kindaki thoseyaalani chusthondi. Mundu oka cheekati tunnel fast ga daggarakosthondi!",
+     "hi-en@tts": "Roof पर बारिश सुइयों जैसी चुभ रही है और हवा आपको गिराने पर तुली है। आगे एक अँधेरी tunnel तेज़ी से पास आ रही है!",
+     "te-en@tts": "Roof మీద వర్షం సూదుల్లా గుచ్చుకుంటోంది, గాలి మిమ్మల్ని కిందకి తోసేయాలని చూస్తోంది. ముందు ఒక చీకటి tunnel fast గా దగ్గరకొస్తోంది!"
+    },
+    {
+     "en-IN": "Quick, what do you do?",
+     "hi-IN": "जल्दी, क्या करना है?",
+     "hi-en": "Jaldi, ab kya karna hai?",
+     "te-IN": "త్వరగా, ఏం చేస్తారు?",
+     "te-en": "Quick, em chestharu?",
+     "hi-en@tts": "जल्दी, अब क्या करना है?",
+     "te-en@tts": "Quick, ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Lie flat and hold on",
+      "hi-IN": "लेटकर कसकर पकड़ो",
+      "hi-en": "Letkar kaskar pakdo",
+      "te-IN": "బోర్లా పడుకుని పట్టుకో",
+      "te-en": "Flat ga padukuni pattukunta"
+     },
+     "keywords": {
+      "en-IN": [
+       "lie",
+       "flat",
+       "hold"
+      ],
+      "hi-IN": [
+       "लेट",
+       "पकड़ो",
+       "चिपक"
+      ],
+      "hi-en": [
+       "letkar",
+       "lie",
+       "flat",
+       "pakdo",
+       "hold"
+      ],
+      "te-IN": [
+       "బోర్లా",
+       "పడుకో",
+       "పట్టుకో"
+      ],
+      "te-en": [
+       "పడుకో",
+       "ఫ్లాట్",
+       "పట్టుకుంటా",
+       "flat",
+       "hold"
+      ]
+     },
+     "go": "t_tunnel"
+    },
+    {
+     "label": {
+      "en-IN": "Jump to the next coach",
+      "hi-IN": "अगले डिब्बे पर कूदो",
+      "hi-en": "Agle coach par jump",
+      "te-IN": "పక్క బోగీకి దూకు",
+      "te-en": "Next coach ki jump"
+     },
+     "keywords": {
+      "en-IN": [
+       "jump",
+       "next",
+       "leap"
+      ],
+      "hi-IN": [
+       "कूदो",
+       "छलांग",
+       "अगले"
+      ],
+      "hi-en": [
+       "jump",
+       "leap",
+       "agle",
+       "next"
+      ],
+      "te-IN": [
+       "దూకు",
+       "జంప్",
+       "పక్క బోగీ"
+      ],
+      "te-en": [
+       "జంప్",
+       "దూకు",
+       "నెక్స్ట్ కోచ్",
+       "jump",
+       "లీప్"
+      ]
+     },
+     "go": "t_cab",
+     "say": [
+      {
+       "en-IN": "You leap the gap a heartbeat before the tunnel swallows the train. You land, roll, and you're on the engine's roof. Wow.",
+       "hi-IN": "सुरंग के ट्रेन को निगलने से ठीक एक पल पहले आप छलांग लगाते हैं. लैंडिंग, एक रोल, और आप सीधे इंजन की छत पर. वाह!",
+       "hi-en": "Tunnel ke nigalne se ek pal pehle aap gap ke paar chhalaang lagaate hain. Landing, roll, aur ab aap engine ki roof par hain. Wow.",
+       "te-IN": "టన్నెల్ ట్రైన్‌ని మింగేసే క్షణం ముందు మీరు గ్యాప్ దాటి దూకుతారు. కింద పడి, దొర్లి, లేచి చూస్తే ఇంజన్ పైకప్పు మీద ఉన్నారు. వావ్.",
+       "te-en": "Tunnel train ni mingese okka kshanam mundu meeru gap dookestharu. Land ayyi, roll ayyi, ippudu engine roof meeda unnaru. Wow.",
+       "hi-en@tts": "Tunnel के निगलने से एक पल पहले आप gap के पार छलांग लगाते हैं। Landing, roll, और अब आप engine की roof पर हैं। Wow.",
+       "te-en@tts": "Tunnel train ని మింగేసే ఒక్క క్షణం ముందు మీరు gap దూకేస్తారు. Land అయ్యి, roll అయ్యి, ఇప్పుడు engine roof మీద ఉన్నారు. Wow."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "brave"
+      ]
+     }
+    }
+   ]
+  },
+  "t_tunnel": {
+   "scene": "train-tunnel",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "In the roaring dark of the tunnel, you crawl forward one rail at a time. When you come out the other side, you're safe, but you've lost a minute.",
+     "hi-IN": "सुरंग के गरजते अंधेरे में आप एक-एक रेलिंग पकड़कर आगे रेंगते हैं. दूसरी तरफ़ निकलकर आप सुरक्षित हैं, पर एक मिनट हाथ से निकल चुका है.",
+     "hi-en": "Tunnel ke garajte andhere mein aap ek-ek rail pakadkar aage rengte hain. Doosri taraf nikalte hi aap safe hain, par poora ek minute chala gaya.",
+     "te-IN": "టన్నెల్ చీకట్లో, హోరులో, ఒక్కో రైలింగ్ పట్టుకుని ముందుకు పాకుతారు. బయటికి వచ్చేసరికి సేఫ్‌గానే ఉన్నారు, కానీ ఒక నిమిషం పోయింది.",
+     "te-en": "Tunnel cheekati garjana lo okko rail pattukuni munduki paakutharu. Avathali vaipu bayataki vachesariki safe ga unnaru, kaani oka minute poyindi.",
+     "hi-en@tts": "Tunnel के गरजते अँधेरे में आप एक-एक rail पकड़कर आगे रेंगते हैं। दूसरी तरफ़ निकलते ही आप safe हैं, पर पूरा एक minute चला गया।",
+     "te-en@tts": "Tunnel చీకటి గర్జనలో ఒక్కో rail పట్టుకుని ముందుకి పాకుతారు. అవతలి వైపు బయటకి వచ్చేసరికి safe గా ఉన్నారు, కానీ ఒక minute పోయింది."
+    }
+   ],
+   "enter": {
+    "meter": -1
+   },
+   "go": "t_cab"
+  },
+  "t_cab": {
+   "scene": "train-engine",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "You reach the engine cab. The loco pilot is slumped over the controls, breathing but out cold. The dials are spinning and the brake handle won't budge.",
+     "hi-IN": "आख़िरकार इंजन का केबिन. लोको पायलट कंट्रोल्स पर लुढ़का पड़ा है, साँस चल रही है पर होश नहीं. डायल घूम रहे हैं और ब्रेक हैंडल टस से मस नहीं होता.",
+     "hi-en": "Aap engine cab tak pahunchte hain. Loco pilot controls par jhuke pade hain, saans chal rahi hai par hosh nahi. Dials ghoom rahe hain aur brake handle hil hi nahi raha.",
+     "te-IN": "మీరు ఇంజన్ క్యాబిన్ చేరుకుంటారు. లోకో పైలట్ కంట్రోల్స్ మీద వాలిపోయాడు, ఊపిరి ఉంది కానీ స్పృహ లేదు. డయల్స్ గిర్రున తిరుగుతున్నాయి, బ్రేక్ హ్యాండిల్ కదలట్లేదు.",
+     "te-en": "Engine cab cherukuntaru. Loco pilot controls meeda vaalipoyi unnadu, oopiri undi kaani spruha ledu. Dials thiruguthunnayi, brake handle kadalatledu.",
+     "hi-en@tts": "आप engine cab तक पहुँचते हैं। Loco pilot controls पर झुके पड़े हैं, साँस चल रही है पर होश नहीं। Dials घूम रहे हैं और brake handle हिल ही नहीं रहा।",
+     "te-en@tts": "Engine cab చేరుకుంటారు. Loco pilot controls మీద వాలిపోయి ఉన్నాడు, ఊపిరి ఉంది కానీ స్పృహ లేదు. Dials తిరుగుతున్నాయి, brake handle కదలట్లేదు."
+    },
+    {
+     "en-IN": "What do you do first?",
+     "hi-IN": "सबसे पहले क्या करना है?",
+     "hi-en": "Sabse pehle kya?",
+     "te-IN": "ముందు ఏం చేస్తారు?",
+     "te-en": "Mundu em chestharu?",
+     "hi-en@tts": "सबसे पहले क्या?",
+     "te-en@tts": "ముందు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Help the pilot",
+      "hi-IN": "पायलट की मदद करो",
+      "hi-en": "Pilot ki help karo",
+      "te-IN": "పైలట్‌ని కాపాడు",
+      "te-en": "Pilot ki help chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "help",
+       "pilot",
+       "driver"
+      ],
+      "hi-IN": [
+       "मदद",
+       "पायलट",
+       "ड्राइवर"
+      ],
+      "hi-en": [
+       "help",
+       "pilot",
+       "driver",
+       "madad"
+      ],
+      "te-IN": [
+       "పైలట్",
+       "డ్రైవర్",
+       "కాపాడు"
+      ],
+      "te-en": [
+       "పైలట్",
+       "హెల్ప్",
+       "డ్రైవర్",
+       "pilot",
+       "help"
+      ]
+     },
+     "go": "t_controls",
+     "say": [
+      {
+       "en-IN": "You lay him down gently and loosen his collar. His eyes flutter open: cut the throttle first, he whispers, then the brakes.",
+       "hi-IN": "आप उन्हें धीरे से लिटाकर कॉलर ढीला करते हैं. उनकी आँखें खुलती हैं, और धीमी आवाज़ आती है: पहले थ्रॉटल बंद करो, फिर ब्रेक.",
+       "hi-en": "Aap unhe dheere se litaate hain aur collar dheela karte hain. Unki aankhein khulti hain, aur woh phusphusaate hain: pehle throttle band karo, phir brakes.",
+       "te-IN": "ఆయన్ని మెల్లగా పడుకోబెట్టి కాలర్ వదులు చేస్తారు. ఆయన కళ్ళు తెరిచి గుసగుసగా చెప్తాడు: ముందు థ్రాటిల్ కట్ చెయ్యి, తర్వాత బ్రేకులు.",
+       "te-en": "Aayanni nemmadiga padukobetti collar loose chestharu. Kallu therichi gusagusaga chepthadu: mundu throttle cut cheyyi, tharvatha brakes.",
+       "hi-en@tts": "आप उन्हें धीरे से लिटाते हैं और collar ढीला करते हैं। उनकी आँखें खुलती हैं, और वो फुसफुसाते हैं: पहले throttle बंद करो, फिर brakes।",
+       "te-en@tts": "ఆయన్ని నెమ్మదిగా పడుకోబెట్టి collar loose చేస్తారు. కళ్ళు తెరిచి గుసగుసగా చెప్తాడు: ముందు throttle cut చెయ్యి, తర్వాత brakes."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "helped"
+      ]
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Pull the brake handle",
+      "hi-IN": "ब्रेक हैंडल खींचो",
+      "hi-en": "Brake handle kheencho",
+      "te-IN": "బ్రేక్ హ్యాండిల్ లాగు",
+      "te-en": "Brake handle laagutha"
+     },
+     "keywords": {
+      "en-IN": [
+       "brake",
+       "handle"
+      ],
+      "hi-IN": [
+       "ब्रेक",
+       "हैंडल"
+      ],
+      "hi-en": [
+       "brake",
+       "handle"
+      ],
+      "te-IN": [
+       "బ్రేక్",
+       "హ్యాండిల్"
+      ],
+      "te-en": [
+       "బ్రేక్",
+       "హ్యాండిల్",
+       "brake",
+       "handle"
+      ]
+     },
+     "go": "t_controls"
+    },
+    {
+     "label": {
+      "en-IN": "Radio the station",
+      "hi-IN": "स्टेशन को रेडियो करो",
+      "hi-en": "Station ko radio karo",
+      "te-IN": "స్టేషన్‌కి రేడియో",
+      "te-en": "Station ki radio"
+     },
+     "keywords": {
+      "en-IN": [
+       "radio",
+       "station",
+       "walkie"
+      ],
+      "hi-IN": [
+       "रेडियो",
+       "स्टेशन",
+       "वॉकी"
+      ],
+      "hi-en": [
+       "radio",
+       "station",
+       "walkie"
+      ],
+      "te-IN": [
+       "రేడియో",
+       "స్టేషన్",
+       "వాకీ"
+      ],
+      "te-en": [
+       "రేడియో",
+       "స్టేషన్",
+       "వాకీ",
+       "radio",
+       "station"
+      ]
+     },
+     "go": "t_controls",
+     "say": [
+      {
+       "en-IN": "The station master crackles back: the landslide is three kilometres ahead! If you can't stop, take the loop line at the next junction.",
+       "hi-IN": "स्टेशन मास्टर की कड़कड़ाती आवाज़ आती है: लैंडस्लाइड तीन किलोमीटर आगे है! रोक न सको, तो अगले जंक्शन पर लूप लाइन पकड़ो.",
+       "hi-en": "Station master ki awaaz crackle karti hai: landslide teen kilometre aage hai! Agar ruk na paao, toh agle junction par loop line le lo.",
+       "te-IN": "స్టేషన్ మాస్టర్ గొంతు కరకరలాడుతూ వినిపిస్తుంది: కొండచరియలు మూడు కిలోమీటర్ల ముందున్నాయి! ఆపలేకపోతే, తర్వాతి జంక్షన్‌లో లూప్ లైన్ తీసుకోండి.",
+       "te-en": "Station master crackle avuthu reply isthadu: landslide moodu kilometres mundu undi! Aapalekapothe, next junction lo loop line theesukondi.",
+       "hi-en@tts": "Station master की आवाज़ crackle करती है: landslide तीन kilometre आगे है! अगर रुक न पाओ, तो अगले junction पर loop line ले लो।",
+       "te-en@tts": "Station master crackle అవుతూ reply ఇస్తాడు: landslide మూడు kilometres ముందు ఉంది! ఆపలేకపోతే, next junction లో loop line తీసుకోండి."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "loopline"
+      ]
+     },
+     "if": {
+      "has": [
+       "walkie"
+      ]
+     }
+    }
+   ]
+  },
+  "t_controls": {
+   "scene": "train-engine",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "You grab the controls. The brake pressure gauge reads zero.",
+     "hi-IN": "आप कंट्रोल्स संभालते हैं. ब्रेक प्रेशर गेज ज़ीरो दिखा रहा है.",
+     "hi-en": "Aap controls pakadte hain. Brake pressure gauge zero dikha raha hai.",
+     "te-IN": "మీరు కంట్రోల్స్ పట్టుకుంటారు. బ్రేక్ ప్రెషర్ గేజ్ సున్నా చూపిస్తోంది.",
+     "te-en": "Meeru controls pattukuntaru. Brake pressure gauge zero chupisthondi.",
+     "hi-en@tts": "आप controls पकड़ते हैं। Brake pressure gauge zero दिखा रहा है।",
+     "te-en@tts": "మీరు controls పట్టుకుంటారు. Brake pressure gauge zero చూపిస్తోంది."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "Air brakes need compressed air. Quick: which gas makes up most of the air we breathe?",
+     "hi-IN": "एयर ब्रेक को कंप्रेस्ड हवा चाहिए. जल्दी बताइए: जिस हवा में हम साँस लेते हैं, उसमें सबसे ज़्यादा कौन-सी गैस होती है?",
+     "hi-en": "Air brakes ko compressed air chahiye. Jaldi batao: jis hawa mein hum saans lete hain, usmein sabse zyada kaun si gas hai?",
+     "te-IN": "ఎయిర్ బ్రేక్‌లకు కంప్రెస్డ్ ఎయిర్ కావాలి. త్వరగా చెప్పండి: మనం పీల్చే గాలిలో ఎక్కువ శాతం ఉండే గ్యాస్ ఏది?",
+     "te-en": "Air brakes ki compressed air kaavali. Quick: manam peelche air lo ekkuvaga unde gas edi?",
+     "hi-en@tts": "Air brakes को compressed air चाहिए। जल्दी बताओ: जिस हवा में हम साँस लेते हैं, उसमें सबसे ज़्यादा कौन सी gas है?",
+     "te-en@tts": "Air brakes కి compressed air కావాలి. Quick: మనం పీల్చే air లో ఎక్కువగా ఉండే gas ఏది?"
+    },
+    "kind": "text",
+    "options": {
+     "en-IN": [
+      "nitrogen",
+      "oxygen",
+      "carbon dioxide"
+     ],
+     "hi-IN": [
+      "नाइट्रोजन",
+      "ऑक्सीजन",
+      "कार्बन डाइऑक्साइड"
+     ],
+     "hi-en": [
+      "nitrogen",
+      "oxygen",
+      "carbon dioxide"
+     ],
+     "te-IN": [
+      "నైట్రోజన్",
+      "ఆక్సిజన్",
+      "కార్బన్ డయాక్సైడ్"
+     ],
+     "te-en": [
+      "nitrogen",
+      "oxygen",
+      "carbon dioxide"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "nitrogen",
+      "नाईट्रोजन",
+      "नाइट्रोजन गैस"
+     ],
+     "hi-en": [
+      "nitrogen gas",
+      "naitrojan"
+     ],
+     "te-IN": [
+      "నత్రజని",
+      "నైట్రోజెన్",
+      "nitrogen"
+     ],
+     "te-en": [
+      "నైట్రోజన్",
+      "నైట్రోజెన్",
+      "నత్రజని"
+     ]
+    },
+    "pass": {
+     "go": [
+      {
+       "if": {
+        "meter_at_least": 2
+       },
+       "go": "t_stopped"
+      },
+      {
+       "go": "t_junction"
+      }
+     ],
+     "say": [
+      {
+       "en-IN": "Nitrogen! You open the reservoir valve and the gauge needle climbs. The brakes bite with a long scream of steel!",
+       "hi-IN": "नाइट्रोजन! आप रिज़र्वॉयर वाल्व खोलते हैं और गेज की सुई ऊपर चढ़ती है. स्टील की लंबी चीख़ के साथ ब्रेक पकड़ लेते हैं!",
+       "hi-en": "Nitrogen! Aap reservoir valve kholte hain aur gauge ki sui upar chadhti hai. Steel ki lambi cheekh ke saath brakes pakad lete hain!",
+       "te-IN": "నైట్రోజన్! మీరు రిజర్వాయర్ వాల్వ్ తెరుస్తారు, గేజ్ ముల్లు పైకి లేస్తుంది. పెద్ద కీచు శబ్దంతో బ్రేకులు పట్టుకుంటాయి!",
+       "te-en": "Nitrogen! Reservoir valve open chestharu, gauge needle paiki lesthundi. Steel peddaga arusthu brakes pattukuntayi!",
+       "hi-en@tts": "Nitrogen! आप reservoir valve खोलते हैं और gauge की सुई ऊपर चढ़ती है। Steel की लंबी चीख के साथ brakes पकड़ लेते हैं!",
+       "te-en@tts": "Nitrogen! Reservoir valve open చేస్తారు, gauge needle పైకి లేస్తుంది. Steel పెద్దగా అరుస్తూ brakes పట్టుకుంటాయి!"
+      }
+     ]
+    },
+    "fail": {
+     "go": "t_junction",
+     "say": [
+      {
+       "en-IN": "You open the wrong valve. The gauge barely moves, and the train is still far too fast.",
+       "hi-IN": "ग़लत वाल्व खुल जाता है. गेज की सुई ज़रा-सी हिलती है, और ट्रेन अब भी बहुत तेज़ है.",
+       "hi-en": "Galat valve khul jaata hai. Gauge mushkil se hilta hai, aur train ab bhi bahut tez hai.",
+       "te-IN": "మీరు తప్పు వాల్వ్ తెరిచారు. గేజ్ కొంచెం కూడా కదలదు, ట్రైన్ ఇంకా చాలా స్పీడ్‌లో ఉంది.",
+       "te-en": "Meeru wrong valve open chestharu. Gauge asalu kadaladu, train inka chaala fast ga veltondi.",
+       "hi-en@tts": "गलत valve खुल जाता है। Gauge मुश्किल से हिलता है, और train अब भी बहुत तेज़ है।",
+       "te-en@tts": "మీరు wrong valve open చేస్తారు. Gauge అసలు కదలదు, train ఇంకా చాలా fast గా వెళ్తోంది."
+      }
+     ]
+    }
+   }
+  },
+  "t_stopped": {
+   "scene": "train-landslide",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "Sparks fly from the wheels. The train slows... slows... and stops, just metres from a wall of mud and fallen trees.",
+     "hi-IN": "पहियों से चिंगारियाँ उड़ती हैं. ट्रेन धीमी होती है... और धीमी... और रुक जाती है, कीचड़ और गिरे पेड़ों की दीवार से बस कुछ मीटर पहले.",
+     "hi-en": "Wheels se sparks udte hain. Train slow hoti hai... aur slow... aur ruk jaati hai, keechad aur gire pedon ki deewar se bas kuch metre pehle.",
+     "te-IN": "చక్రాల నుంచి నిప్పురవ్వలు ఎగురుతాయి. ట్రైన్ నెమ్మదిస్తుంది... నెమ్మదిస్తుంది... ఆగిపోతుంది, బురద, కూలిన చెట్ల గోడకి కొన్ని మీటర్ల దూరంలోనే.",
+     "te-en": "Wheels nunchi sparks egurutayi. Train slow avuthundi... slow... aagipothundi, burada, koolina chetla godaki konni metres dooram lone.",
+     "hi-en@tts": "Wheels से sparks उड़ते हैं। Train slow होती है... और slow... और रुक जाती है, कीचड़ और गिरे पेड़ों की दीवार से बस कुछ metre पहले।",
+     "te-en@tts": "Wheels నుంచి sparks ఎగురుతాయి. Train slow అవుతుంది... slow... ఆగిపోతుంది, బురద, కూలిన చెట్ల గోడకి కొన్ని metres దూరంలోనే."
+    }
+   ],
+   "go": [
+    {
+     "if": {
+      "has": [
+       "helped"
+      ]
+     },
+     "go": "end:hero"
+    },
+    {
+     "go": "end:inches"
+    }
+   ]
+  },
+  "t_junction": {
+   "scene": "train-river",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The train is still racing. Through the rain you see the junction and a little signal cabin on the hill. A loop line curves away from the landslide.",
+     "hi-IN": "ट्रेन अब भी भाग रही है. बारिश के पार जंक्शन दिखता है, और पहाड़ी पर एक छोटा-सा सिग्नल केबिन. एक लूप लाइन लैंडस्लाइड से दूर मुड़ती है.",
+     "hi-en": "Train ab bhi daud rahi hai. Baarish ke beech junction dikhta hai, aur pahaadi par ek chhota sa signal cabin. Ek loop line landslide se door mudti hai.",
+     "te-IN": "ట్రైన్ ఇంకా దూసుకుపోతోంది. వర్షంలోంచి జంక్షన్, కొండ మీద చిన్న సిగ్నల్ క్యాబిన్ కనిపిస్తున్నాయి. ఒక లూప్ లైన్ కొండచరియలకు దూరంగా తిరుగుతుంది.",
+     "te-en": "Train inka doosukeltondi. Varsham lonchi junction, konda meeda chinna signal cabin kanipisthayi. Oka loop line landslide nunchi dooranga thiruguthundi.",
+     "hi-en@tts": "Train अब भी दौड़ रही है। बारिश के बीच junction दिखता है, और पहाड़ी पर एक छोटा सा signal cabin। एक loop line landslide से दूर मुड़ती है।",
+     "te-en@tts": "Train ఇంకా దూసుకెళ్తోంది. వర్షంలోంచి junction, కొండ మీద చిన్న signal cabin కనిపిస్తాయి. ఒక loop line landslide నుంచి దూరంగా తిరుగుతుంది."
+    },
+    {
+     "en-IN": "What now?",
+     "hi-IN": "अब क्या?",
+     "hi-en": "Ab kya?",
+     "te-IN": "ఇప్పుడేంటి?",
+     "te-en": "Ippudenti?",
+     "hi-en@tts": "अब क्या?",
+     "te-en@tts": "ఇప్పుడేంటి?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Jump off and switch the points",
+      "hi-IN": "कूदकर पॉइंट्स बदलो",
+      "hi-en": "Koodkar points switch karo",
+      "te-IN": "దూకి పాయింట్స్ మార్చు",
+      "te-en": "Dooki points switch chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "jump",
+       "switch",
+       "points"
+      ],
+      "hi-IN": [
+       "कूद",
+       "पॉइंट्स",
+       "बदलो"
+      ],
+      "hi-en": [
+       "jump",
+       "switch",
+       "points",
+       "kood"
+      ],
+      "te-IN": [
+       "దూకి",
+       "పాయింట్స్",
+       "మార్చు"
+      ],
+      "te-en": [
+       "పాయింట్స్",
+       "స్విచ్",
+       "దూకి",
+       "points",
+       "switch"
+      ]
+     },
+     "go": "t_signal"
+    },
+    {
+     "label": {
+      "en-IN": "Keep braking",
+      "hi-IN": "ब्रेक लगाते रहो",
+      "hi-en": "Braking jaari rakho",
+      "te-IN": "బ్రేక్ వేస్తూనే ఉండు",
+      "te-en": "Braking continue chestha"
+     },
+     "keywords": {
+      "en-IN": [
+       "keep",
+       "braking",
+       "brake",
+       "stay"
+      ],
+      "hi-IN": [
+       "ब्रेक",
+       "लगाते रहो",
+       "रुके रहो"
+      ],
+      "hi-en": [
+       "braking",
+       "brake",
+       "jaari",
+       "stay"
+      ],
+      "te-IN": [
+       "బ్రేక్",
+       "వేస్తూనే",
+       "ఇక్కడే"
+      ],
+      "te-en": [
+       "బ్రేకింగ్",
+       "కంటిన్యూ",
+       "బ్రేక్",
+       "braking",
+       "continue"
+      ]
+     },
+     "go": [
+      {
+       "if": {
+        "meter_at_least": 1
+       },
+       "go": "end:inches"
+      },
+      {
+       "go": "end:long_night"
+      }
+     ]
+    },
+    {
+     "label": {
+      "en-IN": "Radio the cabin",
+      "hi-IN": "केबिन को रेडियो करो",
+      "hi-en": "Cabin ko radio karo",
+      "te-IN": "క్యాబిన్‌కి రేడియో",
+      "te-en": "Cabin ki radio"
+     },
+     "keywords": {
+      "en-IN": [
+       "radio",
+       "cabin",
+       "call"
+      ],
+      "hi-IN": [
+       "रेडियो",
+       "केबिन",
+       "कॉल"
+      ],
+      "hi-en": [
+       "radio",
+       "cabin",
+       "call"
+      ],
+      "te-IN": [
+       "రేడియో",
+       "క్యాబిన్",
+       "కాల్"
+      ],
+      "te-en": [
+       "క్యాబిన్",
+       "రేడియో",
+       "కాల్",
+       "cabin",
+       "radio"
+      ]
+     },
+     "go": "end:loop_line",
+     "say": [
+      {
+       "en-IN": "Switching now, shouts the station master. You hear the points clank across.",
+       "hi-IN": "अभी बदलता हूँ, स्टेशन मास्टर चिल्लाते हैं. पॉइंट्स के खटाक से बदलने की आवाज़ आती है.",
+       "hi-en": "Switch kar raha hoon, station master chillaate hain. Points ke clank hokar badalne ki awaaz aati hai.",
+       "te-IN": "ఇప్పుడే మారుస్తున్నా, అని స్టేషన్ మాస్టర్ అరుస్తాడు. పాయింట్స్ టక్కున మారే శబ్దం వినిపిస్తుంది.",
+       "te-en": "Ippude switch chesthunna, ani station master arusthadu. Points clank mani pakkaki jarigina sound vinipisthundi.",
+       "hi-en@tts": "Switch कर रहा हूँ, station master चिल्लाते हैं। Points के clank होकर बदलने की आवाज़ आती है।",
+       "te-en@tts": "ఇప్పుడే switch చేస్తున్నా, అని station master అరుస్తాడు. Points క్లాంక్ మని పక్కకి జరిగిన sound వినిపిస్తుంది."
+      }
+     ],
+     "if": {
+      "has": [
+       "loopline"
+      ]
+     }
+    }
+   ]
+  },
+  "t_signal": {
+   "scene": "train-signal",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "You leap into the mud, scramble up the hill and burst into the signal cabin. A row of big iron levers, all numbered.",
+     "hi-IN": "आप कीचड़ में कूदते हैं, पहाड़ी पर चढ़ते हैं और धड़ाम से सिग्नल केबिन में घुसते हैं. लोहे के बड़े-बड़े लीवरों की कतार, सब पर नंबर.",
+     "hi-en": "Aap keechad mein koodte hain, pahaadi par chadhte hain aur signal cabin mein ghus jaate hain. Lohe ke bade-bade levers ki ek line, sab par numbers.",
+     "te-IN": "మీరు బురదలోకి దూకి, కొండ ఎక్కి, సిగ్నల్ క్యాబిన్‌లోకి దూసుకెళ్తారు. వరుసగా పెద్ద ఇనుప లీవర్లు, అన్నింటికీ నంబర్లు ఉన్నాయి.",
+     "te-en": "Burada loki dooki, konda ekki, signal cabin loki doosukeltaru. Numbers unna pedda iron levers varusaga unnayi.",
+     "hi-en@tts": "आप कीचड़ में कूदते हैं, पहाड़ी पर चढ़ते हैं और signal cabin में घुस जाते हैं। लोहे के बड़े-बड़े levers की एक line, सब पर numbers।",
+     "te-en@tts": "బురదలోకి దూకి, కొండ ఎక్కి, signal cabin లోకి దూసుకెళ్తారు. Numbers ఉన్న పెద్ద iron levers వరుసగా ఉన్నాయి."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "A notice says: the lever for the loop line is the number of sides of a hexagon. Which lever do you pull?",
+     "hi-IN": "एक नोटिस पर लिखा है: लूप लाइन का लीवर वही नंबर है, जितनी एक हेक्सागन की भुजाएँ होती हैं. कौन-सा लीवर खींचना है?",
+     "hi-en": "Notice par likha hai: loop line ka lever utne number ka hai, jitni ek hexagon ki sides hoti hain. Kaun sa lever kheenchna hai?",
+     "te-IN": "ఒక నోటీస్: లూప్ లైన్ లీవర్ నంబర్ అంటే, హెక్సాగన్‌కి ఉండే భుజాల సంఖ్య. ఏ లీవర్ లాగుతారు?",
+     "te-en": "Oka notice: loop line lever number ante hexagon ki enni sides untayo antha. E lever laaguthaaru?",
+     "hi-en@tts": "Notice पर लिखा है: loop line का lever उतने number का है, जितनी एक hexagon की sides होती हैं। कौन सा lever खींचना है?",
+     "te-en@tts": "ఒక notice: loop line lever number అంటే hexagon కి ఎన్ని sides ఉంటాయో అంత. ఏ lever లాగుతారు?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "6",
+      "5",
+      "8"
+     ],
+     "hi-IN": [
+      "6",
+      "5",
+      "8"
+     ],
+     "hi-en": [
+      "6",
+      "5",
+      "8"
+     ],
+     "te-IN": [
+      "6",
+      "5",
+      "8"
+     ],
+     "te-en": [
+      "6",
+      "5",
+      "8"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "छह",
+      "छः",
+      "six"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "ఆరు",
+      "six"
+     ],
+     "te-en": [
+      "six",
+      "సిక్స్",
+      "ఆరు"
+     ]
+    },
+    "pass": {
+     "go": "end:loop_line",
+     "say": [
+      {
+       "en-IN": "Lever six! You heave it over, and the points swing across just in time.",
+       "hi-IN": "लीवर नंबर छह! आप पूरा ज़ोर लगाकर उसे खींचते हैं, और पॉइंट्स ठीक वक़्त पर बदल जाते हैं.",
+       "hi-en": "Lever chhe! Aap poora zor lagaakar use kheenchte hain, aur points theek time par ghoom jaate hain.",
+       "te-IN": "లీవర్ ఆరు! మీరు బలంగా లాగుతారు, సరిగ్గా టైమ్‌కి పాయింట్స్ మారిపోతాయి.",
+       "te-en": "Lever six! Balanga laaguthaaru, points sariggaa time ki pakkaki thiruguthayi.",
+       "hi-en@tts": "Lever छह! आप पूरा ज़ोर लगाकर उसे खींचते हैं, और points ठीक time पर घूम जाते हैं।",
+       "te-en@tts": "Lever six! బలంగా లాగుతారు, points సరిగ్గా time కి పక్కకి తిరుగుతాయి."
+      }
+     ]
+    },
+    "fail": {
+     "go": "end:long_night",
+     "say": [
+      {
+       "en-IN": "The lever doesn't move. Below you, the express thunders past.",
+       "hi-IN": "लीवर हिलता तक नहीं. नीचे से एक्सप्रेस गरजती हुई निकल जाती है.",
+       "hi-en": "Lever hilta hi nahi. Neeche express garajti hui nikal jaati hai.",
+       "te-IN": "లీవర్ కదలదు. కింద, ఎక్స్‌ప్రెస్ దడదడలాడుతూ దాటిపోతుంది.",
+       "te-en": "Lever kadaladu. Kinda express urumuthu daati vellipothundi.",
+       "hi-en@tts": "Lever हिलता ही नहीं। नीचे express गरजती हुई निकल जाती है।",
+       "te-en@tts": "Lever కదలదు. కింద express ఉరుముతూ దాటి వెళ్ళిపోతుంది."
+      }
+     ]
+    }
+   }
+  }
+ },
+ "endings": {
+  "hero": {
+   "title": {
+    "en-IN": "Hero of the Ghats",
+    "hi-IN": "घाट्स का हीरो",
+    "hi-en": "Ghats ka Hero",
+    "te-IN": "కనుమల హీరో",
+    "te-en": "Hero of the Ghats"
+   },
+   "rank": "gold",
+   "scene": "train-dawn",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "At dawn the train limps into the next station. The pilot is awake and smiling, and four hundred passengers are cheering your name.",
+     "hi-IN": "सुबह-सुबह ट्रेन लड़खड़ाती हुई अगले स्टेशन पहुँचती है. पायलट होश में है और मुस्कुरा रहा है, और चार सौ यात्री आपके नाम के नारे लगा रहे हैं.",
+     "hi-en": "Subah train ladkhadaati hui agle station pahunchti hai. Pilot hosh mein aakar muskura rahe hain, aur chaar sau passengers aapke naam ke naare laga rahe hain.",
+     "te-IN": "తెల్లవారుజామున ట్రైన్ మెల్లగా తర్వాతి స్టేషన్ చేరుతుంది. పైలట్ లేచి నవ్వుతున్నాడు, నాలుగు వందల మంది ప్రయాణికులు మీ పేరు అరుస్తూ చీర్ చేస్తున్నారు.",
+     "te-en": "Thellavaare sariki train nemmadiga next station cherukuntundi. Pilot lechi navvuthunnadu, naalugu vandala mandi passengers mee peru arusthu cheer chesthunnaru.",
+     "hi-en@tts": "सुबह train लड़खड़ाती हुई अगले station पहुँचती है। Pilot होश में आकर मुस्कुरा रहे हैं, और चार सौ passengers आपके नाम के नारे लगा रहे हैं।",
+     "te-en@tts": "తెల్లవారే సరికి train నెమ్మదిగా next station చేరుకుంటుంది. Pilot లేచి నవ్వుతున్నాడు, నాలుగు వందల మంది passengers మీ పేరు అరుస్తూ cheer చేస్తున్నారు."
+    },
+    {
+     "en-IN": "The railway sends you a medal, and a lifetime of free chai. Hero of the Ghats!",
+     "hi-IN": "रेलवे आपको मेडल भेजता है, और साथ में ज़िंदगी भर की मुफ़्त चाय. घाट्स का हीरो!",
+     "hi-en": "Railway aapko medal bhejti hai, aur saath mein zindagi bhar ki free chai. Ghats ka Hero!",
+     "te-IN": "రైల్వే మీకు ఒక మెడల్ పంపిస్తుంది, జీవితాంతం ఫ్రీ చాయ్ కూడా. కనుమల హీరో!",
+     "te-en": "Railway meeku oka medal pampisthundi, life long free chai kooda. Hero of the Ghats!",
+     "hi-en@tts": "Railway आपको medal भेजती है, और साथ में ज़िंदगी भर की free chai। Ghats का Hero!",
+     "te-en@tts": "Railway మీకు ఒక medal పంపిస్తుంది, life long free chai కూడా. Hero of the Ghats!"
+    }
+   ]
+  },
+  "inches": {
+   "title": {
+    "en-IN": "Inches from Disaster",
+    "hi-IN": "बाल-बाल बचाव",
+    "hi-en": "Disaster se baal-baal bachaav",
+    "te-IN": "వెంట్రుకవాసిలో తప్పిన ప్రమాదం",
+    "te-en": "Inches from Disaster"
+   },
+   "rank": "silver",
+   "scene": "train-landslide",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "The train stops so close to the landslide that you could touch the mud from the engine. Your legs are shaking, but everyone is safe.",
+     "hi-IN": "ट्रेन लैंडस्लाइड के इतने पास रुकती है कि इंजन से हाथ बढ़ाओ तो कीचड़ छू लो. पैर काँप रहे हैं, पर सब सुरक्षित हैं.",
+     "hi-en": "Train landslide ke itne paas rukti hai ki engine se haath badhao toh keechad chhoo lo. Pair kaanp rahe hain, par sab safe hain.",
+     "te-IN": "ట్రైన్ కొండచరియలకు ఎంత దగ్గరగా ఆగిందంటే, ఇంజన్ నుంచే బురదని తాకొచ్చు. మీ కాళ్ళు వణుకుతున్నాయి, కానీ అందరూ సేఫ్.",
+     "te-en": "Train landslide ki entha daggaraga aagindante, engine lonchi buradani touch cheyyochu. Mee kaallu vanukuthunnayi, kaani andaru safe.",
+     "hi-en@tts": "Train landslide के इतने पास रुकती है कि engine से हाथ बढ़ाओ तो कीचड़ छू लो। पैर काँप रहे हैं, पर सब safe हैं।",
+     "te-en@tts": "Train landslide కి ఎంత దగ్గరగా ఆగిందంటే, engine లోంచి బురదని touch చెయ్యొచ్చు. మీ కాళ్ళు వణుకుతున్నాయి, కానీ అందరూ safe."
+    },
+    {
+     "en-IN": "Next time, maybe save a few more seconds?",
+     "hi-IN": "अगली बार शायद कुछ सेकंड और बचा लें?",
+     "hi-en": "Agli baar, shayad kuch seconds aur bachao?",
+     "te-IN": "నెక్స్ట్ టైమ్, ఇంకొన్ని సెకన్లు సేవ్ చేస్తారేమో?",
+     "te-en": "Next time inkonni seconds save cheyyochemo?",
+     "hi-en@tts": "अगली बार, शायद कुछ seconds और बचाओ?",
+     "te-en@tts": "Next time ఇంకొన్ని seconds save చెయ్యొచ్చేమో?"
+    }
+   ]
+  },
+  "loop_line": {
+   "title": {
+    "en-IN": "Loop Line Legend",
+    "hi-IN": "लूप लाइन लेजेंड",
+    "hi-en": "Loop Line Legend",
+    "te-IN": "లూప్ లైన్ లెజెండ్",
+    "te-en": "Loop Line Legend"
+   },
+   "rank": "silver",
+   "scene": "train-dawn",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "The express swings onto the loop line and rolls safely up the hill, far from the landslide. Engineers will talk about this switch for years.",
+     "hi-IN": "एक्सप्रेस लूप लाइन पर मुड़ जाती है और लैंडस्लाइड से दूर, पहाड़ी पर आराम से चढ़ जाती है. इंजीनियर बरसों तक इस स्विच की बातें करेंगे.",
+     "hi-en": "Express loop line par mudti hai aur landslide se door, aaram se pahaadi par chadh jaati hai. Engineers saalon tak is switch ki baatein karenge.",
+     "te-IN": "ఎక్స్‌ప్రెస్ లూప్ లైన్ మీదికి తిరిగి, కొండచరియలకు దూరంగా సేఫ్‌గా కొండ ఎక్కుతుంది. ఈ స్విచ్ గురించి ఇంజనీర్లు ఏళ్ల తరబడి చెప్పుకుంటారు.",
+     "te-en": "Express loop line meedaki thirigi, landslide ki dooranga safe ga konda ekkuthundi. Ee switch gurinchi engineers ella tharabadi maatlaadukuntaru.",
+     "hi-en@tts": "Express loop line पर मुड़ती है और landslide से दूर, आराम से पहाड़ी पर चढ़ जाती है। Engineers सालों तक इस switch की बातें करेंगे।",
+     "te-en@tts": "Express loop line మీదకి తిరిగి, landslide కి దూరంగా safe గా కొండ ఎక్కుతుంది. ఈ switch గురించి engineers ఏళ్ళ తరబడి మాట్లాడుకుంటారు."
+    }
+   ]
+  },
+  "long_night": {
+   "title": {
+    "en-IN": "The Long Night",
+    "hi-IN": "लंबी रात",
+    "hi-en": "Lambi Raat",
+    "te-IN": "సుదీర్ఘ రాత్రి",
+    "te-en": "The Long Night"
+   },
+   "rank": "bronze",
+   "scene": "train-river",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "The train slides off the track into soft mud and stops with a groan. Nobody is badly hurt, but you'll all spend the night in the rain waiting for help.",
+     "hi-IN": "ट्रेन पटरी से फिसलकर नरम कीचड़ में धँसती है और कराहकर रुक जाती है. किसी को गहरी चोट नहीं, पर पूरी रात बारिश में मदद का इंतज़ार करना होगा.",
+     "hi-en": "Train track se phisalkar naram keechad mein utarti hai aur karaahkar ruk jaati hai. Kisi ko gambhir chot nahi, par poori raat baarish mein help ka intezaar karna padega.",
+     "te-IN": "ట్రైన్ ట్రాక్ దిగి మెత్తటి బురదలోకి జారి, మూలుగుతూ ఆగిపోతుంది. ఎవరికీ పెద్ద దెబ్బలు తగల్లేదు, కానీ సాయం కోసం రాత్రంతా వర్షంలో ఎదురుచూడాలి.",
+     "te-en": "Train track nunchi jaari methati burada lo moolugutu aaguthundi. Evariki pedda debbalu thagalledu, kaani help kosam raathranthaa varsham lo wait cheyyali.",
+     "hi-en@tts": "Train track से फिसलकर नरम कीचड़ में उतरती है और कराहकर रुक जाती है। किसी को गंभीर चोट नहीं, पर पूरी रात बारिश में help का इंतज़ार करना पड़ेगा।",
+     "te-en@tts": "Train track నుంచి జారి మెత్తటి బురదలో మూలుగుతూ ఆగుతుంది. ఎవరికీ పెద్ద దెబ్బలు తగల్లేదు, కానీ help కోసం రాత్రంతా వర్షంలో wait చెయ్యాలి."
+    },
+    {
+     "en-IN": "Try again, and maybe find a faster way to the engine.",
+     "hi-IN": "फिर से कोशिश कीजिए, और इस बार इंजन तक कोई तेज़ रास्ता ढूँढिए.",
+     "hi-en": "Phir se try karo, aur shayad engine tak pahunchne ka tez raasta dhoondo.",
+     "te-IN": "మళ్ళీ ట్రై చేయండి, ఇంజన్ దగ్గరికి ఇంకా ఫాస్ట్‌గా వెళ్ళే దారి వెతకండి.",
+     "te-en": "Malli try cheyyandi, eesari engine ki fast daari vethakandi.",
+     "hi-en@tts": "फिर से try करो, और शायद engine तक पहुँचने का तेज़ रास्ता ढूँढो।",
+     "te-en@tts": "మళ్ళీ try చెయ్యండి, ఈసారి engine కి fast దారి వెతకండి."
+    }
+   ]
+  }
+ }
+}

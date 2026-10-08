@@ -1,0 +1,1260 @@
+{
+ "schema": 1,
+ "id": "hostel-block-c",
+ "genre": "horror",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": "G Nagarjuna",
+ "reviewed_at": "2026-10-08",
+ "title": {
+  "en-IN": "Hostel Block C",
+  "hi-IN": "हॉस्टल ब्लॉक सी",
+  "hi-en": "Hostel Block C",
+  "te-IN": "హాస్టల్ బ్లాక్ సి",
+  "te-en": "Hostel Block C"
+ },
+ "tagline": {
+  "en-IN": "Three in the morning. Someone is knocking on every door.",
+  "hi-IN": "सुबह के तीन बजे. कोई हर दरवाज़े पर दस्तक दे रहा है.",
+  "hi-en": "Subah ke teen baje. Koi har door par knock kar raha hai.",
+  "te-IN": "తెల్లవారుజామున మూడు గంటలు. ఎవరో ప్రతి డోర్ తడుతున్నారు.",
+  "te-en": "Thellavaarujaamuna three. Evaro prathi door thaduthunnaru."
+ },
+ "cover": "hostel-outside",
+ "meter": {
+  "label": {
+   "en-IN": "Nerve",
+   "hi-IN": "हिम्मत",
+   "hi-en": "Nerve",
+   "te-IN": "ధైర్యం",
+   "te-en": "Nerve"
+  },
+  "icon": "nerve",
+  "start": 3,
+  "max": 3,
+  "on_zero": "end:ran"
+ },
+ "items": {
+  "torch": {
+   "label": {
+    "en-IN": "Torch",
+    "hi-IN": "टॉर्च",
+    "hi-en": "Torch",
+    "te-IN": "టార్చ్",
+    "te-en": "Torch"
+   }
+  },
+  "note": {
+   "label": {
+    "en-IN": "Old note",
+    "hi-IN": "पुराना नोट",
+    "hi-en": "Puraana note",
+    "te-IN": "పాత చీటీ",
+    "te-en": "Paatha note"
+   }
+  },
+  "register": {
+   "label": {
+    "en-IN": "Hostel register",
+    "hi-IN": "हॉस्टल रजिस्टर",
+    "hi-en": "Hostel register",
+    "te-IN": "హాస్టల్ రిజిస్టర్",
+    "te-en": "Hostel register"
+   }
+  },
+  "key": {
+   "label": {
+    "en-IN": "Generator key",
+    "hi-IN": "जनरेटर की चाबी",
+    "hi-en": "Generator ki key",
+    "te-IN": "జనరేటర్ కీ",
+    "te-en": "Generator key"
+   }
+  },
+  "lights": {
+   "label": {
+    "en-IN": "Lights on",
+    "hi-IN": "लाइट्स ऑन",
+    "hi-en": "Lights on",
+    "te-IN": "లైట్లు ఆన్",
+    "te-en": "Lights on"
+   }
+  },
+  "bunty": {
+   "label": {
+    "en-IN": "Bunty with you",
+    "hi-IN": "बंटी साथ है",
+    "hi-en": "Bunty saath hai",
+    "te-IN": "బంటీ మీతో ఉన్నాడు",
+    "te-en": "Bunty meetho"
+   }
+  }
+ },
+ "start": "h_start",
+ "nodes": {
+  "h_start": {
+   "scene": "hostel-corridor",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Three in the morning in Block C, the oldest hostel on campus. You're cramming for exams when every light goes out.",
+     "hi-IN": "सुबह के तीन बजे, ब्लॉक सी, कैंपस का सबसे पुराना हॉस्टल. एग्ज़ाम की रटाई चल रही है, कि तभी सारी लाइट्स चली जाती हैं.",
+     "hi-en": "Subah ke teen baje, Block C, campus ka sabse puraana hostel. Exams ka ratta chal raha hai, tabhi saari lights chali jaati hain.",
+     "te-IN": "తెల్లవారుజామున మూడు గంటలు, క్యాంపస్‌లోనే అతి పాత హాస్టల్ బ్లాక్ సి. ఎగ్జామ్స్ కోసం బట్టీ పడుతుంటే, ఒక్కసారిగా లైట్లన్నీ ఆరిపోతాయి.",
+     "te-en": "Thellavaarujaamuna three, campus lo athi paatha hostel Block C. Meeru exams kosam cram chesthunte, okkasariga anni lights pothayi.",
+     "hi-en@tts": "सुबह के तीन बजे, Block C, campus का सबसे पुराना hostel। Exams का रट्टा चल रहा है, तभी सारी lights चली जाती हैं।",
+     "te-en@tts": "తెల్లవారుజామున three, campus లో అతి పాత hostel Block C. మీరు exams కోసం cram చేస్తుంటే, ఒక్కసారిగా అన్ని lights పోతాయి."
+    },
+    {
+     "en-IN": "Then: knock, knock, knock. Someone is knocking on every door down the corridor, one by one, coming closer.",
+     "hi-IN": "फिर: ठक, ठक, ठक. कॉरिडोर में कोई एक-एक करके हर दरवाज़ा खटखटा रहा है, और आवाज़ पास आती जा रही है.",
+     "hi-en": "Phir: knock, knock, knock. Corridor mein koi ek-ek karke har door khatkhata raha hai, aur paas aata ja raha hai.",
+     "te-IN": "అప్పుడు: టక్, టక్, టక్. కారిడార్‌లో ఎవరో ప్రతి డోర్ తడుతున్నారు, ఒక్కొక్కటిగా, దగ్గరగా వస్తున్నారు.",
+     "te-en": "Appudu: knock, knock, knock. Corridor lo evaro okko door thaduthu, inka daggariki vasthunnaru.",
+     "hi-en@tts": "फिर: knock, knock, knock। Corridor में कोई एक-एक करके हर door खटखटा रहा है, और पास आता जा रहा है।",
+     "te-en@tts": "అప్పుడు: knock, knock, knock. Corridor లో ఎవరో ఒక్కో door తడుతూ, ఇంకా దగ్గరకి వస్తున్నారు."
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करते हैं?",
+     "hi-en": "Aap kya karte hain?",
+     "te-IN": "మీరేం చేస్తారు?",
+     "te-en": "Meeru em chestharu?",
+     "hi-en@tts": "आप क्या करते हैं?",
+     "te-en@tts": "మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Open the door",
+      "hi-IN": "दरवाज़ा खोलो",
+      "hi-en": "Door kholo",
+      "te-IN": "డోర్ తెరువు",
+      "te-en": "Door therustha"
+     },
+     "keywords": {
+      "en-IN": [
+       "open",
+       "door"
+      ],
+      "hi-IN": [
+       "खोलो",
+       "दरवाज़ा",
+       "दरवाजा"
+      ],
+      "hi-en": [
+       "open",
+       "kholo",
+       "darwaza",
+       "door"
+      ],
+      "te-IN": [
+       "తెరువు",
+       "డోర్",
+       "తలుపు"
+      ],
+      "te-en": [
+       "తెరుస్తా",
+       "తలుపు",
+       "డోర్",
+       "ఓపెన్",
+       "open"
+      ]
+     },
+     "go": "h_open"
+    },
+    {
+     "label": {
+      "en-IN": "Hide under the cot",
+      "hi-IN": "पलंग के नीचे छिपो",
+      "hi-en": "Cot ke neeche chhupo",
+      "te-IN": "కాట్ కింద దాక్కో",
+      "te-en": "Cot kinda daakkunta"
+     },
+     "keywords": {
+      "en-IN": [
+       "hide",
+       "cot",
+       "under"
+      ],
+      "hi-IN": [
+       "छिपो",
+       "छुपो",
+       "पलंग",
+       "नीचे"
+      ],
+      "hi-en": [
+       "chhupo",
+       "chupo",
+       "hide",
+       "cot",
+       "neeche"
+      ],
+      "te-IN": [
+       "దాక్కో",
+       "కాట్",
+       "మంచం కింద"
+      ],
+      "te-en": [
+       "దాక్కుంటా",
+       "దాక్కో",
+       "కాట్",
+       "మంచం కింద",
+       "హైడ్",
+       "hide"
+      ]
+     },
+     "go": "h_hide",
+     "effects": {
+      "meter": -1
+     }
+    },
+    {
+     "label": {
+      "en-IN": "Shout, who's there",
+      "hi-IN": "चिल्लाओ, कौन है",
+      "hi-en": "Chillao, kaun hai?",
+      "te-IN": "ఎవరక్కడ అని అరువు",
+      "te-en": "Evaradi ani arustha"
+     },
+     "keywords": {
+      "en-IN": [
+       "shout",
+       "who"
+      ],
+      "hi-IN": [
+       "चिल्लाओ",
+       "कौन है",
+       "कौन"
+      ],
+      "hi-en": [
+       "shout",
+       "chillao",
+       "kaun"
+      ],
+      "te-IN": [
+       "అరువు",
+       "ఎవరక్కడ",
+       "ఎవరు"
+      ],
+      "te-en": [
+       "అరుస్తా",
+       "ఎవరది",
+       "షౌట్",
+       "shout"
+      ]
+     },
+     "go": "h_shout"
+    }
+   ]
+  },
+  "h_open": {
+   "scene": "hostel-corridor",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Nobody is there. Just a cold breeze, and a torch rolling slowly towards your feet.",
+     "hi-IN": "बाहर कोई नहीं. बस ठंडी हवा का एक झोंका, और एक टॉर्च जो धीरे-धीरे लुढ़कती हुई आपके पैरों तक आती है.",
+     "hi-en": "Bahar koi nahi. Bas ek thandi hawa, aur ek torch jo dheere-dheere ludhakti hui aapke pairon ki taraf aa rahi hai.",
+     "te-IN": "అక్కడ ఎవరూ లేరు. ఒక చల్లని గాలి, మీ కాళ్ళ వైపు మెల్లగా దొర్లుకుంటూ వస్తున్న ఒక టార్చ్ మాత్రమే.",
+     "te-en": "Akkada evaru leru. Challati gaali maathrame, oka torch nemmadiga dorlukuntu mee kaalla daggariki vasthundi.",
+     "hi-en@tts": "बाहर कोई नहीं। बस एक ठंडी हवा, और एक torch जो धीरे-धीरे लुढ़कती हुई आपके पैरों की तरफ़ आ रही है।",
+     "te-en@tts": "అక్కడ ఎవరూ లేరు. చల్లటి గాలి మాత్రమే, ఒక torch నెమ్మదిగా దొర్లుకుంటూ మీ కాళ్ళ దగ్గరకి వస్తుంది."
+    },
+    {
+     "en-IN": "Where do you go?",
+     "hi-IN": "अब किधर?",
+     "hi-en": "Kahan jaana hai?",
+     "te-IN": "ఎటు వెళ్తారు?",
+     "te-en": "Ekkadiki veltaru?",
+     "hi-en@tts": "कहाँ जाना है?",
+     "te-en@tts": "ఎక్కడికి వెళ్తారు?"
+    }
+   ],
+   "enter": {
+    "gain": [
+     "torch"
+    ]
+   },
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Follow the breeze upstairs",
+      "hi-IN": "हवा के पीछे ऊपर",
+      "hi-en": "Hawa ke peeche upar",
+      "te-IN": "గాలి వెంట పైకి",
+      "te-en": "Gaali venta upstairs"
+     },
+     "keywords": {
+      "en-IN": [
+       "breeze",
+       "upstairs"
+      ],
+      "hi-IN": [
+       "हवा",
+       "ऊपर",
+       "सीढ़ी"
+      ],
+      "hi-en": [
+       "hawa",
+       "breeze",
+       "upstairs",
+       "upar"
+      ],
+      "te-IN": [
+       "గాలి",
+       "పైకి",
+       "మెట్లు"
+      ],
+      "te-en": [
+       "గాలి",
+       "బ్రీజ్",
+       "అప్‌స్టెయిర్స్",
+       "అప్ స్టెయిర్స్",
+       "upstairs"
+      ]
+     },
+     "go": "h_stairs"
+    },
+    {
+     "label": {
+      "en-IN": "Check the warden's office",
+      "hi-IN": "वॉर्डन ऑफ़िस देखो",
+      "hi-en": "Warden ka office dekho",
+      "te-IN": "వార్డెన్ ఆఫీస్ చూడు",
+      "te-en": "Warden office check"
+     },
+     "keywords": {
+      "en-IN": [
+       "warden",
+       "office",
+       "check"
+      ],
+      "hi-IN": [
+       "वॉर्डन",
+       "ऑफ़िस",
+       "ऑफिस"
+      ],
+      "hi-en": [
+       "warden",
+       "office"
+      ],
+      "te-IN": [
+       "వార్డెన్",
+       "ఆఫీస్"
+      ],
+      "te-en": [
+       "వార్డెన్",
+       "ఆఫీస్",
+       "warden",
+       "office"
+      ]
+     },
+     "go": "h_warden"
+    }
+   ]
+  },
+  "h_shout": {
+   "scene": "hostel-corridor",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Your voice echoes down the corridor. Silence. Then, far away, a giggle, and footsteps running up the stairs.",
+     "hi-IN": "आपकी आवाज़ कॉरिडोर में गूँजती है. सन्नाटा. फिर कहीं दूर से एक खिलखिलाहट, और सीढ़ियों पर ऊपर भागते क़दमों की आहट.",
+     "hi-en": "Aapki awaaz corridor mein goonjti hai. Sannaata. Phir door kahin ek khilkhilaahat, aur seedhiyon par upar bhaagte kadam.",
+     "te-IN": "మీ గొంతు కారిడార్ అంతా ప్రతిధ్వనిస్తుంది. నిశ్శబ్దం. తర్వాత, దూరంగా ఒక కిసుక్కుమనే నవ్వు, మెట్లు ఎక్కుతూ పరిగెత్తే అడుగుల చప్పుడు.",
+     "te-en": "Mee voice corridor antha echo avuthundi. Nishabdham. Tharvatha dooranga oka kisukku navvu, stairs paiki parigethe adugula sound.",
+     "hi-en@tts": "आपकी आवाज़ corridor में गूँजती है। सन्नाटा। फिर दूर कहीं एक खिलखिलाहट, और सीढ़ियों पर ऊपर भागते क़दम।",
+     "te-en@tts": "మీ voice corridor అంతా echo అవుతుంది. నిశ్శబ్దం. తర్వాత దూరంగా ఒక కిసుక్కు నవ్వు, stairs పైకి పరిగెత్తే అడుగుల sound."
+    },
+    {
+     "en-IN": "What now?",
+     "hi-IN": "अब क्या?",
+     "hi-en": "Ab kya?",
+     "te-IN": "ఇప్పుడేంటి?",
+     "te-en": "Ippudenti?",
+     "hi-en@tts": "अब क्या?",
+     "te-en@tts": "ఇప్పుడేంటి?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Follow the footsteps",
+      "hi-IN": "क़दमों का पीछा करो",
+      "hi-en": "Kadmon ka peecha karo",
+      "te-IN": "అడుగుల వెంట వెళ్ళు",
+      "te-en": "Adugula sound follow"
+     },
+     "keywords": {
+      "en-IN": [
+       "footsteps",
+       "follow"
+      ],
+      "hi-IN": [
+       "क़दमों",
+       "कदमों",
+       "पीछा"
+      ],
+      "hi-en": [
+       "footsteps",
+       "kadam",
+       "peecha",
+       "follow"
+      ],
+      "te-IN": [
+       "అడుగులు",
+       "చప్పుడు",
+       "ఫాలో"
+      ],
+      "te-en": [
+       "అడుగులు",
+       "ఫాలో",
+       "ఫుట్ స్టెప్స్",
+       "follow",
+       "footsteps"
+      ]
+     },
+     "go": "h_stairs"
+    },
+    {
+     "label": {
+      "en-IN": "Go to the warden's office",
+      "hi-IN": "वॉर्डन ऑफ़िस चलो",
+      "hi-en": "Warden ke office chalo",
+      "te-IN": "వార్డెన్ ఆఫీస్‌కి",
+      "te-en": "Warden office ki"
+     },
+     "keywords": {
+      "en-IN": [
+       "warden",
+       "office"
+      ],
+      "hi-IN": [
+       "वॉर्डन",
+       "ऑफ़िस",
+       "ऑफिस"
+      ],
+      "hi-en": [
+       "warden",
+       "office"
+      ],
+      "te-IN": [
+       "వార్డెన్",
+       "ఆఫీస్"
+      ],
+      "te-en": [
+       "వార్డెన్",
+       "ఆఫీస్",
+       "warden",
+       "office"
+      ]
+     },
+     "go": "h_warden"
+    }
+   ]
+  },
+  "h_hide": {
+   "scene": "hostel-room",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Under the cot, you hold your breath. The knocking stops right outside your door, and a yellowed paper slides in underneath.",
+     "hi-IN": "पलंग के नीचे, साँस थमी हुई. दस्तक ठीक आपके दरवाज़े के बाहर रुक जाती है, और नीचे की दरार से एक पीला पड़ चुका काग़ज़ अंदर सरकता है.",
+     "hi-en": "Cot ke neeche saans thami hui hai. Knocking theek aapke door ke bahar rukti hai, aur neeche se ek peela pad chuka kaagaz andar sarakta hai.",
+     "te-IN": "కాట్ కింద ఊపిరి బిగబట్టి ఉంటారు. తట్టడం సరిగ్గా మీ డోర్ దగ్గర ఆగుతుంది, కింద నుంచి పసుపు రంగుకి మారిన ఒక కాగితం లోపలికి జారుతుంది.",
+     "te-en": "Cot kinda oopiri bigabattukuntaru. Knocking sariggaa mee door bayata aaguthundi, kinda nunchi pasupu rangu paatha kaagitham okati lopaliki jaaruthundi.",
+     "hi-en@tts": "Cot के नीचे साँस थमी हुई है। Knocking ठीक आपके door के बाहर रुकती है, और नीचे से एक पीला पड़ चुका काग़ज़ अंदर सरकता है।",
+     "te-en@tts": "Cot కింద ఊపిరి బిగబట్టుకుంటారు. Knocking సరిగ్గా మీ door బయట ఆగుతుంది, కిందనుంచి పసుపు రంగు పాత కాగితం ఒకటి లోపలికి జారుతుంది."
+    },
+    {
+     "en-IN": "It says: Room thirteen. Help me finish. What do you do?",
+     "hi-IN": "उस पर लिखा है: कमरा नंबर तेरह. पूरा करने में मदद करो. आप क्या करते हैं?",
+     "hi-en": "Us par likha hai: Room thirteen. Mujhe poora karne mein help karo. Aap kya karte hain?",
+     "te-IN": "అందులో ఉంది: రూమ్ పదమూడు. పూర్తి చేయడానికి సాయం చెయ్యి. మీరేం చేస్తారు?",
+     "te-en": "Daani meeda: Room thirteen. Help me finish. Meeru em chestharu?",
+     "hi-en@tts": "उस पर लिखा है: Room thirteen। मुझे पूरा करने में help करो। आप क्या करते हैं?",
+     "te-en@tts": "దాని మీద: Room thirteen. Help me finish. మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "enter": {
+    "gain": [
+     "note"
+    ]
+   },
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Go to room thirteen",
+      "hi-IN": "कमरा तेरह चलो",
+      "hi-en": "Room thirteen chalo",
+      "te-IN": "రూమ్ పదమూడుకి",
+      "te-en": "Room thirteen ki veltha"
+     },
+     "keywords": {
+      "en-IN": [
+       "room",
+       "thirteen",
+       "13"
+      ],
+      "hi-IN": [
+       "कमरा",
+       "तेरह",
+       "13"
+      ],
+      "hi-en": [
+       "thirteen",
+       "terah",
+       "13"
+      ],
+      "te-IN": [
+       "పదమూడు",
+       "రూమ్",
+       "13"
+      ],
+      "te-en": [
+       "రూమ్ థర్టీన్",
+       "థర్టీన్",
+       "పదమూడు",
+       "thirteen",
+       "13"
+      ]
+     },
+     "go": "h_room"
+    },
+    {
+     "label": {
+      "en-IN": "Wake up your roommate",
+      "hi-IN": "रूममेट को जगाओ",
+      "hi-en": "Roommate ko jagaao",
+      "te-IN": "రూమ్‌మేట్‌ని లేపు",
+      "te-en": "Roommate ni leputha"
+     },
+     "keywords": {
+      "en-IN": [
+       "wake",
+       "roommate",
+       "bunty"
+      ],
+      "hi-IN": [
+       "रूममेट",
+       "जगाओ",
+       "बंटी"
+      ],
+      "hi-en": [
+       "roommate",
+       "bunty",
+       "jagao",
+       "wake"
+      ],
+      "te-IN": [
+       "రూమ్‌మేట్",
+       "బంటీ",
+       "లేపు"
+      ],
+      "te-en": [
+       "రూమ్మేట్",
+       "రూమ్ మేట్",
+       "బంటీ",
+       "లేపుతా",
+       "roommate",
+       "bunty"
+      ]
+     },
+     "go": "h_room",
+     "say": [
+      {
+       "en-IN": "Your roommate Bunty grumbles awake, reads the note, and grabs his cricket bat. Brave, or foolish? Either way, you're not alone now.",
+       "hi-IN": "आपका रूममेट बंटी बड़बड़ाते हुए उठता है, नोट पढ़ता है और अपना क्रिकेट बैट उठा लेता है. बहादुरी या बेवकूफ़ी? जो भी हो, अब आप अकेले नहीं हैं.",
+       "hi-en": "Aapka roommate Bunty badbadaate hue uthta hai, note padhta hai, aur apna cricket bat utha leta hai. Brave, ya paagalpan? Jo bhi ho, ab aap akele nahi.",
+       "te-IN": "మీ రూమ్‌మేట్ బంటీ గొణుక్కుంటూ లేస్తాడు, చీటీ చదివి తన క్రికెట్ బ్యాట్ పట్టుకుంటాడు. ధైర్యమా, పిచ్చా? ఏదైనా, ఇప్పుడు మీరు ఒంటరి కాదు.",
+       "te-en": "Mee roommate Bunty gonuguthu lechi, note chadivi, thana cricket bat pattukuntadu. Brave aa, foolish aa? Edaina, ippudu meeru ontari kaadu.",
+       "hi-en@tts": "आपका roommate Bunty बड़बड़ाते हुए उठता है, note पढ़ता है, और अपना cricket bat उठा लेता है। Brave, या पागलपन? जो भी हो, अब आप अकेले नहीं।",
+       "te-en@tts": "మీ roommate Bunty గొణుగుతూ లేచి, note చదివి, తన cricket bat పట్టుకుంటాడు. Brave ఆ, foolish ఆ? ఏదైనా, ఇప్పుడు మీరు ఒంటరి కాదు."
+      }
+     ],
+     "effects": {
+      "meter": 1,
+      "gain": [
+       "bunty"
+      ]
+     }
+    }
+   ]
+  },
+  "h_warden": {
+   "scene": "hostel-warden",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The warden's office is empty, but the old radio crackles on by itself. The hostel register lies open at a page from nineteen ninety eight: Room thirteen, Shekhar, final year, project not submitted.",
+     "hi-IN": "वॉर्डन का ऑफ़िस ख़ाली है, पर पुराना रेडियो अपने आप खरखराने लगता है. रजिस्टर उन्नीस सौ अट्ठानवे के पन्ने पर खुला है: कमरा तेरह, शेखर, फ़ाइनल ईयर, प्रोजेक्ट जमा नहीं हुआ.",
+     "hi-en": "Warden ka office khaali hai, par puraana radio apne aap crackle karne lagta hai. Register unnees sau atthaanve ke page par khula hai: Room thirteen, Shekhar, final year, project submit nahi hua.",
+     "te-IN": "వార్డెన్ ఆఫీస్ ఖాళీ, కానీ పాత రేడియో దానంతట అదే ఆన్ అవుతుంది. రిజిస్టర్ పంతొమ్మిది వందల తొంభై ఎనిమిది పేజీలో తెరిచి ఉంది: రూమ్ పదమూడు, శేఖర్, ఫైనల్ ఇయర్, ప్రాజెక్ట్ సబ్మిట్ చేయలేదు.",
+     "te-en": "Warden office khaaliga undi, kaani paatha radio daanantata ade crackle avuthundi. Hostel register nineteen ninety eight page daggara open: Room thirteen, Shekhar, final year, project not submitted.",
+     "hi-en@tts": "Warden का office खाली है, पर पुराना radio अपने आप crackle करने लगता है। Register उन्नीस सौ अट्ठानवे के page पर खुला है: Room thirteen, Shekhar, final year, project submit नहीं हुआ।",
+     "te-en@tts": "Warden office ఖాళీగా ఉంది, కానీ పాత radio దానంతట అదే crackle అవుతుంది. Hostel register nineteen ninety eight page దగ్గర open: Room thirteen, Shekhar, final year, project not submitted."
+    },
+    {
+     "en-IN": "The key box for the generator has a combination lock.",
+     "hi-IN": "जनरेटर की चाबी वाले बॉक्स पर कॉम्बिनेशन लॉक लगा है.",
+     "hi-en": "Generator ki key waale box par combination lock laga hai.",
+     "te-IN": "జనరేటర్ కీ బాక్స్‌కి కాంబినేషన్ లాక్ ఉంది.",
+     "te-en": "Generator key box ki combination lock undi.",
+     "hi-en@tts": "Generator की key वाले box पर combination lock लगा है।",
+     "te-en@tts": "Generator key box కి combination lock ఉంది."
+    }
+   ],
+   "enter": {
+    "gain": [
+     "register"
+    ]
+   },
+   "puzzle": {
+    "prompt": {
+     "en-IN": "A sticky note on the box says: the code is the number of degrees in a right angle.",
+     "hi-IN": "बॉक्स पर एक स्टिकी नोट चिपका है: कोड वही है, जितने डिग्री एक राइट एंगल में होते हैं.",
+     "hi-en": "Box par lage sticky note par likha hai: code hai, ek right angle mein kitne degrees hote hain.",
+     "te-IN": "బాక్స్ మీద ఒక స్టిక్కీ నోట్: కోడ్ అంటే రైట్ యాంగిల్‌లో ఎన్ని డిగ్రీలో అంత.",
+     "te-en": "Box meeda sticky note: code ante right angle lo enni degrees untayo antha.",
+     "hi-en@tts": "Box पर लगे sticky note पर लिखा है: code है, एक right angle में कितने degrees होते हैं।",
+     "te-en@tts": "Box మీద sticky note: code అంటే right angle లో ఎన్ని degrees ఉంటాయో అంత."
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "90",
+      "180",
+      "45"
+     ],
+     "hi-IN": [
+      "90",
+      "180",
+      "45"
+     ],
+     "hi-en": [
+      "90",
+      "180",
+      "45"
+     ],
+     "te-IN": [
+      "90",
+      "180",
+      "45"
+     ],
+     "te-en": [
+      "90",
+      "180",
+      "45"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "नब्बे",
+      "ninety"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "తొంభై",
+      "ninety"
+     ],
+     "te-en": [
+      "ninety",
+      "నైంటీ",
+      "తొంభై"
+     ]
+    },
+    "pass": {
+     "go": "h_basement",
+     "say": [
+      {
+       "en-IN": "Ninety. The box pops open. You grab the generator key.",
+       "hi-IN": "नब्बे. बॉक्स खट से खुल जाता है. आप जनरेटर की चाबी उठा लेते हैं.",
+       "hi-en": "Nabbe. Box khul jaata hai. Aap generator ki key utha lete hain.",
+       "te-IN": "తొంభై. బాక్స్ టక్కున తెరుచుకుంటుంది. జనరేటర్ కీ తీసుకుంటారు.",
+       "te-en": "Ninety. Box tak mani open avuthundi. Generator key theesukuntaru.",
+       "hi-en@tts": "नब्बे। Box खुल जाता है। आप generator की key उठा लेते हैं।",
+       "te-en@tts": "Ninety. Box టక్ మని open అవుతుంది. Generator key తీసుకుంటారు."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "key"
+      ]
+     }
+    },
+    "fail": {
+     "go": "h_stairs",
+     "say": [
+      {
+       "en-IN": "The box stays shut, and the radio laughs at you. Actually laughs. You back out of the office fast.",
+       "hi-IN": "बॉक्स बंद ही रहता है, और रेडियो आप पर हँसता है. सच में हँसता है. आप फटाफट ऑफ़िस से बाहर निकलते हैं.",
+       "hi-en": "Box band hi rehta hai, aur radio aap par hansta hai. Sach mein hansta hai. Aap fatafat office se bahar nikalte hain.",
+       "te-IN": "బాక్స్ తెరుచుకోదు, రేడియో మిమ్మల్ని చూసి నవ్వుతుంది. నిజంగా నవ్వుతుంది. మీరు వేగంగా ఆఫీస్ నుంచి బయటపడతారు.",
+       "te-en": "Box theruchukodu, radio mimmalni chusi navvuthundi. Nijamgaane navvuthundi. Meeru fast ga office nunchi bayataki vachestharu.",
+       "hi-en@tts": "Box बंद ही रहता है, और radio आप पर हँसता है। सच में हँसता है। आप फ़टाफ़ट office से बाहर निकलते हैं।",
+       "te-en@tts": "Box తెరుచుకోదు, radio మిమ్మల్ని చూసి నవ్వుతుంది. నిజంగానే నవ్వుతుంది. మీరు fast గా office నుంచి బయటకి వచ్చేస్తారు."
+      }
+     ],
+     "effects": {
+      "meter": -1
+     }
+    }
+   }
+  },
+  "h_basement": {
+   "scene": "hostel-basement",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "In the basement you turn the key and the old generator coughs to life. Lights flicker on across Block C.",
+     "hi-IN": "बेसमेंट में चाबी घुमाते ही पुराना जनरेटर खाँसते हुए चालू हो जाता है. पूरे ब्लॉक सी में लाइट्स टिमटिमाकर जल उठती हैं.",
+     "hi-en": "Basement mein aap key ghumaate hain aur puraana generator khaanste hue chaalu ho jaata hai. Poore Block C mein lights timtimaakar jal uthti hain.",
+     "te-IN": "బేస్‌మెంట్‌లో కీ తిప్పగానే పాత జనరేటర్ దగ్గుతూ స్టార్ట్ అవుతుంది. బ్లాక్ సి అంతా లైట్లు మిణుకుమంటూ వెలుగుతాయి.",
+     "te-en": "Basement lo key thippagaane paatha generator dagguthu start avuthundi. Block C anthata lights minukumantu veluguthayi.",
+     "hi-en@tts": "Basement में आप key घुमाते हैं और पुराना generator खाँसते हुए चालू हो जाता है। पूरे Block C में lights टिमटिमाकर जल उठती हैं।",
+     "te-en@tts": "Basement లో key తిప్పగానే పాత generator దగ్గుతూ start అవుతుంది. Block C అంతటా lights మిణుకుమంటూ వెలుగుతాయి."
+    },
+    {
+     "en-IN": "Upstairs, someone shrieks, then giggles. You follow the sound.",
+     "hi-IN": "ऊपर कोई चीख़ता है, फिर खिलखिलाता है. आप आवाज़ का पीछा करते हैं.",
+     "hi-en": "Upar koi cheekhta hai, phir khilkhilaata hai. Aap awaaz ke peeche chal padte hain.",
+     "te-IN": "పైన ఎవరో కెవ్వున అరిచి, తర్వాత కిసుక్కున నవ్వుతారు. మీరు ఆ శబ్దం వెంట వెళ్తారు.",
+     "te-en": "Paina evaro kevvumani arichi, tharvatha kisukkuna navvutharu. Meeru aa sound ni follow avutharu.",
+     "hi-en@tts": "ऊपर कोई चीखता है, फिर खिलखिलाता है। आप आवाज़ के पीछे चल पड़ते हैं।",
+     "te-en@tts": "పైన ఎవరో కెవ్వుమని అరిచి, తర్వాత కిసుక్కున నవ్వుతారు. మీరు ఆ sound ని follow అవుతారు."
+    }
+   ],
+   "enter": {
+    "meter": 1,
+    "gain": [
+     "lights"
+    ]
+   },
+   "go": "h_stairs"
+  },
+  "h_stairs": {
+   "scene": "hostel-stairs",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The stairwell glows an eerie green. Halfway up, chalk on the wall: an arrow, and the words, this way, junior.",
+     "hi-IN": "सीढ़ियों पर अजीब-सी हरी रोशनी है. आधे रास्ते पर दीवार पर चॉक से बना एक तीर, और लिखा है: इधर, जूनियर.",
+     "hi-en": "Stairwell mein ajeeb si hari roshni hai. Aadhe raaste par deewar par chalk se bana ek arrow, aur likha hai: this way, junior.",
+     "te-IN": "మెట్ల దారి వింతైన పచ్చ వెలుగులో ఉంది. సగం ఎక్కాక, గోడ మీద చాక్‌తో ఒక బాణం, పక్కనే: ఇటు రా, జూనియర్.",
+     "te-en": "Stairwell vinthaina green light lo merusthondi. Sagam dooram lo goda meeda chalk tho: oka arrow, inka this way, junior ane words.",
+     "hi-en@tts": "Stairwell में अजीब सी हरी रोशनी है। आधे रास्ते पर दीवार पर chalk से बना एक arrow, और लिखा है: this way, junior।",
+     "te-en@tts": "Stairwell వింతైన green light లో మెరుస్తోంది. సగం దూరంలో గోడ మీద chalk తో: ఒక arrow, ఇంకా this way, junior అనే words."
+    },
+    {
+     "en-IN": "Up to the terrace, or down to room thirteen?",
+     "hi-IN": "ऊपर टैरेस पर, या नीचे कमरा तेरह में?",
+     "hi-en": "Upar terrace par, ya neeche room thirteen?",
+     "te-IN": "పైకి టెర్రస్‌కా, లేక కిందికి రూమ్ పదమూడుకా?",
+     "te-en": "Paina terrace kaa, kinda room thirteen kaa?",
+     "hi-en@tts": "ऊपर terrace पर, या नीचे room thirteen?",
+     "te-en@tts": "పైన terrace కా, కింద room thirteen కా?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Up to the terrace",
+      "hi-IN": "ऊपर टैरेस पर",
+      "hi-en": "Upar terrace par",
+      "te-IN": "పైకి టెర్రస్‌కి",
+      "te-en": "Paina terrace ki"
+     },
+     "keywords": {
+      "en-IN": [
+       "up",
+       "terrace",
+       "roof"
+      ],
+      "hi-IN": [
+       "टैरेस",
+       "छत",
+       "ऊपर"
+      ],
+      "hi-en": [
+       "terrace",
+       "upar",
+       "roof",
+       "chhat"
+      ],
+      "te-IN": [
+       "టెర్రస్",
+       "పైకి",
+       "మేడ"
+      ],
+      "te-en": [
+       "టెర్రస్",
+       "పైకి",
+       "రూఫ్",
+       "terrace",
+       "roof"
+      ]
+     },
+     "go": "h_terrace"
+    },
+    {
+     "label": {
+      "en-IN": "Down to room thirteen",
+      "hi-IN": "नीचे कमरा तेरह",
+      "hi-en": "Neeche room thirteen",
+      "te-IN": "కిందికి రూమ్ పదమూడు",
+      "te-en": "Kinda room thirteen ki"
+     },
+     "keywords": {
+      "en-IN": [
+       "down",
+       "room",
+       "thirteen"
+      ],
+      "hi-IN": [
+       "नीचे",
+       "कमरा",
+       "तेरह"
+      ],
+      "hi-en": [
+       "neeche",
+       "thirteen",
+       "terah",
+       "13"
+      ],
+      "te-IN": [
+       "కిందికి",
+       "పదమూడు",
+       "రూమ్"
+      ],
+      "te-en": [
+       "కిందకి",
+       "థర్టీన్",
+       "రూమ్ థర్టీన్",
+       "పదమూడు",
+       "down",
+       "thirteen"
+      ]
+     },
+     "go": "h_room",
+     "effects": {
+      "meter": -1
+     }
+    }
+   ]
+  },
+  "h_room": {
+   "scene": "hostel-room",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Room thirteen smells of dust and old ink. On the desk is an unfinished project report from nineteen ninety eight, and a candle that lights itself.",
+     "hi-IN": "कमरा तेरह में धूल और पुरानी स्याही की गंध है. डेस्क पर उन्नीस सौ अट्ठानवे की एक अधूरी प्रोजेक्ट रिपोर्ट है, और एक मोमबत्ती जो अपने आप जल उठती है.",
+     "hi-en": "Room thirteen mein dhool aur puraani syaahi ki mehak hai. Desk par unnees sau atthaanve ki ek adhoori project report, aur ek candle jo apne aap jal uthti hai.",
+     "te-IN": "రూమ్ పదమూడులో దుమ్ము, పాత ఇంక్ వాసన. డెస్క్ మీద పంతొమ్మిది వందల తొంభై ఎనిమిది నాటి అసంపూర్తి ప్రాజెక్ట్ రిపోర్ట్, దానంతట అదే వెలిగే ఒక కొవ్వొత్తి.",
+     "te-en": "Room thirteen lo dummu, paatha ink vaasana. Desk meeda nineteen ninety eight naati poorthi kaani project report, daanantata ade velige oka candle.",
+     "hi-en@tts": "Room thirteen में धूल और पुरानी स्याही की महक है। Desk पर उन्नीस सौ अट्ठानवे की एक अधूरी project report, और एक candle जो अपने आप जल उठती है।",
+     "te-en@tts": "Room thirteen లో దుమ్ము, పాత ink వాసన. Desk మీద nineteen ninety eight నాటి పూర్తి కాని project report, దానంతట అదే వెలిగే ఒక candle."
+    },
+    {
+     "en-IN": "A cold whisper fills the room: help me finish.",
+     "hi-IN": "कमरे में एक ठंडी फुसफुसाहट गूँजती है: पूरा करने में मदद करो.",
+     "hi-en": "Kamre mein ek thandi phusphusaahat bhar jaati hai: mujhe poora karne mein help karo.",
+     "te-IN": "ఒక చల్లని గుసగుస గదంతా నిండుతుంది: పూర్తి చేయడానికి సాయం చెయ్యి.",
+     "te-en": "Oka challati gusagusa room antha nindutundi: help me finish.",
+     "hi-en@tts": "कमरे में एक ठंडी फुसफुसाहट भर जाती है: मुझे पूरा करने में help करो।",
+     "te-en@tts": "ఒక చల్లటి గుసగుస room అంతా నిండుతుంది: help me finish."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "The last unanswered question on the page: two ten ohm resistors in series. What is the total resistance in ohms?",
+     "hi-IN": "पन्ने पर आख़िरी बचा सवाल: दस-दस ओम के दो रेज़िस्टर सीरीज़ में. कुल रेज़िस्टेंस कितने ओम?",
+     "hi-en": "Page par aakhri adhoora sawaal: das ohm ke do resistors series mein. Total resistance kitne ohms?",
+     "te-IN": "పేజీలో జవాబు లేని చివరి ప్రశ్న: రెండు పది ఓమ్ రెసిస్టర్లు సిరీస్‌లో. మొత్తం రెసిస్టెన్స్ ఎన్ని ఓమ్స్?",
+     "te-en": "Page meeda chivari unanswered question: rendu ten ohm resistors series lo unnayi. Total resistance enni ohms?",
+     "hi-en@tts": "Page पर आखिरी अधूरा सवाल: दस ohm के दो resistors series में। Total resistance कितने ohms?",
+     "te-en@tts": "Page మీద చివరి unanswered question: రెండు ten ohm resistors series లో ఉన్నాయి. Total resistance ఎన్ని ohms?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "20",
+      "5",
+      "100"
+     ],
+     "hi-IN": [
+      "20",
+      "5",
+      "100"
+     ],
+     "hi-en": [
+      "20",
+      "5",
+      "100"
+     ],
+     "te-IN": [
+      "20",
+      "5",
+      "100"
+     ],
+     "te-en": [
+      "20",
+      "5",
+      "100"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [],
+     "hi-IN": [
+      "बीस",
+      "twenty"
+     ],
+     "hi-en": [],
+     "te-IN": [
+      "ఇరవై",
+      "twenty"
+     ],
+     "te-en": [
+      "twenty",
+      "twenty ohms",
+      "ట్వంటీ",
+      "ఇరవై"
+     ]
+    },
+    "pass": {
+     "go": "end:graduate",
+     "say": [
+      {
+       "en-IN": "You write twenty, and the candle flares bright gold. A quiet voice says: thank you, junior. Finally, I can graduate.",
+       "hi-IN": "आप बीस लिखते हैं, और मोमबत्ती सुनहरी लौ से भभक उठती है. एक धीमी आवाज़ आती है: शुक्रिया, जूनियर. आख़िरकार मैं ग्रेजुएट हो सकता हूँ.",
+       "hi-en": "Aap twenty likhte hain, aur candle sunehri roshni se bhadak uthti hai. Ek shaant awaaz: thank you, junior. Aakhirkaar, ab main graduate ho sakta hoon.",
+       "te-IN": "మీరు ఇరవై అని రాస్తారు, కొవ్వొత్తి బంగారు రంగులో భగ్గుమంటుంది. ఒక నెమ్మదైన గొంతు: థ్యాంక్యూ, జూనియర్. ఎట్టకేలకు నేను గ్రాడ్యుయేట్ అవుతాను.",
+       "te-en": "Meeru twenty ani raastharu, candle bangaaru rangulo merusthundi. Oka quiet voice: thank you, junior. Finally, nenu graduate avvagalanu.",
+       "hi-en@tts": "आप twenty लिखते हैं, और candle सुनहरी रोशनी से भड़क उठती है। एक शांत आवाज़: thank you, junior। आखिरकार, अब मैं graduate हो सकता हूँ।",
+       "te-en@tts": "మీరు twenty అని రాస్తారు, candle బంగారు రంగులో మెరుస్తుంది. ఒక quiet voice: thank you, junior. Finally, నేను graduate అవ్వగలను."
+      }
+     ]
+    },
+    "fail": {
+     "go": "h_terrace",
+     "say": [
+      {
+       "en-IN": "The candle snuffs out. Something icy brushes the back of your neck, and you run for the stairs.",
+       "hi-IN": "मोमबत्ती बुझ जाती है. कोई बर्फ़ीली चीज़ आपकी गर्दन के पीछे छूकर निकलती है, और आप सीढ़ियों की तरफ़ भागते हैं.",
+       "hi-en": "Candle bujh jaati hai. Koi barf jaisi thandi cheez aapki gardan ko chhooti hai, aur aap seedhiyon ki taraf bhaagte hain.",
+       "te-IN": "కొవ్వొత్తి ఆరిపోతుంది. ఏదో మంచులా చల్లగా మీ మెడ వెనక తాకుతుంది, మీరు మెట్ల వైపు పరుగు తీస్తారు.",
+       "te-en": "Candle aaripothundi. Manchulaa challatidi edo mee meda venaka thaakuthundi, meeru stairs vaipu parigeththutharu.",
+       "hi-en@tts": "Candle बुझ जाती है। कोई बर्फ़ जैसी ठंडी चीज़ आपकी गर्दन को छूती है, और आप सीढ़ियों की तरफ़ भागते हैं।",
+       "te-en@tts": "Candle ఆరిపోతుంది. మంచులా చల్లటిది ఏదో మీ మెడ వెనక తాకుతుంది, మీరు stairs వైపు పరిగెత్తుతారు."
+      }
+     ],
+     "effects": {
+      "meter": -2
+     }
+    }
+   }
+  },
+  "h_terrace": {
+   "scene": "hostel-terrace",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "On the terrace, white bedsheets flap in the fog. Behind one, you spot three seniors with a phone speaker, shaking with laughter. It's the famous Block C welcome prank!",
+     "hi-IN": "टैरेस पर धुंध में सफ़ेद चादरें फड़फड़ा रही हैं. एक के पीछे तीन सीनियर्स फ़ोन स्पीकर लिए हँसी से लोटपोट हैं. ये है ब्लॉक सी का मशहूर वेलकम प्रैंक!",
+     "hi-en": "Terrace par kohre mein safed bedsheets phadphada rahi hain. Ek ke peeche teen seniors, phone speaker ke saath, hansi se lotpot. Yeh hai mashhoor Block C welcome prank!",
+     "te-IN": "టెర్రస్ మీద పొగమంచులో తెల్లటి బెడ్‌షీట్లు రెపరెపలాడుతున్నాయి. ఒకదాని వెనక, ఫోన్ స్పీకర్‌తో నవ్వాపుకోలేక వణుకుతున్న ముగ్గురు సీనియర్లు. ఇది ఫేమస్ బ్లాక్ సి వెల్కమ్ ప్రాంక్!",
+     "te-en": "Terrace meeda thellati bedsheets pogamanchulo egurutunnayi. Okadaani venaka phone speaker tho mugguru seniors navvaapukoleka vanukuthunnaru. Idi famous Block C welcome prank!",
+     "hi-en@tts": "Terrace पर कोहरे में सफ़ेद bedsheets फड़फड़ा रही हैं। एक के पीछे तीन seniors, phone speaker के साथ, हँसी से लोटपोट। ये है मशहूर Block C welcome prank!",
+     "te-en@tts": "Terrace మీద తెల్లటి bedsheets పొగమంచులో ఎగురుతున్నాయి. ఒకదాని వెనక phone speaker తో ముగ్గురు seniors నవ్వాపుకోలేక వణుకుతున్నారు. ఇది famous Block C welcome prank!"
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करते हैं?",
+     "hi-en": "Aap kya karte hain?",
+     "te-IN": "మీరేం చేస్తారు?",
+     "te-en": "Meeru em chestharu?",
+     "hi-en@tts": "आप क्या करते हैं?",
+     "te-en@tts": "మీరు ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Laugh along with them",
+      "hi-IN": "उनके साथ हँस लो",
+      "hi-en": "Unke saath hans do",
+      "te-IN": "వాళ్ళతో కలిసి నవ్వు",
+      "te-en": "Vaallatho kalisi navvutha"
+     },
+     "keywords": {
+      "en-IN": [
+       "laugh",
+       "along"
+      ],
+      "hi-IN": [
+       "हँस",
+       "हंस",
+       "हँसो"
+      ],
+      "hi-en": [
+       "hanso",
+       "hans do",
+       "laugh",
+       "along"
+      ],
+      "te-IN": [
+       "నవ్వు",
+       "నవ్వేస్తా"
+      ],
+      "te-en": [
+       "నవ్వుతా",
+       "నవ్వు",
+       "లాఫ్",
+       "laugh"
+      ]
+     },
+     "go": "end:welcome"
+    },
+    {
+     "label": {
+      "en-IN": "Prank them back",
+      "hi-IN": "बदले में प्रैंक करो",
+      "hi-en": "Ulta prank karo",
+      "te-IN": "రివర్స్ ప్రాంక్ చేయి",
+      "te-en": "Prank tho revenge"
+     },
+     "keywords": {
+      "en-IN": [
+       "prank",
+       "revenge"
+      ],
+      "hi-IN": [
+       "प्रैंक",
+       "बदला",
+       "बदले"
+      ],
+      "hi-en": [
+       "prank",
+       "revenge",
+       "badla",
+       "ulta"
+      ],
+      "te-IN": [
+       "ప్రాంక్",
+       "రివెంజ్",
+       "రివర్స్"
+      ],
+      "te-en": [
+       "ప్రాంక్",
+       "రివెంజ్",
+       "prank",
+       "revenge"
+      ]
+     },
+     "go": [
+      {
+       "if": {
+        "has": [
+         "key"
+        ]
+       },
+       "go": "end:prank_master"
+      },
+      {
+       "go": "end:welcome"
+      }
+     ]
+    },
+    {
+     "label": {
+      "en-IN": "Report them to the warden",
+      "hi-IN": "वॉर्डन से शिकायत करो",
+      "hi-en": "Warden se complain karo",
+      "te-IN": "వార్డెన్‌కి కంప్లైంట్",
+      "te-en": "Warden ki report"
+     },
+     "keywords": {
+      "en-IN": [
+       "report",
+       "warden",
+       "complain"
+      ],
+      "hi-IN": [
+       "शिकायत",
+       "वॉर्डन",
+       "रिपोर्ट"
+      ],
+      "hi-en": [
+       "report",
+       "warden",
+       "complain",
+       "shikayat"
+      ],
+      "te-IN": [
+       "కంప్లైంట్",
+       "వార్డెన్",
+       "రిపోర్ట్"
+      ],
+      "te-en": [
+       "రిపోర్ట్",
+       "వార్డెన్",
+       "కంప్లైంట్",
+       "report",
+       "warden"
+      ]
+     },
+     "go": "end:by_the_book"
+    }
+   ]
+  }
+ },
+ "endings": {
+  "graduate": {
+   "title": {
+    "en-IN": "The Ghost Graduates",
+    "hi-IN": "भूत हुआ ग्रेजुएट",
+    "hi-en": "Ghost ka Graduation",
+    "te-IN": "దెయ్యం గ్రాడ్యుయేట్ అయింది",
+    "te-en": "The Ghost Graduates"
+   },
+   "rank": "gold",
+   "scene": "hostel-dawn",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "At sunrise the room is just a room again. On the desk, the old report now has a stamp on it: Submitted. Room thirteen has never felt so peaceful.",
+     "hi-IN": "सूरज उगते ही कमरा फिर बस एक कमरा है. डेस्क पर पुरानी रिपोर्ट पर अब एक मुहर लगी है: जमा. कमरा तेरह इतना शांत पहले कभी नहीं लगा.",
+     "hi-en": "Sooraj nikalne tak room phir se bas ek room hai. Desk par puraani report par ab stamp laga hai: Submitted. Room thirteen itna shaant pehle kabhi nahi laga.",
+     "te-IN": "సూర్యోదయానికి ఆ గది మళ్ళీ మామూలు గదే. డెస్క్ మీద పాత రిపోర్ట్‌కి ఇప్పుడు ఒక స్టాంప్: సబ్మిటెడ్. రూమ్ పదమూడు ఇంత ప్రశాంతంగా ఎప్పుడూ లేదు.",
+     "te-en": "Sooryodayaaniki aa room malli maamoolu room ayipothundi. Desk meeda paatha report ki ippudu stamp undi: Submitted. Room thirteen intha peaceful ga eppudu ledu.",
+     "hi-en@tts": "सूरज निकलने तक room फिर से बस एक room है। Desk पर पुरानी report पर अब stamp लगा है: Submitted। Room thirteen इतना शांत पहले कभी नहीं लगा।",
+     "te-en@tts": "సూర్యోదయానికి ఆ room మళ్ళీ మామూలు room అయిపోతుంది. Desk మీద పాత report కి ఇప్పుడు stamp ఉంది: Submitted. Room thirteen ఇంత peaceful గా ఎప్పుడూ లేదు."
+    },
+    {
+     "en-IN": "Some seniors only needed a little help from a junior.",
+     "hi-IN": "कुछ सीनियर्स को बस एक जूनियर की थोड़ी-सी मदद चाहिए थी.",
+     "hi-en": "Kuch seniors ko bas ek junior ki thodi si help chahiye hoti hai.",
+     "te-IN": "కొంతమంది సీనియర్లకి కావాల్సింది ఒక జూనియర్ చిన్న సాయం మాత్రమే.",
+     "te-en": "Konthamandi seniors ki kaavalsindi oka junior nunchi chinna help maathrame.",
+     "hi-en@tts": "कुछ seniors को बस एक junior की थोड़ी सी help चाहिए होती है।",
+     "te-en@tts": "కొంతమంది seniors కి కావాల్సింది ఒక junior నుంచి చిన్న help మాత్రమే."
+    }
+   ]
+  },
+  "prank_master": {
+   "title": {
+    "en-IN": "The Prank Master",
+    "hi-IN": "प्रैंक मास्टर",
+    "hi-en": "The Prank Master",
+    "te-IN": "ప్రాంక్ మాస్టర్",
+    "te-en": "The Prank Master"
+   },
+   "rank": "gold",
+   "scene": "hostel-terrace",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "You sneak down and switch the generator off. In the sudden dark, the seniors' speaker dies, and they scream louder than anyone. By breakfast, you're a Block C legend.",
+     "hi-IN": "आप चुपके से नीचे जाकर जनरेटर बंद कर देते हैं. अचानक अंधेरा, सीनियर्स का स्पीकर बंद, और चीख़ें सबसे ज़्यादा उन्हीं की. नाश्ते तक आप ब्लॉक सी के लेजेंड हैं.",
+     "hi-en": "Aap chupke se neeche jaakar generator band kar dete hain. Achaanak andhere mein seniors ka speaker band, aur woh sabse zor se cheekhte hain. Breakfast tak aap Block C ke legend hain.",
+     "te-IN": "మెల్లగా కిందికి వెళ్ళి జనరేటర్ ఆఫ్ చేస్తారు. ఒక్కసారిగా చీకటి, సీనియర్ల స్పీకర్ ఆగిపోతుంది, వాళ్ళే అందరికంటే గట్టిగా అరుస్తారు. బ్రేక్‌ఫాస్ట్ టైమ్‌కి మీరు బ్లాక్ సి లెజెండ్.",
+     "te-en": "Nemmadiga kindaki velli generator off chestharu. Okkasariga cheekatilo seniors speaker aagipothundi, andarikante gattiga vaalle arustharu. Breakfast time ki meeru Block C legend.",
+     "hi-en@tts": "आप चुपके से नीचे जाकर generator बंद कर देते हैं। अचानक अँधेरे में seniors का speaker बंद, और वो सबसे ज़ोर से चीखते हैं। Breakfast तक आप Block C के legend हैं।",
+     "te-en@tts": "నెమ్మదిగా కిందకి వెళ్ళి generator off చేస్తారు. ఒక్కసారిగా చీకటిలో seniors speaker ఆగిపోతుంది, అందరికంటే గట్టిగా వాళ్ళే అరుస్తారు. Breakfast టైమ్ కి మీరు Block C legend."
+    }
+   ]
+  },
+  "welcome": {
+   "title": {
+    "en-IN": "Welcome to Block C",
+    "hi-IN": "ब्लॉक सी में स्वागत है",
+    "hi-en": "Block C mein Welcome",
+    "te-IN": "బ్లాక్ సికి స్వాగతం",
+    "te-en": "Welcome to Block C"
+   },
+   "rank": "silver",
+   "scene": "hostel-dawn",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "The seniors cheer and hand you hot chai on the terrace. You're officially one of Block C now.",
+     "hi-IN": "सीनियर्स तालियाँ बजाते हैं और टैरेस पर आपको गरम चाय थमाते हैं. अब आप ऑफ़िशियली ब्लॉक सी का हिस्सा हैं.",
+     "hi-en": "Seniors cheer karte hain aur terrace par aapko garam chai thamaate hain. Ab aap officially Block C ka hissa hain.",
+     "te-IN": "సీనియర్లు చీర్ చేస్తూ టెర్రస్ మీద మీకు వేడి చాయ్ ఇస్తారు. ఇప్పుడు మీరు అఫీషియల్‌గా బ్లాక్ సి ఫ్యామిలీ.",
+     "te-en": "Seniors cheer chesi terrace meeda meeku vedi chai istharu. Ippudu meeru officially Block C lo okaru.",
+     "hi-en@tts": "Seniors cheer करते हैं और terrace पर आपको गरम chai थमाते हैं। अब आप officially Block C का हिस्सा हैं।",
+     "te-en@tts": "Seniors cheer చేసి terrace మీద మీకు వేడి chai ఇస్తారు. ఇప్పుడు మీరు officially Block C లో ఒకరు."
+    },
+    {
+     "en-IN": "But walking back down, you notice the note in your pocket has gone completely blank.",
+     "hi-IN": "पर नीचे लौटते हुए ध्यान जाता है कि जेब में रखा नोट पूरी तरह कोरा हो चुका है.",
+     "hi-en": "Par neeche lautte hue dhyaan jaata hai ki jeb waala note poora blank ho chuka hai.",
+     "te-IN": "కానీ కిందికి దిగుతుంటే, జేబులో ఉన్న చీటీ పూర్తిగా ఖాళీ అయిపోయిందని గమనిస్తారు.",
+     "te-en": "Kaani kindaki nadusthunte, mee pocket lo note poorthiga blank ayipoyindani gamanistharu.",
+     "hi-en@tts": "पर नीचे लौटते हुए ध्यान जाता है कि जेब वाला note पूरा blank हो चुका है।",
+     "te-en@tts": "కానీ కిందకి నడుస్తుంటే, మీ pocket లో note పూర్తిగా blank అయిపోయిందని గమనిస్తారు."
+    }
+   ]
+  },
+  "by_the_book": {
+   "title": {
+    "en-IN": "By the Book",
+    "hi-IN": "क़ायदे से",
+    "hi-en": "By the Book",
+    "te-IN": "రూల్స్ ప్రకారం",
+    "te-en": "By the Book"
+   },
+   "rank": "silver",
+   "scene": "hostel-warden",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "The warden gives the seniors a long lecture and a longer list of mess duties. They grumble, but they respect you now.",
+     "hi-IN": "वॉर्डन सीनियर्स को लंबा लेक्चर देते हैं, और उससे भी लंबी मेस ड्यूटी की लिस्ट. वो बड़बड़ाते हैं, पर अब आपकी इज़्ज़त करते हैं.",
+     "hi-en": "Warden seniors ko lamba lecture aur usse bhi lambi mess duties ki list thama dete hain. Woh badbadaate hain, par ab aapki respect karte hain.",
+     "te-IN": "వార్డెన్ సీనియర్లకి పెద్ద క్లాస్ పీకి, ఇంకా పెద్ద మెస్ డ్యూటీల లిస్ట్ ఇస్తారు. వాళ్ళు గొణుక్కుంటారు, కానీ ఇప్పుడు మిమ్మల్ని గౌరవిస్తారు.",
+     "te-en": "Warden seniors ki pedda lecture istharu, inka pedda mess duties list kooda. Vaallu gonukkuntaru, kaani ippudu mimmalni respect chestharu.",
+     "hi-en@tts": "Warden seniors को लंबा lecture और उससे भी लंबी mess duties की list थमा देते हैं। वो बड़बड़ाते हैं, पर अब आपकी respect करते हैं।",
+     "te-en@tts": "Warden seniors కి పెద్ద lecture ఇస్తారు, ఇంకా పెద్ద mess duties list కూడా. వాళ్ళు గొణుక్కుంటారు, కానీ ఇప్పుడు మిమ్మల్ని respect చేస్తారు."
+    }
+   ]
+  },
+  "ran": {
+   "title": {
+    "en-IN": "Ran All the Way to Block A",
+    "hi-IN": "सीधे ब्लॉक ए तक दौड़",
+    "hi-en": "Bhaagkar seedhe Block A",
+    "te-IN": "బ్లాక్ ఎ దాకా పరుగో పరుగు",
+    "te-en": "Ran All the Way to Block A"
+   },
+   "rank": "bronze",
+   "scene": "hostel-outside",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "That's it, you're out! You sprint across the dark campus and spend the rest of the night on your friend's floor in Block A.",
+     "hi-IN": "बस, बहुत हुआ, अब यहाँ नहीं रुकना! आप अंधेरे कैंपस में दौड़ लगाते हैं और बाकी रात ब्लॉक ए में दोस्त के कमरे के फ़र्श पर काटते हैं.",
+     "hi-en": "Bas, bahut hua! Aap andhere campus ke paar daud lagaate hain aur baaki raat Block A mein ek dost ke farsh par kaatte hain.",
+     "te-IN": "ఇక చాలు, ఇక్కడ ఉండేది లేదు! చీకటి క్యాంపస్ దాటి పరిగెత్తి, మిగతా రాత్రంతా బ్లాక్ ఎ లో ఫ్రెండ్ రూమ్ నేల మీద గడుపుతారు.",
+     "te-en": "Anthe, ika chaalu! Cheekati campus meeduga sprint chesi, migatha raathri Block A lo mee friend room floor meeda gaduputharu.",
+     "hi-en@tts": "बस, बहुत हुआ! आप अँधेरे campus के पार दौड़ लगाते हैं और बाकी रात Block A में एक दोस्त के फ़र्श पर काटते हैं।",
+     "te-en@tts": "అంతే, ఇక చాలు! చీకటి campus మీదుగా sprint చేసి, మిగతా రాత్రి Block A లో మీ friend room floor మీద గడుపుతారు."
+    },
+    {
+     "en-IN": "In the morning, everyone asks what happened. You're still not sure.",
+     "hi-IN": "सुबह सब पूछते हैं कि हुआ क्या था. आपको अब भी पक्का नहीं पता.",
+     "hi-en": "Subah sab poochte hain ki kya hua tha. Aapko ab bhi pakka nahi pata.",
+     "te-IN": "పొద్దున అందరూ ఏం జరిగిందని అడుగుతారు. మీకు ఇప్పటికీ సరిగ్గా తెలీదు.",
+     "te-en": "Poddhuna andaru emaindani aduguthaaru. Meeke inka sure ga theliyadu.",
+     "hi-en@tts": "सुबह सब पूछते हैं कि क्या हुआ था। आपको अब भी पक्का नहीं पता।",
+     "te-en@tts": "పొద్దున అందరూ ఏమైందని అడుగుతారు. మీకే ఇంకా sure గా తెలియదు."
+    }
+   ]
+  }
+ }
+}

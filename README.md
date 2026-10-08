@@ -1,4 +1,4 @@
-# Maata Arcade
+# Mic Drop Arcade
 
 A retro arcade quiz you play only by speaking: Telugu, Hindi, English, Hinglish or Tenglish. Built for Gnani AI's
 Great Indian AI Internship Challenge on **Prisma v2.5** (realtime STT), **Timbre v2.5**

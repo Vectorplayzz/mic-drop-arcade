@@ -1,0 +1,216 @@
+{
+  "schema": 1,
+  "id": "tenglish-cave-01",
+  "title": "Crystal Cave Adventure",
+  "language": "te-en",
+  "topic": "engineering and tech",
+  "version": 3,
+  "source": "hand",
+  "reviewed_by": "G Nagarjuna",
+  "reviewed_at": "2026-10-07",
+  "questions": [
+    {
+      "id": "q01",
+      "prompt": "Laptop, phone batteries ఎక్కువగా ఏ metal తో తయారవుతాయి?",
+      "answers": [
+        "lithium",
+        "lithium ion",
+        "లిథియం",
+        "లిథియం అయాన్"
+      ],
+      "display_answer": "lithium",
+      "kind": "text",
+      "options": [
+        "lithium",
+        "lead",
+        "nickel"
+      ]
+    },
+    {
+      "id": "q02",
+      "prompt": "AC current ని promote చేసిన famous scientist ఎవరు?",
+      "answers": [
+        "tesla",
+        "nikola tesla",
+        "టెస్లా",
+        "నికోలా టెస్లా"
+      ],
+      "display_answer": "Tesla",
+      "kind": "text",
+      "options": [
+        "Tesla",
+        "Edison",
+        "Faraday"
+      ]
+    },
+    {
+      "id": "q03",
+      "prompt": "Light bulb లో glow అయ్యే సన్నని wire ని ఏమంటారు?",
+      "answers": [
+        "filament",
+        "ఫిలమెంట్",
+        "ఫిలామెంట్",
+        "ఫిల్మెంట్"
+      ],
+      "display_answer": "filament",
+      "kind": "text",
+      "options": [
+        "filament",
+        "fuse",
+        "switch"
+      ]
+    },
+    {
+      "id": "q04",
+      "prompt": "Electricity తో water ని split చేసే process ని ఏమంటారు?",
+      "answers": [
+        "electrolysis",
+        "ఎలక్ట్రాలిసిస్",
+        "ఎలక్ట్రోలిసిస్",
+        "ఎలక్ట్రోలసిస్",
+        "విద్యుద్విశ్లేషణ"
+      ],
+      "display_answer": "electrolysis",
+      "kind": "text",
+      "options": [
+        "electrolysis",
+        "distillation",
+        "filtration"
+      ]
+    },
+    {
+      "id": "q05",
+      "prompt": "Mobile phones ఏ waves తో communicate చేస్తాయి?",
+      "answers": [
+        "radio waves",
+        "radio",
+        "రేడియో వేవ్స్",
+        "రేడియో"
+      ],
+      "display_answer": "radio waves",
+      "kind": "text",
+      "options": [
+        "radio waves",
+        "sound waves",
+        "x rays"
+      ]
+    },
+    {
+      "id": "q06",
+      "prompt": "Facebook ని start చేసింది ఎవరు?",
+      "answers": [
+        "zuckerberg",
+        "mark zuckerberg",
+        "జుకర్‌బర్గ్",
+        "మార్క్ జుకర్‌బర్గ్",
+        "జకర్‌బర్గ్",
+        "మార్క్ జకర్‌బర్గ్"
+      ],
+      "display_answer": "Mark Zuckerberg",
+      "kind": "text",
+      "options": [
+        "Mark Zuckerberg",
+        "Jeff Bezos",
+        "Elon Musk"
+      ]
+    },
+    {
+      "id": "q07",
+      "prompt": "Pressure కి SI unit ఏంటి?",
+      "answers": [
+        "pascal",
+        "పాస్కల్"
+      ],
+      "display_answer": "pascal",
+      "kind": "text",
+      "options": [
+        "pascal",
+        "newton",
+        "joule"
+      ]
+    },
+    {
+      "id": "q08",
+      "prompt": "Sound కంటే fast గా వెళ్ళే speed ని ఏమంటారు?",
+      "answers": [
+        "supersonic",
+        "super sonic",
+        "సూపర్సోనిక్",
+        "సూపర్ సోనిక్"
+      ],
+      "display_answer": "supersonic",
+      "kind": "text",
+      "options": [
+        "supersonic",
+        "subsonic",
+        "ultrasonic"
+      ]
+    },
+    {
+      "id": "q09",
+      "prompt": "Bitcoin ఏ technology మీద run అవుతుంది?",
+      "answers": [
+        "blockchain",
+        "block chain",
+        "బ్లాక్‌చెయిన్",
+        "బ్లాక్ చెయిన్",
+        "బ్లాక్ చైన్",
+        "బ్లాక్‌చైన్"
+      ],
+      "display_answer": "blockchain",
+      "kind": "text",
+      "options": [
+        "blockchain",
+        "cloud",
+        "bluetooth"
+      ]
+    },
+    {
+      "id": "q10",
+      "prompt": "GPS ఏ objects నుంచి signals తీసుకుంటుంది?",
+      "answers": [
+        "satellites",
+        "satellite",
+        "శాటిలైట్స్",
+        "శాటిలైట్",
+        "సాటిలైట్స్",
+        "సాటిలైట్",
+        "ఉపగ్రహాలు"
+      ],
+      "display_answer": "satellites",
+      "kind": "text",
+      "options": [
+        "satellites",
+        "towers",
+        "routers"
+      ]
+    }
+  ],
+  "story": {
+    "wizard": "Gudla Guru",
+    "wizard_sprite": "owl",
+    "scene": "crystal-cave",
+    "voice": "Varuni",
+    "intro": "Crystal cave కి welcome! ఇక్కడ power fail అయింది, magic crystals అన్నీ dim అయిపోయాయి. ప్రతి correct answer ఒక crystal ని మళ్ళీ glow చేస్తుంది.",
+    "chapters": [
+      "Super! మొదటి crystal glow అయింది.",
+      "Nice! Cave లో light వస్తోంది.",
+      "Awesome! River మెరుస్తోంది.",
+      "Great! సగం crystals ready.",
+      "Wow! Blue crystals అన్నీ shine అవుతున్నాయి.",
+      "Fantastic! దారి clear అవుతోంది.",
+      "Amazing! ఇంకొక్క crystal మాత్రమే మిగిలింది.",
+      "నువ్వు cave మొత్తం light చేశావు!"
+    ],
+    "setbacks": [
+      "అయ్యో! ఒక crystal మళ్ళీ dim అయింది.",
+      "Oops! Short circuit వల్ల light తగ్గింది.",
+      "పర్వాలేదు, next question విను."
+    ],
+    "endings": {
+      "great": "నువ్వు నిజమైన crystal wizard వి! Cave మొత్తం మెరిసిపోతోంది.",
+      "good": "Good job! చాలా crystals glow అవుతున్నాయి.",
+      "try_again": "కొన్ని crystals ఇంకా dim గా ఉన్నాయి. Revise చేసి మళ్ళీ try చేద్దాం!"
+    }
+  }
+}

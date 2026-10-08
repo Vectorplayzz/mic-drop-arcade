@@ -119,7 +119,7 @@ class CreditBudget:
                     marker += f":{day}"
                 if await self._redis.set(marker, "1", nx=True, ex=9 * 86400):
                     msg = (
-                        f"Maata Arcade: {scope} credit usage at {int(threshold * 100)}% "
+                        f"Mic Drop Arcade: {scope} credit usage at {int(threshold * 100)}% "
                         f"({spent:.1f} of {cap:.0f}); last charge from {kind}."
                     )
                     log.warning("credit_alert", scope=scope, threshold=threshold, spent=spent)

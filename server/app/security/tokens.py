@@ -41,6 +41,14 @@ class ScoreClaims:
     questions: int
     language: str
     pack_id: str
+    character: str = "arjun"
+    # Adventure runs (mode "adventure"): server-timed duration, the ending reached and its
+    # rank, and the narrating wizard. Quiz games leave the ending empty.
+    mode: str = "quiz"
+    duration_ms: int | None = None
+    ending_id: str | None = None
+    ending_rank: str | None = None
+    wizard: str = "sorceress"
 
 
 class TokenService:
@@ -84,6 +92,12 @@ class TokenService:
                 "qn": claims.questions,
                 "lang": claims.language,
                 "pk": claims.pack_id,
+                "ch": claims.character,
+                "md": claims.mode,
+                "du": claims.duration_ms,
+                "en": claims.ending_id,
+                "er": claims.ending_rank,
+                "wz": claims.wizard,
             },
         )
         return token
@@ -125,7 +139,21 @@ class TokenService:
                 questions=int(data["qn"]),
                 language=str(data["lang"]),
                 pack_id=str(data["pk"]),
+                character=str(data.get("ch", "arjun")),
+                mode=str(data.get("md", "quiz")),
+                duration_ms=_opt_int(data.get("du")),
+                ending_id=_opt_str(data.get("en")),
+                ending_rank=_opt_str(data.get("er")),
+                wizard=str(data.get("wz", "sorceress")),
             )
         except (KeyError, TypeError, ValueError) as exc:
             raise TokenError("malformed score token") from exc
         return claims, str(data["jti"]), int(data["exp"])
+
+
+def _opt_int(value: Any) -> int | None:
+    return None if value is None else int(value)
+
+
+def _opt_str(value: Any) -> str | None:
+    return None if value is None else str(value)
