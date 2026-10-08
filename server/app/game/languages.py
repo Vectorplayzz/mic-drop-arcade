@@ -60,43 +60,79 @@ VOICES: dict[str, frozenset[str]] = {
 }
 
 
+# Timbre v2.5 voices we use, with their home locale and gender (docs.gnani.ai voice catalogue,
+# Oct 2026). Timbre has no male Telugu voice, so the male wizards speak Telugu with male voices
+# from other locales; an Oct 8 audition (each wizard's greeting, transcribed back by Prisma)
+# showed those as intelligible as the Telugu voices. Likewise Hinglish has a single voice
+# (Poorvi), so the other wizards read the Devanagari-plus-English spoken text with Hindi voices.
+VOICE_CATALOG: dict[str, tuple[str, str]] = {
+    "Suhana": ("te-IN", "f"),
+    "Lehara": ("te-IN", "f"),
+    "Varuni": ("te-IN", "f"),
+    "Nalini": ("hi-IN", "f"),
+    "Chitra": ("hi-IN", "f"),
+    "Roopesh": ("hi-IN", "m"),
+    "Omkar": ("hi-IN", "m"),
+    "Jalaj": ("hi-IN", "m"),
+    "Poorvi": ("hi-en", "f"),
+    "Kavin": ("kn-IN", "m"),
+    "Kaveri": ("en-IN", "f"),
+    "Trupti": ("en-IN", "f"),
+    "Girish": ("en-IN", "m"),
+    "Shlok": ("en-IN", "m"),
+}
+
 # The player picks the wizard who narrates (PROTOCOL §9); the wizard decides the voice and the
 # personality of its reaction lines (content/wizards.json). The green sorceress is the default.
-# Hinglish has a single Timbre voice, so the wizards differ there by speaking speed only.
 WIZARDS: tuple[str, ...] = ("sorceress", "sage", "owl", "enchantress", "trickster")
 DEFAULT_WIZARD = "sorceress"
+WIZARD_GENDER: dict[str, str] = {
+    "sorceress": "f",
+    "sage": "m",  # Baba Sage
+    "owl": "m",  # Professor Ullu
+    "enchantress": "f",  # Mohini
+    "trickster": "m",  # Lomdi Jaadugar
+}
+# Each character keeps one voice across languages where it can: the sage is a grounded elder
+# (Roopesh), the trickster an expressive showman (Jalaj).
 WIZARD_VOICES: dict[str, dict[str, str]] = {
     "te-IN": {
         "sorceress": "Suhana",
-        "sage": "Lavanya",
-        "owl": "Yukti",
+        "sage": "Roopesh",
+        "owl": "Kavin",
         "enchantress": "Lehara",
-        "trickster": "Varuni",
+        "trickster": "Jalaj",
     },
     "hi-IN": {
         "sorceress": "Nalini",
-        "sage": "Jalaj",
+        "sage": "Roopesh",
         "owl": "Omkar",
-        "enchantress": "Yashvi",
-        "trickster": "Vikrant",
+        "enchantress": "Chitra",
+        "trickster": "Jalaj",
     },
-    "hi-en": {w: "Poorvi" for w in WIZARDS},
+    "hi-en": {
+        "sorceress": "Poorvi",
+        "sage": "Roopesh",
+        "owl": "Omkar",
+        "enchantress": "Chitra",
+        "trickster": "Jalaj",
+    },
     "te-en": {
         "sorceress": "Varuni",
-        "sage": "Lavanya",
-        "owl": "Yukti",
+        "sage": "Roopesh",
+        "owl": "Kavin",
         "enchantress": "Lehara",
-        "trickster": "Suhana",
+        "trickster": "Jalaj",
     },
     "en-IN": {
         "sorceress": "Kaveri",
         "sage": "Girish",
         "owl": "Shlok",
-        "enchantress": "Devika",
-        "trickster": "Pranav",
+        "enchantress": "Trupti",
+        "trickster": "Jalaj",
     },
 }
-# Speaking speed per wizard: the sage is slow and deliberate, the trickster quick.
+
 WIZARD_SPEED: dict[str, float] = {
     "sorceress": 1.0,
     "sage": 0.92,
@@ -126,7 +162,20 @@ def route_for_game(pack: Any, wizard: str) -> LanguageRoute:
 def route_for_wizard(language: str, wizard: str) -> LanguageRoute:
     """``language`` spoken in the picked wizard's voice and speed."""
     base = route(language)
-    return replace(base, voice=WIZARD_VOICES[base.code][wizard], speed=WIZARD_SPEED[wizard])
+    voice = WIZARD_VOICES[base.code][wizard]
+    return replace(
+        base, voice=voice, speed=WIZARD_SPEED[wizard], tts_lang=tts_lang_for(base, voice)
+    )
+
+
+def tts_lang_for(base: LanguageRoute, voice: str) -> str:
+    """The Timbre ``language`` for ``voice`` reading ``base``'s text.
+
+    The text decides it (Timbre normalises by it), except that Hinglish's ``hi-en`` belongs to
+    Poorvi alone: a Hindi voice reads the same Devanagari-plus-English text as ``hi-IN``."""
+    if base.tts_lang == "hi-en" and voice != "Poorvi":
+        return "hi-IN"
+    return base.tts_lang
 
 
 def route_for_pack(pack: Any) -> LanguageRoute:

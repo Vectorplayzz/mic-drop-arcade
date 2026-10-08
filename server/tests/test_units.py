@@ -668,23 +668,30 @@ def test_wizard_picks_the_narrator_voice():
     from app.game.languages import (
         DEFAULT_WIZARD,
         LANGUAGES,
-        VOICES,
+        VOICE_CATALOG,
+        WIZARD_GENDER,
         WIZARD_VOICES,
         WIZARDS,
-        route,
         route_for_game,
+        route_for_wizard,
         valid_wizard,
     )
 
     pack = parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes())
     assert DEFAULT_WIZARD == "sorceress"
     assert route_for_game(pack, "sorceress").voice == "Nalini"
-    assert route_for_game(pack, "sage").voice == "Jalaj"
+    assert route_for_game(pack, "sage").voice == "Roopesh"
     assert route_for_game(pack, "owl").voice == "Omkar"
-    # Every wizard has a real Timbre voice in every game language.
     for code in LANGUAGES:
+        voices = [WIZARD_VOICES[code][w] for w in WIZARDS]
+        # Every wizard sounds different, and male wizards have male voices.
+        assert len(set(voices)) == len(WIZARDS), code
         for wizard in WIZARDS:
-            assert WIZARD_VOICES[code][wizard] in VOICES[route(code).tts_lang], (code, wizard)
+            r = route_for_wizard(code, wizard)
+            assert r.voice in VOICE_CATALOG, (code, wizard)
+            assert VOICE_CATALOG[r.voice][1] == WIZARD_GENDER[wizard], (code, wizard)
+            # Only Poorvi speaks hi-en; Hindi voices read Hinglish as hi-IN.
+            assert (r.tts_lang == "hi-en") == (r.voice == "Poorvi"), (code, wizard)
     for bad in (None, "", "dragon", "SAGE", 3, ["owl"]):
         assert valid_wizard(bad) is None
     assert all(valid_wizard(w) == w for w in WIZARDS)
