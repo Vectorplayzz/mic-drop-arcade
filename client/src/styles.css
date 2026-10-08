@@ -1120,9 +1120,11 @@ ul {
 }
 
 .over-hero-img {
-  width: 10rem;
-  height: 10rem;
-  margin-block: -0.75rem -0.5rem;
+  width: 10.5rem;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: 50% 100%;
+  filter: drop-shadow(4px 4px 0 rgb(0 0 0 / 50%));
 }
 
 .over-hero figcaption {
