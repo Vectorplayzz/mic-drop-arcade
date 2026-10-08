@@ -61,22 +61,17 @@ VOICES: dict[str, frozenset[str]] = {
 
 
 # Timbre v2.5 voices we use, with their home locale and gender (docs.gnani.ai voice catalogue,
-# Oct 2026). Timbre has no male Telugu voice, so the male wizards speak Telugu with male voices
-# from other locales; an Oct 8 audition (each wizard's greeting, transcribed back by Prisma)
-# showed those as intelligible as the Telugu voices. Likewise Hinglish has a single voice
-# (Poorvi), so the other wizards read the Devanagari-plus-English spoken text with Hindi voices.
+# Oct 2026). Timbre has no male Telugu voice and a single Hinglish one, so the wizards speak
+# with voices from other locales where they must; Timbre is told the text's language (Hinglish
+# goes as hi-IN: the spoken text is Devanagari plus English). Poorvi is the plain Hinglish
+# route's voice, outside the wizard cast.
 VOICE_CATALOG: dict[str, tuple[str, str]] = {
-    "Nalini": ("hi-IN", "f"),
-    "Chitra": ("hi-IN", "f"),
+    "Falak": ("gu-IN", "f"),
+    "Vedika": ("ta-IN", "f"),
     "Roopesh": ("hi-IN", "m"),
-    "Omkar": ("hi-IN", "m"),
+    "Vikrant": ("hi-IN", "m"),
     "Jalaj": ("hi-IN", "m"),
     "Poorvi": ("hi-en", "f"),
-    "Kavin": ("kn-IN", "m"),
-    "Kaveri": ("en-IN", "f"),
-    "Trupti": ("en-IN", "f"),
-    "Girish": ("en-IN", "m"),
-    "Shlok": ("en-IN", "m"),
 }
 
 # The player picks the wizard who narrates (PROTOCOL §9); the wizard decides the voice and the
@@ -90,46 +85,19 @@ WIZARD_GENDER: dict[str, str] = {
     "enchantress": "f",  # Mohini
     "trickster": "m",  # Lomdi Jaadugar
 }
-# Each character keeps one voice across languages where it can: the sage is a grounded elder
-# (Roopesh), the trickster an expressive showman (Jalaj). In Telugu and Tenglish both women
-# speak with Poorvi (G Nagarjuna's pick, Oct 8; she read Telugu more clearly than the Telugu
-# voices in the audition) and differ by pace only.
+# One voice per character in every language, picked by G Nagarjuna after the Oct 8 audition:
+# Falak (Sorceress), Roopesh (Baba Sage), Vikrant (Professor Ullu), Vedika (Mohini) and Jalaj
+# (Lomdi). Each reads every game language clearly (checked by transcribing each wizard's
+# greeting back with Prisma), even where it isn't the voice's home locale.
+_CAST = {
+    "sorceress": "Falak",
+    "sage": "Roopesh",
+    "owl": "Vikrant",
+    "enchantress": "Vedika",
+    "trickster": "Jalaj",
+}
 WIZARD_VOICES: dict[str, dict[str, str]] = {
-    "te-IN": {
-        "sorceress": "Poorvi",
-        "sage": "Roopesh",
-        "owl": "Kavin",
-        "enchantress": "Poorvi",
-        "trickster": "Jalaj",
-    },
-    "hi-IN": {
-        "sorceress": "Nalini",
-        "sage": "Roopesh",
-        "owl": "Omkar",
-        "enchantress": "Chitra",
-        "trickster": "Jalaj",
-    },
-    "hi-en": {
-        "sorceress": "Poorvi",
-        "sage": "Roopesh",
-        "owl": "Omkar",
-        "enchantress": "Chitra",
-        "trickster": "Jalaj",
-    },
-    "te-en": {
-        "sorceress": "Poorvi",
-        "sage": "Roopesh",
-        "owl": "Kavin",
-        "enchantress": "Poorvi",
-        "trickster": "Jalaj",
-    },
-    "en-IN": {
-        "sorceress": "Kaveri",
-        "sage": "Girish",
-        "owl": "Shlok",
-        "enchantress": "Trupti",
-        "trickster": "Jalaj",
-    },
+    code: dict(_CAST) for code in ("te-IN", "hi-IN", "hi-en", "te-en", "en-IN")
 }
 
 WIZARD_SPEED: dict[str, float] = {
