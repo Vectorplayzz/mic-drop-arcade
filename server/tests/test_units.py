@@ -217,6 +217,20 @@ async def test_tts_streams_and_reuses_connection(clean_gnani):
     await tts.close()
 
 
+@pytest.mark.parametrize("trailer", [True, False])
+async def test_tts_lines_never_get_each_others_audio(clean_gnani, trailer):
+    # Timbre sends a "Streaming completed" trailer after the final chunk and reuses the request
+    # id. A trailer left unread used to end the next line early (empty) and hand the line after
+    # it the previous line's audio.
+    clean_gnani.state.tts_s_per_char = 0.05
+    clean_gnani.state.tts_trailer = trailer
+    tts = TtsStreamer(url=clean_gnani.tts_url, api_key=API_KEY, model="timbre-v2.5")
+    for text in ["one", "a longer line", "mid line", "x", "the final line of five"]:
+        audio = b"".join([c async for c in tts.stream(text, voice="Shlok", language="en-IN")])
+        assert len(audio) == int(len(text) * 0.05 * 24000) * 2, text
+    await tts.close()
+
+
 async def test_tts_bad_key(clean_gnani):
     tts = TtsStreamer(
         url=clean_gnani.tts_url, api_key="nope", model="timbre-v2.5", connect_retries=0
@@ -674,3 +688,30 @@ def test_wizard_picks_the_narrator_voice():
     for bad in (None, "", "dragon", "SAGE", 3, ["owl"]):
         assert valid_wizard(bad) is None
     assert all(valid_wizard(w) == w for w in WIZARDS)
+
+
+# ---------------------------------------------------------------- speech playout ---
+def test_playout_tracks_when_the_client_finishes(monkeypatch):
+    from app.ws import play
+
+    now = [100.0]
+    monkeypatch.setattr(play.time, "monotonic", lambda: now[0])
+    second = play.TTS_BYTES_PER_S
+    lead = play.PLAYOUT_LEAD_S
+
+    # A cached line arrives at once: it ends one lead after sending plus its length.
+    p = play.Playout()
+    for _ in range(5):
+        p.sent(second // 5)
+    assert p.ends_at == pytest.approx(100.0 + lead + 1.0)
+
+    # A live line whose first chunk takes 1.5 s, then streams slower than real time: the
+    # client's queue runs dry, so playback ends well after "start + length".
+    p = play.Playout()
+    now[0] = 101.5
+    p.sent(second // 5)
+    for _ in range(4):
+        now[0] += 0.4  # 200 ms of audio every 400 ms
+        p.sent(second // 5)
+    assert p.ends_at == pytest.approx(now[0] + lead + 0.2)
+    assert p.ends_at > 100.0 + 1.0 + 1.5

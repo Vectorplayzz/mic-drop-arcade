@@ -56,6 +56,9 @@ AUDIO_FRAME_MAGIC = 0x41
 IDLE_TIMEOUT_S = 120.0
 MAX_PROTOCOL_STRIKES = 20
 AUDIO_FLUSH_S = 0.5
+# The client schedules each audio chunk at max(end of the previous chunk, now + its start
+# delay); the extra margin covers the network between our send and its arrival.
+PLAYOUT_LEAD_S = 0.06 + 0.25
 
 # Close codes (4000-4999 are application-defined).
 CLOSE_PROTOCOL = 4400
@@ -91,11 +94,29 @@ class GameState:
     distractors: dict[str, frozenset[str]] = field(default_factory=dict)
 
 
+class Playout:
+    """Estimates when the client will have finished playing a line.
+
+    Audio is heard only once it reaches the client, so a line ends at "start + length" only
+    when it was cached. A live line starts after Timbre's first chunk, and if Timbre streams
+    slower than real time the client's queue runs dry and playback stretches. This mirrors the
+    client's scheduling (client/src/audio/player.ts) chunk by chunk, so the next caption is
+    not shown, and the answer timer does not start, while the wizard is still talking."""
+
+    def __init__(self) -> None:
+        self.ends_at = time.monotonic()
+
+    def sent(self, nbytes: int) -> None:
+        start = max(self.ends_at, time.monotonic() + PLAYOUT_LEAD_S)
+        self.ends_at = start + nbytes / TTS_BYTES_PER_S
+
+
 @dataclass
 class _Speech:
     utterance: int
     started: float
     task: asyncio.Task[float]
+    playout: Playout = field(default_factory=Playout)
     interrupted_at: float | None = None
     extra: dict[str, Any] = field(default_factory=dict)
 
@@ -505,7 +526,7 @@ class PlaySession:
                 if speech is None:
                     deadline = now + limit + grace
                 elif speech.task.done() or speech.interrupted_at is not None:
-                    end = speech.interrupted_at or (speech.started + _result(speech.task))
+                    end = speech.interrupted_at or speech.playout.ends_at
                     deadline = max(end, now) + limit + grace
             wait = (deadline - now) if deadline is not None else 0.2
             if deadline is not None and wait <= 0:
@@ -621,11 +642,12 @@ class PlaySession:
             await asyncio.wait({previous.task})
         self._utterance = (self._utterance + 1) & 0xFFFF
         utt = self._utterance
+        playout = Playout()
         task = asyncio.create_task(
-            self._stream_speech(utt, text, lang, caption or text), name="speech"
+            self._stream_speech(utt, text, lang, caption or text, playout), name="speech"
         )
         task.add_done_callback(_consume_exception)
-        speech = _Speech(utt, time.monotonic(), task)
+        speech = _Speech(utt, time.monotonic(), task, playout)
         self._speech = speech
         if wait:
             await asyncio.wait({task})
@@ -634,12 +656,14 @@ class PlaySession:
             if isinstance(task.exception(), SessionEnded):
                 raise SessionEnded
             # Let the client finish playing before the next line starts.
-            remaining = speech.started + _result(task) - time.monotonic()
+            remaining = playout.ends_at - time.monotonic()
             if remaining > 0:
                 await self._sleep_or_gone(remaining)
         return speech
 
-    async def _stream_speech(self, utt: int, text: str, lang: LanguageRoute, caption: str) -> float:
+    async def _stream_speech(
+        self, utt: int, text: str, lang: LanguageRoute, caption: str, playout: Playout
+    ) -> float:
         """Send one line to the client; returns its audio duration in seconds."""
         s = self.s
         key = cache_key(
@@ -665,6 +689,7 @@ class PlaySession:
                 for i in range(0, len(pcm), AUDIO_CHUNK_BYTES):
                     chunk = pcm[i : i + AUDIO_CHUNK_BYTES]
                     await self._send_bytes(audio_frame(utt, chunk, i + len(chunk) >= len(pcm)))
+                    playout.sent(len(chunk))
                     sent += len(chunk)
             elif await self.deps.budget.is_open() and self._tts is not None:
                 await self.deps.budget.charge(self.deps.budget.tts_cost(len(text)), kind="tts")
@@ -677,6 +702,7 @@ class PlaySession:
                     async for chunk in chunks:
                         writer.append(chunk)
                         await self._send_bytes(audio_frame(utt, chunk, False))
+                        playout.sent(len(chunk))
                         sent += len(chunk)
                 await writer.commit()
         except asyncio.CancelledError:
@@ -701,8 +727,7 @@ class PlaySession:
         speech = self._speech
         if speech is None or speech.interrupted_at is not None:
             return
-        elapsed = time.monotonic() - speech.started
-        if speech.task.done() and elapsed >= _result(speech.task):
+        if speech.task.done() and time.monotonic() >= speech.playout.ends_at:
             return  # line already finished playing
         speech.interrupted_at = time.monotonic()
         if not speech.task.done():
@@ -962,9 +987,3 @@ def _consume_exception(task: asyncio.Task[Any]) -> None:
         exc = task.exception()
         if exc is not None and not isinstance(exc, SessionEnded):
             log.error("speech_task_failed", error=type(exc).__name__)
-
-
-def _result(task: asyncio.Task[float]) -> float:
-    if task.done() and not task.cancelled() and task.exception() is None:
-        return task.result()
-    return 0.0

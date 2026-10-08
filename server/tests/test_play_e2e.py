@@ -4,6 +4,7 @@ with real Redis and Postgres."""
 from __future__ import annotations
 
 import asyncio
+import itertools
 import json
 import struct
 import time
@@ -545,3 +546,35 @@ async def test_adventure_without_riddles_reaches_the_board(live, clean_gnani):
             )
             assert post.status_code == 200, post.text
             assert post.json()["rank"] == 1
+
+
+async def test_next_line_waits_for_slow_live_speech_to_finish_playing(live, clean_gnani):
+    # Timbre streams at half real time, so a line's audio is still playing on the client
+    # long after "start + length". The next caption must not cut it off.
+    clean_gnani.state.tts_audio_s = 1.0
+    clean_gnani.state.tts_chunk_delay_s = 0.2
+    with live() as server:
+        c = await open_game(server, await get_session(server.http))
+        await c.ws.send(
+            json.dumps({"type": "start_adventure", "adventure": "test-quest", "language": "en-IN"})
+        )
+        plays_until: dict[int, float] = {}  # the client's playback end per utterance
+        starts: list[tuple[int, float]] = []
+        while True:
+            msg = await asyncio.wait_for(c.ws.recv(), timeout=20)
+            now = time.monotonic()
+            if isinstance(msg, bytes):
+                _, utt, _ = struct.unpack(">BHB", msg[:4])
+                # Mirrors client/src/audio/player.ts: 60 ms lead, chunks back to back.
+                begin = max(plays_until.get(utt, 0.0), now + 0.06)
+                plays_until[utt] = begin + (len(msg) - 4) / 48000
+                continue
+            data = json.loads(msg)
+            if data["type"] == "speak_start":
+                starts.append((data["utterance"], now))
+            if data["type"] == "listen":
+                break
+        assert len(starts) >= 2
+        for (prev, _), (_, started) in itertools.pairwise(starts):
+            assert started >= plays_until[prev], "next line cut off the wizard"
+        await c.ws.close()
