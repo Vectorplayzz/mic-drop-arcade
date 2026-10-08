@@ -39,6 +39,7 @@ from app.game.adventures import (
 )
 from app.game.languages import LanguageRoute
 from app.game.matching import match_answer, normalize, phonetic_key
+from app.game.numbers import spoken_numbers
 from app.game.packs import Question
 from app.logging import get_logger
 from app.security.tokens import ScoreClaims
@@ -486,11 +487,32 @@ def puzzle_correct(p: Puzzle, lang: str, transcript: str) -> bool:
             Question(id="p", prompt=p.prompt[lang], answers=accepted[:10], display_answer=answer)
         )
     right, bad = _sound_spans(transcript, accepted, p.wrong_options(lang))
+    if p.kind == "number":
+        said = _number_verdict(transcript, answer, p.wrong_options(lang))
+        if said is False:
+            return False  # a wrong option was said, alone or alongside the answer
+        right = right or ([(0, 0)] if said else [])
     if bad:
         return False  # a wrong option was said ("anti clockwise" split in two, say)
     if any(match_answer(transcript, q, wrong, language=lang).correct for q in questions):
         return True
     return bool(right)
+
+
+def _number_verdict(transcript: str, answer: str, wrong: list[str]) -> bool | None:
+    """Read the numbers said in any mix of digits and number words ("three thousand 600",
+    "థర్టీ సిక్స్ హండ్రెడ్", "ten twenty four"). True: the answer was said and no wrong
+    option; False: a wrong option was said; None: no number recognised."""
+    runs = spoken_numbers(transcript)
+    if not runs or not answer.isdigit():
+        return None
+    target = int(answer)
+    others = {int(w) for w in wrong if w.isdigit()}
+    said_answer = any(target in r for r in runs)
+    said_other = any(r & others and target not in r for r in runs)
+    if said_other:
+        return False
+    return True if said_answer else None
 
 
 # Prisma writes English words in Indic script, and spells them differently from one try to the
