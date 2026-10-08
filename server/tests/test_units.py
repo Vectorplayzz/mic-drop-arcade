@@ -712,14 +712,12 @@ def test_wizard_picks_the_narrator_voice():
 
     pack = parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes())
     assert DEFAULT_WIZARD == "sorceress"
-    assert route_for_game(pack, "sorceress").voice == "Nalini"
+    assert route_for_game(pack, "sorceress").voice == "Falak"
     assert route_for_game(pack, "sage").voice == "Roopesh"
-    assert route_for_game(pack, "owl").voice == "Omkar"
+    assert route_for_game(pack, "owl").voice == "Vikrant"
     for code in LANGUAGES:
-        # Every wizard sounds different (but in Telugu and Tenglish, where both women share
-        # Poorvi by choice, by pace), and male wizards have male voices.
-        sounds = {(WIZARD_VOICES[code][w], route_for_wizard(code, w).speed) for w in WIZARDS}
-        assert len(sounds) == len(WIZARDS), code
+        # Every wizard sounds different, and male wizards have male voices.
+        assert len({WIZARD_VOICES[code][w] for w in WIZARDS}) == len(WIZARDS), code
         for wizard in WIZARDS:
             r = route_for_wizard(code, wizard)
             assert r.voice in VOICE_CATALOG, (code, wizard)

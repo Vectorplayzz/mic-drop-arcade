@@ -59,6 +59,11 @@ AUDIO_FLUSH_S = 0.5
 # The client schedules each audio chunk at max(end of the previous chunk, now + its start
 # delay); the extra margin covers the network between our send and its arrival.
 PLAYOUT_LEAD_S = 0.06 + 0.25
+# Shown (in the player's language) by the client when a player reaches the daily play cap.
+AUDIO_LIMIT_NOTE = (
+    "Thanks for playing! Credits are limited, so everyone gets a fair turn today. "
+    "We'll raise the limit soon; share the game with your friends."
+)
 # The longest a game waits, after game_over, for its last line to finish streaming.
 LAST_LINE_TIMEOUT_S = 20.0
 
@@ -313,7 +318,7 @@ class PlaySession:
             except LimitReached:
                 pass
             if self._limit_reason:
-                await self._fail("audio_limit", "You've reached today's play limit.", CLOSE_LIMIT)
+                await self._fail("audio_limit", AUDIO_LIMIT_NOTE, CLOSE_LIMIT)
                 raise SessionEnded
         finally:
             await self.deps.slots.release_game(game_id)
@@ -407,7 +412,7 @@ class PlaySession:
                 )
                 await self._say(self.deps.lines.get(lang.code, "retry"), wait=True)
             if self._limit_reason:
-                await self._fail("audio_limit", "You've reached today's play limit.", CLOSE_LIMIT)
+                await self._fail("audio_limit", AUDIO_LIMIT_NOTE, CLOSE_LIMIT)
                 raise SessionEnded
 
         if pack.story:
