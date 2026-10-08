@@ -2055,3 +2055,19 @@ input[type='range'] {
     transition: none !important;
   }
 }
+
+/* ------------------------------------------------------------------ beta tag ------- */
+.beta-tag {
+  position: fixed;
+  z-index: 50;
+  right: 0.5rem;
+  bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  padding: 0.3rem 0.5rem;
+  border: 2px solid #000;
+  background: var(--yellow);
+  color: #1d1400;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  box-shadow: 3px 3px 0 #000;
+}

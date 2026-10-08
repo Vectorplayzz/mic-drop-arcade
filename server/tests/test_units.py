@@ -756,3 +756,24 @@ def test_playout_tracks_when_the_client_finishes(monkeypatch):
         p.sent(second // 5)
     assert p.ends_at == pytest.approx(now[0] + lead + 0.2)
     assert p.ends_at > 100.0 + 1.0 + 1.5
+
+
+async def test_turnstile_accepts_each_listed_hostname():
+    import httpx
+
+    from app.security.turnstile import TurnstileVerifier
+
+    def verdict(host: str):
+        def handler(request: httpx.Request) -> httpx.Response:
+            return httpx.Response(200, json={"success": True, "hostname": host, "action": "start"})
+
+        return httpx.AsyncClient(transport=httpx.MockTransport(handler))
+
+    hosts = "micdrop.ourspaces.net, betamicdrop.ourspaces.net"
+    for host, ok in [
+        ("micdrop.ourspaces.net", True),
+        ("betamicdrop.ourspaces.net", True),
+        ("evil.example.com", False),
+    ]:
+        async with verdict(host) as client:
+            assert await TurnstileVerifier(client, "s", hosts).verify("tok", "1.2.3.4") is ok

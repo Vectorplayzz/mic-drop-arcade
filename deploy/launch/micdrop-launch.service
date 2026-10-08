@@ -1,0 +1,8 @@
+[Unit]
+Description=Mic Drop Arcade launch: open micdrop.ourspaces.net, redirect the beta, reset the board
+After=docker.service nginx.service
+Wants=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/micdrop-launch

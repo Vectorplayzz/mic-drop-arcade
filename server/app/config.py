@@ -62,7 +62,7 @@ class Settings(BaseSettings):
     allowed_origins: Annotated[list[str], NoDecode] = Field(
         default_factory=lambda: ["http://localhost:5173"]
     )
-    turnstile_hostname: str = ""  # expected hostname in the Turnstile verdict; empty = skip
+    turnstile_hostname: str = ""  # expected Turnstile hostname(s), comma-separated; empty = skip
     trusted_proxies: Annotated[list[str], NoDecode] = Field(
         default_factory=lambda: ["127.0.0.1/32", "::1/128"]
     )

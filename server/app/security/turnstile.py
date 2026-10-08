@@ -22,7 +22,8 @@ class TurnstileVerifier:
     def __init__(self, client: httpx.AsyncClient, secret: str, expected_hostname: str) -> None:
         self._client = client
         self._secret = secret
-        self._hostname = expected_hostname
+        # One hostname, or several separated by commas (a beta site next to the live one).
+        self._hostnames = frozenset(h.strip() for h in expected_hostname.split(",") if h.strip())
 
     async def verify(self, token: str, remote_ip: str) -> bool:
         if not token or len(token) > 2048:
@@ -47,13 +48,13 @@ class TurnstileVerifier:
         if not verdict.get("success"):
             log.info("turnstile_rejected", codes=verdict.get("error-codes", []))
             return False
-        if self._hostname and verdict.get("hostname") != self._hostname:
+        if self._hostnames and verdict.get("hostname") not in self._hostnames:
             log.warning("turnstile_hostname_mismatch")
             return False
         action = verdict.get("action")
         # Cloudflare test keys return an empty action; with a configured hostname (always the case
         # in production) the widget must have been rendered with action="start".
-        if (self._hostname or action) and action != EXPECTED_ACTION:
+        if (self._hostnames or action) and action != EXPECTED_ACTION:
             log.warning("turnstile_action_mismatch")
             return False
         return True
