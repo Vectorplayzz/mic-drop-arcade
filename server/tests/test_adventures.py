@@ -285,3 +285,56 @@ def test_no_control_characters_survive():
     data["title"]["en-IN"] = "Test‮Quest"
     adv = Adventure.model_validate(data)
     assert all(unicodedata.category(c) != "Cf" for c in adv.title["en-IN"])
+
+
+# ---------------------------------------------------------------- riddles by sound --
+def _orbit_walk():
+    adv = parse_adventure((SHIPPED / "last-orbit.json").read_bytes())
+    return adv.nodes["o_walk"].puzzle
+
+
+@pytest.mark.parametrize(
+    "heard",
+    ["క్లాక్ వైస్", "క్లాక్‌వైస్", "క్లోక్ వాయిస్", "clock wise", "it is clockwise"],
+)
+@pytest.mark.parametrize("lang", ["te-en", "te-IN"])
+def test_english_answers_in_telugu_script_are_heard(lang, heard):
+    # Prisma te-IN writes English words in Telugu script, spelled differently each time.
+    assert puzzle_correct(_orbit_walk(), lang, heard)
+
+
+@pytest.mark.parametrize(
+    "heard",
+    [
+        "యాంటీ క్లాక్ వైస్",
+        "anti clockwise",
+        "anti clock wise",
+        "anticlockwise",
+        "కౌంటర్ క్లాక్ వైస్",
+        "counter clockwise",
+        "క్లాక్ వైస్ ఆర్ యాంటీ క్లాక్ వైస్",
+        "neither",
+        "నైదర్",
+    ],
+)
+@pytest.mark.parametrize("lang", ["te-en", "te-IN", "en-IN"])
+def test_wrong_or_hedged_answers_stay_wrong(lang, heard):
+    assert not puzzle_correct(_orbit_walk(), lang, heard)
+
+
+def test_every_shipped_riddle_accepts_its_answers_and_rejects_the_others():
+    for path in sorted(SHIPPED.glob("*.json")):
+        adv = parse_adventure(path.read_bytes())
+        for nid, node in adv.nodes.items():
+            p = node.puzzle
+            if p is None:
+                continue
+            for lang in LANGS:
+                where = (path.name, nid, lang)
+                answer = p.display_answer(lang)
+                assert puzzle_correct(p, lang, answer), where
+                for alias in p.accepted(lang):
+                    assert puzzle_correct(p, lang, alias), (*where, alias)
+                for other in p.wrong_options(lang):
+                    assert not puzzle_correct(p, lang, other), (*where, other)
+                    assert not puzzle_correct(p, lang, f"{answer} or {other}"), (*where, other)
