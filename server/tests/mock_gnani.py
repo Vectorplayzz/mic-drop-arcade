@@ -53,6 +53,9 @@ class MockState:
     tts_s_per_char: float | None = None
     # Real Timbre follows the final chunk with a "Streaming completed" trailer.
     tts_trailer: bool = True
+    # Send this many extra trailers after the next request (a desynchronised server).
+    tts_stray_trailers: int = 0
+    tts_connections: int = 0
     fail_stt_handshake_status: int | None = None
 
 
@@ -161,6 +164,7 @@ class MockGnani:
 
     async def _tts(self, ws: ServerConnection) -> None:
         st = self.state
+        st.tts_connections += 1
         async for msg in ws:
             req = json.loads(msg)
             st.tts_requests.append(req)
@@ -191,7 +195,7 @@ class MockGnani:
                     {"type": "complete", "data": {"chunk_index": -1, "audio": "", "is_final": True}}
                 )
             )
-            if st.tts_trailer:
+            for _ in range(int(st.tts_trailer) + st.tts_stray_trailers):
                 await ws.send(
                     json.dumps(
                         {
@@ -201,3 +205,4 @@ class MockGnani:
                         }
                     )
                 )
+            st.tts_stray_trailers = 0

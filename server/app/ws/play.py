@@ -59,6 +59,8 @@ AUDIO_FLUSH_S = 0.5
 # The client schedules each audio chunk at max(end of the previous chunk, now + its start
 # delay); the extra margin covers the network between our send and its arrival.
 PLAYOUT_LEAD_S = 0.06 + 0.25
+# The longest a game waits, after game_over, for its last line to finish streaming.
+LAST_LINE_TIMEOUT_S = 20.0
 
 # Close codes (4000-4999 are application-defined).
 CLOSE_PROTOCOL = 4400
@@ -315,10 +317,18 @@ class PlaySession:
                 raise SessionEnded
         finally:
             await self.deps.slots.release_game(game_id)
-            if self._tts is not None:
-                await self._tts.close()
-            self._tts = None
+            await self._end_tts()
             self._lang = None
+
+    async def _end_tts(self) -> None:
+        """Close the game's TTS once its last line (often spoken without waiting, right before
+        game_over) has finished streaming, so that line is neither cut off nor left unsaid."""
+        speech = self._speech
+        if speech is not None and not speech.task.done() and not self._gone.is_set():
+            await asyncio.wait({speech.task}, timeout=LAST_LINE_TIMEOUT_S)
+        tts, self._tts = self._tts, None
+        if tts is not None:
+            await tts.close()
 
     async def _check_open(self) -> bool:
         status = await self.deps.budget.status()
@@ -434,8 +444,7 @@ class PlaySession:
         log.info(
             "game_finished", game_id=game_id, score=game.score, correct=game.correct, questions=n
         )
-        await self._tts.close()
-        self._tts = None
+        await self._end_tts()
         self._game = None
         self._lang = None
 
@@ -643,9 +652,17 @@ class PlaySession:
         self._utterance = (self._utterance + 1) & 0xFFFF
         utt = self._utterance
         playout = Playout()
-        task = asyncio.create_task(
-            self._stream_speech(utt, text, lang, caption or text, playout), name="speech"
+        # speak_start goes out before anything else this line causes (e.g. listen), so the
+        # client always knows which utterance it is waiting on.
+        await self._send(
+            {
+                "type": "speak_start",
+                "utterance": utt,
+                "caption": caption or text,
+                "sample_rate": TTS_SAMPLE_RATE,
+            }
         )
+        task = asyncio.create_task(self._stream_speech(utt, text, lang, playout), name="speech")
         task.add_done_callback(_consume_exception)
         speech = _Speech(utt, time.monotonic(), task, playout)
         self._speech = speech
@@ -662,7 +679,7 @@ class PlaySession:
         return speech
 
     async def _stream_speech(
-        self, utt: int, text: str, lang: LanguageRoute, caption: str, playout: Playout
+        self, utt: int, text: str, lang: LanguageRoute, playout: Playout
     ) -> float:
         """Send one line to the client; returns its audio duration in seconds."""
         s = self.s
@@ -673,14 +690,7 @@ class PlaySession:
             speed=lang.speed,
             text=text,
         )
-        await self._send(
-            {
-                "type": "speak_start",
-                "utterance": utt,
-                "caption": caption,
-                "sample_rate": TTS_SAMPLE_RATE,
-            }
-        )
+        tts = self._tts
         sent = 0
         interrupted = False
         try:
@@ -691,20 +701,20 @@ class PlaySession:
                     await self._send_bytes(audio_frame(utt, chunk, i + len(chunk) >= len(pcm)))
                     playout.sent(len(chunk))
                     sent += len(chunk)
-            elif await self.deps.budget.is_open() and self._tts is not None:
+            elif tts is not None and await self.deps.budget.is_open():
                 await self.deps.budget.charge(self.deps.budget.tts_cost(len(text)), kind="tts")
                 writer = self.deps.cache.writer(key)
                 async with contextlib.aclosing(
-                    self._tts.stream(
-                        text, voice=lang.voice, language=lang.tts_lang, speed=lang.speed
-                    )
+                    tts.stream(text, voice=lang.voice, language=lang.tts_lang, speed=lang.speed)
                 ) as chunks:
                     async for chunk in chunks:
                         writer.append(chunk)
                         await self._send_bytes(audio_frame(utt, chunk, False))
                         playout.sent(len(chunk))
                         sent += len(chunk)
-                await writer.commit()
+                # Only a whole clip is cached: a cut-off one would replay cut off for everyone.
+                if tts.complete:
+                    await writer.commit()
         except asyncio.CancelledError:
             interrupted = True
             raise
@@ -730,9 +740,17 @@ class PlaySession:
         if speech.task.done() and time.monotonic() >= speech.playout.ends_at:
             return  # line already finished playing
         speech.interrupted_at = time.monotonic()
-        if not speech.task.done():
-            speech.task.cancel()
-        task = asyncio.create_task(self._send({"type": "barge_in", "utterance": speech.utterance}))
+
+        async def stop() -> None:
+            # barge_in goes out before the line's speak_end, so the client silences the right
+            # utterance; frames sent in between are dropped by its gate.
+            try:
+                await self._send({"type": "barge_in", "utterance": speech.utterance})
+            finally:
+                if not speech.task.done():
+                    speech.task.cancel()
+
+        task = asyncio.create_task(stop())
         task.add_done_callback(lambda t: t.exception() if not t.cancelled() else None)
 
     # ------------------------------------------------------------------ inbound --------

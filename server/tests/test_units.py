@@ -231,6 +231,39 @@ async def test_tts_lines_never_get_each_others_audio(clean_gnani, trailer):
     await tts.close()
 
 
+async def test_tts_line_ends_without_waiting_for_the_trailer(clean_gnani):
+    # The trailer is read when the next line starts, so a missing one costs nothing on the
+    # line itself, and the next line reconnects rather than trusting the connection.
+    clean_gnani.state.tts_trailer = False
+    tts = TtsStreamer(url=clean_gnani.tts_url, api_key=API_KEY, model="timbre-v2.5")
+    t0 = time.monotonic()
+    audio = b"".join([c async for c in tts.stream("hello", voice="Shlok", language="en-IN")])
+    assert audio and tts.complete and time.monotonic() - t0 < 1.0
+    audio = b"".join([c async for c in tts.stream("again", voice="Shlok", language="en-IN")])
+    assert audio and tts.complete
+    assert clean_gnani.state.tts_connections == 2
+    await tts.close()
+
+
+async def test_tts_stray_trailer_drops_the_connection_instead_of_shifting_lines(clean_gnani):
+    clean_gnani.state.tts_s_per_char = 0.05
+    tts = TtsStreamer(url=clean_gnani.tts_url, api_key=API_KEY, model="timbre-v2.5")
+    clean_gnani.state.tts_stray_trailers = 1  # one trailer too many after the first line
+    got = {}
+    for text in ["one", "a longer line", "mid line"]:
+        try:
+            got[text] = b"".join(
+                [c async for c in tts.stream(text, voice="Shlok", language="en-IN")]
+            )
+        except GnaniError:
+            got[text] = None  # the out-of-step line is lost, never mislabelled
+            assert not tts.complete
+    for text, audio in got.items():
+        assert audio is None or len(audio) == int(len(text) * 0.05 * 24000) * 2, text
+    assert got["mid line"] is not None
+    await tts.close()
+
+
 async def test_tts_bad_key(clean_gnani):
     tts = TtsStreamer(
         url=clean_gnani.tts_url, api_key="nope", model="timbre-v2.5", connect_retries=0

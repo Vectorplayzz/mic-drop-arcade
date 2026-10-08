@@ -1,13 +1,14 @@
 """Timbre v2.5 TTS clients.
 
 * ``TtsStreamer`` — realtime WebSocket, one request at a time on a connection that is kept warm
-  for the life of a game session. Timbre reuses the request id on a connection, so nothing in a
-  message says which request it belongs to: a stream must read its own output to the very end
-  (the final audio chunk *and* the "Streaming completed" trailer after it) before the next
-  request is sent. A stream abandoned mid-way (barge-in), or one whose trailer doesn't arrive,
-  closes the connection instead, and the next call reconnects. Leaving one message behind
-  shifts every later line by one: a line comes back empty and the next one plays (and caches)
-  the previous line's audio.
+  for the life of a game session. Timbre ends each request with a final audio chunk and then a
+  "Streaming completed" trailer, and reuses the request id on a connection, so nothing in a
+  message says which request it belongs to. A request must therefore start only once the
+  previous one's trailer has been read: that happens lazily at the start of the next request,
+  so a line ends the moment its final chunk arrives. A stream abandoned mid-way (barge-in), a
+  missing trailer, or a trailer where audio was expected drops the connection, and the next
+  call reconnects. Leaving one message behind would shift every later line by one: a line
+  comes back empty and the next plays (and caches) the previous line's audio.
 * ``synthesize_rest`` — the REST endpoint, used offline to pre-render cached lines.
 
 Output is always raw PCM s16le mono at 24 kHz so the browser has exactly one playback path.
@@ -34,7 +35,7 @@ log = get_logger(__name__)
 
 TTS_SAMPLE_RATE = 24000
 MAX_TTS_CHARS = 600
-# How long to wait for the "Streaming completed" trailer that follows the final audio chunk.
+# How long the next request waits for the previous one's "Streaming completed" trailer.
 TRAILER_TIMEOUT_S = 2.0
 AUDIO_CONFIG = {
     "sample_rate": TTS_SAMPLE_RATE,
@@ -79,6 +80,8 @@ class TtsStreamer:
         self._retries = connect_retries
         self._chunk_timeout = chunk_timeout_s
         self._ws: ClientConnection | None = None
+        self._trailer_due = False
+        self.complete = False
 
     async def _connection(self) -> ClientConnection:
         if self._ws is None:
@@ -94,48 +97,39 @@ class TtsStreamer:
     async def stream(
         self, text: str, *, voice: str, language: str, speed: float = 1.0
     ) -> AsyncIterator[bytes]:
+        """Yield ``text``'s audio. ``self.complete`` is True afterwards only if the final chunk
+        arrived, so callers can tell a whole clip (safe to cache) from a cut-off one."""
         request = build_request(text, voice, language, self._model, speed)
-        ws = await self._connection()
-        finished = False
-        audio_done = False
+        self.complete = False
+        ws = await self._ready_connection()
+        clean = False
         try:
             try:
                 await ws.send(json.dumps(request, ensure_ascii=False))
             except ConnectionClosed:
                 # Warm connection went stale between rounds: reconnect once.
                 await self._discard()
-                ws = await self._connection()
+                ws = await self._ready_connection()
                 await ws.send(json.dumps(request, ensure_ascii=False))
             while True:
-                if audio_done:
-                    # All audio is in; only the trailer may follow. Without it the connection
-                    # can't be trusted for the next request, so it is closed (finally below).
-                    try:
-                        raw = await asyncio.wait_for(ws.recv(), timeout=TRAILER_TIMEOUT_S)
-                    except (TimeoutError, ConnectionClosed):
-                        log.info("tts_no_trailer")
-                        return
-                    if isinstance(raw, str) and _is_trailer(json.loads(raw)):
-                        finished = True
-                    else:
-                        log.warning("tts_unexpected_after_final")
-                    return
                 try:
                     raw = await _recv_with_timeout(ws, self._chunk_timeout)
                 except ConnectionClosed as exc:
                     raise GnaniError("tts connection dropped", retryable=True) from exc
                 if isinstance(raw, bytes):
                     continue
-                msg = json.loads(raw)
+                msg = _parse(raw)
                 kind = msg.get("type")
                 if kind == "start":
                     continue
+                if _is_trailer(msg):
+                    # A trailer before our final chunk belongs to an earlier request: the
+                    # connection is out of step, and reading on would hand this line someone
+                    # else's audio.
+                    raise GnaniError("tts out of sync", retryable=True)
                 if kind == "audio" or kind == "complete":
-                    if _is_trailer(msg):
-                        # Trailer without a final chunk before it: the stream is over.
-                        finished = True
-                        return
-                    data = msg.get("data") or {}
+                    data = msg.get("data")
+                    data = data if isinstance(data, dict) else {}
                     b64 = data.get("audio") or ""
                     if b64:
                         try:
@@ -143,21 +137,43 @@ class TtsStreamer:
                         except binascii.Error as exc:
                             raise GnaniError("tts sent invalid audio") from exc
                     if kind == "complete" or data.get("is_final"):
-                        audio_done = True
+                        # Done. The trailer that follows is read at the start of the next
+                        # request, so it never delays this line.
+                        self.complete = True
+                        self._trailer_due = True
+                        clean = True
+                        return
                 elif kind == "error":
                     message = str(msg.get("message") or "")
                     if "auth" in message.lower() or "key" in message.lower():
                         raise GnaniAuthError("tts rejected credentials")
                     raise GnaniError(f"tts error: {message[:120]}")
         finally:
-            if not finished:
+            if not clean:
                 await self._discard()
 
+    async def _ready_connection(self) -> ClientConnection:
+        """The warm connection with the last request's trailer read off it, or a new one."""
+        if self._ws is not None and self._trailer_due:
+            self._trailer_due = False
+            try:
+                raw = await asyncio.wait_for(self._ws.recv(), timeout=TRAILER_TIMEOUT_S)
+                ok = isinstance(raw, str) and _is_trailer(_parse(raw))
+            except (TimeoutError, ConnectionClosed, GnaniError):
+                ok = False
+            if not ok:
+                log.info("tts_trailer_missing")
+                await self._discard()
+        return await self._connection()
+
     async def _discard(self) -> None:
+        """Drop the connection without waiting: Timbre may still be pushing audio nobody reads,
+        so a polite close handshake could stall the next line."""
         ws, self._ws = self._ws, None
+        self._trailer_due = False
         if ws is not None:
             with contextlib.suppress(Exception):
-                await ws.close()
+                ws.transport.abort()
 
     async def close(self) -> None:
         await self._discard()
@@ -166,6 +182,16 @@ class TtsStreamer:
 def _is_trailer(msg: dict) -> bool:
     """The "Streaming completed" message Timbre sends after the final audio chunk."""
     return msg.get("type") == "complete" and not msg.get("data")
+
+
+def _parse(raw: str) -> dict:
+    try:
+        msg = json.loads(raw)
+    except ValueError as exc:
+        raise GnaniError("tts sent invalid json") from exc
+    if not isinstance(msg, dict):
+        raise GnaniError("tts sent an unexpected message")
+    return msg
 
 
 async def _recv_with_timeout(ws: ClientConnection, timeout: float) -> str | bytes:

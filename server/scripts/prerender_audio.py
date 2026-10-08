@@ -57,10 +57,12 @@ def collect(
 
     The player's wizard picks the voice and speed, so a line is rendered once per wizard.
     """
-    items: dict[tuple[str, str, float, str], Item] = {}
+    # Keyed like the audio cache (voice, Timbre language, speed, text): Hindi and Hinglish (and
+    # Telugu and Tenglish) can share a voice and a spoken line, which is rendered only once.
+    items: dict[tuple[str, str, str, str], Item] = {}
 
     def add(r: LanguageRoute, text: str) -> None:
-        items.setdefault((r.code, r.voice, r.speed, text), (r, text))
+        items.setdefault((r.voice, r.tts_lang, f"{r.speed:.2f}", text.strip()), (r, text))
 
     # Adventures first (the main mode), then the wizards' own lines, then the quiz.
     if adventures is not None:
