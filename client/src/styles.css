@@ -328,14 +328,19 @@ ul {
   background: var(--cyan);
 }
 
-/* Painted pixel art is upscaled by the browser: keep the pixels square. */
+/* Characters are high-resolution (512 px) pixel art drawn at many sizes, rarely a whole
+   multiple: smooth scaling keeps every pixel cluster even. The low-resolution scenes stay
+   pixelated (see #scene img). */
 .title-wizard,
 .stage-wizard,
 .stage-hero,
 .hero-img,
+.hero-spotlight-img,
 .over-hero-img,
-.board-hero {
-  image-rendering: pixelated;
+.board-hero,
+.wizard-pick-img,
+.quest-wizard {
+  image-rendering: auto;
   user-select: none;
 }
 
@@ -494,7 +499,6 @@ ul {
   bottom: -6%;
   height: 112%;
   aspect-ratio: 1;
-  image-rendering: pixelated;
 }
 
 .quest-info {
@@ -536,7 +540,7 @@ ul {
 
 /* ------------------------------------------------------------------ pickers -------- */
 .lobby {
-  max-width: 46rem;
+  max-width: 56rem;
 }
 
 .picker {
@@ -584,7 +588,6 @@ ul {
   width: 100%;
   max-width: 11rem;
   aspect-ratio: 1;
-  image-rendering: pixelated;
 }
 
 .wizard-pick-name {
@@ -596,26 +599,116 @@ ul {
   color: var(--cyan);
 }
 
+.hero-picker-body {
+  display: grid;
+  grid-template-columns: minmax(12rem, 17rem) minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+
+/* The chosen hero, large, standing on a lit floor like in the story. */
+.hero-spotlight {
+  position: sticky;
+  top: 0.5rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.5rem 0.75rem;
+  border: 3px solid var(--cyan);
+  background:
+    radial-gradient(ellipse 60% 14% at 50% 88%, rgb(80 230 255 / 35%), transparent 70%),
+    linear-gradient(rgb(43 42 107 / 90%), rgb(11 10 31 / 90%));
+}
+
+.hero-spotlight-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: 50% 100%;
+  filter: drop-shadow(4px 4px 0 rgb(0 0 0 / 50%));
+}
+
+.hero-spotlight-name {
+  margin: 0;
+  font-size: 1.125rem;
+  color: var(--yellow);
+}
+
 .heroes {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.375rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(6.75rem, 100%), 1fr));
+  gap: 0.5rem;
 }
 
 .hero {
-  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: 0.25rem 0.25rem 0.375rem;
 }
 
+/* Heroes are tall: a 3:4 window on the square sprite shows them a third bigger. */
 .hero-img {
   display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: 50% 100%;
+  transition: transform 120ms steps(2);
 }
 
-.hero-picked {
-  min-height: 1.5em;
+.hero:hover .hero-img,
+.hero:focus-visible .hero-img {
+  transform: scale(1.06);
+}
+
+.hero-name {
+  max-width: 100%;
+  overflow-wrap: anywhere;
   font-weight: 700;
-  color: var(--yellow);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+}
+
+.hero[aria-pressed='true'] .hero-name {
+  color: var(--cyan);
+}
+
+/* Phones: the spotlight sits above a three-across grid. */
+@media (max-width: 40rem) {
+  .hero-picker-body {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-spotlight {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .hero-spotlight-img {
+    width: 9rem;
+  }
+
+  .heroes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-img {
+    transition: none;
+  }
+
+  .hero:hover .hero-img,
+  .hero:focus-visible .hero-img {
+    transform: none;
+  }
 }
 
 .pack-meta {
@@ -719,7 +812,6 @@ ul {
   aspect-ratio: 1;
   width: auto;
   pointer-events: none;
-  image-rendering: pixelated;
   filter: drop-shadow(6px 6px 0 rgb(0 0 0 / 50%));
 }
 
@@ -1921,10 +2013,6 @@ input[type='range'] {
 
   .hud-value {
     font-size: 1.25rem;
-  }
-
-  .heroes {
-    grid-template-columns: repeat(10, 1fr);
   }
 
   .adventures {

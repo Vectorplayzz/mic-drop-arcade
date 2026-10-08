@@ -1377,294 +1377,6 @@
   "picked_by": "Claude for G Nagarjuna (best of two seeds)"
  },
  {
-  "file": "client/src/assets/art/sprites/wizard/enchantress/ask.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000001,
-  "prompt": "128x128 pixel art sprite, glamorous young enchantress woman, adult full-size proportions, full body head to toe, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, a small glowing heart-shaped flame floating above one palm, one eyebrow raised with a playful knowing smile as if asking a question, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/wizard/enchantress/happy.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000001,
-  "prompt": "128x128 pixel art sprite, glamorous young enchantress woman, adult full-size proportions, full body head to toe, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, a small glowing heart-shaped flame floating above one palm, warm charming smile, blowing a little sparkle from her palm, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/wizard/enchantress/sad.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000001,
-  "prompt": "128x128 pixel art sprite, glamorous young enchantress woman, adult full-size proportions, full body head to toe, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, a small glowing heart-shaped flame floating above one palm, pouting with a hand on her cheek, disappointed, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/wizard/enchantress/cheer.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000001,
-  "prompt": "128x128 pixel art sprite, glamorous young enchantress woman, adult full-size proportions, full body head to toe, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, a small glowing heart-shaped flame floating above one palm, arms raised gracefully, sparkles and tiny hearts swirling around her, delighted laugh, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/wizard/trickster/ask.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000010,
-  "prompt": "128x128 pixel art sprite, mischievous young trickster mage man, adult full-size proportions, full body head to toe, not chibi, messy silver hair, fox ears, purple and orange patchwork coat with many pockets, long striped scarf, glowing magic playing cards fanned in one hand, sly grin and one eye winking as if asking a riddle, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/wizard/trickster/happy.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000010,
-  "prompt": "128x128 pixel art sprite, mischievous young trickster mage man, adult full-size proportions, full body head to toe, not chibi, messy silver hair, fox ears, purple and orange patchwork coat with many pockets, long striped scarf, glowing magic playing cards fanned in one hand, smug grin, tossing a glowing card in the air, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/wizard/trickster/sad.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000010,
-  "prompt": "128x128 pixel art sprite, mischievous young trickster mage man, adult full-size proportions, full body head to toe, not chibi, messy silver hair, fox ears, purple and orange patchwork coat with many pockets, long striped scarf, glowing magic playing cards fanned in one hand, rolling his eyes with arms crossed, unimpressed, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/wizard/trickster/cheer.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000010,
-  "prompt": "128x128 pixel art sprite, mischievous young trickster mage man, adult full-size proportions, full body head to toe, not chibi, messy silver hair, fox ears, purple and orange patchwork coat with many pockets, long striped scarf, glowing magic playing cards fanned in one hand, laughing with arms wide open, glowing cards flying around him, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/heroes/vikas.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000020,
-  "prompt": "128x128 pixel art sprite, anime young college boy with normal full-size proportions, full body head to toe, long legs, not chibi, neat side-parted black hair, round glasses, grey hoodie and jeans, holding an open laptop, confident smile, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/heroes/arnav.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000030,
-  "prompt": "128x128 pixel art sprite, anime young college boy with normal full-size proportions, full body head to toe, long legs, not chibi, curly brown hair, denim jacket over a yellow t-shirt, acoustic guitar on his back, waving, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/heroes/harpreet.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000040,
-  "prompt": "128x128 pixel art sprite, anime young college boy with normal full-size proportions, full body head to toe, long legs, not chibi, Sikh boy wearing a royal blue patka, short neat beard, white and blue tracksuit, cricket bat resting on his shoulder, big grin, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/heroes/dhruv.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000050,
-  "prompt": "128x128 pixel art sprite, anime young college boy with normal full-size proportions, full body head to toe, long legs, not chibi, spiky black hair, white lab coat over a red t-shirt, holding a small robot arm, excited expression, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/heroes/aisha.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000060,
-  "prompt": "128x128 pixel art sprite, anime young college girl with normal full-size proportions, full body head to toe, long legs, not chibi, wearing a lilac hijab, olive green bomber jacket and jeans, holding a drone remote controller, bright smile, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/heroes/kavya.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000071,
-  "prompt": "128x128 pixel art sprite, anime young college girl with normal full-size proportions, full body head to toe, long legs, not chibi, short black bob haircut, thick black glasses, oversized teal hoodie, hugging a notebook, shy smile, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/heroes/nila.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000081,
-  "prompt": "128x128 pixel art sprite, anime young college girl with normal full-size proportions, full body head to toe, long legs, not chibi, long black braid with jasmine flowers, maroon kurta with jeans and white sneakers, holding a camera, cheerful, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
-  "file": "client/src/assets/art/sprites/heroes/tara.png",
-  "tool": "AICade Studio (ComfyUI 0.37)",
-  "workflow": "sprite: Z-Image Turbo 1024x1024 + BiRefNet background removal",
-  "seed": 830000000091,
-  "prompt": "128x128 pixel art sprite, anime young college girl with normal full-size proportions, full body head to toe, long legs, not chibi, pixie cut hair dyed blue, black leather jacket and ripped jeans, holding a skateboard, cool smirk, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
-  "license_chain": [
-   "Z-Image Turbo (Apache-2.0)",
-   "BiRefNet (MIT)"
-  ],
-  "post": [
-   "BiRefNet mask, threshold + 1px dilate",
-   "cropped, box-downscaled into 128x128 (bottom-centred)",
-   "quantised to 32 colours",
-   "oxipng lossless"
-  ],
-  "created": "2026-10-08"
- },
- {
   "file": "client/src/assets/music/menu.mp3",
   "tool": "AICade Studio (ComfyUI 0.37)",
   "workflow": "music: ACE-Step 1.5 turbo, 100 s, 82 bpm, D major, 4/4, lyrics [Instrumental]",
@@ -1727,5 +1439,765 @@
    "MP3 96 kb/s stereo"
   ],
   "created": "2026-10-08"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/sorceress/ask.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000001,
+  "prompt": "young sorceress woman, adult full-size proportions, not chibi, long dark wavy hair, emerald green hooded robe with silver moon patterns, crescent moon staff, holding a glowing scroll, curious smile as if asking a question, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/sorceress/cheer.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000001,
+  "prompt": "young sorceress woman, adult full-size proportions, not chibi, long dark wavy hair, emerald green hooded robe with silver moon patterns, crescent moon staff raised high, cheering, sparkles and small moons around her, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/sorceress/happy.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000001,
+  "prompt": "young sorceress woman, adult full-size proportions, not chibi, long dark wavy hair, emerald green hooded robe with silver moon patterns, crescent moon staff, warm happy smile, giving a thumbs up, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/sorceress/sad.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000001,
+  "prompt": "young sorceress woman, adult full-size proportions, not chibi, long dark wavy hair, emerald green hooded robe with silver moon patterns, both hands on crescent moon staff, face clearly visible, sad worried frown, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/sage/ask.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000011,
+  "prompt": "tall old wizard man, adult full-size proportions, not chibi, long white beard, tall lavender star hat, long cyan robe with gold trim, glowing crystal staff, holding an open scroll, asking a question with a raised eyebrow, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/sage/cheer.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000011,
+  "prompt": "tall old wizard man, adult full-size proportions, not chibi, long white beard, tall lavender star hat, long cyan robe with gold trim, glowing crystal staff, cheering with both arms raised, sparkles bursting around him, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/sage/happy.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000011,
+  "prompt": "tall old wizard man, adult full-size proportions, not chibi, long white beard, tall lavender star hat, long cyan robe with gold trim, glowing crystal staff, smiling warmly and giving a thumbs up, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/sage/sad.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000011,
+  "prompt": "tall old wizard man, adult full-size proportions, not chibi, long white beard, tall lavender star hat, long cyan robe with gold trim, both hands holding a glowing crystal staff, face clearly visible, sad frown, eyebrows raised in worry, shoulders slumped, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/owl/ask.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000020,
+  "prompt": "wise old owl professor wizard standing upright like a person, tall full body, not chibi, brown and cream feathers, round golden spectacles, deep burgundy robe with star trim, small pointed burgundy hat, feather quill staff, holding an open book, curious look as if asking a question, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/owl/cheer.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000020,
+  "prompt": "wise old owl professor wizard standing upright like a person, tall full body, not chibi, brown and cream feathers, round golden spectacles, deep burgundy robe with star trim, small pointed burgundy hat, both wings raised in celebration, sparkles and feathers flying, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/owl/happy.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000020,
+  "prompt": "wise old owl professor wizard standing upright like a person, tall full body, not chibi, brown and cream feathers, round golden spectacles, deep burgundy robe with star trim, small pointed burgundy hat, feather quill staff, happy wink, one wing giving a thumbs up, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/owl/sad.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000020,
+  "prompt": "wise old owl professor wizard standing upright like a person, tall full body, not chibi, brown and cream feathers, round golden spectacles, deep burgundy robe with star trim, small pointed burgundy hat, both wings on feather quill staff, sad drooping eyes, worried frown, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/enchantress/ask.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000031,
+  "prompt": "glamorous young enchantress woman, adult full-size proportions, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, a small glowing heart-shaped flame floating above one palm, one eyebrow raised with a playful knowing smile as if asking a question, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/enchantress/cheer.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000031,
+  "prompt": "glamorous young enchantress woman, adult full-size proportions, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, arms raised gracefully, sparkles and tiny hearts swirling around her, delighted laugh, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/enchantress/happy.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000031,
+  "prompt": "glamorous young enchantress woman, adult full-size proportions, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, a small glowing heart-shaped flame floating above one palm, warm charming smile, blowing a little sparkle from her palm, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/enchantress/sad.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000031,
+  "prompt": "glamorous young enchantress woman, adult full-size proportions, not chibi, long flowing black hair with a jasmine flower, elegant crimson and gold flowing robe with long sleeves, golden bangles, pouting with a hand on her cheek, disappointed, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/trickster/ask.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000041,
+  "prompt": "mischievous young trickster mage man, adult full-size proportions, not chibi, messy silver hair, fox ears, fox tail, purple and orange patchwork coat with many pockets, long striped scarf, glowing magic playing cards fanned in one hand, sly grin and one eye winking as if asking a riddle, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/trickster/cheer.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000041,
+  "prompt": "mischievous young trickster mage man, adult full-size proportions, not chibi, messy silver hair, fox ears, fox tail, purple and orange patchwork coat with many pockets, long striped scarf, laughing with arms wide open, glowing cards flying around him, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/trickster/happy.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000041,
+  "prompt": "mischievous young trickster mage man, adult full-size proportions, not chibi, messy silver hair, fox ears, fox tail, purple and orange patchwork coat with many pockets, long striped scarf, smug grin, tossing a glowing card in the air, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/wizard/trickster/sad.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 940000000041,
+  "prompt": "mischievous young trickster mage man, adult full-size proportions, not chibi, messy silver hair, fox ears, fox tail, purple and orange patchwork coat with many pockets, long striped scarf, rolling his eyes with arms crossed, unimpressed, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled at one scale shared by the four moods into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds, same seed for all four moods)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/aditya.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000001,
+  "prompt": "anime young adult college boy about 20 years old, normal full-size proportions, long legs, not chibi, short buzz cut, purple basketball jersey and shorts, spinning a basketball on one finger, cool grin, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/ananya.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000011,
+  "prompt": "anime young adult college girl about 20 years old, normal full-size proportions, long legs, not chibi, hair in two buns, red college blazer with a tie, small backpack, cheerful wave, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/arjun.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000021,
+  "prompt": "anime young adult college boy about 20 years old, normal full-size proportions, long legs, not chibi, spiky black hair, red hoodie, dark jeans, white sneakers, confident grin, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/diya.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000031,
+  "prompt": "anime young adult college girl about 20 years old, normal full-size proportions, long legs, not chibi, long black braid, yellow kurta top, blue jeans, bright smile, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/imran.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000040,
+  "prompt": "anime young adult college boy about 20 years old, normal full-size proportions, long legs, not chibi, wavy dark hair, white shirt, light blue denim jacket, guitar strapped on his back, relaxed smile, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/kabir.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000051,
+  "prompt": "anime young adult college boy about 20 years old, normal full-size proportions, long legs, not chibi, messy brown hair, round glasses, navy blazer, yellow backpack, cheerful smile, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/meera.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000063,
+  "prompt": "anime young adult college girl about 20 years old, normal full-size proportions, long legs, not chibi, short pink bob haircut, purple jacket over a white top, black jeans, purple sneakers, headphones around her neck, making a peace sign, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/priya.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000071,
+  "prompt": "anime young adult college girl about 20 years old, normal full-size proportions, long legs, not chibi, long hair in a braid with flowers, classical Kuchipudi dance costume in blue and gold, graceful dance pose, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/rohan.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000081,
+  "prompt": "anime young adult college boy about 20 years old, normal full-size proportions, long legs, not chibi, curly black hair, green kurta under a denim jacket, holding a smartphone, friendly smile, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/sai.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000091,
+  "prompt": "anime young adult college boy about 20 years old, normal full-size proportions, long legs, not chibi, cyan headband, sporty orange jacket, cricket bat resting on his shoulder, determined look, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/sana.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000100,
+  "prompt": "anime young adult college girl about 20 years old, normal full-size proportions, long legs, not chibi, lavender hijab, denim jacket over a white top, holding a sketchbook and pencil, bright smile, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/zara.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000111,
+  "prompt": "anime young adult college girl about 20 years old, normal full-size proportions, long legs, not chibi, high ponytail, mint green sporty outfit, holding a book, determined look, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/vikas.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000121,
+  "prompt": "anime young adult college boy about 20 years old, normal full-size proportions, long legs, not chibi, neat side-parted black hair, round glasses, grey hoodie and jeans, holding an open laptop, confident smile, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/arnav.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000131,
+  "prompt": "anime young adult college boy about 20 years old, normal full-size proportions, long legs, not chibi, curly brown hair, denim jacket over a yellow t-shirt, acoustic guitar on his back, waving, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/harpreet.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000141,
+  "prompt": "anime young adult college boy about 20 years old, normal full-size proportions, long legs, not chibi, Sikh young man wearing a royal blue patka, short neat beard, white and blue tracksuit, cricket bat resting on his shoulder, big grin, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/dhruv.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000151,
+  "prompt": "anime young adult college boy about 20 years old, normal full-size proportions, long legs, not chibi, spiky black hair, white lab coat over a red t-shirt, holding a small robot arm, excited expression, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/aisha.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000161,
+  "prompt": "anime young adult college girl about 20 years old, normal full-size proportions, long legs, not chibi, wearing a lilac hijab, olive green bomber jacket and jeans, holding a drone remote controller, bright smile, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/kavya.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000172,
+  "prompt": "anime young adult college girl about 20 years old, normal full-size proportions, long legs, not chibi, short black bob haircut, thick black glasses, oversized teal hoodie, dark blue jeans, white sneakers, hugging a notebook, shy smile, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/nila.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000181,
+  "prompt": "anime young adult college girl about 20 years old, normal full-size proportions, long legs, not chibi, long black braid with jasmine flowers, maroon kurta with jeans and white sneakers, holding a camera, cheerful, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
+ },
+ {
+  "file": "client/src/assets/art/sprites/heroes/tara.png",
+  "tool": "AICade Studio (ComfyUI 0.37)",
+  "workflow": "sprite: Z-Image Turbo 1024x1024 (8 steps, res_multistep) + BiRefNet background removal",
+  "seed": 950000000191,
+  "prompt": "anime young adult college girl about 20 years old, normal full-size proportions, long legs, not chibi, pixie cut hair dyed blue, black leather jacket and ripped jeans, holding a skateboard, cool smirk, full body head to toe, standing on nothing, front three-quarter view, high-resolution detailed 32-bit pixel art character sprite, crisp clean pixel clusters, dark clean outline, rich cel shading with highlights, expressive readable face, clean silhouette, the character fills most of the frame, plain flat light grey background, no ground shadow, no text, game character asset, original character",
+  "license_chain": [
+   "Z-Image Turbo (Apache-2.0)",
+   "BiRefNet (MIT)"
+  ],
+  "post": [
+   "BiRefNet mask, thresholded at 55%, 1px open (drops the ground shadow)",
+   "cropped to the mask, Lanczos-downscaled into 512x512 (bottom-centred)",
+   "quantised to 96 colours (median cut, no dither), hard alpha",
+   "oxipng lossless"
+  ],
+  "created": "2026-10-08",
+  "picked_by": "Claude for G Nagarjuna (best of two seeds)"
  }
 ]
