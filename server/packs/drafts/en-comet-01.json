@@ -168,7 +168,7 @@
     "wizard": "Professor Hoot",
     "wizard_sprite": "owl",
     "scene": "observatory",
-    "voice": "Girish",
+    "voice": "Yashraj",
     "intro": "Welcome to the night observatory, engineer! The comet clock crashed right before launch, and only you can reboot it. Every right answer turns one golden gear.",
     "chapters": [
       "Gear one is spinning. Nice start, engineer!",

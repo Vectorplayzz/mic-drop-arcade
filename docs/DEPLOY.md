@@ -44,7 +44,7 @@ ourspaces.net.
    python3 -c "import secrets; [print(secrets.token_urlsafe(48)) for _ in range(4)]"
    ```
    Fill `MAATA_JWT_SECRET`, `MAATA_IP_HASH_SECRET`, `REDIS_PASSWORD`, `POSTGRES_PASSWORD`,
-   `MAATA_GNANI_API_KEY`, `MAATA_TURNSTILE_SECRET` and `MAATA_ALERT_WEBHOOK_URL`. The app
+   `MAATA_GNANI_API_KEY` (plus `MAATA_GNANI_TTS_API_KEY` if Timbre has its own key), `MAATA_TURNSTILE_SECRET` and `MAATA_ALERT_WEBHOOK_URL`. The app
    refuses to boot in production if any of these are weak or missing.
 
 ## Every release

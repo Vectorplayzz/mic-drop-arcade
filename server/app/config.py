@@ -34,7 +34,8 @@ class Settings(BaseSettings):
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR"] = "INFO"
 
     # --- Secrets -------------------------------------------------------------------------
-    gnani_api_key: SecretStr = SecretStr("")
+    gnani_api_key: SecretStr = SecretStr("")  # speech-to-text (Prisma); also TTS if no key below
+    gnani_tts_api_key: SecretStr = SecretStr("")  # text-to-speech (Timbre), when it has its own key
     jwt_secret: SecretStr = SecretStr("")
     ip_hash_secret: SecretStr = SecretStr("")
     turnstile_secret: SecretStr = SecretStr("1x0000000000000000000000000000000AA")
@@ -44,7 +45,9 @@ class Settings(BaseSettings):
     gnani_stt_ws_url: str = "wss://api.vachana.ai/stt/v3/stream"
     gnani_tts_ws_url: str = "wss://api.vachana.ai/api/v1/tts"
     gnani_tts_rest_url: str = "https://api.vachana.ai/api/v1/tts/inference"
-    gnani_tts_model: str = "timbre-v2.5"
+    # Timbre v3.0: 13 voices that each speak every game language, plus inline audio tags
+    # (<laugh>, <sigh>...). Its voices are not v2.5 voices: app/game/languages.py must match.
+    gnani_tts_model: str = "timbre-v3.0"
     gnani_connect_timeout_s: float = 6.0
     gnani_connect_retries: int = 3
 
@@ -99,6 +102,11 @@ class Settings(BaseSettings):
     credits_per_stt_minute: float = 1.0
     credits_per_1k_tts_chars: float = 1.0
     kill_switch: bool = False
+
+    @property
+    def tts_api_key(self) -> str:
+        """The key for Timbre: its own if set, else the shared Gnani key."""
+        return self.gnani_tts_api_key.get_secret_value() or self.gnani_api_key.get_secret_value()
 
     @field_validator("allowed_origins", "trusted_proxies", mode="before")
     @classmethod
