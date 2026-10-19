@@ -128,7 +128,7 @@ class Deps:
         s = self.settings
         return TtsStreamer(
             url=s.gnani_tts_ws_url,
-            api_key=s.gnani_api_key.get_secret_value(),
+            api_key=s.tts_api_key,
             model=s.gnani_tts_model,
             connect_timeout_s=s.gnani_connect_timeout_s,
             connect_retries=min(s.gnani_connect_retries, 2),

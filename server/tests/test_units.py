@@ -554,7 +554,7 @@ def test_all_five_languages_route_and_have_lines():
     assert set(LANGUAGES) == {"te-IN", "hi-IN", "hi-en", "te-en", "en-IN"}
     # Tenglish listens in Telugu mode (live-tested): English words come back in Telugu script.
     assert route("te-en").stt_lang == "te-IN" and route("te-en").tts_lang == "te-IN"
-    assert route("en-IN").stt_lang == "en-IN" and route("en-IN").voice == "Girish"
+    assert route("en-IN").stt_lang == "en-IN" and route("en-IN").voice == "Lakshmi"
     lines = Lines.load(SERVER_DIR / "content" / "lines.json")
     for code in LANGUAGES:
         assert "{answer}" not in lines.get(code, "answer_was", answer="x")
@@ -617,16 +617,16 @@ def test_story_voice_scene_and_sprite():
         "library-a",
         None,
     )
-    assert route_for_pack(pack).voice == "Nalini"  # language default
+    assert route_for_pack(pack).voice == "Lakshmi"  # language default
 
     raw = _json.loads(_json.dumps(base))
-    raw["story"].update(voice="Jalaj", wizard_sprite="owl", scene="crystal-cave")
+    raw["story"].update(voice="Shubham", wizard_sprite="owl", scene="crystal-cave")
     pack = parse_pack(_json.dumps(raw))
     route = route_for_pack(pack)
-    assert route.voice == "Jalaj" and route.tts_lang == "hi-IN" and route.stt_lang == "hi-IN"
+    assert route.voice == "Shubham" and route.tts_lang == "hi-IN" and route.stt_lang == "hi-IN"
 
     for field, bad in (
-        ("voice", "Girish"),  # an en-IN voice in a Hindi pack
+        ("voice", "Girish"),  # a Timbre v2.5 voice, not in v3
         ("voice", "../etc"),
         ("wizard_sprite", "dragon"),
         ("scene", "../../secrets"),
@@ -712,19 +712,19 @@ def test_wizard_picks_the_narrator_voice():
 
     pack = parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes())
     assert DEFAULT_WIZARD == "sorceress"
-    assert route_for_game(pack, "sorceress").voice == "Falak"
-    assert route_for_game(pack, "sage").voice == "Roopesh"
-    assert route_for_game(pack, "owl").voice == "Vikrant"
+    assert route_for_game(pack, "sorceress").voice == "Lakshmi"
+    assert route_for_game(pack, "sage").voice == "Yashraj"
+    assert route_for_game(pack, "owl").voice == "Avinash"
     for code in LANGUAGES:
         # Every wizard sounds different, and male wizards have male voices.
         assert len({WIZARD_VOICES[code][w] for w in WIZARDS}) == len(WIZARDS), code
         for wizard in WIZARDS:
             r = route_for_wizard(code, wizard)
             assert r.voice in VOICE_CATALOG, (code, wizard)
-            assert VOICE_CATALOG[r.voice][1] == WIZARD_GENDER[wizard], (code, wizard)
-            # The text's language goes to Timbre, except that hi-en belongs to Poorvi: Hindi
-            # voices read Hinglish as hi-IN.
-            expected = {"te-en": "te-IN", "hi-en": "hi-en" if r.voice == "Poorvi" else "hi-IN"}
+            assert VOICE_CATALOG[r.voice] == WIZARD_GENDER[wizard], (code, wizard)
+            # Timbre gets the spoken text's language: Hinglish is Devanagari plus English
+            # (hi-IN), Tenglish Telugu plus English (te-IN).
+            expected = {"te-en": "te-IN", "hi-en": "hi-IN"}
             assert r.tts_lang == expected.get(code, code), (code, wizard)
     for bad in (None, "", "dragon", "SAGE", 3, ["owl"]):
         assert valid_wizard(bad) is None

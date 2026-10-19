@@ -108,7 +108,7 @@ async def render(
                     pcm = await synthesize_rest(
                         client,
                         url=s.gnani_tts_rest_url,
-                        api_key=s.gnani_api_key.get_secret_value(),
+                        api_key=s.tts_api_key,
                         model=s.gnani_tts_model,
                         text=text,
                         voice=r.voice,
@@ -165,8 +165,8 @@ def main() -> int:
     if not args.yes:
         print("Re-run with --yes to synthesise them.")
         return 1
-    if not s.gnani_api_key.get_secret_value():
-        print("MAATA_GNANI_API_KEY is not set.", file=sys.stderr)
+    if not s.tts_api_key:
+        print("MAATA_GNANI_TTS_API_KEY (or MAATA_GNANI_API_KEY) is not set.", file=sys.stderr)
         return 1
     failures = asyncio.run(render(todo, cache, max(1, min(args.concurrency, 4))))
     print(f"Done with {failures} failures.")

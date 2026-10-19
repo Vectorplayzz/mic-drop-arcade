@@ -376,3 +376,28 @@ def test_spoken_numbers(heard, value):
 def test_mixed_number_answers(lang, heard, right):
     adv = parse_adventure((SHIPPED / "viva-loop.json").read_bytes())
     assert puzzle_correct(adv.nodes["v_tower"].puzzle, lang, heard) is right
+
+
+def test_emotion_tags_only_in_spoken_text():
+    import re as _re
+
+    from app.game.wizards import AUDIO_TAGS
+
+    tag = _re.compile(r"<[^<>]{1,24}>")
+    lines = WizardLines.load(SERVER_DIR / "content" / "wizards.json")
+    used = set()
+    for lang in LANGUAGES:
+        for wizard in WIZARDS:
+            for key in KEYS:
+                line = lines.get(lang, wizard, key)
+                assert not tag.search(line.text), (lang, wizard, key)  # captions stay clean
+                found = set(tag.findall(line.tts))
+                assert found <= AUDIO_TAGS, (lang, wizard, key, found)
+                assert tag.sub("", line.tts).strip(), (lang, wizard, key)  # never tag-only
+                used |= found
+    assert {"<laugh>", "<giggle>", "<sigh>"} <= used
+    # No story text shown on screen carries a tag either.
+    for path in _all_story_files():
+        for lang in LANGS:
+            for text in _shown_texts(json.loads(path.read_text(encoding="utf-8")), lang):
+                assert not tag.search(text), (path.name, text)

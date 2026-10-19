@@ -1,12 +1,12 @@
 # Mic Drop Arcade
 
 A retro arcade quiz you play only by speaking: Telugu, Hindi, English, Hinglish or Tenglish. Built for Gnani AI's
-Great Indian AI Internship Challenge on **Prisma v2.5** (realtime STT), **Timbre v2.5**
+Great Indian AI Internship Challenge on **Prisma v2.5** (realtime STT), **Timbre v3.0**
 (streaming TTS) and **Evon v3.3** (question-pack generation).
 
 ```
 browser (PWA) ──wss──> nginx ──> api (FastAPI) ──wss──> Prisma v2.5 STT
-   mic PCM 16k            CF        │  re-frame + pace     Timbre v2.5 TTS
+   mic PCM 16k            CF        │  re-frame + pace     Timbre v3.0 TTS
    <── PCM 24k ───────────────────  │  score, cache, caps
                                     ├── Redis    (sessions, limits, budget)
                                     └── Postgres (leaderboard)
