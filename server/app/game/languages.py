@@ -75,15 +75,20 @@ WIZARD_GENDER: dict[str, str] = {
 }
 # One voice per character in every language (Timbre v3.0 cast, Oct 19 audition).
 _CAST = {
-    "sorceress": "Lakshmi",  # expressive storyteller
-    "sage": "Yashraj",  # warm narrator
-    "owl": "Avinash",  # firm, deliberate: a professor
-    "enchantress": "Riyaa",  # lively, confident
-    "trickster": "Shubham",  # expressive, cocky
+    "sorceress": "Shivani",  # warm storyteller
+    "sage": "Harshad",  # deep, unhurried elder
+    "owl": "Prakash",  # measured professor
+    "enchantress": "Tarika",  # bright and playful
+    "trickster": "Yashraj",  # sly, cocky
 }
 WIZARD_VOICES: dict[str, dict[str, str]] = {
     code: dict(_CAST) for code in ("te-IN", "hi-IN", "hi-en", "te-en", "en-IN")
 }
+
+# Playback trim per voice, in dB, so the cast sounds equally loud (measured integrated
+# loudness on the greeting lines: Harshad -20.5, Yashraj -21.0, Tarika -21.2, Shivani -23.2,
+# Prakash -24.0 LUFS). Applied when sending; app/voice/gain.py limits the peaks.
+VOICE_GAIN_DB: dict[str, float] = {"Shivani": 2.5, "Prakash": 3.5}
 
 WIZARD_SPEED: dict[str, float] = {
     "sorceress": 1.0,
