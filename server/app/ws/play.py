@@ -26,6 +26,7 @@ from app.game.characters import valid_character
 from app.game.languages import (
     DEFAULT_WIZARD,
     LANGUAGES,
+    VOICE_GAIN_DB,
     LanguageRoute,
     route_for_game,
     route_for_wizard,
@@ -42,6 +43,7 @@ from app.security.http import origin_allowed
 from app.security.ratelimit import day_key, seconds_until_ist_midnight
 from app.security.tokens import ScoreClaims, SessionClaims, TokenError
 from app.voice.cache import cache_key
+from app.voice.gain import Gain
 from app.voice.vad import BargeInDetector
 from app.ws.adventure import AdventureRunner, LimitReached
 
@@ -696,6 +698,9 @@ class PlaySession:
             text=text,
         )
         tts = self._tts
+        # Voices come out of Timbre at different loudness; trim them to match on the way out.
+        # The cache keeps the original level, so a trim change needs no re-render.
+        gain = Gain(VOICE_GAIN_DB.get(lang.voice, 0.0))
         sent = 0
         interrupted = False
         try:
@@ -703,7 +708,9 @@ class PlaySession:
             if pcm is not None:
                 for i in range(0, len(pcm), AUDIO_CHUNK_BYTES):
                     chunk = pcm[i : i + AUDIO_CHUNK_BYTES]
-                    await self._send_bytes(audio_frame(utt, chunk, i + len(chunk) >= len(pcm)))
+                    await self._send_bytes(
+                        audio_frame(utt, gain(chunk), i + len(chunk) >= len(pcm))
+                    )
                     playout.sent(len(chunk))
                     sent += len(chunk)
             elif tts is not None and await self.deps.budget.is_open():
@@ -714,7 +721,7 @@ class PlaySession:
                 ) as chunks:
                     async for chunk in chunks:
                         writer.append(chunk)
-                        await self._send_bytes(audio_frame(utt, chunk, False))
+                        await self._send_bytes(audio_frame(utt, gain(chunk), False))
                         playout.sent(len(chunk))
                         sent += len(chunk)
                 # Only a whole clip is cached: a cut-off one would replay cut off for everyone.

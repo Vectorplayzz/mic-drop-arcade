@@ -160,6 +160,11 @@ async def test_cached_lines_are_not_resynthesised(live, clean_gnani):
             c = await open_game(server, await get_session(server.http))
             await c.ws.send(json.dumps({"type": "start", "pack_id": "hi-test-01"}))
             await c.next("game_over", timeout=15)
+            # The closing line is still playing at game_over; leaving now would cut it off,
+            # and a cut-off line is (rightly) not cached.
+            last = max(m["utterance"] for m in c.log if m["type"] == "speak_start")
+            while (await c.next("speak_end", timeout=10))["utterance"] != last:
+                pass
             await c.ws.close()
         texts = [r["text"] for r in clean_gnani.state.tts_requests]
         # Intro was spoken in both games but synthesised once.

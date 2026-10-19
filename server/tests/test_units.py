@@ -712,9 +712,9 @@ def test_wizard_picks_the_narrator_voice():
 
     pack = parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes())
     assert DEFAULT_WIZARD == "sorceress"
-    assert route_for_game(pack, "sorceress").voice == "Lakshmi"
-    assert route_for_game(pack, "sage").voice == "Yashraj"
-    assert route_for_game(pack, "owl").voice == "Avinash"
+    assert route_for_game(pack, "sorceress").voice == "Shivani"
+    assert route_for_game(pack, "sage").voice == "Harshad"
+    assert route_for_game(pack, "owl").voice == "Prakash"
     for code in LANGUAGES:
         # Every wizard sounds different, and male wizards have male voices.
         assert len({WIZARD_VOICES[code][w] for w in WIZARDS}) == len(WIZARDS), code
