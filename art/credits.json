@@ -1,0 +1,537 @@
+[
+  {
+    "file": "backgrounds/crystal-cave.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "image, Z-Image Turbo, style: Retro pixel art, 16:9",
+    "seed": 124647062862722,
+    "prompt": "16-bit retro pixel art game background: a glittering crystal cave, large glowing blue and violet crystals on the right wall, an underground river with reflections, stalactites, soft teal light. The left side is a smooth rock floor with a glowing circle, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)"
+    ],
+    "post": [
+      "box-downscaled 1344x768 -> 448x256",
+      "quantised to 48 colours"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "backgrounds/forest-temple.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "image, Z-Image Turbo, style: Retro pixel art, 16:9",
+    "seed": 123077542894364,
+    "prompt": "16-bit retro pixel art game background: ancient temple ruins in an enchanted forest at dusk, mossy stone pillars and carved arches on the right, glowing fireflies, giant old banyan tree roots, soft orange and violet sky. The left half is an open stone courtyard floor with a faint glowing rune circle, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)"
+    ],
+    "post": [
+      "box-downscaled 1344x768 -> 448x256",
+      "quantised to 48 colours"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "backgrounds/library-a.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "image, Z-Image Turbo, style: Retro pixel art, 16:9",
+    "prompt": "16-bit retro pixel art game background: the inside of a cozy magical wizard's library tower at night ... No people, no characters, no text, no UI.",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)"
+    ],
+    "post": [
+      "box-downscaled 1344x768 -> 448x256",
+      "quantised to 48 colours"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "backgrounds/library-b.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "image, Z-Image Turbo, style: Retro pixel art, 16:9",
+    "prompt": "16-bit retro pixel art game background: the inside of a cozy magical wizard's library tower at night ... No people, no characters, no text, no UI.",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)"
+    ],
+    "post": [
+      "box-downscaled 1344x768 -> 448x256",
+      "quantised to 48 colours"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "backgrounds/night-bazaar.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "image, Z-Image Turbo, style: Retro pixel art, 16:9",
+    "seed": 197002150238494,
+    "prompt": "16-bit retro pixel art game background: a lively old city night bazaar in South India, rows of hanging paper lanterns, colourful market stalls with bangles and spices on the right, stone arches and tall old minaret-style towers in the distance, warm golden light, starry sky. The left side is an open cobblestone square, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)"
+    ],
+    "post": [
+      "box-downscaled 1344x768 -> 448x256",
+      "quantised to 48 colours"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "backgrounds/observatory.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "image, Z-Image Turbo, style: Retro pixel art, 16:9",
+    "seed": 44718668369722,
+    "prompt": "16-bit retro pixel art game background: an old stone observatory rooftop at night, a large brass telescope on the right pointing at a sky full of stars, planets and a bright comet, star charts pinned to a wooden table, deep blue and purple tones. The left side is an open rooftop floor with a glowing circle, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)"
+    ],
+    "post": [
+      "box-downscaled 1344x768 -> 448x256",
+      "quantised to 48 colours"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "backgrounds/sky-islands.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "image, Z-Image Turbo, style: Retro pixel art, 16:9",
+    "seed": 259882542935974,
+    "prompt": "16-bit retro pixel art game background: floating sky islands above a sea of clouds at sunrise, waterfalls pouring off grassy island edges, small stone bridges, birds, warm pink and gold sky. The left side is a flat grassy island ledge with a glowing circle, room for a character to stand. No people, no characters, no text, no UI., 16-bit pixel art, retro arcade game aesthetic, limited palette, crisp pixels, dithering",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)"
+    ],
+    "post": [
+      "box-downscaled 1344x768 -> 448x256",
+      "quantised to 48 colours"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/aditya.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 35273471451038,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage boy with normal full-size proportions, full body head to toe, long legs, not chibi, short buzz cut, purple basketball jersey and shorts, spinning a basketball on one finger, cool grin, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/ananya.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 35273471451038,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage girl with normal full-size proportions, full body head to toe, long legs, not chibi, hair in two buns, red school uniform with a tie, small backpack, cheerful wave, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/arjun.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 87936676220635,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage boy with normal full-size proportions, full body head to toe, long legs, not chibi, spiky black hair, red hoodie, dark jeans, white sneakers, confident grin, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/diya.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 87936676220635,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage girl with normal full-size proportions, full body head to toe, long legs, not chibi, long black braid, yellow kurta top, blue jeans, bright smile, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/imran.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 35273471451038,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage boy with normal full-size proportions, full body head to toe, long legs, not chibi, wavy dark hair, white shirt, light blue denim jacket, guitar strapped on his back, relaxed smile, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/kabir.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 87936676220635,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage boy with normal full-size proportions, full body head to toe, long legs, not chibi, messy brown hair, round glasses, navy school blazer, yellow backpack, cheerful smile, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/meera.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 87936676220635,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage girl with normal full-size proportions, full body head to toe, long legs, not chibi, short pink bob haircut, purple jacket, headphones around her neck, making a peace sign, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/priya.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 35273471451038,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage girl with normal full-size proportions, full body head to toe, not chibi, long hair in a braid with flowers, classical Kuchipudi dance costume in blue and gold, graceful dance pose, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/rohan.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 35273471451038,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage boy with normal full-size proportions, full body head to toe, long legs, not chibi, curly black hair, green kurta under a denim jacket, holding a smartphone, friendly smile, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/sai.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 87936676220635,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage boy with normal full-size proportions, full body head to toe, long legs, not chibi, cyan headband, sporty orange jacket, cricket bat resting on his shoulder, determined look, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/sana.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 35273471451038,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage girl with normal full-size proportions, full body head to toe, long legs, not chibi, lavender hijab, denim jacket over a white top, holding a sketchbook and pencil, bright smile, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/heroes/zara.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 87936676220635,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, anime teenage girl with normal full-size proportions, full body head to toe, long legs, not chibi, high ponytail, mint green sporty outfit, holding a book, determined look, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/owl/ask.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 73536780317243,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, wise old owl wizard standing upright, tall full body, not chibi, brown and cream feathers, round golden spectacles, deep burgundy robe with star trim, small pointed burgundy hat, feather quill staff, holding an open book, curious look as if asking a question, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/owl/cheer.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 73536780317243,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, wise old owl wizard standing upright, tall full body, not chibi, brown and cream feathers, round golden spectacles, deep burgundy robe with star trim, small pointed burgundy hat, both wings raised in celebration, sparkles and feathers flying, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/owl/happy.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 73536780317243,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, wise old owl wizard standing upright, tall full body, not chibi, brown and cream feathers, round golden spectacles, deep burgundy robe with star trim, small pointed burgundy hat, feather quill staff, happy wink, one wing giving a thumbs up, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/owl/sad.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 73536780317243,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, wise old owl wizard standing upright, tall full body, not chibi, brown and cream feathers, round golden spectacles, deep burgundy robe with star trim, small pointed burgundy hat, both wings on feather quill staff, sad drooping eyes, worried frown, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/sage/ask.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 87936676220635,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, tall old wizard, adult full-size proportions, full body head to toe, not chibi, long white beard, tall lavender star hat, long cyan robe with gold trim, glowing crystal staff, holding an open scroll, asking a question with a raised eyebrow, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/sage/cheer.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 87936676220635,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, tall old wizard, adult full-size proportions, full body head to toe, not chibi, long white beard, tall lavender star hat, long cyan robe with gold trim, glowing crystal staff, cheering with both arms raised, sparkles bursting around him, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/sage/happy.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 87936676220635,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, tall old wizard, adult full-size proportions, full body head to toe, not chibi, long white beard, tall lavender star hat, long cyan robe with gold trim, glowing crystal staff, smiling warmly and giving a thumbs up, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/sage/sad.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 73536780317243,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, tall old wizard, adult full-size proportions, full body head to toe, not chibi, long white beard, tall lavender star hat, long cyan robe with gold trim, both hands holding a glowing crystal staff, face clearly visible, sad frown, eyebrows raised in worry, shoulders slumped, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/sorceress/ask.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 73536780317243,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, young sorceress woman, adult full-size proportions, full body head to toe, not chibi, long dark wavy hair, emerald green hooded robe with silver moon patterns, crescent moon staff, holding a glowing scroll, curious smile as if asking a question, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/sorceress/cheer.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 73536780317243,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, young sorceress woman, adult full-size proportions, full body head to toe, not chibi, long dark wavy hair, emerald green hooded robe with silver moon patterns, crescent moon staff raised high, cheering, sparkles and small moons around her, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/sorceress/happy.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 73536780317243,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, young sorceress woman, adult full-size proportions, full body head to toe, not chibi, long dark wavy hair, emerald green hooded robe with silver moon patterns, crescent moon staff, warm happy smile, giving a thumbs up, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  },
+  {
+    "file": "sprites/wizard/sorceress/sad.png",
+    "tool": "AICade Studio (ComfyUI 0.37)",
+    "workflow": "sprite (pixel)",
+    "seed": 73536780317243,
+    "pixel_grid": 128,
+    "prompt": "128x128 pixel art sprite, young sorceress woman, adult full-size proportions, full body head to toe, not chibi, long dark wavy hair, emerald green hooded robe with silver moon patterns, both hands on crescent moon staff, face clearly visible, sad worried frown, front view, crisp square pixels on a strict pixel grid, limited palette, black outline, clean silhouette, the object fills most of the frame, plain flat light grey background, game asset, cel shaded, clean bold linework, flat color planes, anime game art",
+    "license_chain": [
+      "Z-Image Turbo (Apache-2.0)",
+      "BiRefNet (MIT)"
+    ],
+    "post": [
+      "BiRefNet cut-out",
+      "alpha dilate",
+      "pixelate + palette"
+    ],
+    "created": "2026-10-07"
+  }
+]
