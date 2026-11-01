@@ -334,17 +334,6 @@ export function lobbyScreen(o: LobbyOptions): LobbyScreen {
       h('span', { class: 'adventure-tagline', text: a.letWizardChooseBody }),
     ),
   );
-  const make = h(
-    'div',
-    { class: 'adventure-card make-card', attrs: { 'aria-disabled': 'true' } },
-    h(
-      'span',
-      { class: 'adventure-info' },
-      h('span', { class: 'badge badge-soon pixel', text: a.comingSoon }),
-      h('span', { class: 'adventure-title', text: a.makeTitle }),
-      h('span', { class: 'adventure-tagline', text: a.makeBody }),
-    ),
-  );
   const el = h(
     'section',
     { class: 'screen lobby' },
@@ -355,7 +344,6 @@ export function lobbyScreen(o: LobbyOptions): LobbyScreen {
     auto,
     title,
     list,
-    make,
     h('p', { class: 'muted', text: t.gamesLeft(o.gamesLeft) }),
     button(t.back, o.onBack),
   );

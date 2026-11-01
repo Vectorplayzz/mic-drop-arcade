@@ -519,17 +519,6 @@ ul {
   animation: hop 480ms steps(3);
 }
 
-.custom-quiz {
-  border-style: dashed;
-  border-color: var(--muted);
-  background: rgb(23 21 59 / 80%);
-  cursor: default;
-}
-
-.badge-soon {
-  background: var(--muted);
-}
-
 .badge {
   padding: 0.25rem 0.4rem;
   background: var(--yellow);
@@ -1732,19 +1721,6 @@ input[type='range'] {
   font-size: 1.5rem;
 }
 
-.make-card {
-  min-height: 0;
-  border-style: dashed;
-  border-color: var(--muted);
-  background: rgb(23 21 59 / 80%);
-  cursor: default;
-}
-
-.make-card .adventure-info {
-  padding-top: 0.75rem;
-  background: none;
-}
-
 .genre-romance {
   border-color: var(--pink);
 }
@@ -1977,6 +1953,11 @@ input[type='range'] {
 
   .adventures {
     grid-template-columns: 1fr 1fr;
+  }
+
+  /* An odd number of adventures: the last one takes the full row instead of leaving a hole. */
+  .adventures > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .wizards {

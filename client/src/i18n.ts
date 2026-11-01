@@ -75,9 +75,6 @@ export interface Strings {
   /** Shown when the browser is holding the game's sound back. */
   soundOff: string;
   /** The sixth card in the quest list: player-made quizzes, generated live (not built yet). */
-  customQuizTitle: string;
-  customQuizBody: string;
-  comingSoon: string;
 
   gameOver: string;
   finalScore: string;
@@ -222,9 +219,6 @@ const hinglish: Strings = {
     trickster: 'Lomdi Jaadugar',
   },
   soundOff: 'Awaaz band hai, tap karo',
-  customQuizTitle: 'Apna quiz banao',
-  customQuizBody: 'Koi bhi topic bolo, AI tumhare liye quiz bana dega.',
-  comingSoon: 'Jald aa raha hai',
 
   gameOver: 'GAME OVER',
   finalScore: 'Aapka score',
@@ -433,9 +427,6 @@ const hindi: Strings = {
     trickster: 'लोमड़ी जादूगर',
   },
   soundOff: 'आवाज़ बंद है, टैप कीजिए',
-  customQuizTitle: 'अपना क्विज़ बनाइए',
-  customQuizBody: 'कोई भी विषय बोलिए, AI आपके लिए क्विज़ बना देगा।',
-  comingSoon: 'जल्द आ रहा है',
 
   gameOver: 'खेल खत्म',
   finalScore: 'आपका स्कोर',
@@ -644,9 +635,6 @@ const telugu: Strings = {
     trickster: 'నక్క మాంత్రికుడు',
   },
   soundOff: 'సౌండ్ ఆఫ్‌లో ఉంది, ట్యాప్ చేయండి',
-  customQuizTitle: 'మీ సొంత క్విజ్',
-  customQuizBody: 'ఏ విషయమైనా చెప్పండి, AI మీ కోసం క్విజ్ తయారుచేస్తుంది.',
-  comingSoon: 'త్వరలో వస్తోంది',
 
   gameOver: 'ఆట ముగిసింది',
   finalScore: 'మీ స్కోరు',
@@ -855,9 +843,6 @@ const english: Strings = {
     trickster: 'The Trickster',
   },
   soundOff: 'Sound is off. Tap to turn it on',
-  customQuizTitle: 'Make your own quiz',
-  customQuizBody: 'Say any topic and AI builds a quiz for you on the spot.',
-  comingSoon: 'Coming soon',
 
   gameOver: 'GAME OVER',
   finalScore: 'Your score',
@@ -1024,9 +1009,6 @@ const tenglish: Strings = {
     trickster: 'Nakka Mantrikudu',
   },
   soundOff: 'Sound off lo undi, tap cheyyandi',
-  customQuizTitle: 'Mee own quiz',
-  customQuizBody: 'E topic aina cheppandi, AI mee kosam quiz tayaru chestundi.',
-  comingSoon: 'Coming soon',
 
   gameOver: 'GAME OVER',
   finalScore: 'Mee score',
