@@ -105,7 +105,16 @@ SCENES: frozenset[str] = frozenset(
 )
 
 Genre = Literal[
-    "prologue", "action", "romance", "mystery", "scifi", "horror", "fantasy", "comedy", "thriller"
+    "prologue",
+    "action",
+    "romance",
+    "mystery",
+    "scifi",
+    "horror",
+    "fantasy",
+    "riddle",
+    "comedy",
+    "thriller",
 ]
 GENRE_ORDER: tuple[str, ...] = (
     "action",
@@ -114,6 +123,7 @@ GENRE_ORDER: tuple[str, ...] = (
     "scifi",
     "horror",
     "fantasy",
+    "riddle",
     "comedy",
     "thriller",
     "prologue",
@@ -406,7 +416,7 @@ class Adventure(_Model):
     id: Slug
     genre: Genre
     version: int = Field(ge=1)
-    source: Literal["hand", "creator"]
+    source: Literal["hand"]
     reviewed_by: Annotated[str, StringConstraints(min_length=2, max_length=60)] | None = None
     reviewed_at: date | None = None
     title: Line
