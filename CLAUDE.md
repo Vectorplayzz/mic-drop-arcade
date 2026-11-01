@@ -10,7 +10,7 @@ two-person entry for Gnani AI's Great Indian AI Internship Challenge.
 | Area | Owner | Paths |
 |---|---|---|
 | Voice pipeline, sessions, security, budget, deploy, Evon tooling | G Nagarjuna (Vector) | `server/`, `deploy/`, `.github/`, `docs/SECURITY.md`, `docs/DEPLOY.md` |
-| Game client: retro PWA, game loop, mic capture, UI, Creator Mode UI | Devesh | `client/` |
+| Game client: retro PWA, game loop, mic capture, UI | Devesh | `client/` |
 | Answer matching | Devesh | `server/app/game/matching.py`, `server/tests/test_units.py` (matching tests) |
 | Wire contract | both | `docs/PROTOCOL.md` |
 

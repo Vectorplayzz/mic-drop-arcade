@@ -33,9 +33,6 @@ against it, not around it.
 11. **Retro art, SFX and music [Oct 29]:** original assets or properly licensed ones only. Note
     licenses in `client/ASSETS.md`. No copyrighted characters, logos or game art.
 12. **Captions for every spoken line [Oct 29]:** use `speak_start.caption`.
-13. **Creator Mode [Oct 31]:** a pack editor and upload UI. The pack schema is
-    `server/app/game/packs.py`. The server-side upload endpoint doesn't exist yet: agree it with
-    Vector and add it to PROTOCOL.md first.
 
 ## Audio playback
 

@@ -62,7 +62,6 @@ export interface TitleOptions {
   onLanguage(code: LanguageCode): void;
   onStart(): void;
   onBoard(): void;
-  onCreator(): void;
   onSettings(): void;
   onPrivacy(): void;
 }
@@ -103,7 +102,6 @@ export function titleScreen(o: TitleOptions): Screen {
       'nav',
       { class: 'menu' },
       button(t.leaderboard, o.onBoard),
-      button(t.creator, o.onCreator),
       button(t.settings, o.onSettings),
     ),
     h(

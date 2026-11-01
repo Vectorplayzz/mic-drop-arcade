@@ -35,7 +35,6 @@ import { runTurnstile, TurnstileError } from './net/turnstile';
 import { levelFor, loadPrefs, type Prefs, type RunRecord, recordRun, savePrefs } from './prefs';
 import { CLOSE, type LanguageCode } from './protocol/messages';
 import { shareScoreCard } from './share/card';
-import { creatorScreen } from './ui/creator-screen';
 import { privacyDialog, settingsDialog } from './ui/dialogs';
 import { type GameScreen, gameScreen } from './ui/game-screen';
 import {
@@ -202,7 +201,6 @@ export class App {
         },
         onStart: () => void this.start(),
         onBoard: () => this.showBoard(this.language, 'today', null),
-        onCreator: () => this.showCreator(),
         onSettings: () => this.showSettings(),
         onPrivacy: () => privacyDialog(this.t),
       }),
@@ -229,18 +227,6 @@ export class App {
         }
       },
     });
-  }
-
-  private showCreator(): void {
-    this.flow++;
-    this.show(
-      creatorScreen({
-        languages: this.status?.languages ?? [],
-        language: this.language,
-        backLabel: this.t.back,
-        onBack: () => this.showTitle(),
-      }),
-    );
   }
 
   private showBoard(language: LanguageCode, period: Period, adventure: string | null): void {

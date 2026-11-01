@@ -13,7 +13,6 @@ export interface Strings {
   start: string;
   chooseLanguage: string;
   leaderboard: string;
-  creator: string;
   settings: string;
   back: string;
   home: string;
@@ -156,7 +155,6 @@ const hinglish: Strings = {
   start: 'START',
   chooseLanguage: 'Language chuno',
   leaderboard: 'Leaderboard',
-  creator: 'Creator Mode',
   settings: 'Settings',
   back: 'Back',
   home: 'Home',
@@ -368,7 +366,6 @@ const hindi: Strings = {
   start: 'शुरू करें',
   chooseLanguage: 'भाषा चुनें',
   leaderboard: 'लीडरबोर्ड',
-  creator: 'क्रिएटर मोड',
   settings: 'सेटिंग्स',
   back: 'वापस',
   home: 'होम',
@@ -580,7 +577,6 @@ const telugu: Strings = {
   start: 'ప్రారంభించు',
   chooseLanguage: 'భాష ఎంచుకోండి',
   leaderboard: 'లీడర్‌బోర్డ్',
-  creator: 'క్రియేటర్ మోడ్',
   settings: 'సెట్టింగ్‌లు',
   back: 'వెనక్కి',
   home: 'హోమ్',
@@ -792,7 +788,6 @@ const english: Strings = {
   start: 'START',
   chooseLanguage: 'Choose a language',
   leaderboard: 'Leaderboard',
-  creator: 'Creator Mode',
   settings: 'Settings',
   back: 'Back',
   home: 'Home',
@@ -962,7 +957,6 @@ const tenglish: Strings = {
   start: 'START',
   chooseLanguage: 'Language select cheyyandi',
   leaderboard: 'Leaderboard',
-  creator: 'Creator Mode',
   settings: 'Settings',
   back: 'Back',
   home: 'Home',

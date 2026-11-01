@@ -1293,48 +1293,6 @@ input[type='range'] {
   text-align: left;
 }
 
-/* ------------------------------------------------------------------ creator ------- */
-.creator {
-  max-width: 38rem;
-  text-align: left;
-}
-
-.creator .screen-title {
-  text-align: center;
-}
-
-.creator-pack,
-.creator-questions,
-.creator-question {
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-}
-
-.creator-pack,
-.creator-question {
-  padding: 1rem;
-  border: 3px solid var(--line);
-  background: color-mix(in srgb, var(--panel) 92%, transparent);
-}
-
-.creator-question-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-
-.issue {
-  color: var(--red);
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-.issue:empty {
-  display: none;
-}
-
 
 /* ------------------------------------------------------------------ adventures ---- */
 /* HUD: score, the adventure's meter (time, spark, clues...), the trail of answers, quit. */
