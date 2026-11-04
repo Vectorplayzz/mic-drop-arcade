@@ -1,14 +1,14 @@
 # syntax=docker/dockerfile:1.7
 # Mic Drop Arcade API — multi-stage, hash-pinned dependencies, non-root, read-only at runtime.
 
-FROM python:3.12-slim-bookworm AS build
+FROM python:3.15-slim-bookworm AS build
 ENV PIP_NO_CACHE_DIR=1 PIP_DISABLE_PIP_VERSION_CHECK=1
 WORKDIR /build
 COPY requirements.lock .
 RUN python -m venv /venv \
  && /venv/bin/pip install --no-deps --require-hashes -r requirements.lock
 
-FROM python:3.12-slim-bookworm
+FROM python:3.15-slim-bookworm
 RUN groupadd --gid 10001 app \
  && useradd --uid 10001 --gid app --no-create-home --shell /usr/sbin/nologin app \
  && mkdir -p /data/audio \
