@@ -70,7 +70,6 @@ src/
               sfx.ts       synthesised sound effects and title tune
   net/        api.ts       same-origin HTTP API   socket.ts  game socket   turnstile.ts  bot check
   ui/         screens, dialogs, sprites, backdrop (text is only ever set with textContent)
-  creator/    pack.ts      Creator Mode's pack model; validation mirrors server packs.py
   share/      card.ts      score card → canvas → PNG, shared or downloaded, never uploaded
   app.ts      controller: session, socket, audio graph, screens
   sw.ts       service worker: precaches the app shell only
@@ -85,14 +84,14 @@ Things worth knowing:
 - **Mic audio is sent only between `listen` and `result`.** The worklet does nothing outside
   that window, and the mic is released at game over so the browser's recording light goes off.
 - **The session token lives in memory only.** `localStorage` holds preferences (language,
-  volume, sound toggles) and the Creator Mode draft, nothing else.
+  volume, sound toggles, hero, wizard, nickname, progress), nothing else.
 - **CSP.** No inline scripts or styles, no `eval`, no CDNs. Turnstile is the only third-party
   origin. `npm run preview` serves the build under the same policy as nginx, so a violation
   shows up locally; `npm run check:dist` catches the static ones in CI.
 - **One AudioContext** is created inside the Start tap (iOS needs the gesture). Voice audio is
   resampled from 24 kHz to the device rate as a continuous stream, so chunk joins don't click.
 - **Languages.** The interface follows the game language (Telugu, Hindi, Hinglish); strings are
-  in `src/i18n.ts`. Creator Mode's editor labels are English for all three.
+  in `src/i18n.ts`.
 - **Service worker.** HTML is network-first, so a new release shows up on the next load;
   hashed assets are cache-first. It never touches `/api` or `/ws`.
 
@@ -119,14 +118,13 @@ rejects.
   refused starts, fatal errors, socket loss (`tests/machine.test.ts`);
 - the PCM downsampler (duration, pass-band, alias rejection, block-size independence), the
   640-byte framer, the PCM16 decoder and the playback resampler (`tests/pcm.test.ts`);
-- Creator Mode validation against the server's rules, including loading the server's own
-  fixture pack, plus the nickname rule and the share-card text wrapping (`tests/pack.test.ts`).
+- the nickname rule and the share-card text wrapping (`tests/text.test.ts`).
 
 ## Status and open items
 
 Checked so far: unit tests; and, in desktop Chromium against the mock server with the
 production build and CSP, a full game (answer, wrong answer, barge-in, timeout), score
-submission, the leaderboard, the share card and Creator Mode.
+submission, the leaderboard and the share card.
 
 Not done yet:
 
@@ -141,13 +139,6 @@ For Vector (server, deploy and CI owner):
 
 - **CI.** This branch adds a `client` job to `.github/workflows/ci.yml`. Please review it.
 - **Turnstile.** The deploy needs `VITE_TURNSTILE_SITE_KEY` at build time (above).
-- **Creator Mode upload.** There is no upload endpoint in PROTOCOL.md yet, so Creator Mode
-  validates a pack and saves it as a file for the existing review flow
-  (`packs/drafts` → `review_pack.py`). A proposal to discuss, not yet in the contract:
-  `POST /api/packs/drafts` with the pack JSON (max 256 KB) and a Turnstile token, same-origin,
-  rate-limited per IP; the server runs `parse_pack`, forces `source: "creator"`, drops the
-  review fields and stores the file in `packs/drafts/`, where it stays unplayable until a
-  person reviews it. Responses: `201 { id }`, `422 invalid_pack`, `429 rate_limited`.
 - **Answer matching.** `match_answer` gained an optional keyword argument, `language`, that
   narrows the filler-word list to the pack's language. The existing call works unchanged;
   passing `language=game.lang.code` from `ws/play.py` is a one-line improvement if you want it.

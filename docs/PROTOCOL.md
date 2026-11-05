@@ -217,7 +217,7 @@ GET /api/adventures?language=te-en
 
 | field | meaning |
 |---|---|
-| `genre` | `action`, `romance`, `mystery`, `scifi`, `horror`, `fantasy`, `comedy`, `thriller` |
+| `genre` | `action`, `romance`, `mystery`, `scifi`, `horror`, `fantasy`, `riddle`, `comedy`, `thriller` |
 | `cover`, `scenes` | scene ids (`client/src/assets/art/backgrounds/<id>.png`); prefetch `scenes` while the lobby is open |
 | `meter` | `{label, icon, max}` or `null`. `icon` is one of `clock`, `heart`, `search`, `bolt`, `nerve`, `flame`, `star` |
 | `endings` | `[{id, rank}]`, with `rank` one of `gold`, `silver`, `bronze`. Titles stay secret until reached |

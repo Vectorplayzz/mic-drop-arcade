@@ -48,6 +48,8 @@ export interface Prefs {
 export const DEFAULT_WIZARD: Wizard = 'sorceress';
 
 const KEY = 'maata.prefs.v1';
+// Creator Mode was removed; its saved editor draft is dropped on the next visit.
+const RETIRED_KEYS = ['maata.creator.draft.v1'];
 const DEFAULTS: Prefs = {
   language: null,
   voiceVolume: 1,
@@ -94,6 +96,7 @@ function loadBest(v: unknown): Prefs['best'] {
 
 export function loadPrefs(): Prefs {
   try {
+    for (const k of RETIRED_KEYS) localStorage.removeItem(k);
     const raw: unknown = JSON.parse(localStorage.getItem(KEY) ?? '{}');
     const saved = (typeof raw === 'object' && raw !== null ? raw : {}) as Record<string, unknown>;
     const volume = saved.voiceVolume;

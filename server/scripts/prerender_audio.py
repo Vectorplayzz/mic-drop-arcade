@@ -57,10 +57,12 @@ def collect(
 
     The player's wizard picks the voice and speed, so a line is rendered once per wizard.
     """
-    items: dict[tuple[str, str, float, str], Item] = {}
+    # Keyed like the audio cache (voice, Timbre language, speed, text): Hindi and Hinglish (and
+    # Telugu and Tenglish) can share a voice and a spoken line, which is rendered only once.
+    items: dict[tuple[str, str, str, str], Item] = {}
 
     def add(r: LanguageRoute, text: str) -> None:
-        items.setdefault((r.code, r.voice, r.speed, text), (r, text))
+        items.setdefault((r.voice, r.tts_lang, f"{r.speed:.2f}", text.strip()), (r, text))
 
     # Adventures first (the main mode), then the wizards' own lines, then the quiz.
     if adventures is not None:
@@ -106,18 +108,22 @@ async def render(
                     pcm = await synthesize_rest(
                         client,
                         url=s.gnani_tts_rest_url,
-                        api_key=s.gnani_api_key.get_secret_value(),
+                        api_key=s.tts_api_key,
                         model=s.gnani_tts_model,
                         text=text,
                         voice=r.voice,
                         language=r.tts_lang,
                         speed=r.speed,
                     )
+                    if len(pcm) < 2400:  # under 50 ms: Timbre returned no real audio
+                        raise GnaniError("tts returned no audio", retryable=True)
                     await cache.put(key, pcm)
                     print(f"  ok   {r.code} {r.voice:8} {r.speed:.2f} {text[:50]}")
                     return
-                except GnaniError as exc:
-                    if not exc.retryable or attempt == 5:
+                except (GnaniError, httpx.TransportError) as exc:
+                    # Network blips (DNS, resets) are retried like Gnani's own 429s/5xx.
+                    retryable = isinstance(exc, httpx.TransportError) or exc.retryable
+                    if not retryable or attempt == 5:
                         failures += 1
                         print(f"  FAIL {r.code}  {text[:50]}  ({exc})", file=sys.stderr)
                         return
@@ -159,8 +165,8 @@ def main() -> int:
     if not args.yes:
         print("Re-run with --yes to synthesise them.")
         return 1
-    if not s.gnani_api_key.get_secret_value():
-        print("MAATA_GNANI_API_KEY is not set.", file=sys.stderr)
+    if not s.tts_api_key:
+        print("MAATA_GNANI_TTS_API_KEY (or MAATA_GNANI_API_KEY) is not set.", file=sys.stderr)
         return 1
     failures = asyncio.run(render(todo, cache, max(1, min(args.concurrency, 4))))
     print(f"Done with {failures} failures.")

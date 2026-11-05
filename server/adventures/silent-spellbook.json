@@ -1,0 +1,1542 @@
+{
+ "schema": 1,
+ "id": "silent-spellbook",
+ "genre": "riddle",
+ "version": 1,
+ "source": "hand",
+ "reviewed_by": "G Nagarjuna",
+ "reviewed_at": "2026-11-01",
+ "title": {
+  "en-IN": "The Silent Spellbook",
+  "hi-IN": "ख़ामोश जादुई किताब",
+  "hi-en": "The Silent Spellbook",
+  "te-IN": "మౌన మంత్ర గ్రంథం",
+  "te-en": "The Silent Spellbook"
+ },
+ "tagline": {
+  "en-IN": "The library's spellbook has lost its words. Win them back before the moon sets.",
+  "hi-IN": "लाइब्रेरी की जादुई किताब के सारे शब्द चोरी हो गए हैं. चाँद ढलने से पहले उन्हें वापस लाइए.",
+  "hi-en": "Library ki spellbook ke saare words chori ho gaye hain. Chaand dhalne se pehle unhe wapas laaiye.",
+  "te-IN": "గ్రంథాలయంలోని మంత్ర గ్రంథం మాటలన్నీ పోయాయి. చంద్రుడు అస్తమించేలోపు వాటిని తిరిగి తీసుకురండి.",
+  "te-en": "Library spellbook lo words anni poyayi. Moon set ayyelopu vaatini tirigi teesukurandi."
+ },
+ "cover": "library-a",
+ "meter": {
+  "label": {
+   "en-IN": "Moonlight",
+   "hi-IN": "चाँदनी",
+   "hi-en": "Chaandni",
+   "te-IN": "వెన్నెల",
+   "te-en": "Vennela"
+  },
+  "icon": "star",
+  "start": 3,
+  "max": 3,
+  "on_zero": "end:moonset"
+ },
+ "items": {
+  "feather": {
+   "label": {
+    "en-IN": "Owl's feather",
+    "hi-IN": "उल्लू का पंख",
+    "hi-en": "Ullu ka pankh",
+    "te-IN": "గుడ్లగూబ ఈక",
+    "te-en": "Gudlagooba eeka"
+   }
+  },
+  "echo_jar": {
+   "label": {
+    "en-IN": "Jar of echoes",
+    "hi-IN": "गूँजों का मर्तबान",
+    "hi-en": "Goonjon ka martbaan",
+    "te-IN": "ప్రతిధ్వనుల జాడీ",
+    "te-en": "Echoes jaadi"
+   }
+  },
+  "word_light": {
+   "label": {
+    "en-IN": "Word: Light",
+    "hi-IN": "शब्द: रोशनी",
+    "hi-en": "Shabd: Roshni",
+    "te-IN": "మాట: వెలుగు",
+    "te-en": "Maata: Velugu"
+   }
+  },
+  "word_song": {
+   "label": {
+    "en-IN": "Word: Song",
+    "hi-IN": "शब्द: गीत",
+    "hi-en": "Shabd: Geet",
+    "te-IN": "మాట: పాట",
+    "te-en": "Maata: Paata"
+   }
+  }
+ },
+ "start": "s_start",
+ "nodes": {
+  "s_start": {
+   "scene": "library-a",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Midnight in the Grand Library of Voices. Every spell here is spoken aloud, and all of them live in one book: the Spellbook of Voices.",
+     "hi-IN": "आधी रात, आवाज़ों की महान लाइब्रेरी. यहाँ हर मंत्र बोलकर पढ़ा जाता है, और सारे मंत्र एक ही किताब में रहते हैं: आवाज़ों की जादुई किताब.",
+     "hi-en": "Aadhi raat, Grand Library of Voices. Yahan har spell bolkar padha jaata hai, aur saare spells ek hi kitaab mein rehte hain: the Spellbook of Voices.",
+     "te-IN": "అర్ధరాత్రి, స్వరాల మహా గ్రంథాలయం. ఇక్కడ ప్రతి మంత్రం గట్టిగా చదవాల్సిందే, అన్ని మంత్రాలూ ఒకే పుస్తకంలో ఉంటాయి: స్వరాల మంత్ర గ్రంథం.",
+     "te-en": "Ardharaatri, Grand Library of Voices. Ikkada prathi spell gattiga chadavaali, anni spells oke book lo untaayi: the Spellbook of Voices.",
+     "hi-en@tts": "आधी रात, Grand Library of Voices। यहाँ हर spell बोलकर पढ़ा जाता है, और सारे spells एक ही किताब में रहते हैं: the Spellbook of Voices।",
+     "te-en@tts": "అర్ధరాత్రి, Grand Library of Voices. ఇక్కడ ప్రతి spell గట్టిగా చదవాలి, అన్ని spells ఒకే book లో ఉంటాయి: the Spellbook of Voices."
+    },
+    {
+     "en-IN": "Tonight its pages are blank. Someone has stolen every word, and when the moon sets, the silence stays forever.",
+     "hi-IN": "आज रात उसके पन्ने कोरे हैं. किसी ने हर शब्द चुरा लिया है, और चाँद ढलते ही यह ख़ामोशी हमेशा के लिए रह जाएगी.",
+     "hi-en": "Aaj raat uske pages khaali hain. Kisi ne har word chura liya hai, aur chaand dhalte hi yeh khamoshi hamesha ke liye reh jaayegi.",
+     "te-IN": "ఈ రాత్రి దాని పేజీలన్నీ ఖాళీ. ఎవరో ప్రతి మాటనూ దొంగిలించారు. చంద్రుడు అస్తమిస్తే, ఈ మౌనం శాశ్వతం.",
+     "te-en": "Ee raatri daani pages anni khaali. Evaro prathi word ni dongilincharu. Moon set aithe, ee silence permanent.",
+     "hi-en@tts": "आज रात उसके pages खाली हैं। किसी ने हर word चुरा लिया है, और चाँद ढलते ही यह खामोशी हमेशा के लिए रह जाएगी।",
+     "te-en@tts": "ఈ రాత్రి దాని pages అన్నీ ఖాళీ. ఎవరో ప్రతి word నీ దొంగిలించారు. Moon set అయితే, ఈ silence permanent."
+    },
+    {
+     "en-IN": "Where do you begin?",
+     "hi-IN": "आप कहाँ से शुरू करेंगे?",
+     "hi-en": "Aap kahan se shuru karenge?",
+     "te-IN": "ఎక్కడి నుంచి మొదలుపెడతారు?",
+     "te-en": "Ekkadi nunchi start chestharu?",
+     "hi-en@tts": "आप कहाँ से शुरू करेंगे?",
+     "te-en@tts": "ఎక్కడి నుంచి start చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Follow the ink trail",
+      "hi-IN": "स्याही के निशान के पीछे",
+      "hi-en": "Ink trail follow karo",
+      "te-IN": "సిరా జాడ వెంట వెళ్దాం",
+      "te-en": "Ink trail follow cheddam"
+     },
+     "keywords": {
+      "en-IN": [
+       "ink",
+       "trail",
+       "follow"
+      ],
+      "hi-IN": [
+       "स्याही",
+       "निशान"
+      ],
+      "hi-en": [
+       "ink",
+       "trail",
+       "siyahi"
+      ],
+      "te-IN": [
+       "సిరా",
+       "జాడ"
+      ],
+      "te-en": [
+       "ఇంక్",
+       "ట్రైల్",
+       "ink",
+       "trail"
+      ]
+     },
+     "say": [
+      {
+       "en-IN": "Drops of silver ink glow on the floor, leading out of a window toward the lanterns of the night bazaar.",
+       "hi-IN": "फ़र्श पर चाँदी जैसी स्याही की बूँदें चमक रही हैं, जो खिड़की से बाहर रात के बाज़ार की लालटेनों तक जाती हैं.",
+       "hi-en": "Floor par silver ink ki boondein chamak rahi hain, jo khidki se bahar night bazaar ki laaltenon tak jaati hain.",
+       "te-IN": "నేల మీద వెండి సిరా చుక్కలు మెరుస్తున్నాయి. అవి కిటికీ దాటి రాత్రి బజారు లాంతర్ల వైపు వెళ్తున్నాయి.",
+       "te-en": "Floor meeda silver ink chukkalu merusthunnayi, avi window daati night bazaar lanterns vaipu velthunnayi.",
+       "hi-en@tts": "Floor पर silver ink की बूँदें चमक रही हैं, जो खिड़की से बाहर night bazaar की लालटेनों तक जाती हैं।",
+       "te-en@tts": "Floor మీద silver ink చుక్కలు మెరుస్తున్నాయి, అవి window దాటి night bazaar lanterns వైపు వెళ్తున్నాయి."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "trail"
+      ]
+     },
+     "go": "s_bazaar"
+    },
+    {
+     "label": {
+      "en-IN": "Wake the stone owl",
+      "hi-IN": "पत्थर के उल्लू को जगाओ",
+      "hi-en": "Stone owl ko jagao",
+      "te-IN": "రాతి గుడ్లగూబను లేపుదాం",
+      "te-en": "Stone owl ni lepudaam"
+     },
+     "keywords": {
+      "en-IN": [
+       "owl",
+       "stone",
+       "wake"
+      ],
+      "hi-IN": [
+       "उल्लू",
+       "पत्थर",
+       "जगाओ"
+      ],
+      "hi-en": [
+       "owl",
+       "ullu",
+       "stone",
+       "jagao"
+      ],
+      "te-IN": [
+       "గుడ్లగూబ",
+       "రాతి",
+       "లేపు"
+      ],
+      "te-en": [
+       "ఔల్",
+       "owl",
+       "గుడ్లగూబ",
+       "స్టోన్"
+      ]
+     },
+     "go": "s_owl"
+    },
+    {
+     "label": {
+      "en-IN": "Read the last page",
+      "hi-IN": "आख़िरी पन्ना पढ़ो",
+      "hi-en": "Last page padho",
+      "te-IN": "చివరి పేజీ చదువుదాం",
+      "te-en": "Last page chaduvudaam"
+     },
+     "keywords": {
+      "en-IN": [
+       "last",
+       "page",
+       "read"
+      ],
+      "hi-IN": [
+       "आख़िरी",
+       "आखिरी",
+       "पन्ना",
+       "पढ़ो"
+      ],
+      "hi-en": [
+       "last",
+       "page",
+       "padho"
+      ],
+      "te-IN": [
+       "చివరి",
+       "పేజీ",
+       "చదువు"
+      ],
+      "te-en": [
+       "లాస్ట్",
+       "పేజ్",
+       "last",
+       "page"
+      ]
+     },
+     "say": [
+      {
+       "en-IN": "One faint line survives on the last page: whoever silenced me only wanted to be heard. Beneath it, a map to the night bazaar.",
+       "hi-IN": "आख़िरी पन्ने पर एक धुंधली लाइन बची है: जिसने मुझे ख़ामोश किया, वह बस सुना जाना चाहता था. उसके नीचे, रात के बाज़ार का नक़्शा.",
+       "hi-en": "Last page par ek dhundhli line bachi hai: jisne mujhe khamosh kiya, woh bas suna jaana chahta tha. Uske neeche, night bazaar ka map.",
+       "te-IN": "చివరి పేజీలో ఒక్క మసక వాక్యం మిగిలింది: నన్ను మౌనం చేసినవారు, కేవలం తమ మాట వినిపించాలనుకున్నారు. దాని కింద రాత్రి బజారు పటం.",
+       "te-en": "Last page lo okka masaka line migilindi: nannu silent chesinavaaru, kevalam thama maata vinipinchaalanukunnaru. Daani kinda night bazaar map.",
+       "hi-en@tts": "Last page पर एक धुंधली line बची है: जिसने मुझे खामोश किया, वह बस सुना जाना चाहता था। उसके नीचे, night bazaar का map।",
+       "te-en@tts": "Last page లో ఒక్క మసక line మిగిలింది: నన్ను silent చేసినవారు, కేవలం తమ మాట వినిపించాలనుకున్నారు. దాని కింద night bazaar map."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "warning"
+      ]
+     },
+     "go": "s_bazaar"
+    }
+   ]
+  },
+  "s_owl": {
+   "scene": "library-b",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The stone owl above the door creaks awake. Who wakes me at this hour? Answer my riddle, and I'll lend you a feather that knows the way.",
+     "hi-IN": "दरवाज़े के ऊपर बैठा पत्थर का उल्लू चरमराकर जागता है. इस वक़्त मुझे कौन जगा रहा है? मेरी पहेली बूझो, तो रास्ता जानने वाला एक पंख दूँगा.",
+     "hi-en": "Darwaaze ke upar baitha stone owl charmaraakar jaagta hai. Is waqt mujhe kaun jaga raha hai? Meri paheli boojho, toh raasta jaanne waala ek pankh doonga.",
+     "te-IN": "తలుపు పైన ఉన్న రాతి గుడ్లగూబ కిర్రుమంటూ మేల్కొంటుంది. ఈ వేళ నన్ను లేపింది ఎవరు? నా పొడుపు కథ విప్పితే, దారి తెలిసిన ఈక ఇస్తాను.",
+     "te-en": "Door paina unna stone owl kirrumantu melkontundi. Ee time lo nannu lepindi evaru? Naa riddle solve chesthe, daari telisina eeka isthaanu.",
+     "hi-en@tts": "दरवाज़े के ऊपर बैठा stone owl चरमराकर जागता है। इस वक़्त मुझे कौन जगा रहा है? मेरी पहेली बूझो, तो रास्ता जानने वाला एक पंख दूँगा।",
+     "te-en@tts": "Door పైన ఉన్న stone owl కిర్రుమంటూ మేల్కొంటుంది. ఈ time లో నన్ను లేపింది ఎవరు? నా riddle solve చేస్తే, దారి తెలిసిన ఈక ఇస్తాను."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "What belongs to you, but other people use it far more than you do?",
+     "hi-IN": "क्या चीज़ आपकी है, पर उसे दूसरे लोग आपसे कहीं ज़्यादा इस्तेमाल करते हैं?",
+     "hi-en": "Kya cheez aapki hai, par use doosre log aapse kahin zyada use karte hain?",
+     "te-IN": "మీదే అయినా, మీకంటే ఇతరులే ఎక్కువగా వాడేది ఏమిటి?",
+     "te-en": "Meede aina, meekante itharule ekkuvaga vaadedi enti?",
+     "hi-en@tts": "क्या चीज़ आपकी है, पर उसे दूसरे लोग आपसे कहीं ज़्यादा use करते हैं?",
+     "te-en@tts": "మీదే అయినా, మీకంటే ఇతరులే ఎక్కువగా వాడేది ఏమిటి?"
+    },
+    "options": {
+     "en-IN": [
+      "Your name",
+      "Your phone",
+      "Your pen"
+     ],
+     "hi-IN": [
+      "आपका नाम",
+      "आपका फ़ोन",
+      "आपका पेन"
+     ],
+     "hi-en": [
+      "Aapka naam",
+      "Aapka phone",
+      "Aapka pen"
+     ],
+     "te-IN": [
+      "మీ పేరు",
+      "మీ ఫోన్",
+      "మీ పెన్"
+     ],
+     "te-en": [
+      "Mee peru",
+      "Mee phone",
+      "Mee pen"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [
+      "name",
+      "my name"
+     ],
+     "hi-IN": [
+      "नाम",
+      "मेरा नाम"
+     ],
+     "hi-en": [
+      "naam",
+      "name",
+      "mera naam"
+     ],
+     "te-IN": [
+      "పేరు",
+      "నా పేరు"
+     ],
+     "te-en": [
+      "పేరు",
+      "peru",
+      "name",
+      "నేమ్"
+     ]
+    },
+    "pass": {
+     "say": [
+      {
+       "en-IN": "Your name. The owl hoots with delight and drops a silver feather into your palm. It twitches, pointing the way.",
+       "hi-IN": "आपका नाम. उल्लू ख़ुशी से हूहू करता है और आपकी हथेली पर चाँदी का एक पंख गिरा देता है. पंख फड़ककर रास्ता दिखाता है.",
+       "hi-en": "Aapka naam. Owl khushi se hoot karta hai aur aapki hatheli par ek silver pankh gira deta hai. Pankh phadakkar raasta dikhata hai.",
+       "te-IN": "మీ పేరు. గుడ్లగూబ సంతోషంగా అరిచి, మీ అరచేతిలో వెండి ఈకను వదులుతుంది. ఈక వణుకుతూ దారి చూపిస్తుంది.",
+       "te-en": "Mee peru. Owl santhoshanga arichi, mee arachethilo silver eeka vadhuluthundi. Eeka vanukuthu daari chupisthundi.",
+       "hi-en@tts": "आपका नाम। Owl खुशी से hoot करता है और आपकी हथेली पर एक silver पंख गिरा देता है। पंख फड़ककर रास्ता दिखाता है।",
+       "te-en@tts": "మీ పేరు. Owl సంతోషంగా అరిచి, మీ అరచేతిలో silver ఈక వదులుతుంది. ఈక వణుకుతూ దారి చూపిస్తుంది."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "feather"
+      ]
+     },
+     "go": "s_bazaar"
+    },
+    "fail": {
+     "say": [
+      {
+       "en-IN": "Your name, little one. Everyone uses it more than you do. The owl turns back to stone, and the moon slips a little lower.",
+       "hi-IN": "आपका नाम, बच्चे. उसे सब आपसे ज़्यादा इस्तेमाल करते हैं. उल्लू फिर पत्थर बन जाता है, और चाँद थोड़ा और नीचे खिसक जाता है.",
+       "hi-en": "Aapka naam, bachche. Use sab aapse zyada use karte hain. Owl phir se patthar ban jaata hai, aur chaand thoda aur neeche khisak jaata hai.",
+       "te-IN": "మీ పేరు, చిన్నారీ. దాన్ని మీకంటే అందరూ ఎక్కువగా వాడతారు. గుడ్లగూబ మళ్ళీ రాయిగా మారుతుంది, చంద్రుడు ఇంకొంచెం కిందకి జారుతాడు.",
+       "te-en": "Mee peru, chinnari. Daanni meekante andaru ekkuvaga vaadataru. Owl malli raayi ga maaruthundi, moon inkonchem kindaki jaaruthundi.",
+       "hi-en@tts": "आपका नाम, बच्चे। उसे सब आपसे ज़्यादा use करते हैं। Owl फिर से पत्थर बन जाता है, और चाँद थोड़ा और नीचे खिसक जाता है।",
+       "te-en@tts": "మీ పేరు, చిన్నారీ. దాన్ని మీకంటే అందరూ ఎక్కువగా వాడతారు. Owl మళ్ళీ రాయిగా మారుతుంది, moon ఇంకొంచెం కిందకి జారుతుంది."
+      }
+     ],
+     "effects": {
+      "meter": -1
+     },
+     "go": "s_bazaar"
+    }
+   }
+  },
+  "s_bazaar": {
+   "scene": "night-bazaar",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The night bazaar of spells. Stalls sell bottled thunder, second-hand wishes and jars of captured echoes.",
+     "hi-IN": "जादू का रात वाला बाज़ार. दुकानों पर बोतल में बंद बिजली की गड़गड़ाहट, पुरानी ख़्वाहिशें और गूँजों से भरे मर्तबान बिक रहे हैं.",
+     "hi-en": "Spells ka night bazaar. Stalls par bottle mein band thunder, second-hand wishes aur goonjon se bhare jars bik rahe hain.",
+     "te-IN": "మంత్రాల రాత్రి బజారు. అంగళ్ళలో సీసాల్లో బంధించిన ఉరుములు, పాత కోరికలు, ప్రతిధ్వనులు నింపిన జాడీలు అమ్ముతున్నారు.",
+     "te-en": "Spells night bazaar. Stalls lo bottle lo bandhinchina thunder, second-hand wishes, echoes nimpina jars ammuthunnaru.",
+     "hi-en@tts": "Spells का night bazaar। Stalls पर bottle में बंद thunder, second-hand wishes और गूँजों से भरे jars बिक रहे हैं।",
+     "te-en@tts": "Spells night bazaar. Stalls లో bottle లో బంధించిన thunder, second-hand wishes, echoes నింపిన jars అమ్ముతున్నారు."
+    },
+    {
+     "en-IN": "Between the lanterns, a hooded figure slips past, hugging a bundle of glowing letters.",
+     "hi-IN": "लालटेनों के बीच से एक नक़ाबपोश साया चमकते अक्षरों की गठरी सीने से लगाए निकल जाता है.",
+     "hi-en": "Laaltenon ke beech se ek hooded figure chamakte letters ki gathri seene se lagaaye nikal jaata hai.",
+     "te-IN": "లాంతర్ల మధ్యలోంచి ముసుగు వేసుకున్న ఒక ఆకారం, మెరుస్తున్న అక్షరాల మూటను గుండెకు హత్తుకుని జారిపోతుంది.",
+     "te-en": "Lanterns madhyalonchi hood vesukunna oka figure, merusthunna letters moota ni hatthukuni jaaripothundi.",
+     "hi-en@tts": "लालटेनों के बीच से एक hooded figure चमकते letters की गठरी सीने से लगाए निकल जाता है।",
+     "te-en@tts": "Lanterns మధ్యలోంచి hood వేసుకున్న ఒక figure, మెరుస్తున్న letters మూటని హత్తుకుని జారిపోతుంది."
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करेंगे?",
+     "hi-en": "Aap kya karenge?",
+     "te-IN": "ఏం చేస్తారు?",
+     "te-en": "Em chestharu?",
+     "hi-en@tts": "आप क्या करेंगे?",
+     "te-en@tts": "ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Chase the hooded figure",
+      "hi-IN": "नक़ाबपोश का पीछा करो",
+      "hi-en": "Hooded figure ka peecha karo",
+      "te-IN": "ముసుగు మనిషిని వెంబడిద్దాం",
+      "te-en": "Hooded figure ni chase cheddam"
+     },
+     "keywords": {
+      "en-IN": [
+       "chase",
+       "hooded",
+       "figure",
+       "run"
+      ],
+      "hi-IN": [
+       "पीछा",
+       "नक़ाबपोश",
+       "नकाबपोश"
+      ],
+      "hi-en": [
+       "chase",
+       "peecha",
+       "hooded"
+      ],
+      "te-IN": [
+       "వెంబడి",
+       "ముసుగు",
+       "పట్టుకో"
+      ],
+      "te-en": [
+       "చేజ్",
+       "chase",
+       "హుడ్"
+      ]
+     },
+     "go": "s_chase"
+    },
+    {
+     "label": {
+      "en-IN": "Visit the jar seller",
+      "hi-IN": "मर्तबान वाले के पास चलो",
+      "hi-en": "Jar seller ke paas chalo",
+      "te-IN": "జాడీల వ్యాపారి దగ్గరికి",
+      "te-en": "Jar seller daggariki"
+     },
+     "keywords": {
+      "en-IN": [
+       "jar",
+       "jars",
+       "seller",
+       "echoes"
+      ],
+      "hi-IN": [
+       "मर्तबान",
+       "दुकान",
+       "बेचने"
+      ],
+      "hi-en": [
+       "jar",
+       "seller",
+       "martbaan"
+      ],
+      "te-IN": [
+       "జాడీ",
+       "వ్యాపారి",
+       "అంగడి"
+      ],
+      "te-en": [
+       "జార్",
+       "jar",
+       "సెల్లర్"
+      ]
+     },
+     "go": "s_jars"
+    },
+    {
+     "if": {
+      "has": [
+       "trail"
+      ]
+     },
+     "label": {
+      "en-IN": "Follow the silver ink",
+      "hi-IN": "चाँदी की स्याही के पीछे चलो",
+      "hi-en": "Silver ink follow karo",
+      "te-IN": "వెండి సిరా వెంటే",
+      "te-en": "Silver ink follow cheddam"
+     },
+     "keywords": {
+      "en-IN": [
+       "ink",
+       "silver",
+       "trail"
+      ],
+      "hi-IN": [
+       "स्याही",
+       "चाँदी"
+      ],
+      "hi-en": [
+       "ink",
+       "silver",
+       "siyahi"
+      ],
+      "te-IN": [
+       "సిరా",
+       "వెండి"
+      ],
+      "te-en": [
+       "ఇంక్",
+       "సిల్వర్",
+       "ink"
+      ]
+     },
+     "say": [
+      {
+       "en-IN": "The ink trail ignores the crowds and slips through a crack in the bazaar wall, straight into the forest.",
+       "hi-IN": "स्याही का निशान भीड़ को छोड़कर बाज़ार की दीवार की एक दरार से सीधे जंगल में घुस जाता है.",
+       "hi-en": "Ink trail bheed ko chhodkar bazaar ki deewar ki ek daraar se seedha jungle mein ghus jaata hai.",
+       "te-IN": "సిరా జాడ జనాన్ని దాటి, బజారు గోడలోని పగులు గుండా నేరుగా అడవిలోకి వెళ్తుంది.",
+       "te-en": "Ink trail crowd ni daati, bazaar goda lo pagulu gunda nerugaa forest loki velthundi.",
+       "hi-en@tts": "Ink trail भीड़ को छोड़कर bazaar की दीवार की एक दरार से सीधा jungle में घुस जाता है।",
+       "te-en@tts": "Ink trail crowd ని దాటి, bazaar గోడలోని పగులు గుండా నేరుగా forest లోకి వెళ్తుంది."
+      }
+     ],
+     "go": "s_temple"
+    },
+    {
+     "if": {
+      "has": [
+       "feather"
+      ]
+     },
+     "label": {
+      "en-IN": "Let the feather guide you",
+      "hi-IN": "पंख को रास्ता दिखाने दो",
+      "hi-en": "Pankh ko raasta dikhaane do",
+      "te-IN": "ఈక దారి చూపనీ",
+      "te-en": "Feather daari chupinchani"
+     },
+     "keywords": {
+      "en-IN": [
+       "feather",
+       "guide"
+      ],
+      "hi-IN": [
+       "पंख",
+       "रास्ता"
+      ],
+      "hi-en": [
+       "feather",
+       "pankh",
+       "guide"
+      ],
+      "te-IN": [
+       "ఈక",
+       "దారి"
+      ],
+      "te-en": [
+       "ఫెదర్",
+       "feather",
+       "ఈక"
+      ]
+     },
+     "say": [
+      {
+       "en-IN": "The feather tugs your hand past the stalls, through a gate in the wall, and into the dark forest beyond.",
+       "hi-IN": "पंख आपका हाथ खींचते हुए दुकानों के पार, दीवार के एक फाटक से होकर, अँधेरे जंगल में ले जाता है.",
+       "hi-en": "Pankh aapka haath kheenchte hue stalls ke paar, deewar ke ek gate se hokar, andhere jungle mein le jaata hai.",
+       "te-IN": "ఈక మీ చేయి లాగుతూ అంగళ్ళు దాటించి, గోడలోని ద్వారం గుండా చీకటి అడవిలోకి తీసుకెళ్తుంది.",
+       "te-en": "Feather mee cheyyi laaguthu stalls daatinchi, goda lo gate gunda cheekati forest loki teesukelthundi.",
+       "hi-en@tts": "पंख आपका हाथ खींचते हुए stalls के पार, दीवार के एक gate से होकर, अँधेरे jungle में ले जाता है।",
+       "te-en@tts": "Feather మీ చెయ్యి లాగుతూ stalls దాటించి, గోడలో gate గుండా చీకటి forest లోకి తీసుకెళ్తుంది."
+      }
+     ],
+     "go": "s_temple"
+    }
+   ]
+  },
+  "s_chase": {
+   "scene": "night-bazaar",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "You dodge a carpet seller and leap over a basket of sleeping snakes. The figure glances back: a girl about your age, ink on her fingers.",
+     "hi-IN": "आप एक क़ालीन वाले से बचते हैं और सोते साँपों की टोकरी के ऊपर से कूदते हैं. साया पीछे मुड़कर देखता है: आपकी उम्र की एक लड़की, उँगलियों पर स्याही.",
+     "hi-en": "Aap ek carpet waale se bachte hain aur sote saanpon ki tokri ke upar se koodte hain. Figure peeche mudkar dekhta hai: aapki umar ki ek ladki, ungliyon par ink.",
+     "te-IN": "తివాచీలు అమ్మేవాణ్ణి తప్పించుకుని, నిద్రపోతున్న పాముల బుట్ట మీదుగా దూకుతారు. ఆ ఆకారం వెనక్కి తిరిగి చూస్తుంది: మీ వయసు అమ్మాయి, వేళ్ళకి సిరా.",
+     "te-en": "Carpet ammevaadini tappinchukuni, nidrapothunna paamula butta meeduga dookutharu. Aa figure venakki tirigi chusthundi: mee vayasu ammayi, vellaki ink.",
+     "hi-en@tts": "आप एक carpet वाले से बचते हैं और सोते साँपों की टोकरी के ऊपर से कूदते हैं। Figure पीछे मुड़कर देखता है: आपकी उम्र की एक लड़की, उँगलियों पर ink।",
+     "te-en@tts": "Carpet అమ్మేవాడిని తప్పించుకుని, నిద్రపోతున్న పాముల బుట్ట మీదుగా దూకుతారు. ఆ figure వెనక్కి తిరిగి చూస్తుంది: మీ వయసు అమ్మాయి, వేళ్ళకి ink."
+    },
+    {
+     "en-IN": "She vanishes into the forest, but one glowing letter falls behind her. It whispers its word as you pick it up: Light.",
+     "hi-IN": "वह जंगल में ग़ायब हो जाती है, पर पीछे एक चमकता अक्षर गिर जाता है. उठाते ही वह अपना शब्द फुसफुसाता है: रोशनी.",
+     "hi-en": "Woh jungle mein gaayab ho jaati hai, par peeche ek chamakta letter gir jaata hai. Uthaate hi woh apna word phusphusaata hai: Roshni.",
+     "te-IN": "ఆమె అడవిలో మాయమవుతుంది, కానీ వెనక ఒక మెరిసే అక్షరం పడిపోతుంది. దాన్ని తీసుకోగానే అది తన మాట గుసగుసలాడుతుంది: వెలుగు.",
+     "te-en": "Aame forest lo maayamavuthundi, kaani venaka oka merise letter padipothundi. Teesukogaane adi thana word gusagusaladuthundi: Velugu.",
+     "hi-en@tts": "वह jungle में गायब हो जाती है, पर पीछे एक चमकता letter गिर जाता है। उठाते ही वह अपना word फुसफुसाता है: रोशनी।",
+     "te-en@tts": "ఆమె forest లో మాయమవుతుంది, కానీ వెనక ఒక మెరిసే letter పడిపోతుంది. తీసుకోగానే అది తన word గుసగుసలాడుతుంది: వెలుగు."
+    }
+   ],
+   "enter": {
+    "gain": [
+     "seen_thief",
+     "word_light"
+    ]
+   },
+   "go": "s_temple"
+  },
+  "s_jars": {
+   "scene": "night-bazaar",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The jar seller taps a jar with a long fingernail. Riddle me right and I'll give you one for free.",
+     "hi-IN": "मर्तबान वाला लंबे नाख़ून से एक मर्तबान खटखटाता है. मेरी पहेली सही बूझो, तो एक मुफ़्त में दूँगा.",
+     "hi-en": "Jar seller lambe naakhoon se ek jar khatkhataata hai. Meri paheli sahi boojho, toh ek free mein doonga.",
+     "te-IN": "జాడీల వ్యాపారి పొడవాటి గోరుతో ఒక జాడీని తడతాడు. నా పొడుపు కథ సరిగ్గా విప్పితే, ఒకటి ఉచితంగా ఇస్తా.",
+     "te-en": "Jar seller podavaati goruto oka jar ni thadathaadu. Naa riddle correct ga solve chesthe, okati free ga istha.",
+     "hi-en@tts": "Jar seller लंबे नाखून से एक jar खटखटाता है। मेरी पहेली सही बूझो, तो एक free में दूँगा।",
+     "te-en@tts": "Jar seller పొడవాటి గోరుతో ఒక jar ని తడతాడు. నా riddle correct గా solve చేస్తే, ఒకటి free గా ఇస్తా."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "I had twelve jars of echoes. I sold half of them, then caught three more. How many jars do I have now?",
+     "hi-IN": "मेरे पास गूँजों के बारह मर्तबान थे. आधे बेच दिए, फिर तीन और पकड़ लिए. अब मेरे पास कितने मर्तबान हैं?",
+     "hi-en": "Mere paas echoes ke baarah jars the. Aadhe bech diye, phir teen aur pakad liye. Ab mere paas kitne jars hain?",
+     "te-IN": "నా దగ్గర ప్రతిధ్వనుల పన్నెండు జాడీలు ఉండేవి. సగం అమ్మేశాను, తర్వాత ఇంకో మూడు పట్టుకున్నాను. ఇప్పుడు ఎన్ని జాడీలు ఉన్నాయి?",
+     "te-en": "Naa daggara echoes twelve jars undevi. Sagam ammesaanu, tarvatha inko three pattukunnaanu. Ippudu enni jars unnayi?",
+     "hi-en@tts": "मेरे पास echoes के बारह jars थे। आधे बेच दिए, फिर तीन और पकड़ लिए। अब मेरे पास कितने jars हैं?",
+     "te-en@tts": "నా దగ్గర echoes twelve jars ఉండేవి. సగం అమ్మేశాను, తర్వాత ఇంకో three పట్టుకున్నాను. ఇప్పుడు ఎన్ని jars ఉన్నాయి?"
+    },
+    "kind": "number",
+    "options": {
+     "en-IN": [
+      "6",
+      "9",
+      "15"
+     ],
+     "hi-IN": [
+      "6",
+      "9",
+      "15"
+     ],
+     "hi-en": [
+      "6",
+      "9",
+      "15"
+     ],
+     "te-IN": [
+      "6",
+      "9",
+      "15"
+     ],
+     "te-en": [
+      "6",
+      "9",
+      "15"
+     ]
+    },
+    "answer": 1,
+    "aliases": {
+     "en-IN": [
+      "nine"
+     ],
+     "hi-IN": [
+      "नौ",
+      "nine"
+     ],
+     "hi-en": [
+      "nau",
+      "nine"
+     ],
+     "te-IN": [
+      "తొమ్మిది",
+      "nine"
+     ],
+     "te-en": [
+      "nine",
+      "నైన్",
+      "తొమ్మిది"
+     ]
+    },
+    "pass": {
+     "say": [
+      {
+       "en-IN": "Nine! The seller cackles and hands you a jar. Inside, a hundred tiny voices whisper at once.",
+       "hi-IN": "नौ! दुकानदार ठहाका लगाकर आपको एक मर्तबान थमा देता है. अंदर सौ नन्ही आवाज़ें एक साथ फुसफुसा रही हैं.",
+       "hi-en": "Nau! Seller thahaaka lagaakar aapko ek jar thama deta hai. Andar sau nanhi awaazein ek saath phusphusa rahi hain.",
+       "te-IN": "తొమ్మిది! వ్యాపారి పకపకా నవ్వి మీ చేతికి ఒక జాడీ ఇస్తాడు. లోపల వంద చిన్న గొంతులు ఒకేసారి గుసగుసలాడుతున్నాయి.",
+       "te-en": "Nine! Seller pakapaka navvi mee chethiki oka jar isthaadu. Lopala vanda chinna gonthulu okesaari gusagusaladuthunnayi.",
+       "hi-en@tts": "नौ! Seller ठहाका लगाकर आपको एक jar थमा देता है। अंदर सौ नन्ही आवाज़ें एक साथ फुसफुसा रही हैं।",
+       "te-en@tts": "Nine! Seller పకపకా నవ్వి మీ చేతికి ఒక jar ఇస్తాడు. లోపల వంద చిన్న గొంతులు ఒకేసారి గుసగుసలాడుతున్నాయి."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "echo_jar"
+      ]
+     },
+     "go": "s_temple"
+    },
+    "fail": {
+     "say": [
+      {
+       "en-IN": "Nine, my friend, nine. He sells you a jar anyway, at triple the price, and the moon sinks while you count coins.",
+       "hi-IN": "नौ, दोस्त, नौ. वह फिर भी आपको तिगुने दाम पर एक मर्तबान बेच देता है, और सिक्के गिनते-गिनते चाँद नीचे खिसक जाता है.",
+       "hi-en": "Nau, dost, nau. Woh phir bhi aapko teen guna daam par ek jar bech deta hai, aur sikke ginte ginte chaand neeche khisak jaata hai.",
+       "te-IN": "తొమ్మిది, మిత్రమా, తొమ్మిది. అయినా మూడింతల ధరకు ఒక జాడీ అమ్ముతాడు, మీరు నాణేలు లెక్కపెట్టేలోపు చంద్రుడు కిందకి జారుతాడు.",
+       "te-en": "Nine, friend, nine. Aina moodinthala dharaki oka jar ammuthaadu, meeru coins lekkapettelopu moon kindaki jaaruthundi.",
+       "hi-en@tts": "नौ, दोस्त, नौ। वह फिर भी आपको तीन गुना दाम पर एक jar बेच देता है, और सिक्के गिनते गिनते चाँद नीचे खिसक जाता है।",
+       "te-en@tts": "Nine, friend, nine. అయినా మూడింతల ధరకి ఒక jar అమ్ముతాడు, మీరు coins లెక్కపెట్టేలోపు moon కిందకి జారుతుంది."
+      }
+     ],
+     "effects": {
+      "meter": -1,
+      "gain": [
+       "echo_jar"
+      ]
+     },
+     "go": "s_temple"
+    }
+   }
+  },
+  "s_temple": {
+   "scene": "forest-temple",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The trail ends at an old temple swallowed by the forest. Fireflies gather over the stone circle and spell out a question.",
+     "hi-IN": "निशान जंगल में डूबे एक पुराने मंदिर पर ख़त्म होता है. पत्थर के घेरे के ऊपर जुगनू जमा होकर एक सवाल लिखते हैं.",
+     "hi-en": "Trail jungle mein doobe ek puraane mandir par khatam hota hai. Patthar ke ghere ke upar jugnu jama hokar ek sawaal likhte hain.",
+     "te-IN": "దారి అడవి మింగేసిన ఒక పాత గుడి దగ్గర ఆగుతుంది. రాతి వలయం మీద మిణుగురులు గుమిగూడి ఒక ప్రశ్న రాస్తాయి.",
+     "te-en": "Daari forest mingesina oka paatha temple daggara aaguthundi. Raathi circle meeda minugurulu gumigoodi oka question raasthaayi.",
+     "hi-en@tts": "Trail jungle में डूबे एक पुराने मंदिर पर खत्म होता है। पत्थर के घेरे के ऊपर जुगनू जमा होकर एक सवाल लिखते हैं।",
+     "te-en@tts": "దారి forest మింగేసిన ఒక పాత temple దగ్గర ఆగుతుంది. రాతి circle మీద మిణుగురులు గుమిగూడి ఒక question రాస్తాయి."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "The more of me you take, the more of me you leave behind. What am I?",
+     "hi-IN": "मुझे जितना ज़्यादा उठाओगे, उतना ज़्यादा पीछे छोड़ते जाओगे. मैं क्या हूँ?",
+     "hi-en": "Mujhe jitna zyada uthaoge, utna zyada peeche chhodte jaoge. Main kya hoon?",
+     "te-IN": "నన్ను ఎంత ఎక్కువ వేస్తే, అంత ఎక్కువ వెనక వదిలేస్తారు. నేనేంటి?",
+     "te-en": "Nannu entha ekkuva vesthe, antha ekkuva venaka vadilestharu. Nenenti?",
+     "hi-en@tts": "मुझे जितना ज़्यादा उठाओगे, उतना ज़्यादा पीछे छोड़ते जाओगे। मैं क्या हूँ?",
+     "te-en@tts": "నన్ను ఎంత ఎక్కువ వేస్తే, అంత ఎక్కువ వెనక వదిలేస్తారు. నేనేంటి?"
+    },
+    "options": {
+     "en-IN": [
+      "Coins",
+      "Footsteps",
+      "Breaths"
+     ],
+     "hi-IN": [
+      "सिक्के",
+      "क़दम",
+      "साँसें"
+     ],
+     "hi-en": [
+      "Sikke",
+      "Kadam",
+      "Saansein"
+     ],
+     "te-IN": [
+      "నాణేలు",
+      "అడుగులు",
+      "శ్వాసలు"
+     ],
+     "te-en": [
+      "Coins",
+      "Adugulu",
+      "Swaasalu"
+     ]
+    },
+    "answer": 1,
+    "aliases": {
+     "en-IN": [
+      "footstep",
+      "steps",
+      "footprints"
+     ],
+     "hi-IN": [
+      "कदम",
+      "कदमों",
+      "footsteps"
+     ],
+     "hi-en": [
+      "kadam",
+      "footsteps",
+      "steps"
+     ],
+     "te-IN": [
+      "అడుగు",
+      "అడుగుజాడలు",
+      "footsteps"
+     ],
+     "te-en": [
+      "అడుగులు",
+      "అడుగు",
+      "footsteps",
+      "ఫుట్‌స్టెప్స్"
+     ]
+    },
+    "pass": {
+     "say": [
+      {
+       "en-IN": "Footsteps. The rune circle flares, the word Light glows in your book, and the temple breathes a little moonlight back into the sky.",
+       "hi-IN": "क़दम. रून का घेरा दहक उठता है, आपकी किताब में रोशनी शब्द चमक उठता है, और मंदिर थोड़ी चाँदनी वापस आसमान को लौटा देता है.",
+       "hi-en": "Kadam. Rune circle chamak uthta hai, aapki book mein Roshni word chamak uthta hai, aur mandir thodi chaandni wapas aasmaan ko lauta deta hai.",
+       "te-IN": "అడుగులు. రూన్ వలయం వెలిగిపోతుంది, మీ పుస్తకంలో వెలుగు అనే మాట మెరుస్తుంది, గుడి కొంచెం వెన్నెలను తిరిగి ఆకాశానికి ఇస్తుంది.",
+       "te-en": "Adugulu. Rune circle veligipothundi, mee book lo Velugu ane word merusthundi, temple konchem vennela ni tirigi aakaashaaniki isthundi.",
+       "hi-en@tts": "कदम। Rune circle चमक उठता है, आपकी book में रोशनी word चमक उठता है, और मंदिर थोड़ी चाँदनी वापस आसमान को लौटा देता है।",
+       "te-en@tts": "అడుగులు. Rune circle వెలిగిపోతుంది, మీ book లో వెలుగు అనే word మెరుస్తుంది, temple కొంచెం వెన్నెలను తిరిగి ఆకాశానికి ఇస్తుంది."
+      }
+     ],
+     "effects": {
+      "meter": 1,
+      "gain": [
+       "word_light"
+      ]
+     },
+     "go": "s_cave"
+    },
+    "fail": {
+     "say": [
+      {
+       "en-IN": "Footsteps. The fireflies scatter, the stones go dark, and a cold wind pulls you down a stairway into the earth.",
+       "hi-IN": "क़दम. जुगनू बिखर जाते हैं, पत्थर बुझ जाते हैं, और ठंडी हवा आपको ज़मीन के नीचे जाती सीढ़ियों की ओर खींच लेती है.",
+       "hi-en": "Kadam. Jugnu bikhar jaate hain, patthar bujh jaate hain, aur thandi hawa aapko zameen ke neeche jaati seedhiyon ki or kheench leti hai.",
+       "te-IN": "అడుగులు. మిణుగురులు చెదిరిపోతాయి, రాళ్ళు చీకటైపోతాయి, చల్లని గాలి మిమ్మల్ని నేలలోకి దిగే మెట్ల వైపు లాగుతుంది.",
+       "te-en": "Adugulu. Minugurulu chedaripothaayi, raallu cheekataipothaayi, challani gaali mimmalni nelaloki dige stairs vaipu laaguthundi.",
+       "hi-en@tts": "कदम। जुगनू बिखर जाते हैं, पत्थर बुझ जाते हैं, और ठंडी हवा आपको ज़मीन के नीचे जाती सीढ़ियों की ओर खींच लेती है।",
+       "te-en@tts": "అడుగులు. మిణుగురులు చెదిరిపోతాయి, రాళ్ళు చీకటైపోతాయి, చల్లని గాలి మిమ్మల్ని నేలలోకి దిగే stairs వైపు లాగుతుంది."
+      }
+     ],
+     "effects": {
+      "meter": -1
+     },
+     "go": "s_cave"
+    }
+   }
+  },
+  "s_cave": {
+   "scene": "crystal-cave",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "Below the temple lies a cave of humming crystals. Every crystal holds a stolen word, ringing softly like a bell.",
+     "hi-IN": "मंदिर के नीचे गुनगुनाते क्रिस्टलों की एक गुफा है. हर क्रिस्टल में एक चुराया हुआ शब्द है, जो घंटी की तरह धीमे बज रहा है.",
+     "hi-en": "Mandir ke neeche gungunaate crystals ki ek gufa hai. Har crystal mein ek churaaya hua word hai, jo ghanti ki tarah dheeme baj raha hai.",
+     "te-IN": "గుడి కింద హమ్ చేసే స్ఫటికాల గుహ ఉంది. ప్రతి స్ఫటికంలో ఒక దొంగిలించిన మాట ఉంది, గంటలా మెల్లగా మోగుతోంది.",
+     "te-en": "Temple kinda hum chese crystals cave undi. Prathi crystal lo oka dongilinchina word undi, ganta laa mellaga moguthondi.",
+     "hi-en@tts": "मंदिर के नीचे गुनगुनाते crystals की एक गुफा है। हर crystal में एक चुराया हुआ word है, जो घंटी की तरह धीमे बज रहा है।",
+     "te-en@tts": "Temple కింద hum చేసే crystals cave ఉంది. ప్రతి crystal లో ఒక దొంగిలించిన word ఉంది, గంటలా మెల్లగా మోగుతోంది."
+    },
+    {
+     "en-IN": "In the middle sits the hooded figure from the bazaar, hood down now: Chhaya, an apprentice of the library. She doesn't run. She just looks tired.",
+     "hi-IN": "बीच में बाज़ार वाला वही नक़ाबपोश बैठा है, अब नक़ाब हटा हुआ: छाया, लाइब्रेरी की एक शागिर्द. वह भागती नहीं. बस थकी हुई लगती है.",
+     "hi-en": "Beech mein bazaar waala wahi hooded figure baitha hai, ab hood hata hua: Chhaya, library ki ek apprentice. Woh bhaagti nahi. Bas thaki hui lagti hai.",
+     "te-IN": "మధ్యలో బజారులో కనిపించిన ముసుగు మనిషే, ఇప్పుడు ముసుగు తీసి కూర్చుంది: ఛాయ, గ్రంథాలయంలో శిష్యురాలు. ఆమె పారిపోదు. చాలా అలసిపోయినట్టు ఉంది.",
+     "te-en": "Madhyalo bazaar lo kanipinchina hooded figure, ippudu hood teesi koorchundi: Chhaya, library lo apprentice. Aame paaripodu. Chaala alasipoyinattu undi.",
+     "hi-en@tts": "बीच में bazaar वाला वही hooded figure बैठा है, अब hood हटा हुआ: छाया, library की एक apprentice। वह भागती नहीं। बस थकी हुई लगती है।",
+     "te-en@tts": "మధ్యలో bazaar లో కనిపించిన hooded figure, ఇప్పుడు hood తీసి కూర్చుంది: ఛాయ, library లో apprentice. ఆమె పారిపోదు. చాలా అలసిపోయినట్టు ఉంది."
+    },
+    {
+     "en-IN": "What do you do?",
+     "hi-IN": "आप क्या करेंगे?",
+     "hi-en": "Aap kya karenge?",
+     "te-IN": "ఏం చేస్తారు?",
+     "te-en": "Em chestharu?",
+     "hi-en@tts": "आप क्या करेंगे?",
+     "te-en@tts": "ఏం చేస్తారు?"
+    }
+   ],
+   "choices": [
+    {
+     "label": {
+      "en-IN": "Ask why she did it",
+      "hi-IN": "पूछो उसने ऐसा क्यों किया",
+      "hi-en": "Poochho usne aisa kyun kiya",
+      "te-IN": "ఎందుకు చేసిందో అడుగుదాం",
+      "te-en": "Enduku chesindo adugudaam"
+     },
+     "keywords": {
+      "en-IN": [
+       "why",
+       "ask"
+      ],
+      "hi-IN": [
+       "क्यों",
+       "पूछो"
+      ],
+      "hi-en": [
+       "kyun",
+       "kyon",
+       "poochho",
+       "why"
+      ],
+      "te-IN": [
+       "ఎందుకు",
+       "అడుగు"
+      ],
+      "te-en": [
+       "ఎందుకు",
+       "వై",
+       "why",
+       "enduku"
+      ]
+     },
+     "effects": {
+      "gain": [
+       "listened"
+      ]
+     },
+     "go": "s_listen"
+    },
+    {
+     "label": {
+      "en-IN": "Demand the words back",
+      "hi-IN": "शब्द वापस माँगो",
+      "hi-en": "Words wapas maango",
+      "te-IN": "మాటలు తిరిగి ఇమ్మను",
+      "te-en": "Words tirigi immanu"
+     },
+     "keywords": {
+      "en-IN": [
+       "demand",
+       "back",
+       "give",
+       "return"
+      ],
+      "hi-IN": [
+       "वापस",
+       "माँगो",
+       "मांगो",
+       "लौटाओ"
+      ],
+      "hi-en": [
+       "wapas",
+       "maango",
+       "demand",
+       "back"
+      ],
+      "te-IN": [
+       "తిరిగి",
+       "ఇమ్మను",
+       "ఇవ్వు"
+      ],
+      "te-en": [
+       "తిరిగి",
+       "బ్యాక్",
+       "back",
+       "demand"
+      ]
+     },
+     "effects": {
+      "gain": [
+       "demanded"
+      ]
+     },
+     "go": "s_demand"
+    },
+    {
+     "if": {
+      "has": [
+       "echo_jar"
+      ]
+     },
+     "label": {
+      "en-IN": "Open the echo jar",
+      "hi-IN": "गूँजों का मर्तबान खोलो",
+      "hi-en": "Echo jar kholo",
+      "te-IN": "ప్రతిధ్వనుల జాడీ తెరువు",
+      "te-en": "Echo jar open cheyyi"
+     },
+     "keywords": {
+      "en-IN": [
+       "jar",
+       "open",
+       "echo"
+      ],
+      "hi-IN": [
+       "मर्तबान",
+       "खोलो",
+       "गूँज"
+      ],
+      "hi-en": [
+       "jar",
+       "kholo",
+       "echo",
+       "martbaan"
+      ],
+      "te-IN": [
+       "జాడీ",
+       "తెరువు",
+       "ప్రతిధ్వని"
+      ],
+      "te-en": [
+       "జార్",
+       "ఓపెన్",
+       "jar",
+       "echo"
+      ]
+     },
+     "effects": {
+      "gain": [
+       "trapped"
+      ]
+     },
+     "go": "s_trap"
+    }
+   ]
+  },
+  "s_listen": {
+   "scene": "crystal-cave",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Every night I read the spells aloud, Chhaya says, and nobody ever heard me. The wizards just talked over me.",
+     "hi-IN": "हर रात मैं मंत्र ज़ोर से पढ़ती थी, छाया कहती है, और किसी ने कभी नहीं सुना. जादूगर बस मेरी बात काटकर बोलते रहे.",
+     "hi-en": "Har raat main spells zor se padhti thi, Chhaya kehti hai, aur kisi ne kabhi nahi suna. Wizards bas meri baat kaatkar bolte rahe.",
+     "te-IN": "ప్రతి రాత్రీ నేను మంత్రాలు గట్టిగా చదివేదాన్ని, అంటుంది ఛాయ, కానీ ఎవ్వరూ వినలేదు. మాంత్రికులు నా మాటకు అడ్డంగా మాట్లాడుతూనే ఉన్నారు.",
+     "te-en": "Prathi raatri nenu spells gattiga chadivedaanni, antundi Chhaya, kaani evvaru vinaledu. Wizards naa maataku addamga maatlaaduthune unnaru.",
+     "hi-en@tts": "हर रात मैं spells ज़ोर से पढ़ती थी, छाया कहती है, और किसी ने कभी नहीं सुना। Wizards बस मेरी बात काटकर बोलते रहे।",
+     "te-en@tts": "ప్రతి రాత్రీ నేను spells గట్టిగా చదివేదాన్ని, అంటుంది ఛాయ, కానీ ఎవ్వరూ వినలేదు. Wizards నా మాటకు అడ్డంగా మాట్లాడుతూనే ఉన్నారు."
+    },
+    {
+     "en-IN": "So I took every word, so that for once the library would have to listen. She holds out a crystal. Answer my riddle, and we'll sing them back together.",
+     "hi-IN": "इसलिए मैंने हर शब्द ले लिया, ताकि एक बार तो लाइब्रेरी को सुनना पड़े. वह एक क्रिस्टल आगे बढ़ाती है. मेरी पहेली बूझो, फिर हम मिलकर शब्द वापस गाएँगे.",
+     "hi-en": "Isliye maine har word le liya, taaki ek baar toh library ko sunna pade. Woh ek crystal aage badhaati hai. Meri paheli boojho, phir hum milkar words wapas gaayenge.",
+     "te-IN": "అందుకే ప్రతి మాటా తీసుకున్నా, ఒక్కసారైనా గ్రంథాలయం వినాల్సి వచ్చేలా. ఆమె ఒక స్ఫటికం చాపుతుంది. నా పొడుపు కథ విప్పండి, ఇద్దరం కలిసి మాటల్ని పాడి తిరిగి తెద్దాం.",
+     "te-en": "Anduke prathi word teesukunna, okkasaaraina library vinaali vachhela. Aame oka crystal chaaputhundi. Naa riddle solve cheyyandi, iddaram kalisi words ni paadi tirigi teddaam.",
+     "hi-en@tts": "इसलिए मैंने हर word ले लिया, ताकि एक बार तो library को सुनना पड़े। वह एक crystal आगे बढ़ाती है। मेरी पहेली बूझो, फिर हम मिलकर words वापस गाएँगे।",
+     "te-en@tts": "అందుకే ప్రతి word తీసుకున్నా, ఒక్కసారైనా library వినాల్సి వచ్చేలా. ఆమె ఒక crystal చాపుతుంది. నా riddle solve చేయండి, ఇద్దరం కలిసి words ని పాడి తిరిగి తెద్దాం."
+    }
+   ],
+   "go": "s_crystal"
+  },
+  "s_crystal": {
+   "mood": "ask",
+   "puzzle": {
+    "prompt": {
+     "en-IN": "What can you break without ever touching it?",
+     "hi-IN": "ऐसी कौन सी चीज़ है जिसे छुए बिना भी तोड़ा जा सकता है?",
+     "hi-en": "Aisi kaun si cheez hai jise chhue bina bhi toda ja sakta hai?",
+     "te-IN": "చేత్తో ముట్టకుండానే మీరు తప్పగలిగేది, కానీ తప్పితే మనసు విరిగేది ఏంటి?",
+     "te-en": "Chethotho muttakundaane meeru thappagaligedi, kaani thappithe manasu virigedi enti?",
+     "hi-en@tts": "ऐसी कौन सी चीज़ है जिसे छुए बिना भी तोड़ा जा सकता है?",
+     "te-en@tts": "చేత్తో ముట్టకుండానే మీరు తప్పగలిగేది, కానీ తప్పితే మనసు విరిగేది ఏంటి?"
+    },
+    "options": {
+     "en-IN": [
+      "A promise",
+      "A mirror",
+      "A crystal"
+     ],
+     "hi-IN": [
+      "वादा",
+      "दर्पण",
+      "क्रिस्टल"
+     ],
+     "hi-en": [
+      "Vaada",
+      "Darpan",
+      "Crystal"
+     ],
+     "te-IN": [
+      "ఇచ్చిన మాట",
+      "అద్దం",
+      "స్ఫటికం"
+     ],
+     "te-en": [
+      "Ichhina maata",
+      "Addam",
+      "Crystal"
+     ]
+    },
+    "answer": 0,
+    "aliases": {
+     "en-IN": [
+      "promise",
+      "promises"
+     ],
+     "hi-IN": [
+      "वायदा",
+      "promise",
+      "प्रॉमिस"
+     ],
+     "hi-en": [
+      "vaada",
+      "waada",
+      "promise"
+     ],
+     "te-IN": [
+      "మాట",
+      "వాగ్దానం",
+      "promise",
+      "ప్రామిస్"
+     ],
+     "te-en": [
+      "ఇచ్చిన మాట",
+      "మాట",
+      "promise",
+      "ప్రామిస్"
+     ]
+    },
+    "pass": {
+     "say": [
+      {
+       "en-IN": "A promise. Chhaya smiles for the first time. Then let's keep one. She sings, the crystals answer, and a new word pours into the book: Song.",
+       "hi-IN": "वादा. छाया पहली बार मुस्कुराती है. तो चलो एक निभाते हैं. वह गाती है, क्रिस्टल जवाब देते हैं, और किताब में एक नया शब्द उतरता है: गीत.",
+       "hi-en": "Vaada. Chhaya pehli baar muskuraati hai. Toh chalo ek nibhaate hain. Woh gaati hai, crystals jawaab dete hain, aur book mein ek naya word utarta hai: Geet.",
+       "te-IN": "ఇచ్చిన మాట. ఛాయ మొదటిసారి నవ్వుతుంది. అయితే ఒక మాట నిలబెట్టుకుందాం. ఆమె పాడుతుంది, స్ఫటికాలు బదులిస్తాయి, పుస్తకంలోకి కొత్త మాట జారుతుంది: పాట.",
+       "te-en": "Ichhina maata. Chhaya modatisaari navvuthundi. Aithe oka maata nilabettukundaam. Aame paaduthundi, crystals badulisthaayi, book loki kotha word jaaruthundi: Paata.",
+       "hi-en@tts": "वादा। छाया पहली बार मुस्कुराती है। तो चलो एक निभाते हैं। वह गाती है, crystals जवाब देते हैं, और book में एक नया word उतरता है: गीत।",
+       "te-en@tts": "ఇచ్చిన మాట. ఛాయ మొదటిసారి నవ్వుతుంది. అయితే ఒక మాట నిలబెట్టుకుందాం. ఆమె పాడుతుంది, crystals బదులిస్తాయి, book లోకి కొత్త word జారుతుంది: పాట."
+      }
+     ],
+     "effects": {
+      "gain": [
+       "word_song"
+      ]
+     },
+     "go": "s_observatory"
+    },
+    "fail": {
+     "say": [
+      {
+       "en-IN": "A promise, Chhaya says softly. The crystals stay quiet, but she takes your hand and leads you up toward the tower anyway.",
+       "hi-IN": "वादा, छाया धीरे से कहती है. क्रिस्टल चुप रहते हैं, पर वह फिर भी आपका हाथ थामकर आपको मीनार की ओर ले चलती है.",
+       "hi-en": "Vaada, Chhaya dheere se kehti hai. Crystals chup rehte hain, par woh phir bhi aapka haath thaamkar aapko tower ki or le chalti hai.",
+       "te-IN": "ఇచ్చిన మాట, అని మెల్లగా అంటుంది ఛాయ. స్ఫటికాలు మౌనంగా ఉంటాయి, అయినా ఆమె మీ చేయి పట్టుకుని గోపురం వైపు తీసుకెళ్తుంది.",
+       "te-en": "Ichhina maata, ani mellaga antundi Chhaya. Crystals silent ga untaayi, aina aame mee cheyyi pattukuni tower vaipu teesukelthundi.",
+       "hi-en@tts": "वादा, छाया धीरे से कहती है। Crystals चुप रहते हैं, पर वह फिर भी आपका हाथ थामकर आपको tower की ओर ले चलती है।",
+       "te-en@tts": "ఇచ్చిన మాట, అని మెల్లగా అంటుంది ఛాయ. Crystals silent గా ఉంటాయి, అయినా ఆమె మీ చెయ్యి పట్టుకుని tower వైపు తీసుకెళ్తుంది."
+      }
+     ],
+     "effects": {
+      "meter": -1
+     },
+     "go": "s_observatory"
+    }
+   }
+  },
+  "s_demand": {
+   "scene": "crystal-cave",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "Chhaya flinches. Fine. Take them. Nobody ever cared about my voice anyway. She shatters the crystals, and the words fly like sparks up toward the tower.",
+     "hi-IN": "छाया सहम जाती है. ठीक है. ले जाओ. वैसे भी मेरी आवाज़ की किसी को परवाह नहीं थी. वह क्रिस्टल तोड़ देती है, और शब्द चिंगारियों की तरह मीनार की ओर उड़ जाते हैं.",
+     "hi-en": "Chhaya seham jaati hai. Theek hai. Le jao. Waise bhi meri awaaz ki kisi ko parwaah nahi thi. Woh crystals tod deti hai, aur words chingaariyon ki tarah tower ki or ud jaate hain.",
+     "te-IN": "ఛాయ ఉలిక్కిపడుతుంది. సరే. తీసుకెళ్ళండి. ఎలాగూ నా గొంతు గురించి ఎవరికీ పట్టలేదు. ఆమె స్ఫటికాలను పగలగొడుతుంది, మాటలు నిప్పురవ్వల్లా గోపురం వైపు ఎగిరిపోతాయి.",
+     "te-en": "Chhaya ulikkipaduthundi. Sare. Teesukellandi. Elaagu naa gonthu gurinchi evariki pattaledu. Aame crystals pagalagoduthundi, words nippuravvalla tower vaipu egiripothaayi.",
+     "hi-en@tts": "छाया सहम जाती है। ठीक है। ले जाओ। वैसे भी मेरी आवाज़ की किसी को परवाह नहीं थी। वह crystals तोड़ देती है, और words चिंगारियों की तरह tower की ओर उड़ जाते हैं।",
+     "te-en@tts": "ఛాయ ఉలిక్కిపడుతుంది. సరే. తీసుకెళ్ళండి. ఎలాగూ నా గొంతు గురించి ఎవరికీ పట్టలేదు. ఆమె crystals పగలగొడుతుంది, words నిప్పురవ్వల్లా tower వైపు ఎగిరిపోతాయి."
+    }
+   ],
+   "go": "s_observatory"
+  },
+  "s_trap": {
+   "scene": "crystal-cave",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "You uncork the jar. A hundred echoes roar out, swallow Chhaya's voice, and drag every stolen word back into the glass.",
+     "hi-IN": "आप मर्तबान का ढक्कन खोलते हैं. सौ गूँजें दहाड़ती हुई निकलती हैं, छाया की आवाज़ निगल जाती हैं, और हर चुराया शब्द वापस काँच में खींच लेती हैं.",
+     "hi-en": "Aap jar ka dhakkan kholte hain. Sau echoes dahaadti hui nikalti hain, Chhaya ki awaaz nigal jaati hain, aur har churaaya word wapas kaanch mein kheench leti hain.",
+     "te-IN": "మీరు జాడీ మూత తీస్తారు. వంద ప్రతిధ్వనులు గర్జిస్తూ బయటికొచ్చి, ఛాయ గొంతును మింగేసి, దొంగిలించిన ప్రతి మాటనూ గాజులోకి లాగేస్తాయి.",
+     "te-en": "Meeru jar moota teestharu. Vanda echoes garjisthu bayatikochhi, Chhaya gonthu ni mingesi, dongilinchina prathi word ni glass loki laagesthaayi.",
+     "hi-en@tts": "आप jar का ढक्कन खोलते हैं। सौ echoes दहाड़ती हुई निकलती हैं, छाया की आवाज़ निगल जाती हैं, और हर चुराया word वापस काँच में खींच लेती हैं।",
+     "te-en@tts": "మీరు jar మూత తీస్తారు. వంద echoes గర్జిస్తూ బయటికొచ్చి, ఛాయ గొంతుని మింగేసి, దొంగిలించిన ప్రతి word నీ glass లోకి లాగేస్తాయి."
+    },
+    {
+     "en-IN": "The crystals go dark. Chhaya opens her mouth, but no sound comes out.",
+     "hi-IN": "क्रिस्टल बुझ जाते हैं. छाया मुँह खोलती है, पर कोई आवाज़ नहीं निकलती.",
+     "hi-en": "Crystals bujh jaate hain. Chhaya munh kholti hai, par koi awaaz nahi nikalti.",
+     "te-IN": "స్ఫటికాలు ఆరిపోతాయి. ఛాయ నోరు తెరుస్తుంది, కానీ ఒక్క శబ్దం కూడా రాదు.",
+     "te-en": "Crystals aaripothaayi. Chhaya noru terusthundi, kaani okka sound kooda raadu.",
+     "hi-en@tts": "Crystals बुझ जाते हैं। छाया मुँह खोलती है, पर कोई आवाज़ नहीं निकलती।",
+     "te-en@tts": "Crystals ఆరిపోతాయి. ఛాయ నోరు తెరుస్తుంది, కానీ ఒక్క sound కూడా రాదు."
+    }
+   ],
+   "enter": {
+    "gain": [
+     "word_song"
+    ]
+   },
+   "go": "s_observatory"
+  },
+  "s_observatory": {
+   "scene": "observatory",
+   "mood": "ask",
+   "say": [
+    {
+     "en-IN": "The observatory at the top of the library tower. The moon is touching the hills, and the Spellbook lies open on its stand.",
+     "hi-IN": "लाइब्रेरी की मीनार के ऊपर बनी वेधशाला. चाँद पहाड़ियों को छू रहा है, और जादुई किताब अपने स्टैंड पर खुली पड़ी है.",
+     "hi-en": "Library tower ke upar bani observatory. Chaand pahaadiyon ko chhoo raha hai, aur Spellbook apne stand par khuli padi hai.",
+     "te-IN": "గ్రంథాలయ గోపురం పైన ఉన్న నక్షత్రశాల. చంద్రుడు కొండల్ని తాకుతున్నాడు, మంత్ర గ్రంథం తన స్టాండ్ మీద తెరిచి ఉంది.",
+     "te-en": "Library tower paina unna observatory. Moon kondalni thaakuthondi, Spellbook thana stand meeda terichi undi.",
+     "hi-en@tts": "Library tower के ऊपर बनी observatory। चाँद पहाड़ियों को छू रहा है, और Spellbook अपने stand पर खुली पड़ी है।",
+     "te-en@tts": "Library tower పైన ఉన్న observatory. Moon కొండల్ని తాకుతోంది, Spellbook తన stand మీద తెరిచి ఉంది."
+    },
+    {
+     "en-IN": "The last page opens only to the oldest riddle of all. Say it right, and every word comes home.",
+     "hi-IN": "आख़िरी पन्ना सिर्फ़ सबसे पुरानी पहेली से खुलता है. सही जवाब दीजिए, और हर शब्द घर लौट आएगा.",
+     "hi-en": "Last page sirf sabse puraani paheli se khulta hai. Sahi jawaab dijiye, aur har word ghar laut aayega.",
+     "te-IN": "చివరి పేజీ అన్నిటికంటే పాత పొడుపు కథకే తెరుచుకుంటుంది. సరిగ్గా చెప్పండి, ప్రతి మాటా ఇంటికి తిరిగొస్తుంది.",
+     "te-en": "Last page anni kante paatha riddle ke teruchukuntundi. Correct ga cheppandi, prathi word intiki tirigosthundi.",
+     "hi-en@tts": "Last page सिर्फ सबसे पुरानी पहेली से खुलता है। सही जवाब दीजिए, और हर word घर लौट आएगा।",
+     "te-en@tts": "Last page అన్నిటికంటే పాత riddle కే తెరుచుకుంటుంది. Correct గా చెప్పండి, ప్రతి word ఇంటికి తిరిగొస్తుంది."
+    }
+   ],
+   "puzzle": {
+    "prompt": {
+     "en-IN": "I speak without a mouth and hear without ears. I have no body, but I come alive with sound. What am I?",
+     "hi-IN": "मैं बिना मुँह के बोलती हूँ और बिना कान के सुनती हूँ. मेरा कोई शरीर नहीं, पर आवाज़ से जी उठती हूँ. मैं क्या हूँ?",
+     "hi-en": "Main bina munh ke bolti hoon aur bina kaan ke sunti hoon. Mera koi shareer nahi, par awaaz se jee uthti hoon. Main kya hoon?",
+     "te-IN": "నోరు లేకుండా మాట్లాడతాను, చెవులు లేకుండా వింటాను. నాకు శరీరం లేదు, కానీ శబ్దంతో ప్రాణం పోసుకుంటాను. నేనేంటి?",
+     "te-en": "Noru lekunda maatlaadathaanu, chevulu lekunda vintaanu. Naaku shareeram ledu, kaani sound tho praanam posukuntaanu. Nenenti?",
+     "hi-en@tts": "मैं बिना मुँह के बोलती हूँ और बिना कान के सुनती हूँ। मेरा कोई शरीर नहीं, पर आवाज़ से जी उठती हूँ। मैं क्या हूँ?",
+     "te-en@tts": "నోరు లేకుండా మాట్లాడతాను, చెవులు లేకుండా వింటాను. నాకు శరీరం లేదు, కానీ sound తో ప్రాణం పోసుకుంటాను. నేనేంటి?"
+    },
+    "options": {
+     "en-IN": [
+      "Wind",
+      "Echo",
+      "Shadow"
+     ],
+     "hi-IN": [
+      "पवन",
+      "गूँज",
+      "परछाईं"
+     ],
+     "hi-en": [
+      "Pawan",
+      "Goonj",
+      "Parchhai"
+     ],
+     "te-IN": [
+      "గాలి",
+      "ప్రతిధ్వని",
+      "నీడ"
+     ],
+     "te-en": [
+      "Gaali",
+      "Echo",
+      "Needa"
+     ]
+    },
+    "answer": 1,
+    "aliases": {
+     "en-IN": [
+      "an echo",
+      "echoes"
+     ],
+     "hi-IN": [
+      "गूंज",
+      "प्रतिध्वनि",
+      "echo",
+      "इको"
+     ],
+     "hi-en": [
+      "goonj",
+      "gunj",
+      "echo"
+     ],
+     "te-IN": [
+      "echo",
+      "ఎకో",
+      "ప్రతి ధ్వని"
+     ],
+     "te-en": [
+      "ఎకో",
+      "echo",
+      "ప్రతిధ్వని"
+     ]
+    },
+    "pass": {
+     "say": [
+      {
+       "en-IN": "An echo. Your voice rolls out over the valley and comes back as a thousand voices, every one of them a word.",
+       "hi-IN": "गूँज. आपकी आवाज़ घाटी पर फैलती है और हज़ार आवाज़ें बनकर लौटती है, हर आवाज़ एक शब्द.",
+       "hi-en": "Goonj. Aapki awaaz ghaati par phailti hai aur hazaar awaazein bankar lautti hai, har awaaz ek word.",
+       "te-IN": "ప్రతిధ్వని. మీ గొంతు లోయ అంతా వ్యాపించి, వెయ్యి గొంతులుగా తిరిగొస్తుంది, ప్రతీ గొంతూ ఒక మాట.",
+       "te-en": "Echo. Mee gonthu loya anthaa vyaapinchi, veyyi gonthulugaa tirigosthundi, prathi gonthu oka word.",
+       "hi-en@tts": "गूँज। आपकी आवाज़ घाटी पर फैलती है और हज़ार आवाज़ें बनकर लौटती है, हर आवाज़ एक word।",
+       "te-en@tts": "Echo. మీ గొంతు లోయ అంతా వ్యాపించి, వెయ్యి గొంతులుగా తిరిగొస్తుంది, ప్రతీ గొంతూ ఒక word."
+      }
+     ],
+     "go": [
+      {
+       "if": {
+        "has": [
+         "listened",
+         "word_light",
+         "word_song"
+        ]
+       },
+       "go": "end:book_sings"
+      },
+      {
+       "if": {
+        "has": [
+         "listened"
+        ]
+       },
+       "go": "end:two_voices"
+      },
+      {
+       "if": {
+        "has": [
+         "trapped"
+        ]
+       },
+       "go": "end:silent_apprentice"
+      },
+      {
+       "go": "end:restored"
+      }
+     ]
+    },
+    "fail": {
+     "say": [
+      {
+       "en-IN": "It was an echo. The book swallows only half of what you gathered, and the moon slides behind the hills.",
+       "hi-IN": "जवाब था गूँज. किताब आपके जुटाए शब्दों में से बस आधे निगल पाती है, और चाँद पहाड़ियों के पीछे सरक जाता है.",
+       "hi-en": "Jawaab tha goonj. Book aapke jutaaye words mein se bas aadhe nigal paati hai, aur chaand pahaadiyon ke peeche sarak jaata hai.",
+       "te-IN": "జవాబు ప్రతిధ్వని. మీరు సేకరించిన మాటల్లో సగమే పుస్తకం మింగగలుగుతుంది, చంద్రుడు కొండల వెనక్కి జారిపోతాడు.",
+       "te-en": "Jawaabu echo. Meeru sekarinchina words lo sagame book mingagaluguthundi, moon kondala venakki jaaripothundi.",
+       "hi-en@tts": "जवाब था गूँज। Book आपके जुटाए words में से बस आधे निगल पाती है, और चाँद पहाड़ियों के पीछे सरक जाता है।",
+       "te-en@tts": "జవాబు echo. మీరు సేకరించిన words లో సగమే book మింగగలుగుతుంది, moon కొండల వెనక్కి జారిపోతుంది."
+      }
+     ],
+     "go": "end:half_book"
+    }
+   }
+  }
+ },
+ "endings": {
+  "book_sings": {
+   "title": {
+    "en-IN": "The Book Sings Again",
+    "hi-IN": "किताब फिर गाती है",
+    "hi-en": "The Book Sings Again",
+    "te-IN": "పుస్తకం మళ్ళీ పాడింది",
+    "te-en": "The Book Sings Again"
+   },
+   "rank": "gold",
+   "scene": "sky-islands",
+   "mood": "cheer",
+   "say": [
+    {
+     "en-IN": "At dawn the Spellbook sings with two voices, yours and Chhaya's, and every spell in the library wakes at once.",
+     "hi-IN": "भोर होते ही जादुई किताब दो आवाज़ों में गाती है, आपकी और छाया की, और लाइब्रेरी का हर मंत्र एक साथ जाग उठता है.",
+     "hi-en": "Subah hote hi Spellbook do awaazon mein gaati hai, aapki aur Chhaya ki, aur library ka har spell ek saath jaag uthta hai.",
+     "te-IN": "తెల్లవారగానే మంత్ర గ్రంథం రెండు గొంతులతో పాడుతుంది, మీదీ ఛాయదీ, గ్రంథాలయంలోని ప్రతి మంత్రం ఒకేసారి మేల్కొంటుంది.",
+     "te-en": "Tellavaaragaane Spellbook rendu gonthulatho paaduthundi, meedi Chhaya di, library lo prathi spell okesaari melkontundi.",
+     "hi-en@tts": "सुबह होते ही Spellbook दो आवाज़ों में गाती है, आपकी और छाया की, और library का हर spell एक साथ जाग उठता है।",
+     "te-en@tts": "తెల్లవారగానే Spellbook రెండు గొంతులతో పాడుతుంది, మీదీ ఛాయదీ, library లో ప్రతి spell ఒకేసారి మేల్కొంటుంది."
+    },
+    {
+     "en-IN": "The wizards finally learn to listen. Chhaya becomes the first Keeper of Voices, and your name is written on the very first page.",
+     "hi-IN": "आख़िरकार जादूगर सुनना सीखते हैं. छाया आवाज़ों की पहली रखवाली बनती है, और आपका नाम सबसे पहले पन्ने पर लिखा जाता है.",
+     "hi-en": "Aakhirkaar wizards sunna seekhte hain. Chhaya pehli Keeper of Voices banti hai, aur aapka naam sabse pehle page par likha jaata hai.",
+     "te-IN": "ఎట్టకేలకు మాంత్రికులు వినడం నేర్చుకుంటారు. ఛాయ మొదటి స్వరాల సంరక్షకురాలు అవుతుంది, మీ పేరు మొట్టమొదటి పేజీలో రాయబడుతుంది.",
+     "te-en": "Ettakelaku wizards vinadam nerchukuntaaru. Chhaya first Keeper of Voices avuthundi, mee peru mottamodati page lo raayabaduthundi.",
+     "hi-en@tts": "आखिरकार wizards सुनना सीखते हैं। छाया पहली Keeper of Voices बनती है, और आपका नाम सबसे पहले page पर लिखा जाता है।",
+     "te-en@tts": "ఎట్టకేలకు wizards వినడం నేర్చుకుంటారు. ఛాయ first Keeper of Voices అవుతుంది, మీ పేరు మొట్టమొదటి page లో రాయబడుతుంది."
+    }
+   ]
+  },
+  "two_voices": {
+   "title": {
+    "en-IN": "Two Voices",
+    "hi-IN": "दो आवाज़ें",
+    "hi-en": "Do Awaazein",
+    "te-IN": "రెండు గొంతులు",
+    "te-en": "Rendu Gonthulu"
+   },
+   "rank": "silver",
+   "scene": "library-b",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "The book wakes, though a few pages stay quiet. Chhaya promises to write the missing words back in her own hand.",
+     "hi-IN": "किताब जाग जाती है, हालाँकि कुछ पन्ने अब भी चुप हैं. छाया वादा करती है कि छूटे शब्द वह अपने हाथ से फिर लिखेगी.",
+     "hi-en": "Book jaag jaati hai, haalaanki kuch pages ab bhi chup hain. Chhaya vaada karti hai ki chhoote words woh apne haath se phir likhegi.",
+     "te-IN": "పుస్తకం మేల్కొంటుంది, కొన్ని పేజీలు మాత్రం ఇంకా మౌనంగానే ఉన్నాయి. తప్పిపోయిన మాటల్ని తన చేత్తోనే మళ్ళీ రాస్తానని ఛాయ మాటిస్తుంది.",
+     "te-en": "Book melkontundi, konni pages maathram inka silent gaane unnayi. Thappipoyina words ni thana chethothone malli raasthaanani Chhaya maatisthundi.",
+     "hi-en@tts": "Book जाग जाती है, हालाँकि कुछ pages अब भी चुप हैं। छाया वादा करती है कि छूटे words वह अपने हाथ से फिर लिखेगी।",
+     "te-en@tts": "Book మేల్కొంటుంది, కొన్ని pages మాత్రం ఇంకా silent గానే ఉన్నాయి. తప్పిపోయిన words ని తన చేత్తోనే మళ్ళీ రాస్తానని ఛాయ మాటిస్తుంది."
+    },
+    {
+     "en-IN": "The library has a new reader, and the wizards have learned to pause before they speak.",
+     "hi-IN": "लाइब्रेरी को एक नई पढ़ने वाली मिलती है, और जादूगर बोलने से पहले रुकना सीख जाते हैं.",
+     "hi-en": "Library ko ek nayi reader milti hai, aur wizards bolne se pehle rukna seekh jaate hain.",
+     "te-IN": "గ్రంథాలయానికి కొత్త పాఠకురాలు దొరుకుతుంది, మాంత్రికులు మాట్లాడే ముందు ఆగడం నేర్చుకుంటారు.",
+     "te-en": "Library ki kotha reader dorukuthundi, wizards maatlaade mundu aagadam nerchukuntaaru.",
+     "hi-en@tts": "Library को एक नई reader मिलती है, और wizards बोलने से पहले रुकना सीख जाते हैं।",
+     "te-en@tts": "Library కి కొత్త reader దొరుకుతుంది, wizards మాట్లాడే ముందు ఆగడం నేర్చుకుంటారు."
+    }
+   ]
+  },
+  "restored": {
+   "title": {
+    "en-IN": "Words Returned",
+    "hi-IN": "शब्द लौट आए",
+    "hi-en": "Words Returned",
+    "te-IN": "మాటలు తిరిగొచ్చాయి",
+    "te-en": "Words Returned"
+   },
+   "rank": "silver",
+   "scene": "library-a",
+   "mood": "happy",
+   "say": [
+    {
+     "en-IN": "The spells return, word by word, and the wizards cheer your name across the great hall.",
+     "hi-IN": "मंत्र एक-एक शब्द करके लौट आते हैं, और जादूगर बड़े हॉल में आपके नाम के नारे लगाते हैं.",
+     "hi-en": "Spells ek ek word karke laut aate hain, aur wizards bade hall mein aapke naam ke naare lagaate hain.",
+     "te-IN": "మంత్రాలు ఒక్కో మాటగా తిరిగొస్తాయి, మాంత్రికులు పెద్ద హాల్‌లో మీ పేరుతో జేజేలు కొడతారు.",
+     "te-en": "Spells okko word ga tirigosthaayi, wizards pedda hall lo mee peru tho jejelu kodathaaru.",
+     "hi-en@tts": "Spells एक एक word करके लौट आते हैं, और wizards बड़े hall में आपके नाम के नारे लगाते हैं।",
+     "te-en@tts": "Spells ఒక్కో word గా తిరిగొస్తాయి, wizards పెద్ద hall లో మీ పేరుతో జేజేలు కొడతారు."
+    },
+    {
+     "en-IN": "Somewhere in the stacks, Chhaya reads aloud to an empty room again. You wonder if you won the right thing.",
+     "hi-IN": "कहीं किताबों की कतारों में छाया फिर एक ख़ाली कमरे को पढ़कर सुना रही है. आप सोचते हैं, क्या आपने सही चीज़ जीती?",
+     "hi-en": "Kahin kitaabon ki kataaron mein Chhaya phir ek khaali kamre ko padhkar suna rahi hai. Aap sochte hain, kya aapne sahi cheez jeeti?",
+     "te-IN": "ఎక్కడో పుస్తకాల అరల మధ్య, ఛాయ మళ్ళీ ఖాళీ గదికి గట్టిగా చదివి వినిపిస్తోంది. మీరు గెలిచింది సరైనదేనా అని ఆలోచిస్తారు.",
+     "te-en": "Ekkado pusthakaala arala madhya, Chhaya malli khaali gadhiki gattiga chadivi vinipisthondi. Meeru gelichindi sarainadhena ani aalochistharu.",
+     "hi-en@tts": "कहीं किताबों की कतारों में छाया फिर एक खाली कमरे को पढ़कर सुना रही है। आप सोचते हैं, क्या आपने सही चीज़ जीती?",
+     "te-en@tts": "ఎక్కడో పుస్తకాల అరల మధ్య, ఛాయ మళ్ళీ ఖాళీ గదికి గట్టిగా చదివి వినిపిస్తోంది. మీరు గెలిచింది సరైనదేనా అని ఆలోచిస్తారు."
+    }
+   ]
+  },
+  "silent_apprentice": {
+   "title": {
+    "en-IN": "The Silent Apprentice",
+    "hi-IN": "ख़ामोश शागिर्द",
+    "hi-en": "The Silent Apprentice",
+    "te-IN": "మౌన శిష్యురాలు",
+    "te-en": "The Silent Apprentice"
+   },
+   "rank": "bronze",
+   "scene": "observatory",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "The jar empties into the book and every spell comes back. But Chhaya's voice stays sealed inside the glass.",
+     "hi-IN": "मर्तबान किताब में ख़ाली हो जाता है और हर मंत्र लौट आता है. पर छाया की आवाज़ काँच के अंदर ही बंद रह जाती है.",
+     "hi-en": "Jar book mein khaali ho jaata hai aur har spell laut aata hai. Par Chhaya ki awaaz kaanch ke andar hi band reh jaati hai.",
+     "te-IN": "జాడీ పుస్తకంలోకి ఖాళీ అవుతుంది, ప్రతి మంత్రం తిరిగొస్తుంది. కానీ ఛాయ గొంతు మాత్రం గాజు లోపలే బందీగా ఉండిపోతుంది.",
+     "te-en": "Jar book loki khaali avuthundi, prathi spell tirigosthundi. Kaani Chhaya gonthu maathram glass lopale bandhi gaa undipothundi.",
+     "hi-en@tts": "Jar book में खाली हो जाता है और हर spell लौट आता है। पर छाया की आवाज़ काँच के अंदर ही बंद रह जाती है।",
+     "te-en@tts": "Jar book లోకి ఖాళీ అవుతుంది, ప్రతి spell తిరిగొస్తుంది. కానీ ఛాయ గొంతు మాత్రం glass లోపలే బందీగా ఉండిపోతుంది."
+    },
+    {
+     "en-IN": "The library is loud again. One apprentice will never be heard in it.",
+     "hi-IN": "लाइब्रेरी फिर से गूँज उठती है. बस एक शागिर्द की आवाज़ उसमें कभी नहीं सुनाई देगी.",
+     "hi-en": "Library phir se goonj uthti hai. Bas ek apprentice ki awaaz usmein kabhi sunaai nahi degi.",
+     "te-IN": "గ్రంథాలయం మళ్ళీ సందడిగా మారుతుంది. ఒక్క శిష్యురాలి గొంతు మాత్రం అందులో ఎప్పటికీ వినిపించదు.",
+     "te-en": "Library malli sandadiga maaruthundi. Okka apprentice gonthu maathram andulo eppatiki vinipinchadu.",
+     "hi-en@tts": "Library फिर से गूँज उठती है। बस एक apprentice की आवाज़ उसमें कभी सुनाई नहीं देगी।",
+     "te-en@tts": "Library మళ్ళీ సందడిగా మారుతుంది. ఒక్క apprentice గొంతు మాత్రం అందులో ఎప్పటికీ వినిపించదు."
+    }
+   ]
+  },
+  "half_book": {
+   "title": {
+    "en-IN": "Half a Spellbook",
+    "hi-IN": "आधी जादुई किताब",
+    "hi-en": "Half a Spellbook",
+    "te-IN": "సగం మంత్ర గ్రంథం",
+    "te-en": "Half a Spellbook"
+   },
+   "rank": "bronze",
+   "scene": "library-b",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "The moon sets on a half-written book. Half the spells work. The other half just hum.",
+     "hi-IN": "चाँद एक आधी लिखी किताब पर ढलता है. आधे मंत्र चलते हैं. बाक़ी आधे बस गुनगुनाते हैं.",
+     "hi-en": "Chaand ek aadhi likhi book par dhalta hai. Aadhe spells chalte hain. Baaki aadhe bas gungunaate hain.",
+     "te-IN": "సగం రాసిన పుస్తకం మీద చంద్రుడు అస్తమిస్తాడు. సగం మంత్రాలు పని చేస్తాయి. మిగతా సగం కేవలం హమ్ చేస్తాయి.",
+     "te-en": "Sagam raasina book meeda moon set avuthundi. Sagam spells pani chesthaayi. Migathaa sagam kevalam hum chesthaayi.",
+     "hi-en@tts": "चाँद एक आधी लिखी book पर ढलता है। आधे spells चलते हैं। बाकी आधे बस गुनगुनाते हैं।",
+     "te-en@tts": "సగం రాసిన book మీద moon set అవుతుంది. సగం spells పని చేస్తాయి. మిగతా సగం కేవలం hum చేస్తాయి."
+    },
+    {
+     "en-IN": "It's a start. Next midnight, the riddles will be waiting for you.",
+     "hi-IN": "शुरुआत तो है. अगली आधी रात, पहेलियाँ आपका इंतज़ार करेंगी.",
+     "hi-en": "Shuruaat toh hai. Agli aadhi raat, paheliyan aapka intezaar karengi.",
+     "te-IN": "ఇది ఒక మొదలు. వచ్చే అర్ధరాత్రి, పొడుపు కథలు మీ కోసం ఎదురుచూస్తుంటాయి.",
+     "te-en": "Idi oka start. Vachhe ardharaatri, riddles mee kosam eduruchusthuntaayi.",
+     "hi-en@tts": "शुरुआत तो है। अगली आधी रात, पहेलियाँ आपका इंतज़ार करेंगी।",
+     "te-en@tts": "ఇది ఒక start. వచ్చే అర్ధరాత్రి, riddles మీ కోసం ఎదురుచూస్తుంటాయి."
+    }
+   ]
+  },
+  "moonset": {
+   "title": {
+    "en-IN": "Moonset",
+    "hi-IN": "चाँद ढल गया",
+    "hi-en": "Chaand Dhal Gaya",
+    "te-IN": "చంద్రాస్తమయం",
+    "te-en": "Moonset"
+   },
+   "rank": "bronze",
+   "scene": "observatory",
+   "mood": "sad",
+   "say": [
+    {
+     "en-IN": "The moon slips below the hills before the last word is found, and the Spellbook closes in silence.",
+     "hi-IN": "आख़िरी शब्द मिलने से पहले ही चाँद पहाड़ियों के पीछे ढल जाता है, और जादुई किताब ख़ामोशी से बंद हो जाती है.",
+     "hi-en": "Aakhri word milne se pehle hi chaand pahaadiyon ke peeche dhal jaata hai, aur Spellbook khamoshi se band ho jaati hai.",
+     "te-IN": "చివరి మాట దొరకకముందే చంద్రుడు కొండల వెనక్కి జారిపోతాడు, మంత్ర గ్రంథం మౌనంగా మూసుకుపోతుంది.",
+     "te-en": "Chivari word dorakakamunde moon kondala venakki jaaripothundi, Spellbook silent gaa moosukupothundi.",
+     "hi-en@tts": "आखिरी word मिलने से पहले ही चाँद पहाड़ियों के पीछे ढल जाता है, और Spellbook खामोशी से बंद हो जाती है।",
+     "te-en@tts": "చివరి word దొరకకముందే moon కొండల వెనక్కి జారిపోతుంది, Spellbook silent గా మూసుకుపోతుంది."
+    },
+    {
+     "en-IN": "But books can be rewritten. Come back tomorrow night, and bring your voice.",
+     "hi-IN": "पर किताबें फिर से लिखी जा सकती हैं. कल रात फिर आइए, और अपनी आवाज़ साथ लाइए.",
+     "hi-en": "Par kitaabein phir se likhi ja sakti hain. Kal raat phir aaiye, aur apni awaaz saath laaiye.",
+     "te-IN": "కానీ పుస్తకాల్ని మళ్ళీ రాయొచ్చు. రేపు రాత్రి మళ్ళీ రండి, మీ గొంతును వెంట తెచ్చుకోండి.",
+     "te-en": "Kaani books ni malli raayochhu. Repu raatri malli randi, mee gonthu ni venta techhukondi.",
+     "hi-en@tts": "पर किताबें फिर से लिखी जा सकती हैं। कल रात फिर आइए, और अपनी आवाज़ साथ लाइए।",
+     "te-en@tts": "కానీ books ని మళ్ళీ రాయొచ్చు. రేపు రాత్రి మళ్ళీ రండి, మీ గొంతుని వెంట తెచ్చుకోండి."
+    }
+   ]
+  }
+ }
+}

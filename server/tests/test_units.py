@@ -217,6 +217,53 @@ async def test_tts_streams_and_reuses_connection(clean_gnani):
     await tts.close()
 
 
+@pytest.mark.parametrize("trailer", [True, False])
+async def test_tts_lines_never_get_each_others_audio(clean_gnani, trailer):
+    # Timbre sends a "Streaming completed" trailer after the final chunk and reuses the request
+    # id. A trailer left unread used to end the next line early (empty) and hand the line after
+    # it the previous line's audio.
+    clean_gnani.state.tts_s_per_char = 0.05
+    clean_gnani.state.tts_trailer = trailer
+    tts = TtsStreamer(url=clean_gnani.tts_url, api_key=API_KEY, model="timbre-v2.5")
+    for text in ["one", "a longer line", "mid line", "x", "the final line of five"]:
+        audio = b"".join([c async for c in tts.stream(text, voice="Shlok", language="en-IN")])
+        assert len(audio) == int(len(text) * 0.05 * 24000) * 2, text
+    await tts.close()
+
+
+async def test_tts_line_ends_without_waiting_for_the_trailer(clean_gnani):
+    # The trailer is read when the next line starts, so a missing one costs nothing on the
+    # line itself, and the next line reconnects rather than trusting the connection.
+    clean_gnani.state.tts_trailer = False
+    tts = TtsStreamer(url=clean_gnani.tts_url, api_key=API_KEY, model="timbre-v2.5")
+    t0 = time.monotonic()
+    audio = b"".join([c async for c in tts.stream("hello", voice="Shlok", language="en-IN")])
+    assert audio and tts.complete and time.monotonic() - t0 < 1.0
+    audio = b"".join([c async for c in tts.stream("again", voice="Shlok", language="en-IN")])
+    assert audio and tts.complete
+    assert clean_gnani.state.tts_connections == 2
+    await tts.close()
+
+
+async def test_tts_stray_trailer_drops_the_connection_instead_of_shifting_lines(clean_gnani):
+    clean_gnani.state.tts_s_per_char = 0.05
+    tts = TtsStreamer(url=clean_gnani.tts_url, api_key=API_KEY, model="timbre-v2.5")
+    clean_gnani.state.tts_stray_trailers = 1  # one trailer too many after the first line
+    got = {}
+    for text in ["one", "a longer line", "mid line"]:
+        try:
+            got[text] = b"".join(
+                [c async for c in tts.stream(text, voice="Shlok", language="en-IN")]
+            )
+        except GnaniError:
+            got[text] = None  # the out-of-step line is lost, never mislabelled
+            assert not tts.complete
+    for text, audio in got.items():
+        assert audio is None or len(audio) == int(len(text) * 0.05 * 24000) * 2, text
+    assert got["mid line"] is not None
+    await tts.close()
+
+
 async def test_tts_bad_key(clean_gnani):
     tts = TtsStreamer(
         url=clean_gnani.tts_url, api_key="nope", model="timbre-v2.5", connect_retries=0
@@ -507,7 +554,7 @@ def test_all_five_languages_route_and_have_lines():
     assert set(LANGUAGES) == {"te-IN", "hi-IN", "hi-en", "te-en", "en-IN"}
     # Tenglish listens in Telugu mode (live-tested): English words come back in Telugu script.
     assert route("te-en").stt_lang == "te-IN" and route("te-en").tts_lang == "te-IN"
-    assert route("en-IN").stt_lang == "en-IN" and route("en-IN").voice == "Girish"
+    assert route("en-IN").stt_lang == "en-IN" and route("en-IN").voice == "Lakshmi"
     lines = Lines.load(SERVER_DIR / "content" / "lines.json")
     for code in LANGUAGES:
         assert "{answer}" not in lines.get(code, "answer_was", answer="x")
@@ -570,16 +617,16 @@ def test_story_voice_scene_and_sprite():
         "library-a",
         None,
     )
-    assert route_for_pack(pack).voice == "Nalini"  # language default
+    assert route_for_pack(pack).voice == "Lakshmi"  # language default
 
     raw = _json.loads(_json.dumps(base))
-    raw["story"].update(voice="Jalaj", wizard_sprite="owl", scene="crystal-cave")
+    raw["story"].update(voice="Shubham", wizard_sprite="owl", scene="crystal-cave")
     pack = parse_pack(_json.dumps(raw))
     route = route_for_pack(pack)
-    assert route.voice == "Jalaj" and route.tts_lang == "hi-IN" and route.stt_lang == "hi-IN"
+    assert route.voice == "Shubham" and route.tts_lang == "hi-IN" and route.stt_lang == "hi-IN"
 
     for field, bad in (
-        ("voice", "Girish"),  # an en-IN voice in a Hindi pack
+        ("voice", "Girish"),  # a Timbre v2.5 voice, not in v3
         ("voice", "../etc"),
         ("wizard_sprite", "dragon"),
         ("scene", "../../secrets"),
@@ -654,23 +701,79 @@ def test_wizard_picks_the_narrator_voice():
     from app.game.languages import (
         DEFAULT_WIZARD,
         LANGUAGES,
-        VOICES,
+        VOICE_CATALOG,
+        WIZARD_GENDER,
         WIZARD_VOICES,
         WIZARDS,
-        route,
         route_for_game,
+        route_for_wizard,
         valid_wizard,
     )
 
     pack = parse_pack((FIXTURES / "packs" / "hi-story-01.json").read_bytes())
     assert DEFAULT_WIZARD == "sorceress"
-    assert route_for_game(pack, "sorceress").voice == "Nalini"
-    assert route_for_game(pack, "sage").voice == "Jalaj"
-    assert route_for_game(pack, "owl").voice == "Omkar"
-    # Every wizard has a real Timbre voice in every game language.
+    assert route_for_game(pack, "sorceress").voice == "Shivani"
+    assert route_for_game(pack, "sage").voice == "Harshad"
+    assert route_for_game(pack, "owl").voice == "Prakash"
     for code in LANGUAGES:
+        # Every wizard sounds different, and male wizards have male voices.
+        assert len({WIZARD_VOICES[code][w] for w in WIZARDS}) == len(WIZARDS), code
         for wizard in WIZARDS:
-            assert WIZARD_VOICES[code][wizard] in VOICES[route(code).tts_lang], (code, wizard)
+            r = route_for_wizard(code, wizard)
+            assert r.voice in VOICE_CATALOG, (code, wizard)
+            assert VOICE_CATALOG[r.voice] == WIZARD_GENDER[wizard], (code, wizard)
+            # Timbre gets the spoken text's language: Hinglish is Devanagari plus English
+            # (hi-IN), Tenglish Telugu plus English (te-IN).
+            expected = {"te-en": "te-IN", "hi-en": "hi-IN"}
+            assert r.tts_lang == expected.get(code, code), (code, wizard)
     for bad in (None, "", "dragon", "SAGE", 3, ["owl"]):
         assert valid_wizard(bad) is None
     assert all(valid_wizard(w) == w for w in WIZARDS)
+
+
+# ---------------------------------------------------------------- speech playout ---
+def test_playout_tracks_when_the_client_finishes(monkeypatch):
+    from app.ws import play
+
+    now = [100.0]
+    monkeypatch.setattr(play.time, "monotonic", lambda: now[0])
+    second = play.TTS_BYTES_PER_S
+    lead = play.PLAYOUT_LEAD_S
+
+    # A cached line arrives at once: it ends one lead after sending plus its length.
+    p = play.Playout()
+    for _ in range(5):
+        p.sent(second // 5)
+    assert p.ends_at == pytest.approx(100.0 + lead + 1.0)
+
+    # A live line whose first chunk takes 1.5 s, then streams slower than real time: the
+    # client's queue runs dry, so playback ends well after "start + length".
+    p = play.Playout()
+    now[0] = 101.5
+    p.sent(second // 5)
+    for _ in range(4):
+        now[0] += 0.4  # 200 ms of audio every 400 ms
+        p.sent(second // 5)
+    assert p.ends_at == pytest.approx(now[0] + lead + 0.2)
+    assert p.ends_at > 100.0 + 1.0 + 1.5
+
+
+async def test_turnstile_accepts_each_listed_hostname():
+    import httpx
+
+    from app.security.turnstile import TurnstileVerifier
+
+    def verdict(host: str):
+        def handler(request: httpx.Request) -> httpx.Response:
+            return httpx.Response(200, json={"success": True, "hostname": host, "action": "start"})
+
+        return httpx.AsyncClient(transport=httpx.MockTransport(handler))
+
+    hosts = "micdrop.ourspaces.net, betamicdrop.ourspaces.net"
+    for host, ok in [
+        ("micdrop.ourspaces.net", True),
+        ("betamicdrop.ourspaces.net", True),
+        ("evil.example.com", False),
+    ]:
+        async with verdict(host) as client:
+            assert await TurnstileVerifier(client, "s", hosts).verify("tok", "1.2.3.4") is ok

@@ -32,6 +32,7 @@ export const TRACK_FOR_GENRE: Record<Genre, Track> = {
   romance: 'calm',
   comedy: 'calm',
   fantasy: 'calm',
+  riddle: 'calm',
   scifi: 'calm',
 };
 

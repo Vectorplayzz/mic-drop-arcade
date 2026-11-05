@@ -20,7 +20,7 @@ from app.game.adventures import (
     parse_adventure,
     spoken,
 )
-from app.game.languages import LANGUAGES, VOICES, WIZARD_VOICES, WIZARDS, route_for_wizard
+from app.game.languages import LANGUAGES, VOICE_CATALOG, WIZARD_VOICES, WIZARDS, route_for_wizard
 from app.game.wizards import KEYS, WizardLines
 from app.ws.adventure import adventure_max_score, puzzle_correct
 
@@ -262,14 +262,14 @@ def test_every_wizard_has_a_voice_and_lines():
     for lang in LANGUAGES:
         for wizard in WIZARDS:
             r = route_for_wizard(lang, wizard)
-            assert r.voice in VOICES[r.tts_lang]
+            assert r.voice in VOICE_CATALOG
             for key in KEYS:
                 line = lines.get(lang, wizard, key)
                 assert line.text and line.tts
                 if lang in ("hi-en", "te-en"):
                     assert not _INDIC.search(line.text)
-    # Where Timbre has enough voices, every wizard sounds different.
-    for lang in ("te-IN", "hi-IN", "en-IN", "te-en"):
+    # Every wizard has its own voice in every language.
+    for lang in LANGUAGES:
         assert len(set(WIZARD_VOICES[lang].values())) == len(WIZARDS)
 
 
@@ -285,3 +285,119 @@ def test_no_control_characters_survive():
     data["title"]["en-IN"] = "Test‮Quest"
     adv = Adventure.model_validate(data)
     assert all(unicodedata.category(c) != "Cf" for c in adv.title["en-IN"])
+
+
+# ---------------------------------------------------------------- riddles by sound --
+def _orbit_walk():
+    adv = parse_adventure((SHIPPED / "last-orbit.json").read_bytes())
+    return adv.nodes["o_walk"].puzzle
+
+
+@pytest.mark.parametrize(
+    "heard",
+    ["క్లాక్ వైస్", "క్లాక్‌వైస్", "క్లోక్ వాయిస్", "clock wise", "it is clockwise"],
+)
+@pytest.mark.parametrize("lang", ["te-en", "te-IN"])
+def test_english_answers_in_telugu_script_are_heard(lang, heard):
+    # Prisma te-IN writes English words in Telugu script, spelled differently each time.
+    assert puzzle_correct(_orbit_walk(), lang, heard)
+
+
+@pytest.mark.parametrize(
+    "heard",
+    [
+        "యాంటీ క్లాక్ వైస్",
+        "anti clockwise",
+        "anti clock wise",
+        "anticlockwise",
+        "కౌంటర్ క్లాక్ వైస్",
+        "counter clockwise",
+        "క్లాక్ వైస్ ఆర్ యాంటీ క్లాక్ వైస్",
+        "neither",
+        "నైదర్",
+    ],
+)
+@pytest.mark.parametrize("lang", ["te-en", "te-IN", "en-IN"])
+def test_wrong_or_hedged_answers_stay_wrong(lang, heard):
+    assert not puzzle_correct(_orbit_walk(), lang, heard)
+
+
+def test_every_shipped_riddle_accepts_its_answers_and_rejects_the_others():
+    for path in sorted(SHIPPED.glob("*.json")):
+        adv = parse_adventure(path.read_bytes())
+        for nid, node in adv.nodes.items():
+            p = node.puzzle
+            if p is None:
+                continue
+            for lang in LANGS:
+                where = (path.name, nid, lang)
+                answer = p.display_answer(lang)
+                assert puzzle_correct(p, lang, answer), where
+                for alias in p.accepted(lang):
+                    assert puzzle_correct(p, lang, alias), (*where, alias)
+                for other in p.wrong_options(lang):
+                    assert not puzzle_correct(p, lang, other), (*where, other)
+                    assert not puzzle_correct(p, lang, f"{answer} or {other}"), (*where, other)
+
+
+# ---------------------------------------------------------------- spoken numbers ----
+@pytest.mark.parametrize(
+    ("heard", "value"),
+    [
+        ("త్రీ థౌసండ్ 600", 3600),  # Prisma te-IN: English words in Telugu script, then digits
+        ("three thousand six hundred", 3600),
+        ("thirty six hundred", 3600),
+        ("థర్టీ సిక్స్ హండ్రెడ్", 3600),
+        ("మూడు వేల ఆరు వందలు", 3600),
+        ("ten twenty four", 1024),
+        ("వన్ ఫార్టీ ఫోర్", 144),
+        ("ఫోర్ ఫోర్ త్రీ", 443),
+        ("it is 300", 300),
+    ],
+)
+def test_spoken_numbers(heard, value):
+    from app.game.numbers import spoken_numbers
+
+    assert any(value in run for run in spoken_numbers(heard))
+
+
+@pytest.mark.parametrize(
+    ("heard", "right"),
+    [
+        ("త్రీ థౌసండ్ 600", True),
+        ("థర్టీ సిక్స్ హండ్రెడ్", True),
+        ("three thousand six hundred", True),
+        ("6000", False),
+        ("త్రీ సిక్స్టీ", False),
+        ("3600 or 360", False),
+    ],
+)
+@pytest.mark.parametrize("lang", ["te-en", "te-IN", "en-IN"])
+def test_mixed_number_answers(lang, heard, right):
+    adv = parse_adventure((SHIPPED / "viva-loop.json").read_bytes())
+    assert puzzle_correct(adv.nodes["v_tower"].puzzle, lang, heard) is right
+
+
+def test_emotion_tags_only_in_spoken_text():
+    import re as _re
+
+    from app.game.wizards import AUDIO_TAGS
+
+    tag = _re.compile(r"<[^<>]{1,24}>")
+    lines = WizardLines.load(SERVER_DIR / "content" / "wizards.json")
+    used = set()
+    for lang in LANGUAGES:
+        for wizard in WIZARDS:
+            for key in KEYS:
+                line = lines.get(lang, wizard, key)
+                assert not tag.search(line.text), (lang, wizard, key)  # captions stay clean
+                found = set(tag.findall(line.tts))
+                assert found <= AUDIO_TAGS, (lang, wizard, key, found)
+                assert tag.sub("", line.tts).strip(), (lang, wizard, key)  # never tag-only
+                used |= found
+    assert {"<laugh>", "<giggle>", "<sigh>"} <= used
+    # No story text shown on screen carries a tag either.
+    for path in _all_story_files():
+        for lang in LANGS:
+            for text in _shown_texts(json.loads(path.read_text(encoding="utf-8")), lang):
+                assert not tag.search(text), (path.name, text)

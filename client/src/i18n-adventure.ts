@@ -13,9 +13,6 @@ export interface AdvStrings {
   best: (score: number, time: string) => string;
   genres: Record<Genre, string>;
   wizardBlurbs: Record<Wizard, string>;
-  makeTitle: string;
-  makeBody: string;
-  comingSoon: string;
 
   sayChoice: string;
   sayAnswer: string;
@@ -59,6 +56,7 @@ const english: AdvStrings = {
     scifi: 'Sci-fi',
     horror: 'Spooky',
     fantasy: 'Fantasy',
+    riddle: 'Riddles',
     comedy: 'Comedy',
     thriller: 'Thriller',
   },
@@ -69,9 +67,6 @@ const english: AdvStrings = {
     enchantress: 'Charming and flirty',
     trickster: 'Sly and tricky',
   },
-  makeTitle: 'Make your own adventure',
-  makeBody: 'Describe a story and the wizard writes it for you, live.',
-  comingSoon: 'Coming soon',
 
   sayChoice: 'Say the number or the words on a card',
   sayAnswer: 'Say your answer',
@@ -116,6 +111,7 @@ const hinglish: AdvStrings = {
     scifi: 'Sci-fi',
     horror: 'Darawna',
     fantasy: 'Fantasy',
+    riddle: 'Paheliyan',
     comedy: 'Comedy',
     thriller: 'Thriller',
   },
@@ -126,9 +122,6 @@ const hinglish: AdvStrings = {
     enchantress: 'Charming aur flirty',
     trickster: 'Chalaak aur shararti',
   },
-  makeTitle: 'Apna adventure banao',
-  makeBody: 'Story batao, wizard live likh dega.',
-  comingSoon: 'Jaldi aa raha hai',
 
   sayChoice: 'Card ka number ya uske words bolo',
   sayAnswer: 'Apna jawab bolo',
@@ -175,6 +168,7 @@ const hindi: AdvStrings = {
     scifi: 'साइ-फ़ाई',
     horror: 'डरावना',
     fantasy: 'फ़ैंटेसी',
+    riddle: 'पहेलियाँ',
     comedy: 'कॉमेडी',
     thriller: 'थ्रिलर',
   },
@@ -185,9 +179,6 @@ const hindi: AdvStrings = {
     enchantress: 'चार्मिंग और फ़्लर्टी',
     trickster: 'चालाक और शरारती',
   },
-  makeTitle: 'अपना एडवेंचर बनाओ',
-  makeBody: 'कहानी बताओ, विज़ार्ड लाइव लिख देगा।',
-  comingSoon: 'जल्द आ रहा है',
 
   sayChoice: 'कार्ड का नंबर या उस पर लिखे शब्द बोलो',
   sayAnswer: 'अपना जवाब बोलो',
@@ -232,6 +223,7 @@ const telugu: AdvStrings = {
     scifi: 'సైన్స్ ఫిక్షన్',
     horror: 'భయానకం',
     fantasy: 'ఫాంటసీ',
+    riddle: 'పొడుపు కథలు',
     comedy: 'కామెడీ',
     thriller: 'థ్రిల్లర్',
   },
@@ -242,9 +234,6 @@ const telugu: AdvStrings = {
     enchantress: 'చార్మింగ్, ఫ్లర్టీ',
     trickster: 'జిత్తులమారి, అల్లరి',
   },
-  makeTitle: 'నీ సొంత అడ్వెంచర్ చేసుకో',
-  makeBody: 'కథ చెప్పు, విజార్డ్ లైవ్ గా రాసేస్తాడు.',
-  comingSoon: 'త్వరలో వస్తోంది',
 
   sayChoice: 'కార్డ్ మీద నంబర్ లేదా పదాలు చెప్పు',
   sayAnswer: 'నీ జవాబు చెప్పు',
@@ -289,6 +278,7 @@ const tenglish: AdvStrings = {
     scifi: 'Sci-fi',
     horror: 'Bhayam',
     fantasy: 'Fantasy',
+    riddle: 'Riddles',
     comedy: 'Comedy',
     thriller: 'Thriller',
   },
@@ -299,9 +289,6 @@ const tenglish: AdvStrings = {
     enchantress: 'Charming and flirty',
     trickster: 'Jittulamari, allari',
   },
-  makeTitle: 'Nee own adventure create chesuko',
-  makeBody: 'Story cheppu, wizard live lo rasestadu.',
-  comingSoon: 'Tvaralo vastundi',
 
   sayChoice: 'Card meeda number leda words cheppu',
   sayAnswer: 'Nee answer cheppu',

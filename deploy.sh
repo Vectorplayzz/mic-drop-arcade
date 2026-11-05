@@ -273,6 +273,8 @@ cmd_audio() {
   scp "${SSH_OPTS[@]}" -q "$tarball" "$VPS:/tmp/maata-audio.tar.gz"
   run <<'EOF'
 cd "$APP_DIR/deploy"
+# Use the image of the running release, never compose's fallback 'latest' (which would build).
+export MAATA_TAG; MAATA_TAG=$(cat .current_tag 2>/dev/null) || { echo "no release deployed yet; run release first"; exit 1; }
 docker compose --env-file .env run --rm -T --no-deps --entrypoint tar api -xzf - -C /data/audio < /tmp/maata-audio.tar.gz
 rm -f /tmp/maata-audio.tar.gz
 docker compose --env-file .env run --rm -T --no-deps api python scripts/prerender_audio.py --dry-run </dev/null || true
@@ -281,6 +283,7 @@ EOF
 
 cmd_status() { run <<'EOF'
 cd "$APP_DIR/deploy"
+export MAATA_TAG; MAATA_TAG=$(cat .current_tag 2>/dev/null || echo none)
 echo "release: $(cat .current_tag 2>/dev/null || echo none)"
 docker compose ps
 curl -fsS --max-time 5 http://127.0.0.1:8088/api/readyz && echo
@@ -288,7 +291,7 @@ docker compose exec -T api python -m app.admin status </dev/null
 EOF
 }
 cmd_logs() { run <<'EOF'
-cd "$APP_DIR/deploy" && docker compose logs --tail 150 api
+cd "$APP_DIR/deploy" && MAATA_TAG=$(cat .current_tag 2>/dev/null || echo none) docker compose logs --tail 150 api
 EOF
 }
 cmd_rollback() { run "${1:-}" <<'EOF'

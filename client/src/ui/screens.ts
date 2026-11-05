@@ -62,7 +62,6 @@ export interface TitleOptions {
   onLanguage(code: LanguageCode): void;
   onStart(): void;
   onBoard(): void;
-  onCreator(): void;
   onSettings(): void;
   onPrivacy(): void;
 }
@@ -103,7 +102,6 @@ export function titleScreen(o: TitleOptions): Screen {
       'nav',
       { class: 'menu' },
       button(t.leaderboard, o.onBoard),
-      button(t.creator, o.onCreator),
       button(t.settings, o.onSettings),
     ),
     h(
@@ -209,12 +207,17 @@ function wizardPicker(
   return h('div', { class: 'picker' }, h('h2', { class: 'label', text: t.chooseWizard }), row);
 }
 
-/** Twenty heroes; the pick is remembered and rides along with every game. */
+/** Twenty heroes; the pick is remembered and rides along with every game. The chosen hero
+ * stands large beside the grid, the way it will stand in the story. */
 function heroPicker(t: Strings, current: Hero, onHero: (hero: Hero) => void): HTMLElement {
-  const picked = h('p', { class: 'hero-picked', attrs: { 'aria-live': 'polite' } });
+  const spotlightImg = artImage(heroUrl(current), 'hero-spotlight-img');
+  const spotlightName = h('p', { class: 'hero-spotlight-name pixel' });
+  const picked = h('p', { class: 'sr-only', attrs: { 'aria-live': 'polite' } });
   const buttons = new Map<Hero, HTMLButtonElement>();
   const select = (hero: Hero): void => {
     for (const [id, b] of buttons) b.setAttribute('aria-pressed', String(id === hero));
+    spotlightImg.src = heroUrl(hero);
+    setText(spotlightName, heroName(hero));
     setText(picked, `${t.yourHero}: ${heroName(hero)}`);
   };
   const grid = h(
@@ -234,13 +237,26 @@ function heroPicker(t: Strings, current: Hero, onHero: (hero: Hero) => void): HT
           },
         },
         artImage(heroUrl(hero), 'hero-img'),
+        h('span', { class: 'hero-name', text: heroName(hero), attrs: { 'aria-hidden': 'true' } }),
       );
       buttons.set(hero, b);
       return b;
     }),
   );
   select(current);
-  return h('div', { class: 'picker' }, h('h2', { class: 'label', text: t.chooseHero }), grid, picked);
+  const spotlight = h(
+    'figure',
+    { class: 'hero-spotlight', attrs: { 'aria-hidden': 'true' } },
+    spotlightImg,
+    spotlightName,
+  );
+  return h(
+    'div',
+    { class: 'picker hero-picker' },
+    h('h2', { class: 'label', text: t.chooseHero }),
+    h('div', { class: 'hero-picker-body' }, spotlight, grid),
+    picked,
+  );
 }
 
 /** One medal per ending: filled when found, a "?" when still locked. */
@@ -318,17 +334,6 @@ export function lobbyScreen(o: LobbyOptions): LobbyScreen {
       h('span', { class: 'adventure-tagline', text: a.letWizardChooseBody }),
     ),
   );
-  const make = h(
-    'div',
-    { class: 'adventure-card make-card', attrs: { 'aria-disabled': 'true' } },
-    h(
-      'span',
-      { class: 'adventure-info' },
-      h('span', { class: 'badge badge-soon pixel', text: a.comingSoon }),
-      h('span', { class: 'adventure-title', text: a.makeTitle }),
-      h('span', { class: 'adventure-tagline', text: a.makeBody }),
-    ),
-  );
   const el = h(
     'section',
     { class: 'screen lobby' },
@@ -339,7 +344,6 @@ export function lobbyScreen(o: LobbyOptions): LobbyScreen {
     auto,
     title,
     list,
-    make,
     h('p', { class: 'muted', text: t.gamesLeft(o.gamesLeft) }),
     button(t.back, o.onBack),
   );

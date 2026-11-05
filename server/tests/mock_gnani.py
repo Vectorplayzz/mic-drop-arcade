@@ -49,6 +49,13 @@ class MockState:
     tts_requests: list[dict] = field(default_factory=list)
     tts_chunk_delay_s: float = 0.0
     tts_audio_s: float = 0.4
+    # Audio length per character instead of a fixed length, so tests can tell lines apart.
+    tts_s_per_char: float | None = None
+    # Real Timbre follows the final chunk with a "Streaming completed" trailer.
+    tts_trailer: bool = True
+    # Send this many extra trailers after the next request (a desynchronised server).
+    tts_stray_trailers: int = 0
+    tts_connections: int = 0
     fail_stt_handshake_status: int | None = None
 
 
@@ -157,6 +164,7 @@ class MockGnani:
 
     async def _tts(self, ws: ServerConnection) -> None:
         st = self.state
+        st.tts_connections += 1
         async for msg in ws:
             req = json.loads(msg)
             st.tts_requests.append(req)
@@ -165,7 +173,8 @@ class MockGnani:
                 await ws.send(json.dumps({"type": "error", "message": "invalid request"}))
                 continue
             await ws.send(json.dumps({"type": "start", "request_id": "req_1"}))
-            pcm = tone(st.tts_audio_s, rate=cfg["sample_rate"], amp=3000)
+            seconds = len(req["text"]) * st.tts_s_per_char if st.tts_s_per_char else st.tts_audio_s
+            pcm = tone(seconds, rate=cfg["sample_rate"], amp=3000)
             step = 4800
             for i in range(0, len(pcm), step):
                 await asyncio.sleep(st.tts_chunk_delay_s)
@@ -186,3 +195,14 @@ class MockGnani:
                     {"type": "complete", "data": {"chunk_index": -1, "audio": "", "is_final": True}}
                 )
             )
+            for _ in range(int(st.tts_trailer) + st.tts_stray_trailers):
+                await ws.send(
+                    json.dumps(
+                        {
+                            "type": "complete",
+                            "message": "Streaming completed",
+                            "request_id": "req_1",
+                        }
+                    )
+                )
+            st.tts_stray_trailers = 0

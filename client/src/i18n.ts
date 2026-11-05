@@ -13,7 +13,6 @@ export interface Strings {
   start: string;
   chooseLanguage: string;
   leaderboard: string;
-  creator: string;
   settings: string;
   back: string;
   home: string;
@@ -76,9 +75,6 @@ export interface Strings {
   /** Shown when the browser is holding the game's sound back. */
   soundOff: string;
   /** The sixth card in the quest list: player-made quizzes, generated live (not built yet). */
-  customQuizTitle: string;
-  customQuizBody: string;
-  comingSoon: string;
 
   gameOver: string;
   finalScore: string;
@@ -97,6 +93,10 @@ export interface Strings {
   share: string;
   shareLine: (correct: number, total: number, language: string) => string;
   shareSaved: string;
+  /** The daily-limit screen's share button, its share text and the copied-link note. */
+  shareGame: string;
+  linkCopied: string;
+  shareGameText: string;
   playAgain: string;
   noGamesLeft: string;
 
@@ -152,7 +152,6 @@ const hinglish: Strings = {
   start: 'START',
   chooseLanguage: 'Language chuno',
   leaderboard: 'Leaderboard',
-  creator: 'Creator Mode',
   settings: 'Settings',
   back: 'Back',
   home: 'Home',
@@ -220,9 +219,6 @@ const hinglish: Strings = {
     trickster: 'Lomdi Jaadugar',
   },
   soundOff: 'Awaaz band hai, tap karo',
-  customQuizTitle: 'Apna quiz banao',
-  customQuizBody: 'Koi bhi topic bolo, AI tumhare liye quiz bana dega.',
-  comingSoon: 'Jald aa raha hai',
 
   gameOver: 'GAME OVER',
   finalScore: 'Aapka score',
@@ -241,6 +237,9 @@ const hinglish: Strings = {
   share: 'Score card share karo',
   shareLine: (c, t, lang) => `Maine ${lang} mein ${c}/${t} score kiya. Mujhe hara ke dikhao!`,
   shareSaved: 'Score card download ho gaya.',
+  shareGame: 'Dosto ke saath share karo',
+  linkCopied: 'Link copy ho gaya. Dosto ko bhej do!',
+  shareGameText: 'Mic Drop Arcade try karo: ek RPG jo sirf bolkar khelte hain!',
   playAgain: 'Phir se khelo',
   noGamesLeft: 'Is session ke games khatam. Naya session shuru karne ke liye Home par jao.',
 
@@ -304,8 +303,8 @@ const hinglish: Strings = {
       body: 'Ek session mein itne hi games khel sakte hain. Naya session shuru karo.',
     },
     audio_limit: {
-      title: 'Aaj ki play limit poori',
-      body: 'Aapne aaj ke liye kaafi khel liya. Kal phir aana!',
+      title: 'Khelne ke liye thanks!',
+      body: 'Pata hai aapko aur khelna hai. Par hamare credits limited hain, aur hum chahte hain ki baaki log bhi wahi mazaa le sakein jo aapne liya. Limit jaldi badhayenge. Abhi ke liye, khelne ke liye shukriya, aur game apne dosto ke saath share karo!',
     },
     idle: {
       title: 'So gaye kya?',
@@ -361,7 +360,6 @@ const hindi: Strings = {
   start: 'शुरू करें',
   chooseLanguage: 'भाषा चुनें',
   leaderboard: 'लीडरबोर्ड',
-  creator: 'क्रिएटर मोड',
   settings: 'सेटिंग्स',
   back: 'वापस',
   home: 'होम',
@@ -429,9 +427,6 @@ const hindi: Strings = {
     trickster: 'लोमड़ी जादूगर',
   },
   soundOff: 'आवाज़ बंद है, टैप कीजिए',
-  customQuizTitle: 'अपना क्विज़ बनाइए',
-  customQuizBody: 'कोई भी विषय बोलिए, AI आपके लिए क्विज़ बना देगा।',
-  comingSoon: 'जल्द आ रहा है',
 
   gameOver: 'खेल खत्म',
   finalScore: 'आपका स्कोर',
@@ -450,6 +445,9 @@ const hindi: Strings = {
   share: 'स्कोर कार्ड शेयर करें',
   shareLine: (c, t, lang) => `मैंने ${lang} में ${c}/${t} स्कोर किया। मुझे हराकर दिखाओ!`,
   shareSaved: 'स्कोर कार्ड डाउनलोड हो गया।',
+  shareGame: 'दोस्तों के साथ शेयर करें',
+  linkCopied: 'लिंक कॉपी हो गया। दोस्तों को भेज दीजिए!',
+  shareGameText: 'Mic Drop Arcade खेलकर देखो: एक RPG जो सिर्फ़ बोलकर खेला जाता है!',
   playAgain: 'फिर से खेलें',
   noGamesLeft: 'इस सेशन के गेम खत्म। नया सेशन शुरू करने के लिए होम पर जाइए।',
 
@@ -513,8 +511,8 @@ const hindi: Strings = {
       body: 'एक सेशन में इतने ही गेम खेले जा सकते हैं। नया सेशन शुरू करें।',
     },
     audio_limit: {
-      title: 'आज की सीमा पूरी',
-      body: 'आपने आज के लिए काफ़ी खेल लिया। कल फिर आइए!',
+      title: 'खेलने के लिए शुक्रिया!',
+      body: 'हमें पता है कि आप और खेलना चाहते हैं। लेकिन हमारे क्रेडिट्स सीमित हैं, और हम चाहते हैं कि बाकी लोग भी वही मज़ा ले सकें जो आपने लिया। हम जल्द ही लिमिट बढ़ाएँगे। अभी के लिए, खेलने के लिए शुक्रिया, और इसे अपने दोस्तों के साथ शेयर कीजिए!',
     },
     idle: {
       title: 'सो गए क्या?',
@@ -570,7 +568,6 @@ const telugu: Strings = {
   start: 'ప్రారంభించు',
   chooseLanguage: 'భాష ఎంచుకోండి',
   leaderboard: 'లీడర్‌బోర్డ్',
-  creator: 'క్రియేటర్ మోడ్',
   settings: 'సెట్టింగ్‌లు',
   back: 'వెనక్కి',
   home: 'హోమ్',
@@ -638,9 +635,6 @@ const telugu: Strings = {
     trickster: 'నక్క మాంత్రికుడు',
   },
   soundOff: 'సౌండ్ ఆఫ్‌లో ఉంది, ట్యాప్ చేయండి',
-  customQuizTitle: 'మీ సొంత క్విజ్',
-  customQuizBody: 'ఏ విషయమైనా చెప్పండి, AI మీ కోసం క్విజ్ తయారుచేస్తుంది.',
-  comingSoon: 'త్వరలో వస్తోంది',
 
   gameOver: 'ఆట ముగిసింది',
   finalScore: 'మీ స్కోరు',
@@ -659,6 +653,9 @@ const telugu: Strings = {
   share: 'స్కోర్ కార్డ్ షేర్ చేయండి',
   shareLine: (c, t, lang) => `నేను ${lang}లో ${c}/${t} స్కోరు చేశాను. నన్ను ఓడించి చూపించండి!`,
   shareSaved: 'స్కోర్ కార్డ్ డౌన్‌లోడ్ అయింది.',
+  shareGame: 'ఫ్రెండ్స్‌తో షేర్ చేయండి',
+  linkCopied: 'లింక్ కాపీ అయింది. ఫ్రెండ్స్‌కి పంపండి!',
+  shareGameText: 'Mic Drop Arcade ఆడి చూడండి: మాట్లాడుతూనే ఆడే RPG!',
   playAgain: 'మళ్లీ ఆడండి',
   noGamesLeft: 'ఈ సెషన్ ఆటలు అయిపోయాయి. కొత్త సెషన్ కోసం హోమ్‌కు వెళ్లండి.',
 
@@ -722,8 +719,8 @@ const telugu: Strings = {
       body: 'ఒక సెషన్‌లో ఇన్ని ఆటలే ఆడగలరు. కొత్త సెషన్ మొదలుపెట్టండి.',
     },
     audio_limit: {
-      title: 'ఈరోజు పరిమితి పూర్తయింది',
-      body: 'ఈరోజుకు మీరు చాలా ఆడారు. రేపు మళ్లీ రండి!',
+      title: 'ఆడినందుకు థ్యాంక్స్!',
+      body: 'మీకు ఇంకా ఆడాలని ఉందని మాకు తెలుసు. కానీ మా దగ్గర క్రెడిట్స్ పరిమితంగా ఉన్నాయి, మీకు దొరికిన అనుభవం ఇతరులకూ దొరకాలని మా కోరిక. త్వరలోనే లిమిట్ పెంచుతాం. ప్రస్తుతానికి ఆడినందుకు ధన్యవాదాలు, మీ ఫ్రెండ్స్‌తో షేర్ చేయండి!',
     },
     idle: {
       title: 'నిద్రపోయారా?',
@@ -779,7 +776,6 @@ const english: Strings = {
   start: 'START',
   chooseLanguage: 'Choose a language',
   leaderboard: 'Leaderboard',
-  creator: 'Creator Mode',
   settings: 'Settings',
   back: 'Back',
   home: 'Home',
@@ -847,9 +843,6 @@ const english: Strings = {
     trickster: 'The Trickster',
   },
   soundOff: 'Sound is off. Tap to turn it on',
-  customQuizTitle: 'Make your own quiz',
-  customQuizBody: 'Say any topic and AI builds a quiz for you on the spot.',
-  comingSoon: 'Coming soon',
 
   gameOver: 'GAME OVER',
   finalScore: 'Your score',
@@ -868,6 +861,9 @@ const english: Strings = {
   share: 'Share score card',
   shareLine: (c, t, lang) => `I scored ${c}/${t} in ${lang}. Beat me if you can!`,
   shareSaved: 'Score card downloaded.',
+  shareGame: 'Share with friends',
+  linkCopied: 'Link copied. Send it to your friends!',
+  shareGameText: 'Try Mic Drop Arcade: an RPG you play just by talking!',
   playAgain: 'Play again',
   noGamesLeft: 'No games left in this session. Go Home to start a new one.',
 
@@ -912,7 +908,10 @@ const english: Strings = {
       title: 'Session games used up',
       body: "That's the most games for one session. Start a new session.",
     },
-    audio_limit: { title: "Today's play limit reached", body: "You've played a lot today. Come back tomorrow!" },
+    audio_limit: {
+      title: 'Thanks for playing!',
+      body: 'We know you want to keep playing. We\'re running on limited credits, and we want others to get the same adventure you just had. We\'ll raise the limit soon. For now, thanks for playing, and share the game with your friends!',
+    },
     idle: { title: 'Still there?', body: 'Nothing happened for a while, so the connection was closed.' },
     busy: { title: 'Lots of players right now', body: 'Every machine is busy. Try again in a minute.' },
     unknown_pack: { title: 'Pack not found', body: 'This quiz pack is no longer available. Pick another.' },
@@ -943,7 +942,6 @@ const tenglish: Strings = {
   start: 'START',
   chooseLanguage: 'Language select cheyyandi',
   leaderboard: 'Leaderboard',
-  creator: 'Creator Mode',
   settings: 'Settings',
   back: 'Back',
   home: 'Home',
@@ -1011,9 +1009,6 @@ const tenglish: Strings = {
     trickster: 'Nakka Mantrikudu',
   },
   soundOff: 'Sound off lo undi, tap cheyyandi',
-  customQuizTitle: 'Mee own quiz',
-  customQuizBody: 'E topic aina cheppandi, AI mee kosam quiz tayaru chestundi.',
-  comingSoon: 'Coming soon',
 
   gameOver: 'GAME OVER',
   finalScore: 'Mee score',
@@ -1032,6 +1027,9 @@ const tenglish: Strings = {
   share: 'Score card share cheyyandi',
   shareLine: (c, t, lang) => `Nenu ${lang} lo ${c}/${t} score chesanu. Dammunte beat cheyyandi!`,
   shareSaved: 'Score card download ayindi.',
+  shareGame: 'Friends tho share cheyyandi',
+  linkCopied: 'Link copy ayindi. Friends ki pampandi!',
+  shareGameText: 'Mic Drop Arcade aadi chudandi: maatlaadutune aade RPG!',
   playAgain: 'Malli aadandi',
   noGamesLeft: 'E session games ayipoyayi. Kotta session kosam Home ki vellandi.',
 
@@ -1070,7 +1068,10 @@ const tenglish: Strings = {
       body: 'E game vere tab lo nadustundi. Akkada aadandi, leda daanni close chesi ikkada try cheyyandi.',
     },
     session_limit: { title: 'Session games ayipoyayi', body: 'Oka session lo inni games matrame. Kotta session start cheyyandi.' },
-    audio_limit: { title: 'Eroju play limit purti', body: 'Erojuki chala aadaru. Repu malli randi!' },
+    audio_limit: {
+      title: 'Aadinanduku thanks!',
+      body: 'Meeku inka aadalani undani maaku telusu. Kaani maa daggara credits limited ga unnayi, meeku dorikina experience vere vallaki kuda dorakali ani maa korika. Twaralone limit penchutham. Prastutaniki aadinanduku thanks, mee friends tho share cheyyandi!',
+    },
     idle: { title: 'Nidrapoyara?', body: 'Chala sepu emi jaragaledu, anduke connection close ayindi.' },
     busy: { title: 'Ippudu chala mandi players', body: 'Anni machines busy. Oka minute lo malli try cheyyandi.' },
     unknown_pack: { title: 'Pack dorakaledu', body: 'E pack ippudu available ledu. Verodi select cheyyandi.' },

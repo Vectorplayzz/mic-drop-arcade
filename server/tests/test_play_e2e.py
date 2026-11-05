@@ -4,6 +4,7 @@ with real Redis and Postgres."""
 from __future__ import annotations
 
 import asyncio
+import itertools
 import json
 import struct
 import time
@@ -159,6 +160,11 @@ async def test_cached_lines_are_not_resynthesised(live, clean_gnani):
             c = await open_game(server, await get_session(server.http))
             await c.ws.send(json.dumps({"type": "start", "pack_id": "hi-test-01"}))
             await c.next("game_over", timeout=15)
+            # The closing line is still playing at game_over; leaving now would cut it off,
+            # and a cut-off line is (rightly) not cached.
+            last = max(m["utterance"] for m in c.log if m["type"] == "speak_start")
+            while (await c.next("speak_end", timeout=10))["utterance"] != last:
+                pass
             await c.ws.close()
         texts = [r["text"] for r in clean_gnani.state.tts_requests]
         # Intro was spoken in both games but synthesised once.
@@ -545,3 +551,55 @@ async def test_adventure_without_riddles_reaches_the_board(live, clean_gnani):
             )
             assert post.status_code == 200, post.text
             assert post.json()["rank"] == 1
+
+
+async def test_next_line_waits_for_slow_live_speech_to_finish_playing(live, clean_gnani):
+    # Timbre streams at half real time, so a line's audio is still playing on the client
+    # long after "start + length". The next caption must not cut it off.
+    clean_gnani.state.tts_audio_s = 1.0
+    clean_gnani.state.tts_chunk_delay_s = 0.2
+    with live() as server:
+        c = await open_game(server, await get_session(server.http))
+        await c.ws.send(
+            json.dumps({"type": "start_adventure", "adventure": "test-quest", "language": "en-IN"})
+        )
+        plays_until: dict[int, float] = {}  # the client's playback end per utterance
+        starts: list[tuple[int, float]] = []
+        while True:
+            msg = await asyncio.wait_for(c.ws.recv(), timeout=20)
+            now = time.monotonic()
+            if isinstance(msg, bytes):
+                _, utt, _ = struct.unpack(">BHB", msg[:4])
+                # Mirrors client/src/audio/player.ts: 60 ms lead, chunks back to back.
+                begin = max(plays_until.get(utt, 0.0), now + 0.06)
+                plays_until[utt] = begin + (len(msg) - 4) / 48000
+                continue
+            data = json.loads(msg)
+            if data["type"] == "speak_start":
+                starts.append((data["utterance"], now))
+            if data["type"] == "listen":
+                break
+        assert len(starts) >= 2
+        for (prev, _), (_, started) in itertools.pairwise(starts):
+            assert started >= plays_until[prev], "next line cut off the wizard"
+        await c.ws.close()
+
+
+async def test_last_line_after_game_over_is_spoken_in_full(live, clean_gnani):
+    # The closing line is spoken without waiting, right before game_over; closing the game's
+    # TTS must not cut it off.
+    clean_gnani.state.tts_audio_s = 1.0
+    clean_gnani.state.tts_chunk_delay_s = 0.1
+    with live(questions_per_game=1, answer_time_limit_s=1.0) as server:
+        c = await open_game(server, await get_session(server.http))
+        await c.ws.send(json.dumps({"type": "start", "pack_id": "hi-test-01"}))
+        await c.next("listen", timeout=20)
+        await stream_mic(c.ws, silence(1.5))
+        await c.next("game_over", timeout=20)
+        last = max(m["utterance"] for m in c.log if m["type"] == "speak_start")
+        while True:
+            end = await c.next("speak_end", timeout=10)
+            if end["utterance"] == last:
+                break
+        assert end["interrupted"] is False and end["duration_ms"] >= 950
+        await c.ws.close()

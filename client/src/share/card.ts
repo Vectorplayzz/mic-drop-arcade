@@ -127,12 +127,8 @@ export async function drawScoreCard(canvas: HTMLCanvasElement, card: ScoreCard):
     await drawRun(ctx, card, card.run);
     return;
   }
-  // The hero at a whole-number scale (128 px → 384 px) keeps every pixel square.
   const hero = await loadImage(heroUrl(card.hero));
-  if (hero) {
-    ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(hero, (W - 384) / 2, 300, 384, 384);
-  }
+  if (hero) drawHero(ctx, hero, 300);
 
   ctx.fillStyle = YELLOW;
   ctx.font = `160px ${PIXEL_FONT}`;
@@ -159,6 +155,13 @@ export async function drawScoreCard(canvas: HTMLCanvasElement, card: ScoreCard):
   ctx.fillText(card.url.replace(/^https?:\/\//, ''), W / 2, 1250);
 }
 
+/** The hero is 512 px high-resolution art drawn at 384 px: smooth it, unlike the scenes. */
+function drawHero(ctx: CanvasRenderingContext2D, hero: CanvasImageSource, y: number): void {
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(hero, (W - 384) / 2, y, 384, 384);
+}
+
 async function drawRun(
   ctx: CanvasRenderingContext2D,
   card: ScoreCard,
@@ -174,10 +177,7 @@ async function drawRun(
     ctx.fillRect((W - 896) / 2, 300, 896, 512);
   }
   const hero = await loadImage(heroUrl(card.hero));
-  if (hero) {
-    ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(hero, (W - 384) / 2, 428, 384, 384);
-  }
+  if (hero) drawHero(ctx, hero, 428);
 
   ctx.fillStyle = WHITE;
   ctx.font = `600 52px ${TEXT_FONT}`;

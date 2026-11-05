@@ -328,14 +328,19 @@ ul {
   background: var(--cyan);
 }
 
-/* Painted pixel art is upscaled by the browser: keep the pixels square. */
+/* Characters are high-resolution (512 px) pixel art drawn at many sizes, rarely a whole
+   multiple: smooth scaling keeps every pixel cluster even. The low-resolution scenes stay
+   pixelated (see #scene img). */
 .title-wizard,
 .stage-wizard,
 .stage-hero,
 .hero-img,
+.hero-spotlight-img,
 .over-hero-img,
-.board-hero {
-  image-rendering: pixelated;
+.board-hero,
+.wizard-pick-img,
+.quest-wizard {
+  image-rendering: auto;
   user-select: none;
 }
 
@@ -494,7 +499,6 @@ ul {
   bottom: -6%;
   height: 112%;
   aspect-ratio: 1;
-  image-rendering: pixelated;
 }
 
 .quest-info {
@@ -515,17 +519,6 @@ ul {
   animation: hop 480ms steps(3);
 }
 
-.custom-quiz {
-  border-style: dashed;
-  border-color: var(--muted);
-  background: rgb(23 21 59 / 80%);
-  cursor: default;
-}
-
-.badge-soon {
-  background: var(--muted);
-}
-
 .badge {
   padding: 0.25rem 0.4rem;
   background: var(--yellow);
@@ -536,7 +529,7 @@ ul {
 
 /* ------------------------------------------------------------------ pickers -------- */
 .lobby {
-  max-width: 46rem;
+  max-width: 56rem;
 }
 
 .picker {
@@ -584,7 +577,6 @@ ul {
   width: 100%;
   max-width: 11rem;
   aspect-ratio: 1;
-  image-rendering: pixelated;
 }
 
 .wizard-pick-name {
@@ -596,26 +588,116 @@ ul {
   color: var(--cyan);
 }
 
+.hero-picker-body {
+  display: grid;
+  grid-template-columns: minmax(12rem, 17rem) minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+
+/* The chosen hero, large, standing on a lit floor like in the story. */
+.hero-spotlight {
+  position: sticky;
+  top: 0.5rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.5rem 0.75rem;
+  border: 3px solid var(--cyan);
+  background:
+    radial-gradient(ellipse 60% 14% at 50% 88%, rgb(80 230 255 / 35%), transparent 70%),
+    linear-gradient(rgb(43 42 107 / 90%), rgb(11 10 31 / 90%));
+}
+
+.hero-spotlight-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: 50% 100%;
+  filter: drop-shadow(4px 4px 0 rgb(0 0 0 / 50%));
+}
+
+.hero-spotlight-name {
+  margin: 0;
+  font-size: 1.125rem;
+  color: var(--yellow);
+}
+
 .heroes {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.375rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(6.75rem, 100%), 1fr));
+  gap: 0.5rem;
 }
 
 .hero {
-  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  padding: 0.25rem 0.25rem 0.375rem;
 }
 
+/* Heroes are tall: a 3:4 window on the square sprite shows them a third bigger. */
 .hero-img {
   display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: 50% 100%;
+  transition: transform 120ms steps(2);
 }
 
-.hero-picked {
-  min-height: 1.5em;
+.hero:hover .hero-img,
+.hero:focus-visible .hero-img {
+  transform: scale(1.06);
+}
+
+.hero-name {
+  max-width: 100%;
+  overflow-wrap: anywhere;
   font-weight: 700;
-  color: var(--yellow);
+  font-size: 0.8125rem;
+  line-height: 1.2;
+}
+
+.hero[aria-pressed='true'] .hero-name {
+  color: var(--cyan);
+}
+
+/* Phones: the spotlight sits above a three-across grid. */
+@media (max-width: 40rem) {
+  .hero-picker-body {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-spotlight {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .hero-spotlight-img {
+    width: 9rem;
+  }
+
+  .heroes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-img {
+    transition: none;
+  }
+
+  .hero:hover .hero-img,
+  .hero:focus-visible .hero-img {
+    transform: none;
+  }
 }
 
 .pack-meta {
@@ -719,7 +801,6 @@ ul {
   aspect-ratio: 1;
   width: auto;
   pointer-events: none;
-  image-rendering: pixelated;
   filter: drop-shadow(6px 6px 0 rgb(0 0 0 / 50%));
 }
 
@@ -1028,9 +1109,11 @@ ul {
 }
 
 .over-hero-img {
-  width: 10rem;
-  height: 10rem;
-  margin-block: -0.75rem -0.5rem;
+  width: 10.5rem;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: 50% 100%;
+  filter: drop-shadow(4px 4px 0 rgb(0 0 0 / 50%));
 }
 
 .over-hero figcaption {
@@ -1197,48 +1280,6 @@ input[type='range'] {
   flex-direction: column;
   gap: 0.75rem;
   text-align: left;
-}
-
-/* ------------------------------------------------------------------ creator ------- */
-.creator {
-  max-width: 38rem;
-  text-align: left;
-}
-
-.creator .screen-title {
-  text-align: center;
-}
-
-.creator-pack,
-.creator-questions,
-.creator-question {
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-}
-
-.creator-pack,
-.creator-question {
-  padding: 1rem;
-  border: 3px solid var(--line);
-  background: color-mix(in srgb, var(--panel) 92%, transparent);
-}
-
-.creator-question-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-
-.issue {
-  color: var(--red);
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-.issue:empty {
-  display: none;
 }
 
 
@@ -1680,19 +1721,6 @@ input[type='range'] {
   font-size: 1.5rem;
 }
 
-.make-card {
-  min-height: 0;
-  border-style: dashed;
-  border-color: var(--muted);
-  background: rgb(23 21 59 / 80%);
-  cursor: default;
-}
-
-.make-card .adventure-info {
-  padding-top: 0.75rem;
-  background: none;
-}
-
 .genre-romance {
   border-color: var(--pink);
 }
@@ -1923,12 +1951,13 @@ input[type='range'] {
     font-size: 1.25rem;
   }
 
-  .heroes {
-    grid-template-columns: repeat(10, 1fr);
-  }
-
   .adventures {
     grid-template-columns: 1fr 1fr;
+  }
+
+  /* An odd number of adventures: the last one takes the full row instead of leaving a hole. */
+  .adventures > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .wizards {
@@ -1964,4 +1993,20 @@ input[type='range'] {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* ------------------------------------------------------------------ beta tag ------- */
+.beta-tag {
+  position: fixed;
+  z-index: 50;
+  right: 0.5rem;
+  bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  padding: 0.3rem 0.5rem;
+  border: 2px solid #000;
+  background: var(--yellow);
+  color: #1d1400;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+  box-shadow: 3px 3px 0 #000;
 }

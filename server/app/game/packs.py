@@ -1,6 +1,6 @@
 """Question packs: schema, validation and loading.
 
-The same schema is used for Evon-generated starter packs and (later) Creator Mode uploads, so
+The same schema is used for Evon-generated starter packs and hand-written ones, so
 every pack — whoever wrote it — passes the same checks before it can be played. Only packs with
 a named human reviewer are loaded; drafts live in ``packs/drafts`` and are never served.
 """
@@ -188,7 +188,7 @@ class Pack(BaseModel):
     language: Literal["te-IN", "hi-IN", "hi-en", "en-IN", "te-en"]
     topic: Annotated[str, StringConstraints(min_length=2, max_length=40)]
     version: int = Field(ge=1)
-    source: Literal["evon-v3.3", "hand", "creator"]
+    source: Literal["evon-v3.3", "hand"]
     reviewed_by: Annotated[str, StringConstraints(min_length=2, max_length=60)] | None = None
     reviewed_at: date | None = None
     questions: list[Question] = Field(min_length=5, max_length=50)

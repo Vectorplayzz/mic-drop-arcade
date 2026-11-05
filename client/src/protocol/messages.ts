@@ -278,6 +278,7 @@ export const GENRES = [
   'scifi',
   'horror',
   'fantasy',
+  'riddle',
   'comedy',
   'thriller',
 ] as const;
