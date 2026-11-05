@@ -1,8 +1,27 @@
 # Mic Drop Arcade
 
-A retro arcade quiz you play only by speaking: Telugu, Hindi, English, Hinglish or Tenglish. Built for Gnani AI's
-Great Indian AI Internship Challenge on **Prisma v2.5** (realtime STT), **Timbre v3.0**
-(streaming TTS) and **Evon v3.3** (question-pack generation).
+**Play it: [micdrop.ourspaces.net](https://micdrop.ourspaces.net)** (allow the mic when asked)
+
+A retro voice RPG you play only by speaking, in Telugu, Hindi, English, Hinglish or Tenglish.
+Five wizards narrate branching adventures in their own voices. What you say decides the next
+scene and the ending, and you play for score and time on a shared leaderboard.
+
+Built for Gnani AI's Great Indian AI Internship Challenge on **Prisma v2.5** (realtime STT),
+**Timbre v3.0** (streaming TTS) and **Evon v3.3** (offline content generation).
+
+## What's in it
+
+- **Ten adventures** across genres: a prologue (*The Five Doors*), a riddle quest
+  (*The Silent Spellbook*), plus fantasy, sci-fi, horror, mystery, thriller, action, comedy
+  and romance stories set in places students know: hostels, fests, labs, vivas and hackathons.
+  Each one is hand-reviewed and lives in `server/adventures/`.
+- **Five wizards, five voices:** the Sorceress, Baba Sage, Professor Ullu, Mohini and Lomdi
+  Jaadugar, each cast to a different Timbre voice with per-voice loudness trims.
+- **Voice-first play:** you answer by speaking. The server streams your mic to Prisma, matches
+  what you said against the scene's choices, and streams the wizard's reply back from Timbre.
+- **Built to be left running in public:** the Gnani key never reaches the browser, every
+  endpoint is rate-limited, Gnani usage is capped by a daily budget with a kill switch, and CI
+  runs tests, lint and a gitleaks secret scan on every change. See `docs/SECURITY.md`.
 
 ```
 browser (PWA) ──wss──> nginx ──> api (FastAPI) ──wss──> Prisma v2.5 STT

@@ -1,6 +1,6 @@
 # Mic Drop Arcade — project instructions for Claude
 
-Mic Drop Arcade (formerly Maata Arcade) is a retro arcade quiz played only by speaking (Telugu, Hindi, Hinglish, Tenglish, English), aimed at Indian engineering students aged 18–25. It is a
+Mic Drop Arcade (formerly Maata Arcade) is a retro voice RPG played only by speaking (Telugu, Hindi, Hinglish, Tenglish, English), aimed at Indian engineering students aged 18–25. It is a
 two-person entry for Gnani AI's Great Indian AI Internship Challenge.
 - Submissions close **Nov 10, 2026, 11:59 PM IST**; we submit Nov 9.
 - Hero posts go live Nov 2, so the build must be production-ready by **Oct 31**.
